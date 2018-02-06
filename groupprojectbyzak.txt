@@ -25,11 +25,17 @@ Potential categorization and sub-categories/processes:
 		Airlines
 	Hotels
 		List of hotels near destination
-		Reviews
+		Ratings/reviews
 		Pricing
-		Car rentals
-	Make/model
-		Vehicle type (Sedan/sport/SUV/truck)
-		Rates
+		Booking and payment 
+	Cars
+		Rentals
+			Make/model
+			Vehicle type (Sedan/sport/SUV/truck)
+			Rates
+			Booking and payment 
+		Local Cab companies
+			Rates
+			Booking and payment 
 
 
