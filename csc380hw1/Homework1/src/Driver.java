@@ -1,6 +1,6 @@
 /**
  * 
- * @author Andrew Spano, Jimmy Nyugen, Zach Gudlin
+ * @author Andrew Spano, Jimmy Nyugen, Zak Gudlin
  * 
  * Created 2/6/2018
  * 
