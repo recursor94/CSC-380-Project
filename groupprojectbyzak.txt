@@ -10,8 +10,7 @@ in the region in which he or she is staying and arrange for transportation from 
 or her hotel.  The customer will have the option to book a flight, choose seating by class, row and aisle, check 
 in baggage and either book a cab or find a rental car in advance.  Every transaction will be handled within the 
 application.  The customer will be presented with a list of hotels in the local area, along with their ratings 
-and customer reviews. The application will provide the user with an interface that will walk them through the process
-of booking their flight, hotel, and preferred method of transport (rental or taxi). 
+and customer reviews. 
 
 
 
