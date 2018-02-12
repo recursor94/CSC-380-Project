@@ -15,28 +15,28 @@ and customer reviews.
 
 
 Potential categorization and sub-categories/processes: 
-	Booking a flight
-		Options to change/cancel
-		Check baggage
-		Make payment
-		Choose seating
-		Times
-		Destinations
-		Airlines
-	Hotels
-		List of hotels near destination
-		Ratings/reviews
-			Average rating based on reviews?
-		Pricing
-		Booking and payment 
-	Cars
-		Rentals
-			Make/model
-			Vehicle type (Sedan/sport/SUV/truck)
-			Rates
-			Booking and payment 
-		Local Cab companies
-			Rates
-			Booking and payment 
+	*Booking a flight
+		-Options to change/cancel
+		-Check baggage
+		-Make payment
+		-Choose seating
+		-Times
+		-Destinations
+		-Airlines
+	*Hotels
+		-List of hotels near destination
+		-Ratings/reviews
+			-Average rating based on reviews?
+		-Pricing
+		-Booking and payment 
+	*Cars
+		-Rentals
+			-Make/model
+			-Vehicle type (Sedan/sport/SUV/truck)
+			-Rates
+			-Booking and payment 
+		-Local Cab companies
+			-Rates
+			-Booking and payment 
 
 
