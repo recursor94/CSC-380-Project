@@ -10,7 +10,7 @@ public class Cars {
 	private double rate;		// Hourly rate for rental. Double because like $25.10/hr
 
 
-	public Car(String vehicleType, double rate) {
+	public Cars(String vehicleType, double rate) {
 		this.vehicleType = vehicleType;
 		this.rate = rate;
 	}
@@ -20,12 +20,12 @@ public class Cars {
 	}
 
 
-	public int getRate() {
+	public double getRate() {
 		return rate;
 	}
 
 
-	public void setRate(int rate) {
+	public void setRate(double rate) {
 		this.rate = rate;
 	}
 	

@@ -5,7 +5,8 @@
  * @version 0.0.0.1
  */
 public class Hotel {
-	private Room[] rooms; //rooms will have cost associated with them
+	
+	//private Room[] rooms; //rooms will have cost associated with them
 	//I'm not making it an arraylist because it shouldn't be possible to add rooms after hotel is created
 	
 /* Just an FYI, when you think about data types you should use what will be maintainable and expandable in the future.
@@ -15,10 +16,10 @@ public class Hotel {
 */ 
 
 	private String location;
-	private ArrayList<Review> reviews; //reviews users have posted--will include score and customer comment.
+	//private ArrayList<Review> reviews; //reviews users have posted--will include score and customer comment.
 
 	public Hotel(int numOfRooms) {
-		rooms = new Room[numOfRooms];
+		//rooms = new Room[numOfRooms];
 	}
 
 

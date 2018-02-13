@@ -1,3 +1,10 @@
+/**
+ * 
+ * @author Jimmy Nguyen
+ * Created 2/9/2018
+ *
+ */
+
 public class Airline {
 	
 	private String name;
@@ -12,6 +19,4 @@ public class Airline {
 
 }
 
-
-// CHEESE BURGER ASCII HERE
 //plane has max person(s) (capacity)
