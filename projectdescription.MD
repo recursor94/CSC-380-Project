@@ -16,22 +16,22 @@ All payments would be handled through our in-house system.
 
 Identifier | Priority | Requirement
 ---------- | ---------| -----------
-REQ1       |    2 a   | The system should have a login system where users are able to create/login to their user accounts.
-REQ2       |    1 a   | The system shall allow users to book flights (view arrival and destination).  
-REQ3       |    1 b   | The system shall allow users to select a seating for their flight.
-REQ4       |    1 c   | The system shall allow users to setup their baggage plan for their flight.
-REQ5       |    1 d   | The system shall allow users to cancel/change their flight.
-REQ6       |    2 b   | The system shall allow users to pay for their flight using our system
-REQ7       |    1 e   | The system shall allow users to view their itinerary of their flight.
-REQ8       |    1 f   | The system shall allow users to find itinerary by flight number.
-REQ9       |    3 a   | The system shall present the user with a list of hotels by destination airport.
-REQ10      |    3 b   | The system shall present the prices of the specific hotel (rooms and rate) to the user.
-REQ11      |    3 c   | The system shall allow users to book a hotel room for a specific amount of days.
-REQ12      |    3 d   | The system shall allow users to pay for their hotel booking with our application.
-REQ13      |    4 a   | The system shall allow users to see a list of car rental services by their airport destination.
-REQ14      |    4 b   | The system shall display various types of vehicles to rent (with rates).
-REQ15      |    4 c   | The system shall allow users to book their car rental.
-REQ16      |    4 d   | The system shall allow users to pay for rentals using our application.
+REQ1       |    2a   | The system should have a login system where users are able to create/login to their user accounts.
+REQ2       |    1a   | The system shall allow users to book flights (view arrival and destination).  
+REQ3       |    1b   | The system shall allow users to select a seating for their flight.
+REQ4       |    1c   | The system shall allow users to setup their baggage plan for their flight.
+REQ5       |    1d   | The system shall allow users to cancel/change their flight.
+REQ6       |    2b   | The system shall allow users to pay for their flight using our system
+REQ7       |    1e   | The system shall allow users to view their itinerary of their flight.
+REQ8       |    1f   | The system shall allow users to find itinerary by flight number.
+REQ9       |    3a   | The system shall present the user with a list of hotels by destination airport.
+REQ10      |    3b   | The system shall present the prices of the specific hotel (rooms and rate) to the user.
+REQ11      |    3c   | The system shall allow users to book a hotel room for a specific amount of days.
+REQ12      |    3d   | The system shall allow users to pay for their hotel booking with our application.
+REQ13      |    4a   | The system shall allow users to see a list of car rental services by their airport destination.
+REQ14      |    4b   | The system shall display various types of vehicles to rent (with rates).
+REQ15      |    4c   | The system shall allow users to book their car rental.
+REQ16      |    4d   | The system shall allow users to pay for rentals using our application.
 
 
 ## User Stories
@@ -60,9 +60,19 @@ ST-17      | As a user, I will be able to pay for the vehicle rental. | 3 pt(s)
 
 
 
-## When in doubt, bone the trout.
-      .-.               .-.
-     (   `-._________.-'   )
-      >=     _______     =<
-     (   ,-'`       `'-,   )
-      `-'               `-'
+### When in doubt, ask the trout.
+
+		 |
+                 |
+                ,|.
+               ,\|/.
+             ,' .V. `.
+            / .     . \
+           /_`       '_\
+          ,' .:     ;, `.
+          |@)|  . .  |(@|
+     ,-._ `._';  .  :`_,' _,-.
+    '--  `-\ /,-===-.\ /-'  --`
+   (----  _|  ||___||  |_  ----)
+    `._,-'  \  `-.-'  /  `-._,'
+             `-.___,-'
