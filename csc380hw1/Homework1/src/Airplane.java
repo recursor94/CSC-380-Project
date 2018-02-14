@@ -1,4 +1,4 @@
-public Airplane {
+public class Airplane {
 
 	private String name;
 	private int planeId;
