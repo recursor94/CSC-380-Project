@@ -2,33 +2,14 @@
 
 Group : { Andrew Spano, Jimmy Nguyen, Zak Gudlin }
 
-This project is a travel assistant which can be used by a frequent flyer to book/manage their flight, book/manage a
-hotel in the vicinity of the destination airport, and arrange for transportation from that very same vicinity as well.
-The patron will have the option to book a flight, choose their seating, setup a baggage plan, and book a hotel as well as a rental vehicle (optional).
-Each transaction will be handled within our application.
-
-## Categorized Features
-
-* Booking a flight
-	* Choose seating
-	* Choose baggage plan
-	* Choose flights for specific destination and time
-	* View all of the above
-	* Options to change or cancel
-	* Payment handled through in-house system 
-
-* Hotels
-	* View business
-	* Select rooms (displaying rates)
-	* Book a room (cancel or change)
-	* Payment handled through in-house system
-
-* Cars
-	* View business
-	* Select vehicle type and make
-	* Rent a car (displaying rates)
-	* Payment handled through in-house system
-
+This project is travel assistant application which can be used by a frequent flyer to book and manage their flights. 
+Users will be able to book flights based on arrival time & destination, choose their seating (with additional costs),
+setup their baggage plans (with additional costs), and manage their flights as well. Management features would 
+include viewing their itinerary of their flight, making changes to their booked flights, and cancellation of 
+said flight. Users would presented with a list of hotels nearby their destination airport and be able to
+book with said business based on available rooms (with rates). Users would also be able to manage their hotel booking
+as well. Car rentals nearby the destination airport would also be available to view as well as book/manage. 
+All payments would be handled through our in-house system.
 
 ## System Requirements
 
@@ -72,3 +53,4 @@ ST-3       | As a user, I will be able to view car rental business' nearby my ai
 ST-3       | As a user, I will be able to view the vehicles available for rental based on rate. | 1 pt(s)
 ST-3       | As a user, I will be able to rent a vehicle based on type and make. | 1 pt(s)
 ST-3       | As a user, I will be able to pay for the vehicle rental. | 1 pt(s)
+
