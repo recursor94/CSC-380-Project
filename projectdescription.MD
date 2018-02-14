@@ -12,45 +12,49 @@ as well. Car rentals nearby the destination airport would also be available to v
 All payments would be handled through our in-house system.
 
 ## System Requirements
+> 1 is highest, 4 is lowest
 
 Identifier | Priority | Requirement
 ---------- | ---------| -----------
-REQ1       |          | The system should have a login system where users are able to create/login to their user accounts.
-REQ2       |          | The system shall allow users to book flights (view arrival and destination).  
-REQ3       |          | The system shall allow users to select a seating for their flight.
-REQ4       |          | The system shall allow users to setup their baggage plan for their flight.
-REQ5       |          | The system shall allow users to cancel/change their flight.
-REQ6       |          | The system shall allow users to pay for their flight using our system
-REQ7       |          | The system shall allow users to view their itinerary of their flight.
-REQ8       |          | The system shall allow users to find itinerary by flight number.
-REQ9       |          | The system shall present the user with a list of hotels by destination airport.
-REQ10      |          | The system shall present the prices of the specific hotel (rooms and rate) to the user.
-REQ11      |          | The system shall allow users to book a hotel room for a specific amount of days.
-REQ12      |          | The system shall allow users to pay for their hotel booking with our application.
-REQ13      |          | The system shall allow users to see a list of car rental services by their airport destination.
-REQ14      |          | The system shall display various types of vehicles to rent (with rates).
-REQ15      |          | The system shall allow users to book their car rental.
-REQ16      |          | The system shall allow users to pay for rentals using our application.
+REQ1       |    2 a   | The system should have a login system where users are able to create/login to their user accounts.
+REQ2       |    1 a   | The system shall allow users to book flights (view arrival and destination).  
+REQ3       |    1 b   | The system shall allow users to select a seating for their flight.
+REQ4       |    1 c   | The system shall allow users to setup their baggage plan for their flight.
+REQ5       |    1 d   | The system shall allow users to cancel/change their flight.
+REQ6       |    2 b   | The system shall allow users to pay for their flight using our system
+REQ7       |    1 e   | The system shall allow users to view their itinerary of their flight.
+REQ8       |    1 f   | The system shall allow users to find itinerary by flight number.
+REQ9       |    3 a   | The system shall present the user with a list of hotels by destination airport.
+REQ10      |    3 b   | The system shall present the prices of the specific hotel (rooms and rate) to the user.
+REQ11      |    3 c   | The system shall allow users to book a hotel room for a specific amount of days.
+REQ12      |    3 d   | The system shall allow users to pay for their hotel booking with our application.
+REQ13      |    4 a   | The system shall allow users to see a list of car rental services by their airport destination.
+REQ14      |    4 b   | The system shall display various types of vehicles to rent (with rates).
+REQ15      |    4 c   | The system shall allow users to book their car rental.
+REQ16      |    4 d   | The system shall allow users to pay for rentals using our application.
 
 
 ## User Stories
+> Person = 1 pts
+> 1 Hour = 2 pts
+> Meeting = 3 pts
 
 Identifier | User Story | Size
 ---------- | ---------- | ----
-ST-1       | As a prospective client, I will be able to create a user account to access the services. | 1pt(s)
-ST-2       | As a user, I will be able to book flights that I'm interesting in based on arrival/destination. | 1 pt(s)
-ST-3       | As a user, I will be able to choose a seating for my booked flight. | 1 pt(s)
-ST-4       | As a user, I will be able to choose my baggage plan for my booked flight. | 1 pt(s)
-ST-5       | As a user, I will be able to pay for my booked flight. | 1 pt(s)
-ST-6       | As a user, I will be able to change my booked flight. | 1 pt(s)
-ST-7       | As a user, I will be able to cancel my booked flight. | 1 pt(s)
-ST-8       | As a user, I will be able to view the itinerary my booked flight. | 1 pt(s)
-ST-10      | As a user, I will be able to view hotels nearby my airport destination. | 1 pt(s)
-ST-11      | As a user, I will be able to view rooms from a specified hotel. | 1 pt(s)
-ST-12      | As a user, I will be able to select a room from a specified hotel to check-in. | 1 pt(s)
-ST-13      | As a user, I will be able to pay for the booked hotel. | 1 pt(s)
-ST-14      | As a user, I will be able to view car rental business' nearby my airport destination. | 1 pt(s)
-ST-15      | As a user, I will be able to view the vehicles available for rental based on rate. | 1 pt(s)
-ST-16      | As a user, I will be able to rent a vehicle based on type and make. | 1 pt(s)
-ST-17      | As a user, I will be able to pay for the vehicle rental. | 1 pt(s)
+ST-1       | As a prospective client, I will be able to create a user account to access the services. | 4 pt(s)
+ST-2       | As a user, I will be able to book flights that I'm interesting in based on arrival/destination. | 6 pt(s)
+ST-3       | As a user, I will be able to choose a seating for my booked flight. | 3 pt(s)
+ST-4       | As a user, I will be able to choose my baggage plan for my booked flight. | 3 pt(s)
+ST-5       | As a user, I will be able to pay for my booked flight. | 3 pt(s)
+ST-6       | As a user, I will be able to change my booked flight. | 3 pt(s)
+ST-7       | As a user, I will be able to cancel my booked flight. | 3 pt(s)
+ST-8       | As a user, I will be able to view the itinerary my booked flight. | 3 pt(s)
+ST-10      | As a user, I will be able to view hotels nearby my airport destination. | 6 pt(s)
+ST-11      | As a user, I will be able to view rooms from a specified hotel. | 4 pt(s)
+ST-12      | As a user, I will be able to select a room from a specified hotel to check-in. | 4 pt(s)
+ST-13      | As a user, I will be able to pay for the booked hotel. | 3 pt(s)
+ST-14      | As a user, I will be able to view car rental business' nearby my airport destination. | 3 pt(s)
+ST-15      | As a user, I will be able to view the vehicles available for rental based on rate. | 4 pt(s)
+ST-16      | As a user, I will be able to rent a vehicle based on type and make. | 6 pt(s)
+ST-17      | As a user, I will be able to pay for the vehicle rental. | 3 pt(s)
 
