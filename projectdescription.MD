@@ -58,3 +58,11 @@ ST-15      | As a user, I will be able to view the vehicles available for rental
 ST-16      | As a user, I will be able to rent a vehicle based on type and make. | 6 pt(s)
 ST-17      | As a user, I will be able to pay for the vehicle rental. | 3 pt(s)
 
+
+
+## When in doubt, bone the trout.
+      .-.               .-.
+     (   `-._________.-'   )
+      >=     _______     =<
+     (   ,-'`       `'-,   )
+      `-'               `-'
