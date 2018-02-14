@@ -52,4 +52,23 @@ REQ15 |  | The system shall allow users to book their car rental.
 REQ16 |  | The system shall allow users to pay for rentals using our application.
 
 
+## User Stories
 
+Identifier | User Story | Size
+---------- | ---------- | ----
+ST-1       | As a prospective client, I will be able to create a user account to access the services. | 1pt(s)
+ST-2       | As a user, I will be able to book flights that I'm interesting in based on arrival/destination. | 1 pt(s)
+ST-3       | As a user, I will be able to choose a seating for my booked flight. | 1 pt(s)
+ST-4       | As a user, I will be able to choose my baggage plan for my booked flight. | 1 pt(s)
+ST-5       | As a user, I will be able to pay for my booked flight. | 1 pt(s)
+ST-6       | As a user, I will be able to change my booked flight. | 1 pt(s)
+ST-7       | As a user, I will be able to cancel my booked flight. | 1 pt(s)
+ST-8       | As a user, I will be able to view the itinerary my booked flight. | 1 pt(s)
+ST-3       | As a user, I will be able to view hotels nearby my airport destination. | 1 pt(s)
+ST-3       | As a user, I will be able to view rooms from a specified hotel. | 1 pt(s)
+ST-3       | As a user, I will be able to select a room from a specified hotel to check-in. | 1 pt(s)
+ST-3       | As a user, I will be able to pay for the booked hotel. | 1 pt(s)
+ST-3       | As a user, I will be able to view car rental business' nearby my airport destination. | 1 pt(s)
+ST-3       | As a user, I will be able to view the vehicles available for rental based on rate. | 1 pt(s)
+ST-3       | As a user, I will be able to rent a vehicle based on type and make. | 1 pt(s)
+ST-3       | As a user, I will be able to pay for the vehicle rental. | 1 pt(s)
