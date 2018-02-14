@@ -60,12 +60,9 @@ ST-17      | As a user, I will be able to pay for the vehicle rental. | 3 pt(s)
 
 
 
-When in doubt, ask the trout.
+### When in doubt, ask the trout.
 
-          __ 
-         /  ;  
-     _.--"""-..   _.
-    /F         `-'  [
-   ]  ,    ,    ,    ;
-    '--L__J_.-"" ',_;
-        '-._J
+     _///_
+    /o    \/
+    > ))_./\
+       <
