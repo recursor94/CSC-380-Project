@@ -15,8 +15,7 @@ Each transaction will be handled within our application.
 	* Choose flights for specific destination and time
 	* View all of the above
 	* Options to change or cancel
-	* Payment handled through in-house system
- 
+	* Payment handled through in-house system 
 *Hotels
 	* View business
 	* Select rooms (displaying rates)
