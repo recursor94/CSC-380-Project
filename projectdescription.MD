@@ -16,12 +16,14 @@ Each transaction will be handled within our application.
 	* View all of the above
 	* Options to change or cancel
 	* Payment handled through in-house system 
-*Hotels
+
+* Hotels
 	* View business
 	* Select rooms (displaying rates)
 	* Book a room (cancel or change)
 	* Payment handled through in-house system
-*Cars
+
+* Cars
 	* View business
 	* Select vehicle type and make
 	* Rent a car (displaying rates)
