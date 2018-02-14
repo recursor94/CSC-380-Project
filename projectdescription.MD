@@ -2,10 +2,11 @@
 
 Group : { Andrew Spano, Jimmy Nguyen, Zak Gudlin }
 
-This project is a travel assistant which can be used by a frequent flyers to book/manage their flight, book/manage a
+This project is a travel assistant which can be used by a frequent flyer to book/manage their flight, book/manage a
 hotel in the vicinity of the destination airport, and arrange for transportation from that very same vicinity as well.
-The patron will have the option to book a flight, choose their seating, setup a baggage plan, and book a hotel/rental vehicle (optional).
-Each transaction will be handled within our application. 
+The patron will have the option to book a flight, choose their seating, setup a baggage plan, and book a hotel as well as a rental vehicle (optional).
+Each transaction will be handled within our application. The user will also have the ability to cancel or make changes to
+their travel plans.
 
 ## Categorized Features
 
