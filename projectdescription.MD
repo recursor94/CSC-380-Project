@@ -2,12 +2,12 @@
 
 Group : { Andrew Spano, Jimmy Nguyen, Zak Gudlin }
 
-This project is travel assistant application which can be used by a frequent flyer to book and manage their flights. 
+This project is a travel assistant application which can be used by a frequent flyer to book and manage their flights. 
 Users will be able to book flights based on arrival time & destination, choose their seating (with additional costs),
 setup their baggage plans (with additional costs), and manage their flights as well. Management features would 
-include viewing their itinerary of their flight, making changes to their booked flights, and cancellation of 
-said flight. Users would presented with a list of hotels nearby their destination airport and be able to
-book with said business based on available rooms (with rates). Users would also be able to manage their hotel booking
+include viewing the itinerary of their flight, making changes to their booked flight, and cancellation of 
+said flight. Users would be presented with a list of hotels nearby their destination airport and be able to
+book with said business based on available rooms (with rates). Users would be able to manage their hotel booking
 as well. Car rentals nearby the destination airport would also be available to view as well as book/manage. 
 All payments would be handled through the in-house system.
 
@@ -25,7 +25,7 @@ REQ6       |    2b    | The system shall allow users to pay for the flight using
 REQ7       |    1e    | The system shall allow users to view the itinerary of their flight.
 REQ8       |    1f    | The system shall allow users to find their itinerary by flight number.
 REQ9       |    3a    | The system shall present the user with a list of hotels by the destination airport.
-REQ10      |    3b    | The system shall present the prices of the specific hotel (rooms and rate) to the user.
+REQ10      |    3b    | The system shall present the prices of the specific hotel (rooms and rates) to the user.
 REQ11      |    3c    | The system shall allow users to book a hotel room for a specific amount of days.
 REQ12      |    3d    | The system shall allow users to pay for their hotel booking with our application.
 REQ13      |    4a    | The system shall allow users to see a list of car rental services by their airport destination.
@@ -46,7 +46,7 @@ ST-2       | As a user, I will be able to choose seating for my booked flight. |
 ST-3       | As a user, I will be able to choose my baggage plan for my booked flight. | 3 pt(s)
 ST-4       | As a user, I will be able to cancel my booked flight. | 3 pt(s)
 ST-5       | As a user, I will be able to change my booked flight. | 3 pt(s)
-ST-6       | As a user, I will be able to view and find the itinerary of my booked flight. | 4 pt(s)
+ST-6       | As a user, I will be able to find and view the itinerary of my booked flight. | 4 pt(s)
 ST-7       | As a prospective client, I will be able to create a user account to access the services. | 4 pt(s)
 ST-8       | As a user, I will be able to pay for my booked flight. | 3 pt(s)
 ST-9       | As a user, I will be able to view hotels nearby my airport destination. | 6 pt(s)
