@@ -16,14 +16,14 @@ All payments would be handled through the in-house system.
 
 Identifier | Priority | Requirement
 ---------- | ---------| -----------
-REQ1       |    2a    | The system should have a login feature where users are able to create/login to their user accounts.
-REQ2       |    1a    | The system shall allow users to book flights (view arrival and destination).  
-REQ3       |    1b    | The system shall allow users to select a seat for their flight.
-REQ4       |    1c    | The system shall allow users to setup their baggage plan for their flight.
-REQ5       |    1d    | The system shall allow users to cancel/change their flight.
-REQ6       |    2b    | The system shall allow users to pay for the flight using our application.
-REQ7       |    1e    | The system shall allow users to view the itinerary of their flight.
-REQ8       |    1f    | The system shall allow users to find their itinerary by flight number.
+REQ1       |    1a    | The system shall allow users to book flights (view arrival and destination).  
+REQ2       |    1b    | The system shall allow users to select a seat for their flight.
+REQ3       |    1c    | The system shall allow users to setup their baggage plan for their flight.
+REQ4       |    1d    | The system shall allow users to cancel/change their flight.
+REQ5       |    1e    | The system shall allow users to view the itinerary of their flight.
+REQ6       |    1f    | The system shall allow users to find their itinerary by flight number.
+REQ7       |    2a    | The system should have a login feature where users are able to create/login to their user accounts.
+REQ8       |    2b    | The system shall allow users to pay for the flight using our application.
 REQ9       |    3a    | The system shall present the user with a list of hotels by the destination airport.
 REQ10      |    3b    | The system shall present the prices of the specific hotel (rooms and rates) to the user.
 REQ11      |    3c    | The system shall allow users to book a hotel room for a specific amount of days.
