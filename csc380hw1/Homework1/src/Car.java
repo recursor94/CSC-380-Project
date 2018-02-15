@@ -4,13 +4,13 @@
  * Created 2/9/2018
  *
  */
-public class Cars {
+public class Car {
 	
 	private String vehicleType; //The type of vehicle available for rental
 	private double rate;		// Hourly rate for rental. Double because like $25.10/hr
 
 
-	public Cars(String vehicleType, double rate) {
+	public Car(String vehicleType, double rate) {
 		this.vehicleType = vehicleType;
 		this.rate = rate;
 	}
