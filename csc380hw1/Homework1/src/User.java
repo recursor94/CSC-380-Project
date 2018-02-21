@@ -12,5 +12,11 @@ public class User {
 		password = pw;
 		
 	}
+	
+	//This is just a test method so I can run something in the Driver; we can delete this later
+	public void displayUser() {
+		
+		System.out.println("Login ID: " + userName +"\nPassword: " + password);
+	}
 
 }
