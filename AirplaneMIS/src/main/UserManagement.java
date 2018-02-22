@@ -11,6 +11,12 @@ public class UserManagement {
 	
 	public void removeUser(User user) {
 		userList.remove(user);
+		
+	}
+	
+	public void addUser (User obj) {
+		
+		userList.add(obj);
 	}
 	
 	public User findUser(String username) {
