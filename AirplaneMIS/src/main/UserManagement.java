@@ -12,5 +12,15 @@ public class UserManagement {
 	public void removeUser(User user) {
 		userList.remove(user);
 	}
+	
+	public User findUser(String username) {
+		
+		for(User user : userList) {
+			if(user.getUserName().equals(username)) {
+				return user;
+			}
+		}
+		return null;
+	}
 
 }
