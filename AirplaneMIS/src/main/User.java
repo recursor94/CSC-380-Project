@@ -14,5 +14,11 @@ public class User {
 		
 		System.out.println("Login ID: " + userName +"\nPassword: " + password);
 	}
+	public String getUserName() {
+		return userName;
+	};
+	public String getPassword() {
+		return password;
+	}
 
 }
