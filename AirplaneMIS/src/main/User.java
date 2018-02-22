@@ -1,4 +1,4 @@
-
+package main;
 public class User {
 	
 	private String userName;
@@ -10,9 +10,10 @@ public class User {
 		password = pw;
 	}
 
-	public void displayUser() {
-		
-		System.out.println("Login ID: " + userName +"\nPassword: " + password);
+
+	@Override
+	public String toString() {
+		return "User [userName=" + userName + ", password=" + password + "]";
 	}
 	public String getUserName() {
 		return userName;
