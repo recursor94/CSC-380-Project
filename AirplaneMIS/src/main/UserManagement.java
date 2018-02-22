@@ -9,20 +9,17 @@ public class UserManagement {
 		userList = new ArrayList<>();
 	}
 	
-	public void removeUser(User user) {
-		userList.remove(user);
-		
+	public void addUser (User user) {
+		userList.add(user);
 	}
 	
-	public void addUser (User obj) {
-		
-		userList.add(obj);
+	public void removeUser(User user) {
+		userList.remove(user);
 	}
 	
 	public User findUser(String username) {
-		
 		for(User user : userList) {
-			if(user.getUserName().equals(username)) {
+			if(user.getUsername().equals(username)) {
 				return user;
 			}
 		}

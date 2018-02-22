@@ -8,6 +8,6 @@ public class Seating {
 		seating = new int[amount];
 	}
 	
-	//find by null
+	//func by null
 
 }
