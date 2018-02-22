@@ -10,23 +10,16 @@ public class Airplane {
 	private int maxPassengers;
 	private int planeId;
 	private int[] seating;
-	private ArrayList<User> users;
-	private int numUsers;
+	//private ArrayList<User> users;
+	private int numPassengers;
 	
 	//Constructor - Probably needs a few more things in it, but I just wanted to get a start
 	public Airplane(int max) {
 		
-		numUsers = 0;
+		numPassengers = 0;
 		maxPassengers = max;
-		users = new ArrayList<User>(max);
+		//users = new ArrayList<User>(max);
 	}
 	
-	//Method to add a user to the user array list
-	public void addUser(User obj) {
-		
-		users.add(numUsers, obj);
-		numUsers ++;
-		
-	}
 	
 }
