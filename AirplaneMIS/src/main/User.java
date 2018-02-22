@@ -1,19 +1,18 @@
 package main;
 public class User {
 	
-	private String userName;
+	private String username;
 	private String password;
 	
 	
-	public User (String name, String pw) {
-		userName = name;
-		password = pw;
+	public User (String username, String password) {
+		this.username = username;
+		this.password = password;
 	}
-
 
 	@Override
 	public String toString() {
-		return "User [userName=" + userName + ", password=" + password + "]";
+		return "User [userName=" + username + ", password=" + password + "]";
 	}
 
 }
