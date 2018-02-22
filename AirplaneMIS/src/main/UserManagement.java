@@ -18,5 +18,15 @@ public class UserManagement {
 		
 		userList.add(obj);
 	}
+	
+	public User findUser(String username) {
+		
+		for(User user : userList) {
+			if(user.getUserName().equals(username)) {
+				return user;
+			}
+		}
+		return null;
+	}
 
 }

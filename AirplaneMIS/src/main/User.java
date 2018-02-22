@@ -15,5 +15,11 @@ public class User {
 	public String toString() {
 		return "User [userName=" + userName + ", password=" + password + "]";
 	}
+	public String getUserName() {
+		return userName;
+	};
+	public String getPassword() {
+		return password;
+	}
 
 }
