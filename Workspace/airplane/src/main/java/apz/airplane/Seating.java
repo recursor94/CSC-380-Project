@@ -19,8 +19,10 @@ public class Seating {
 	
 	public void addTo(User user) {
 		for (int i = 0; i < seating.length; i++) {
-			if (seating[i] == null)
+			if (seating[i] == null) {
 				seating[i] = user;
+				return;
+			}
 		}
 	}
 	

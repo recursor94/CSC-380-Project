@@ -6,7 +6,6 @@ public class Airplane {
 	private Seating seatArray;
 	
 	public Airplane(String name, int capacity) {
-		
 		this.name = name;
 		this.seatArray = new Seating(capacity);
 		
