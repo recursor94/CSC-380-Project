@@ -14,10 +14,15 @@ public class Booking {
 		this.flightDate = flightDate;
 	}
 	
+	/**
+	 * Generate itenerary including the flight
+	 * @return
+	 */
 	public String generateItenerary() {
 		
 		String itenerary = "";
-		
 		return itenerary;
 	}
+
+
 }
