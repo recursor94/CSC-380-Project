@@ -1,4 +1,6 @@
-package main;
+package apz.airplane;
+
+import java.util.Arrays;
 
 public class Seating {
 	
@@ -28,6 +30,11 @@ public class Seating {
 				if (seating[i] == user) 
 					seating[i] = null;
 		}
+	}
+
+	@Override
+	public String toString() {
+		return "Seating [seating=" + Arrays.toString(seating) + "]";
 	}
 	
 //	public String getSeatName(int index) { not flushed in idea yet

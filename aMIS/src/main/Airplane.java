@@ -28,4 +28,9 @@ public class Airplane {
 		this.seatArray = seatArray;
 	}
 
+	@Override
+	public String toString() {
+		return "Airplane [name=" + name + ", seatArray=" + seatArray + "]";
+	}
+
 }

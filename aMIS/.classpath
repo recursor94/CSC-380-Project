@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path=""/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
+<<<<<<< HEAD:AirplaneMIS/.classpath
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
+>>>>>>> 9e45f864f00abfc7b3337af6ff373d9c52c4ed74
+>>>>>>> 9e18751a511d77064154a099fb948837fc94769e
+>>>>>>> c26d1939637b0e6caa5a99ae239689a14ca99cb4
+>>>>>>> 13cb3465bfde30c9e9c29f9dd26f4d7b31642714:aMIS/.classpath
