@@ -14,10 +14,16 @@ public class Booking {
 		this.flightDate = flightDate;
 	}
 	
+	/**
+	 * Generate itenerary including the flight
+	 * @return
+	 */
 	public String generateItenerary() {
 		
-		String itenerary = "";
-		
+		String itenerary = "Username:\t" + user.getUsername();
+		//itenerary += "\nSeat:\t" + bookedPlane.getSeatArray().
 		return itenerary;
 	}
+
+
 }
