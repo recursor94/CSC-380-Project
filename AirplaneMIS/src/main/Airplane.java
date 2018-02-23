@@ -27,9 +27,7 @@ public class Airplane {
 	public void setSeatArray(Seating seatArray) {
 		this.seatArray = seatArray;
 	}
-	public String generateItenerary() {	
-		return "";
-	}
+	
 	
 
 }
