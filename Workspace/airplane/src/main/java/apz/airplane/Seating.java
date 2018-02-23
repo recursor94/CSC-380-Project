@@ -29,8 +29,10 @@ public class Seating {
 	public void remove(User user) {
 		for (int i = 0; i < seating.length; i++) {
 			if (seating[i] != null) 
-				if (seating[i] == user) 
+				if (seating[i] == user) {
 					seating[i] = null;
+					return;
+				}
 		}
 	}
 
