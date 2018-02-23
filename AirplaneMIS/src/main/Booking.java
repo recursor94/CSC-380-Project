@@ -1,0 +1,23 @@
+package main;
+
+import java.util.Date;
+
+public class Booking {
+	
+	private User user;
+	private Airplane bookedPlane;
+	private Date flightDate;
+	
+	public Booking(User user, Airplane bookedPlane, Date flightDate) {
+		this.user = user;
+		this.bookedPlane = bookedPlane;
+		this.flightDate = flightDate;
+	}
+	
+	public String generateItenerary() {
+		
+		String itenerary = "";
+		
+		return itenerary;
+	}
+}
