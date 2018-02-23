@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 public class UserManagement {
 	
-	ArrayList<User> userList;
+	private ArrayList<User> userList;
 	
 	public UserManagement() {
 		userList = new ArrayList<>();

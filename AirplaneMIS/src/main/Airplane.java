@@ -3,12 +3,12 @@ package main;
 public class Airplane {
 	
 	private String name;
-	private Seating seats;
+	private Seating seatArray;
 	
 	public Airplane(String name, int capacity) {
 		
 		this.name = name;
-		this.seats = new Seating(capacity);
+		this.seatArray = new Seating(capacity);
 		
 	}
 
@@ -20,12 +20,12 @@ public class Airplane {
 		this.name = name;
 	}
 
-	public Seating getSeats() {
-		return seats;
+	public Seating getSeatArray() {
+		return seatArray;
 	}
 
-	public void setSeats(Seating seats) {
-		this.seats = seats;
+	public void setSeatArray(Seating seatArray) {
+		this.seatArray = seatArray;
 	}
 	
 
