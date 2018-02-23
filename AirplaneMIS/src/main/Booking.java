@@ -20,7 +20,8 @@ public class Booking {
 	 */
 	public String generateItenerary() {
 		
-		String itenerary = "";
+		String itenerary = "Username:\t" + user.getUsername();
+		//itenerary += "\nSeat:\t" + bookedPlane.getSeatArray().
 		return itenerary;
 	}
 
