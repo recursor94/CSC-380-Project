@@ -1,4 +1,4 @@
-package main;
+package apz.airplane;
 
 public class Airplane {
 	
