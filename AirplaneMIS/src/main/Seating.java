@@ -30,6 +30,12 @@ public class Seating {
 		}
 	}
 	
+	public int getUserSeatIndex(User user) {
+		for(int i = 0; i < seating.length; i++) {
+			
+		}
+	}
+	
 //	public String getSeatName(int index) { not flushed in idea yet
 //			if (index > (index / 4)) 
 //				return index + "C";
