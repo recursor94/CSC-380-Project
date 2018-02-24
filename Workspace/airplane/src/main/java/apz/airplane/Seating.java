@@ -1,4 +1,6 @@
-package main;
+package apz.airplane;
+
+import java.util.Arrays;
 
 public class Seating {
 	
@@ -17,23 +19,26 @@ public class Seating {
 	
 	public void addTo(User user) {
 		for (int i = 0; i < seating.length; i++) {
-			if (seating[i] == null)
+			if (seating[i] == null) {
 				seating[i] = user;
+				return;
+			}
 		}
 	}
 	
 	public void remove(User user) {
 		for (int i = 0; i < seating.length; i++) {
 			if (seating[i] != null) 
-				if (seating[i] == user) 
+				if (seating[i] == user) {
 					seating[i] = null;
+					return;
+				}
 		}
 	}
-	
-	public int getUserSeatIndex(User user) {
-		for(int i = 0; i < seating.length; i++) {
-			
-		}
+
+	@Override
+	public String toString() {
+		return "Seating [seating=" + Arrays.toString(seating) + "]";
 	}
 	
 //	public String getSeatName(int index) { not flushed in idea yet
