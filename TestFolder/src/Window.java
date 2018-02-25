@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 public class Window extends Application {
 	
 	private HBox hbox = new HBox(10);
+	private HBox hbox2 = new HBox(10);
 	private VBox vbox = new VBox(10);
 
 	public static void main(String[] args) {
@@ -22,23 +23,28 @@ public class Window extends Application {
 		Label text = new Label("Username: ");
 		TextField textField = new TextField("ZGudlin");
 		Button button = new Button("LOGIN");
-		
-		button.setOnAction(event -> {
-			System.out.println(text.getText());
-		});
-		
-		hbox.getChildren().addAll(text, textField, button);
-		
-		hbox.setAlignment(Pos.CENTER);
-		
 		Label text2 = new Label("Password: ");
 		TextField textField2 = new TextField("*****");
+		Button button2 = new Button("EXIT");
 		
-		vbox.getChildren().addAll(hbox, text2, textField2);
+		button.setOnAction(event -> {
+			System.out.println(textField.getText());
+		});
+		
+		button2.setOnAction(event -> {
+			primaryStage.close();
+		});
+		
+		hbox.getChildren().addAll(text, textField);
+		hbox.setAlignment(Pos.CENTER_LEFT);
+		hbox2.getChildren().addAll(text2, textField2, button, button2);
+		hbox2.setAlignment(Pos.CENTER_LEFT);	
+		
+		vbox.getChildren().addAll(hbox,hbox2);
 		
 		vbox.setAlignment(Pos.CENTER);
 		
-		Scene scene = new Scene(vbox, 500, 500);
+		Scene scene = new Scene(vbox, 400, 400);
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("THIS IS A TEST");
 		primaryStage.show();
