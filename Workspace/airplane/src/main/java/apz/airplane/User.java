@@ -48,6 +48,28 @@ public class User {
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
+	
+	public void addTrip(Booking trip) {
+		tripList.add(trip);
+	}
+	
+	public void removeTrip(Flight flight) {
+		for(Booking trip : tripList) {
+			if(trip.getFlight().equals(flight)) {
+				tripList.remove(trip);
+			}
+		}
+	}
+	
+	public Booking findTrip(Flight flight) {
+		for(Booking trip : tripList) {
+			if(trip.getFlight().equals(flight)) {
+				return trip;
+			}
+		}
+		return null;
+	}
+	
 
 	@Override
 	public String toString() {
