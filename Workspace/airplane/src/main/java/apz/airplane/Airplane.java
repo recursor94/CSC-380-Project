@@ -2,21 +2,30 @@ package apz.airplane;
 
 public class Airplane {
 	
-	private String name;
+	private int planeNum;
+	private String airline;
 	private Seating seatArray;
 	
-	public Airplane(String name, int capacity) {
-		this.name = name;
-		this.seatArray = new Seating(capacity);
-		
+	public Airplane(int planeNum, String airline, int capacity) {
+		this.planeNum = planeNum;
+		this.airline = airline;
+		seatArray = new Seating(capacity);
 	}
 
-	public String getName() {
-		return name;
+	public int getPlaneNum() {
+		return planeNum;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setPlaneNum(int planeNum) {
+		this.planeNum = planeNum;
+	}
+
+	public String getAirline() {
+		return airline;
+	}
+
+	public void setAirline(String airline) {
+		this.airline = airline;
 	}
 
 	public Seating getSeatArray() {
@@ -29,7 +38,7 @@ public class Airplane {
 
 	@Override
 	public String toString() {
-		return "Airplane [name=" + name + ", seatArray=" + seatArray + "]";
+		return "Airplane [planeNum=" + planeNum + ", airline=" + airline + ", seatArray=" + seatArray + "]";
 	}
-
+	
 }

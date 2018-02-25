@@ -1,0 +1,20 @@
+
+		Hierarchy:
+----------------------------
+ (top level to lower level)
+============================
+UserController -> User -> Booking
+============================
+Flight -> Airplane -> Seating 
+============================
+
+
+		Explanation: 
+-------------------------------------------------------------------------
+UserController contains a list of users. Will be able to book trips. 
+User contains bookings as well as login details.
+Booking has flight and book date.
+
+Flight contains an airplane, all flight information for flying
+Airplane contains name of airline, flight, seating information
+Seating contains capacity

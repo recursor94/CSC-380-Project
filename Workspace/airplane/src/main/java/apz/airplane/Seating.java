@@ -4,14 +4,8 @@ import java.util.Arrays;
 
 public class Seating {
 	
-//	public static void main(String[] args) {
-//		Seating seat = new Seating(10);
-//		System.out.println(seat.getSeatName(199));
-//	}
-	
-	
 	//average plane has 200
-	private User[] seating;
+	private User[] seating;	// must limit on if more users are trying to be added. maybe boolean return method isFull();
 	
 	public Seating(int capacity) {
 		seating = new User[capacity];
@@ -35,19 +29,39 @@ public class Seating {
 				}
 		}
 	}
+	
+	public boolean isOnBoard(User user) {
+		for (int i = 0; i < seating.length; i++) {
+			if (seating[i] != null) 
+				if (seating[i] == user) {
+					return true;
+				}
+		}
+		return false;
+	}
+	
+	public String getSeatName(User user) {
+		for (int i = 0; i < seating.length; i++) {
+			String letter = setSeatNaming(i);
+			
+			if (seating[i] != null) 
+				if (seating[i] == user) {
+					return (i + 1) + "-" + letter;
+				}
+		}
+		return null;
+	}
+	
+	public String setSeatNaming(int index) {
+		if (index < (seating.length / 2)) 
+			return "a";
+		else
+			return "b";
+	}
 
 	@Override
 	public String toString() {
-		return "Seating [seating=" + Arrays.toString(seating) + "]";
+		return "Seating: " + Arrays.toString(seating);
 	}
-	
-//	public String getSeatName(int index) { not flushed in idea yet
-//			if (index > (index / 4)) 
-//				return index + "C";
-//			else if (index > (index / 3)) 
-//				return index + "B";
-//			else 
-//				return index + "A";
-//	}
 	
 }

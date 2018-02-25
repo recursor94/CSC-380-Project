@@ -2,11 +2,12 @@ package apz.airplane;
 
 import java.util.ArrayList;
 
-public class UserManagement {
+public class UserController {
 	
+	// need book function that searches through userList for user then adds booking to their arraylist
 	private ArrayList<User> userList;
 	
-	public UserManagement() {
+	public UserController() {
 		userList = new ArrayList<>();
 	}
 	
@@ -33,7 +34,7 @@ public class UserManagement {
 
 	@Override
 	public String toString() {
-		return "UserManagement [userList=" + userList + "]";
+		return "User List\n-----------\n" + userList;
 	}
 	
 	
