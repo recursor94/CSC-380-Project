@@ -35,7 +35,9 @@ public class LoginDisplay extends Application{
 		setupFrameLayout(primaryStage);
 		
 		buttonLogin.setOnAction((event) -> {
-			
+			System.out.println("Username: " + fieldUsername.getText());
+			System.out.println("Password: " + fieldPassword.getText());
+			primaryStage.close();
 		});
 		primaryStage.show();
 	}
