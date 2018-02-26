@@ -2,6 +2,7 @@ package apz.airplane;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -16,9 +17,11 @@ public class LoginDisplay extends Application{
 	private static final String FRAME_TITLE = "Login";
 	private static final String LABEL_USERNAME = "Username: ";
 	private static final String LABEL_PASSWORD = "Password: ";
+	private static final String BUTTON_LOGIN = "Login";
 
 	private TextField fieldUsername;
 	private PasswordField fieldPassword;
+	private Button buttonLogin;
 
 	public static void main(String[] args) {
 		
@@ -30,6 +33,10 @@ public class LoginDisplay extends Application{
 		
 		primaryStage.setTitle(FRAME_TITLE);
 		setupFrameLayout(primaryStage);
+		
+		buttonLogin.setOnAction((event) -> {
+			
+		});
 		primaryStage.show();
 	}
 	
@@ -44,9 +51,11 @@ public class LoginDisplay extends Application{
 		fieldUsername = new TextField();
 		fieldPassword = new PasswordField();
 		
+		buttonLogin = new Button(BUTTON_LOGIN);
+		
 		hBoxUsername.getChildren().addAll(labelUsername, fieldUsername);
 		hBoxPassword.getChildren().addAll(labelPassword, fieldPassword);
-		vBoxUserInput.getChildren().addAll(hBoxUsername, hBoxPassword);
+		vBoxUserInput.getChildren().addAll(hBoxUsername, hBoxPassword, buttonLogin);
 		
 		StackPane root = new StackPane();
 		root.getChildren().add(vBoxUserInput);
