@@ -33,6 +33,9 @@ local.properties
 .loadpath
 .recommenders
 
+#apple specific config files:
+.DS_Store
+
 # External tool builders
 # .externalToolBuilders/
 #
