@@ -22,10 +22,11 @@ public class Driver {
 		System.out.println(bookDate);
 		System.out.println(departure);
 		System.out.println(arrival);
-
+		
 		airplane.getSeatArray().addTo(new User("Pooper", "Scooper"));
 	
 		//Creating a flight and a Booking trip and test to toString methods
+		// Destination
 		Flight flight = new Flight(airplane, "Hawaii", arrival, departure, 40908 );
 		Booking trip = new Booking(flight, bookDate);
 		System.out.println(trip);

@@ -57,6 +57,7 @@ public class User {
 		for(Booking trip : tripList) {
 			if(trip.getFlight().equals(flight)) {
 				tripList.remove(trip);
+				return;
 			}
 		}
 	}
