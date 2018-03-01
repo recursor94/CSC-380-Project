@@ -9,7 +9,7 @@ public class UserTest extends TestCase {
 	@Test
 	public void testPassword() {
 		String expectedValue = "asd";
-		String experimentalValue = new User("Pooper", "Scooper").getPassword();
+		String experimentalValue = new User("Pooper", "asd").getPassword();
 		
 		assertEquals(expectedValue, experimentalValue);
 	}

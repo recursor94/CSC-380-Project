@@ -7,12 +7,12 @@ public class Driver {
 		Airplane airplane = new Airplane(1, "American Airline", 5);	// create plane with 5 seats
 		
 		UserController userCtrl = new UserController();
-		userCtrl.addUser(new User("Andrew Gudlin", "pswrd"));
+		User me = new User("Andrew Gudlin", "pswrd");
+		userCtrl.addUser(me);
 		userCtrl.addUser(new User("Zak Spano", "pswrd"));
 		userCtrl.addUser(new User("King Jimmy", "pswrd"));
 		userCtrl.addUser(new User("Bob Saget", "pswrd"));
 		userCtrl.addUser(new User("Marley n Me", "pswrd"));
-		
 		//userCtrl.bookTrip(user goes inside here);
 		
 		//Testing the Date class; the methods to set dates are deprecated
@@ -24,6 +24,7 @@ public class Driver {
 		System.out.println(arrival);
 		
 		airplane.getSeatArray().addTo(new User("Pooper", "Scooper"));
+		airplane.getSeatArray().addTo(me);
 	
 		//Creating a flight and a Booking trip and test to toString methods
 		// Destination

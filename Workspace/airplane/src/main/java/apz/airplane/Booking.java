@@ -1,5 +1,4 @@
 package apz.airplane;
-
 import java.util.Date;
 
 public class Booking {
