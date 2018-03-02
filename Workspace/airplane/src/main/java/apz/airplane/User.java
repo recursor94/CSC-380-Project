@@ -7,6 +7,7 @@ public class User {
 	private int userId;
 	private String username, password;
 	private ArrayList<Booking> tripList;	// need add, remove, find function
+	private Payment pay;
 	
 	
 	public User(String username, String password) {
@@ -71,6 +72,10 @@ public class User {
 		return null;
 	}
 	
+	public Payment createPayment(String address, String billingNum) {
+		pay = new Payment (address, billingNum);
+		return pay;
+	}
 
 	@Override
 	public String toString() {
