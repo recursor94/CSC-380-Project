@@ -2,6 +2,8 @@ package apz.airplane;
 
 public class Payment {
 	
+	// We will talk about this Monday. Payment is just going to be CC. We'll BS it for now?
+	
 	private String address;
 	private String billingNum;
 

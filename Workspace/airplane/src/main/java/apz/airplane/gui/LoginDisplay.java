@@ -1,4 +1,4 @@
-package apz.airplane;
+package apz.airplane.gui;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -24,7 +24,6 @@ public class LoginDisplay extends Application{
 	private Button buttonLogin;
 
 	public static void main(String[] args) {
-		
 		launch(args);
 	}
 	
