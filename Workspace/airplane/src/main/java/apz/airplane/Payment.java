@@ -2,14 +2,12 @@ package apz.airplane;
 
 public class Payment {
 	
-	// We will talk about this Monday. Payment is just going to be CC. We'll BS it for now?
-	
 	private String address;
-	private String billingNum;
+	private String cardNum;
 
-	public Payment(String address, String billingNum) {
+	public Payment(String address, String cardNum) {
 		this.address = address;
-		this.billingNum = billingNum;
+		this.cardNum = cardNum;
 	}
 
 	public String getAddress() {
@@ -20,12 +18,12 @@ public class Payment {
 		this.address = address;
 	}
 
-	public String getBillingNum() {
-		return billingNum;
+	public String getcardNum() {
+		return cardNum;
 	}
 
-	public void setBillingNum(String billingNum) {
-		this.billingNum = billingNum;
+	public void setcardNum(String cardNum) {
+		this.cardNum = cardNum;
 	}
 
 }

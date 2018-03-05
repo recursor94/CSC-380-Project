@@ -1,5 +1,5 @@
 package apz.airplane;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public class Driver {
 
@@ -16,9 +16,9 @@ public class Driver {
 		//userCtrl.bookTrip(user goes inside here);
 		
 		//Testing the Date class; the methods to set dates are deprecated
-		Date bookDate = new Date();
-		Date departure = new Date(118, 2, 12, 7, 45);
-		Date arrival = new Date(118, 2, 12, 12, 55);
+	    LocalDateTime bookDate = LocalDateTime.now();
+		LocalDateTime departure =  LocalDateTime.of(2018, 3, 12, 7, 45);
+		LocalDateTime arrival = LocalDateTime.of(2018, 3, 12, 12, 55);
 		System.out.println(bookDate);
 		System.out.println(departure);
 		System.out.println(arrival);

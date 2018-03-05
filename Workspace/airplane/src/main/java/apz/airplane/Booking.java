@@ -1,13 +1,13 @@
 package apz.airplane;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public class Booking {
 	
 	private Flight flight;
-	private Date bookDate;
+	private LocalDateTime bookDate;
 	private Airplane plane;
 	
-	public Booking(Flight flight, Date bookDate, User user) {
+	public Booking(Flight flight, LocalDateTime bookDate, User user) {
 		this.flight = flight;
 		this.bookDate = bookDate;
 		plane = flight.getPlane();
@@ -22,11 +22,11 @@ public class Booking {
 		this.flight = flight;
 	}
 
-	public Date getBookDate() {
+	public LocalDateTime getBookDate() {
 		return bookDate;
 	}
 
-	public void setBookDate(Date bookDate) {
+	public void setBookDate(LocalDateTime bookDate) {
 		this.bookDate = bookDate;
 	}
 
