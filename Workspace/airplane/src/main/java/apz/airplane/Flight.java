@@ -1,16 +1,16 @@
 package apz.airplane;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public class Flight {
 	
 	private Airplane plane;
 	private String destinationName;
-	private Date arrival, departure;
+	private LocalDateTime arrival, departure;
 	// maybe time here too
 	private int flightNum;
 	
-	public Flight(Airplane plane, String destinationName, Date arrival, Date departure, int flightNum) {
+	public Flight(Airplane plane, String destinationName, LocalDateTime arrival, LocalDateTime departure, int flightNum) {
 		super();
 		this.plane = plane;
 		this.destinationName = destinationName;
@@ -35,19 +35,19 @@ public class Flight {
 		this.destinationName = destinationName;
 	}
 
-	public Date getArrival() {
+	public LocalDateTime getArrival() {
 		return arrival;
 	}
 
-	public void setArrival(Date arrival) {
+	public void setArrival(LocalDateTime arrival) {
 		this.arrival = arrival;
 	}
 
-	public Date getDeparture() {
+	public LocalDateTime getDeparture() {
 		return departure;
 	}
 
-	public void setDeparture(Date departure) {
+	public void setDeparture(LocalDateTime departure) {
 		this.departure = departure;
 	}
 
