@@ -5,7 +5,8 @@ import java.util.ArrayList;
 public class User {
 	private static int id = 0;
 	private int userId;
-	private String username, password;
+	private String username;
+	String password;
 	private ArrayList<Booking> tripList;	// need add, remove, find function
 	private Payment pay;
 	
@@ -31,9 +32,21 @@ public class User {
 	}
 	
 	public void setPassword(String password) {
-		this.password = password;
+		this.password = generatePasswordHash(password);
 	}
 	
+	private String generatePasswordHash(String password) {
+		return "" + password.hashCode();
+		
+	}
+	
+	private boolean isCorrectPassword(String userInput) { 
+		String inputHash = generatePasswordHash(userInput);
+		if(inputHash.equals(password)){ //compare the hash of the inputed hash to the stored password hash.  If they're equal return true
+			return true;
+		}
+		return false;
+	}
 	public static int getId() {
 		return id;
 	}
