@@ -39,6 +39,14 @@ public class User {
 		return "" + password.hashCode();
 		
 	}
+	
+	private boolean isCorrectPassword(String userInput) { 
+		String inputHash = generatePasswordHash(userInput);
+		if(inputHash.equals(password)){ //compare the hash of the inputed hash to the stored password hash.  If they're equal return true
+			return true;
+		}
+		return false;
+	}
 	public static int getId() {
 		return id;
 	}
