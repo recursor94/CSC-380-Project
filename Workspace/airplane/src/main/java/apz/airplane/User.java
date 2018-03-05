@@ -16,7 +16,7 @@ public class User {
 		tripList = new ArrayList<>();
 		userId = id++;
 	}
-
+	
 	public String getUsername() {
 		return username;
 	}

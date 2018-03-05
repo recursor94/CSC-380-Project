@@ -1,13 +1,13 @@
 package apz.airplane;
 
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 public class SessionCache {
 	
-	private User user;
-	private LocalDateTime time;
+	static User user;
+	static LocalTime time;
 	
-	public SessionCache(User user, LocalDateTime time) {
+	public SessionCache(User user, LocalTime time) {
 		this.user = user;
 		this.time = time;
 	}
@@ -20,12 +20,17 @@ public class SessionCache {
 		this.user = user;
 	}
 
-	public LocalDateTime getTime() {
+	public LocalTime getTime() {
 		return time;
 	}
 
-	public void setTime(LocalDateTime time) {
+	public void setTime(LocalTime time) {
 		this.time = time;
+	}
+
+	@Override
+	public String toString() {
+		return "SessionCache " + user + "_" + time;
 	}
 	
 }

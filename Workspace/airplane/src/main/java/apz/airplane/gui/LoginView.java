@@ -1,5 +1,11 @@
 package apz.airplane.gui;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+
+import apz.airplane.SessionCache;
+import apz.airplane.User;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -11,7 +17,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-public class LoginDisplay2 {
+public class LoginView {
 	
 	private static final int FRAME_WIDTH = 350;
 	private static final int FRAME_HEIGHT = 400;
@@ -30,7 +36,7 @@ public class LoginDisplay2 {
 	private HBox userBox, passBox;
 	private Stage primaryStage;
 	
-	public LoginDisplay2(Stage primaryStage) {
+	public LoginView(Stage primaryStage) {
 		this.primaryStage = primaryStage;
 		initialize();
 		content();
@@ -60,10 +66,20 @@ public class LoginDisplay2 {
 	}
 	
 	public void actionEvents() {
+		DisplayDriver.getUserController().addUser(new User("asd", "asd"));
+		
 		loginButton.setOnAction((event) -> {
-			System.out.println("Username: " + userField.getText());
-			System.out.println("Password: " + passField.getText());
-			primaryStage.close();
+			User user = DisplayDriver.getUserController().login(userField.getText(), passField.getText());
+			
+			if (user != null) {
+				SessionCache session = new SessionCache(user, LocalTime.now());
+				System.out.println("Username: " + userField.getText());
+				System.out.println("Password: " + passField.getText());
+				
+				System.out.println("Session: " + session);
+			}
+			
+//			primaryStage.close();
 		});
 	}
 	

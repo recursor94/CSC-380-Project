@@ -31,7 +31,16 @@ public class UserController {
 		}
 		return null;
 	}
-
+	
+	public User login(String username, String password) {
+		for(User user : userList) {
+			if(user.getUsername().equals(username) && user.getPassword().equals(password)) {
+				return user;
+			}
+		}
+		return null;
+	}
+	
 	@Override
 	public String toString() {
 		return "User List\n-----------\n" + userList;
