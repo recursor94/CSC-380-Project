@@ -5,10 +5,13 @@ public class Booking {
 	
 	private Flight flight;
 	private Date bookDate;
+	private Airplane plane;
 	
-	public Booking(Flight flight, Date bookDate) {
+	public Booking(Flight flight, Date bookDate, User user) {
 		this.flight = flight;
 		this.bookDate = bookDate;
+		plane = flight.getPlane();
+		plane.getSeatArray().addTo(user);
 	}	
 	
 	public Flight getFlight() {
