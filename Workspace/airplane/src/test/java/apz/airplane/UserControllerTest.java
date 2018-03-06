@@ -1,10 +1,10 @@
 package apz.airplane;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.Test;
 
-public class UserControllerTest {
+import junit.framework.TestCase;
+
+public class UserControllerTest extends TestCase {
 
 	@Test
 	public void testFindUser() {
