@@ -15,5 +15,18 @@ public class UserTest extends TestCase {
 		// actual/expected value			// experimental value
 		assertEquals(null, uc.login("user", "pass34"));
 	}
+	
+	@Test
+	public void testValidPassword() {
+		
+		User testUser = new User("user", "password");	
+		assertEquals(true, testUser.validatePassword("password"));
+	}
+	
+	@Test
+	public void testInvalidPassword() {
+		User testUser = new User("test", "password123");
+		assertEquals(false, testUser.validatePassword("wordpass"));
+	}
 
 }

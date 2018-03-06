@@ -40,7 +40,7 @@ public class User {
 		
 	}
 	
-	private boolean isCorrectPassword(String userInput) { 
+	public boolean validatePassword(String userInput) { 
 		String inputHash = generatePasswordHash(userInput);
 		if(inputHash.equals(password)){ //compare the hash of the inputed hash to the stored password hash.  If they're equal return true
 			return true;
