@@ -23,7 +23,7 @@ public class Driver {
 		System.out.println(departure);
 		System.out.println(arrival);
 		
-		airplane.getSeatArray().addTo(new User("Pooper", "Scooper"));
+		airplane.getSeats().addTo(new User("Pooper", "Scooper"));
 	
 		//Creating a flight and a Booking trip and test to toString methods
 		Flight flight = new Flight(airplane, "Hawaii", arrival, departure, 40908 );

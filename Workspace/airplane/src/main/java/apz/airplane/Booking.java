@@ -11,7 +11,7 @@ public class Booking {
 		this.flight = flight;
 		this.bookDate = bookDate;
 		plane = flight.getPlane();
-		plane.getSeatArray().addTo(user);
+		plane.getSeats().addTo(user);
 	}	
 	
 	public Flight getFlight() {

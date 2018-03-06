@@ -10,18 +10,18 @@ class AirplaneTest {
 	void seatFullTest() {
 		Airplane plane = new Airplane(0, "American Airlines", 5);
 		for (int i = 0; i < 5; i++) {
-			plane.getSeatArray().addTo(new User("Pooper", "Scooper"));
+			plane.getSeats().addTo(new User("Pooper", "Scooper"));
 		}
-		assertEquals(true, plane.getSeatArray().isFull());
+		assertEquals(true, plane.getSeats().isFull());
 	}
 	
 	@Test
 	void seatFullTestInvalid() {
 		Airplane plane = new Airplane(0, "American Airlines", 5);
 		for (int i = 0; i < 4; i++) {
-			plane.getSeatArray().addTo(new User("Pooper", "Scooper"));
+			plane.getSeats().addTo(new User("Pooper", "Scooper"));
 		}
-		assertEquals(false, plane.getSeatArray().isFull());
+		assertEquals(false, plane.getSeats().isFull());
 	}
 
 }

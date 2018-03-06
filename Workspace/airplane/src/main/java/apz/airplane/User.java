@@ -46,13 +46,14 @@ public class User {
 		tripList.add(trip);
 	}
 	
-	public void removeTrip(Flight flight) {
+	public boolean removeTrip(Flight flight) {
 		for(Booking trip : tripList) {
 			if(trip.getFlight().equals(flight)) {
 				tripList.remove(trip);
-				return;
+				return true;
 			}
 		}
+		return false;
 	}
 	
 	public Booking findTrip(Flight flight) {

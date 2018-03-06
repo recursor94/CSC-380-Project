@@ -4,12 +4,12 @@ public class Airplane {
 	
 	private int planeNum;
 	private String airline;
-	private Seating seatArray;
+	private Seating seats;
 	
 	public Airplane(int planeNum, String airline, int capacity) {
 		this.planeNum = planeNum;
 		this.airline = airline;
-		seatArray = new Seating(capacity);
+		seats = new Seating(capacity);
 	}
 
 	public int getPlaneNum() {
@@ -28,17 +28,17 @@ public class Airplane {
 		this.airline = airline;
 	}
 
-	public Seating getSeatArray() {
-		return seatArray;
+	public Seating getSeats() {
+		return seats;
 	}
 
-	public void setSeatArray(Seating seatArray) {
-		this.seatArray = seatArray;
+	public void setSeats(Seating seatArray) {
+		this.seats = seatArray;
 	}
 
 	@Override
 	public String toString() {
-		return "Airplane [planeNum=" + planeNum + ", airline=" + airline + ", seatArray=" + seatArray + "]";
+		return "Airplane [planeNum=" + planeNum + ", airline=" + airline + ", seatArray=" + seats + "]";
 	}
 	
 }
