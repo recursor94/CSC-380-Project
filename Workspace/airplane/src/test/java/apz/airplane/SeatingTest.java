@@ -2,11 +2,9 @@ package apz.airplane;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.time.LocalDateTime;
-
 import org.junit.jupiter.api.Test;
 
-class SeatingTest {
+public class SeatingTest {
 
 	@Test
 	public void userOnboard() {
