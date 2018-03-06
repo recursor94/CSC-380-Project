@@ -19,7 +19,6 @@ public class UserTest extends TestCase {
 	
 	@Test
 	public void testValidPassword() {
-		
 		User testUser = new User("user", "password");	
 		assertEquals(true, testUser.validatePassword("password"));
 	}

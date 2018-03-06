@@ -13,8 +13,8 @@ public class SeatingTest {
 		UserController ctrl = new UserController();
 		ctrl.addUser(user);
 		Airplane plane = new Airplane(1, "APZ Airlines", 7);
-		plane.getSeatArray().addTo(user);
-		Seating seats = plane.getSeatArray();
+		plane.getSeats().addTo(user);
+		Seating seats = plane.getSeats();
 		assertEquals(true, seats.isOnBoard(user));
 	}
 	
