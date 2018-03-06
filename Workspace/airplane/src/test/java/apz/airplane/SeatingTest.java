@@ -24,7 +24,7 @@ public class SeatingTest {
 		Airplane testPlane = new Airplane(0, "Test Airlines", 1);
 		User user = new User("Bob the Builder", "asbob");
 		
-		Seating seats = testPlane.getSeatArray();
+		Seating seats = testPlane.getSeats()();
 		seats.addTo(user);
 		assertEquals(true, seats.isFull());
 	}
@@ -33,7 +33,7 @@ public class SeatingTest {
 		Airplane testPlane = new Airplane(0, "Test Airlines", 10);
 		User user = new User("Bob the Builder", "asbob");
 		
-		Seating seats = testPlane.getSeatArray();
+		Seating seats = testPlane.getSeats();
 		seats.addTo(user);
 		assertEquals(false, seats.isFull());
 	}
