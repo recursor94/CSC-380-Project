@@ -12,6 +12,11 @@ public class Seating {
 	}
 	
 	public void addTo(User user) {
+		if (isFull()) {
+			System.out.println("FULL LIST");
+			return;
+		}
+		
 		for (int i = 0; i < seating.length; i++) {
 			if (seating[i] == null) {
 				seating[i] = user;
@@ -28,6 +33,7 @@ public class Seating {
 					return;
 				}
 		}
+		System.out.println("USER NOT EXISTS");
 	}
 	
 	public boolean isOnBoard(User user) {

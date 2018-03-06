@@ -3,19 +3,14 @@ package apz.airplane;
 import java.util.ArrayList;
 
 public class User {
-	private static int id = 0;
-	private int userId;
 	private String username;
 	private String password;
 	private ArrayList<Booking> tripList;	
-	private Payment pay;
-	
-	
+
 	public User(String username, String password) {
 		this.username = username;
 		this.password = generatePasswordHash(password);
 		tripList = new ArrayList<>();
-		userId = id++;
 	}
 	
 	public String getUsername() {
@@ -23,11 +18,10 @@ public class User {
 	}
 	
 	public void setUsername(String username) {
-		
 		this.username = username;
 	}
 	
-	public String getPassword() {
+	public String getPassword() {	// change this
 		return password;
 	}
 	
@@ -47,22 +41,7 @@ public class User {
 		}
 		return false;
 	}
-	public static int getId() {
-		return id;
-	}
 
-	public static void setId(int id) {
-		User.id = id;
-	}
-
-	public int getUserId() {
-		return userId;
-	}
-
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
-	
 	public void addTrip(Booking trip) {
 		tripList.add(trip);
 	}
@@ -85,9 +64,8 @@ public class User {
 		return null;
 	}
 	
-	public Payment createPayment(String address, String billingNum) {
-		pay = new Payment (address, billingNum);
-		return pay;
+	public ArrayList<Booking> getTripList() {
+		return tripList;
 	}
 
 	@Override
