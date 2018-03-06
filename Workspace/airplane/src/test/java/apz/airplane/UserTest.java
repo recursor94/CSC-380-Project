@@ -43,5 +43,19 @@ public class UserTest extends TestCase {
 		user.addTrip(trip);
 		assertEquals(trip, user.findTrip(flight));
 	}
+	
+	public void testRemoveTrip() {
+		User user = new User ("apz", "zpa12");
+		UserController ctrl = new UserController();
+		ctrl.addUser(user);
+		LocalDateTime bookDate = LocalDateTime.now();
+		LocalDateTime departure =  LocalDateTime.of(2018, 3, 12, 6, 55);
+		LocalDateTime arrival = LocalDateTime.of(2018, 3, 12, 11, 35);
+		Airplane plane = new Airplane(8, "APZ Airlines", 11);
+		Flight flight = new Flight(plane, "Chicago", arrival, departure, 62918 );
+		Booking trip = new Booking(flight, bookDate, user);
+		user.addTrip(trip);
+		assertEquals(true, user.removeTrip(flight));
+	}
 
 }
