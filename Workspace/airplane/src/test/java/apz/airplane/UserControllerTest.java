@@ -13,5 +13,13 @@ public class UserControllerTest {
 		ctrl.addUser(user);
 		assertEquals(user, ctrl.findUser("zeg"));
 	}
+	
+	@Test
+	public void testRemoveUser() {
+		User user = new User("zeg", "password");
+		UserController ctrl = new UserController();
+		ctrl.addUser(user);
+		assertEquals(true, ctrl.removeUser("zeg"));
+	}
 
 }

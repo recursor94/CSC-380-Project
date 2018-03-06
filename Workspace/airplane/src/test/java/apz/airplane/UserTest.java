@@ -44,6 +44,7 @@ public class UserTest extends TestCase {
 		assertEquals(trip, user.findTrip(flight));
 	}
 	
+	@Test
 	public void testRemoveTrip() {
 		User user = new User ("apz", "zpa12");
 		UserController ctrl = new UserController();

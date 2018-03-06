@@ -15,12 +15,14 @@ public class UserController {
 		userList.add(user);
 	}
 	
-	public void removeUser(String username) {
+	public boolean removeUser(String username) {
 		for(User user : userList) {
 			if(user.getUsername().equals(username)) {
 				userList.remove(user);
+				return true;
 			}
 		}
+		return false;
 	}
 	
 	public User findUser(String username) {
