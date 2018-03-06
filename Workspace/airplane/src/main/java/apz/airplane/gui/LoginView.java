@@ -1,7 +1,5 @@
 package apz.airplane.gui;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 import apz.airplane.SessionCache;
@@ -63,6 +61,8 @@ public class LoginView {
 		userBox.setAlignment(Pos.CENTER);
 		passBox.setAlignment(Pos.CENTER);
 		rootPane.setAlignment(Pos.CENTER);
+		
+		DisplayDriver.getMainPane().setCenter(rootPane);
 	}
 	
 	public void actionEvents() {
@@ -85,7 +85,7 @@ public class LoginView {
 	
 	public void properties() {
 		primaryStage.setTitle(APP_TITLE);
-		primaryStage.setScene(new Scene(rootPane, FRAME_WIDTH, FRAME_HEIGHT));
+		primaryStage.setScene(new Scene(DisplayDriver.getMainPane(), FRAME_WIDTH, FRAME_HEIGHT));
 		primaryStage.initStyle(StageStyle.UTILITY);
 		primaryStage.show();
 	}

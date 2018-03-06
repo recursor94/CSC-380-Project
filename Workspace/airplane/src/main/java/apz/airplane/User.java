@@ -6,14 +6,14 @@ public class User {
 	private static int id = 0;
 	private int userId;
 	private String username;
-	String password;
+	private String password;
 	private ArrayList<Booking> tripList;	// need add, remove, find function
 	private Payment pay;
 	
 	
 	public User(String username, String password) {
 		this.username = username;
-		this.password = password;
+		this.password = generatePasswordHash(password);
 		tripList = new ArrayList<>();
 		userId = id++;
 	}

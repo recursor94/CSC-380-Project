@@ -34,7 +34,7 @@ public class UserController {
 	
 	public User login(String username, String password) {
 		for(User user : userList) {
-			if(user.getUsername().equals(username) && user.getPassword().equals(password)) {
+			if(user.getUsername().equals(username) && user.validatePassword(password)) {
 				return user;
 			}
 		}

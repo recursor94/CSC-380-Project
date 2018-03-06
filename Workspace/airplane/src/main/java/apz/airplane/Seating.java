@@ -58,6 +58,15 @@ public class Seating {
 		else
 			return "b";
 	}
+	
+	public boolean isFull() {
+		for (int i = 0; i < seating.length; i++) {
+			if (seating[i] == null) {
+				return false;
+			}
+		}
+		return true;
+	}
 
 	@Override
 	public String toString() {

@@ -14,7 +14,6 @@ public class UserTest extends TestCase {
 		User testUser = new User("user", "pass");
 		uc.addUser(testUser);
 		
-		// actual/expected value			// experimental value
 		assertEquals(testUser, uc.login("user", "pass"));
 	}
 	
