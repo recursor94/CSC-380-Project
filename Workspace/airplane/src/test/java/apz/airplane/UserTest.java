@@ -13,7 +13,7 @@ public class UserTest extends TestCase {
 		uc.addUser(testUser);
 		
 		// actual/expected value			// experimental value
-		assertEquals(null, uc.login("user", "pass34"));
+		assertEquals(testUser, uc.login("user", "pass"));
 	}
 	
 	@Test
