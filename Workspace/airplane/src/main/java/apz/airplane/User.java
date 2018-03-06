@@ -7,7 +7,7 @@ public class User {
 	private int userId;
 	private String username;
 	private String password;
-	private ArrayList<Booking> tripList;	// need add, remove, find function
+	private ArrayList<Booking> tripList;	
 	private Payment pay;
 	
 	
