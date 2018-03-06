@@ -28,7 +28,7 @@ public class SeatingTest {
 		seats.addTo(user);
 		assertEquals(true, seats.isFull());
 	}
-	
+	@Test
 	public void seatingFullWhenNotFull() {
 		Airplane testPlane = new Airplane(0, "Test Airlines", 10);
 		User user = new User("Bob the Builder", "asbob");

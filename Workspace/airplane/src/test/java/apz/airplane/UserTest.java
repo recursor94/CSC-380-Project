@@ -58,5 +58,6 @@ public class UserTest extends TestCase {
 		user.addTrip(trip);
 		assertEquals(true, user.removeTrip(flight));
 	}
+	
 
 }
