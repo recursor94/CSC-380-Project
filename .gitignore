@@ -36,6 +36,10 @@ local.properties
 #apple specific config files:
 .DS_Store
 
+#Autosave files do not belong in the repository
+*.save #nano auto save file
+*.Save
+
 # External tool builders
 # .externalToolBuilders/
 #
