@@ -1,13 +1,13 @@
 package apz.airplane;
 
+import static org.junit.Assert.*;
+
 import java.time.LocalDateTime;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
-import junit.framework.TestCase;
+public class UserCaseTest {
 
-public class UserTest extends TestCase {
-	
 	@Test
 	public void testLogin() {
 		UserController uc = new UserController();
@@ -94,4 +94,5 @@ public class UserTest extends TestCase {
 		//flight2 has not been added to the booking list, so no trip should be removed
 		assertEquals(false, user.removeTrip(flight2));
 	}
+
 }

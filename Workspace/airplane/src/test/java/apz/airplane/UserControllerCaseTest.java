@@ -1,10 +1,10 @@
 package apz.airplane;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.Assert.*;
 
-import junit.framework.TestCase;
+import org.junit.Test;
 
-public class UserControllerTest extends TestCase {
+public class UserControllerCaseTest {
 
 	@Test
 	public void testFindUser() {
@@ -19,8 +19,6 @@ public class UserControllerTest extends TestCase {
 		User user = new User("zeg", "password");
 		UserController ctrl = new UserController();
 		ctrl.addUser(user);
-		
-		//The user name being passed in is not in the user list, so it should not be found
 		assertEquals(null, ctrl.findUser("zerg"));
 	}
 	
@@ -37,8 +35,6 @@ public class UserControllerTest extends TestCase {
 		User user = new User("zeg", "password");
 		UserController ctrl = new UserController();
 		ctrl.addUser(user);
-		
-		//The user name being passed in is not in the user list, so it should not be removed
 		assertEquals(false, ctrl.removeUser("zerg"));
 	}
 

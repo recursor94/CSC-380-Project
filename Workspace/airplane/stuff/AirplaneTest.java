@@ -1,12 +1,12 @@
-package apz.airplane;
+package apz.airplane.OTHERS;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.jupiter.api.Test;
+import apz.airplane.Airplane;
+import apz.airplane.User;
 
 public class AirplaneTest {
 
-	@Test
 	public void seatFullTest() {
 		Airplane plane = new Airplane(0, "American Airlines", 5);
 		for (int i = 0; i < 5; i++) {
@@ -15,7 +15,6 @@ public class AirplaneTest {
 		assertEquals(true, plane.getSeats().isFull());
 	}
 	
-	@Test
 	public void seatFullTestInvalid() {
 		Airplane plane = new Airplane(0, "American Airlines", 5);
 		for (int i = 0; i < 4; i++) {
