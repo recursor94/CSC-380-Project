@@ -21,7 +21,7 @@
 
 
 
-. 
+ 
 **Use Case UC-2:** | Payment
 -------------------|---------
 **Related Requirements:** | REQ8, REQ12, REQ16
@@ -40,7 +40,7 @@
 
 
 
-.
+
 **Use Case UC-3:** | Create User
 -------------------|---------
 **Related Requirements:** | REQ7
@@ -62,7 +62,7 @@
 
 
 
-.
+
 **Use Case UC-4:** | Login
 -------------------|---------
 **Related Requirements:** | REQ7
@@ -81,7 +81,7 @@
 
 
 
-.
+
 **Use Case UC-5:** | Create Trip
 -------------------|---------
 **Related Requirements:** | REQ4
@@ -100,7 +100,7 @@
 
 
 
-.
+
 **Use Case UC-6:** | View/Find Itinerary
 -------------------|---------
 **Related Requirements:** | REQ5, REQ6
@@ -120,7 +120,7 @@
 
 
 
-.
+
 **Use Case UC-7:** | Display Hotels
 -------------------|---------
 **Related Requirements:** | REQ9, REQ10
@@ -140,7 +140,7 @@
 
 
 
-.
+
 **Use Case UC-8:** | Display Car Rental
 -------------------|---------
 **Related Requirements:** | REQ13, REQ14
