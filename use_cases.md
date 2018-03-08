@@ -19,7 +19,7 @@ User  | Create an account for service use |
 
 
 
-**Flow of Events for Main Success Scenario** |   |   
+**Flow of Events for Main Success Scenario** | X | X
 ---------------------------------------------|---|----
 **<-** | 1. | The user is presented with flight options to choose from
 **->** | 2. | The user is able to select a flight
