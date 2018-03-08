@@ -36,7 +36,7 @@ REQ17      |    4a    | The system shall allow an administrator to add cars to a
 REQ18      |    4b    | The system shall allow users to see a list of car rental services by their airport destination.
 REQ19      |    4c    | The system shall display various types of vehicles to rent (with rates).
 REQ20      |    4d    | The system shall allow users to book their car rental.
-REQ21      |    4e    | The system shall allow users to pay for rentals using our application.
+REQ21      |    4e    | The system shall allow users to pay for car rentals using our application.
 
 
 ## User Stories

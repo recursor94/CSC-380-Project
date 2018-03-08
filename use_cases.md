@@ -3,7 +3,7 @@
 
 **Use Case UC-1:** | Booking
 -------------------|---------
-**Related Requirements:** | REQ1, REQ2, REQ3, REQ11, REQ15
+**Related Requirements:** | REQ3, REQ4, REQ5, REQ15, 
 **Initiating Actor:** | A User
 **Actor's Goal** | To successfully book a flight, hotel, and/or car
 **Participating Actors:** | Flight, Airplane, LocalDateTime, User, Hotel, Car, Booking, UserController
@@ -25,7 +25,7 @@
  
 **Use Case UC-2:** | Payment
 -------------------|---------
-**Related Requirements:** | REQ8, REQ12, REQ16
+**Related Requirements:** | REQ10, REQ16, REQ18, REQ21
 **Initiating Actor:** | A User
 **Actor's Goal** | To make payment for trips/hotel
 **Participating Actors:** | UserController, User, Payment
@@ -45,7 +45,7 @@
 
 **Use Case UC-3:** | Create User
 -------------------|---------
-**Related Requirements:** | REQ7
+**Related Requirements:** | REQ9
 **Initiating Actor:** | A User
 **Actor's Goal** | To successfully create a use account
 **Participating Actors:** | UserController, User, SessionCache, LoginDisplay
@@ -65,9 +65,9 @@
 <br/><br/><br/><br/><br/><br/>
 
 
-**Use Case UC-4:** | Login
+**Use Case UC-4:** | Login/Logout
 -------------------|---------
-**Related Requirements:** | REQ7
+**Related Requirements:** | REQ9, REQ11
 **Initiating Actor:** | A User
 **Actor's Goal** | To login to the apz application
 **Participating Actors:** | UserController, User, SessionCache, LoginDisplay
@@ -76,17 +76,17 @@
 
 **Flow of Events for Main Success Scenario** | X | X
 ---------------------------------------------|---|----
-**<-** | 1. | The user is presented with an input for user, password, and a login button
-**->** | 2. | The user inputs their details in proper fields and logins with the button
-**<-** | 3. | The user is notified of their successful login and brought to the main application page
+**<-** | 1. | The user is presented with an input for user, password, and an action button
+**->** | 2. | The user inputs their details in proper fields and action with the button
+**<-** | 3. | The user is notified of their successful action and brought to the main application page
 
 
 <br/><br/><br/><br/><br/><br/>
 
 
-**Use Case UC-5:** | Create Trip
+**Use Case UC-5:** | Cancel Trip
 -------------------|---------
-**Related Requirements:** | REQ4
+**Related Requirements:** | REQ3, REQ4, REQ6
 **Initiating Actor:** | A User
 **Actor's Goal** | To cancel a booked trip
 **Participating Actors:** | UserController, User, Booking
@@ -105,7 +105,7 @@
 
 **Use Case UC-6:** | View/Find Itinerary
 -------------------|---------
-**Related Requirements:** | REQ5, REQ6
+**Related Requirements:** | REQ7, REQ8
 **Initiating Actor:** | A User
 **Actor's Goal** | To view details of booked trip
 **Participating Actors:** | UserController, User, Booking, Flight, Airplane, Seating, Payment
@@ -125,7 +125,7 @@
 
 **Use Case UC-7:** | Display Hotels
 -------------------|---------
-**Related Requirements:** | REQ9, REQ10
+**Related Requirements:** | REQ13, REQ14
 **Initiating Actor:** | A User
 **Actor's Goal** | To view a list of hotels near the flight's destination
 **Participating Actors:** | UserController, User, Hotel
@@ -145,7 +145,7 @@
 
 **Use Case UC-8:** | Display Car Rental
 -------------------|---------
-**Related Requirements:** | REQ13, REQ14
+**Related Requirements:** | REQ18, REQ19, REQ20
 **Initiating Actor:** | A User
 **Actor's Goal** | To view a list of rental car services nearby the flight's destination
 **Participating Actors:** | UserController, User, RentalCar
@@ -157,3 +157,25 @@
 **<-** | 1. | The user is given a list of car rentals in the area nearby the destination of their trip
 **->** | 2. | The user selects a car rental business from the list.
 **<-** | 3. | The selected car rental service information (cars, rates, information) is displayed to the user
+
+
+<br/><br/><br/><br/><br/><br/>
+
+
+**Use Case UC-9:** | Administrative Create
+-------------------|---------
+**Related Requirements:** | REQ1, REQ2, REQ12, REQ17
+**Initiating Actor:** | An Admin
+**Actor's Goal** | To create flights, car rentals, and hotel renting
+**Participating Actors:** | Flight, Airplane, Seating, RentalCar, Hotel
+**Preconditions:** | To have a the application running
+**Postconditions:** | To generate a flight/car/hotel in the area
+
+**Flow of Events for Main Success Scenario** | X | X
+---------------------------------------------|---|----
+**<-** | 1. | The admin inputs details a flight to be created (or car/hotel rental)
+**->** | 2. | The admin confirms the details entered
+**<-** | 3. | A flight/car/hotel rental is generated and is available for service
+
+
+
