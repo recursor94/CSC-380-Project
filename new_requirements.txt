@@ -20,3 +20,30 @@ Administrative
 User
 - As a user, I should be able to logout of the application
 
+
+Traceability matrix
+
+Requirements|UC-1|UC-2|UC-3|UC-4|UC-5|UC-6|UC-7|UC-8
+------------|----|----|----|----|----|----|----|----
+REQ1		|  X |	  |    |	|	 |	  |	   | 
+REQ2		|  X |	  |	   |	|    |    |    | 
+REQ3		|  X |    |    |    |    |    |    | 
+REQ4		|    |    |    |    |  X |    |    |
+REQ5		|    |    |    |    |    |  X |    |  
+REQ6		|    |	  |	   |	|	 |  X |	   |
+REQ7		|	 |    |  X | X  |    |    |    |
+REQ8		|    |  X |    |    |    |    |    |
+REQ9		|    |    |    |    |    |    |  X |
+REQ10		|    |    |    |    |    |    |  X |
+REQ11		|  X |    |    |    |    |    |    | 
+REQ12		|	 |  X |    |    |    |    |    |
+REQ13		|	 |    |    |    |    |    |    | X
+REQ14		|	 |    |    |    |    |    |    | X
+REQ15		|  X |    |    |    |    |    |    |	
+REQ16		|	 |  X |    |    |    |    |    |
+REQ17		|	 |    |    |    |    |    |    |
+REQ18		|	 |    |    |    |    |    |    |
+REQ19		|	 |    |    |    |    |    |    |
+REQ20		|	 |    |    |    |    |    |    |
+REQ21		|	 |	  |	   |    |    |    |    |
+

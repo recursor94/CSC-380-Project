@@ -7,7 +7,7 @@ import org.junit.Test;
 public class UserControllerCaseTest {
 
 	@Test
-	public void testFindUser() {
+	public void testFindAndAddUser() {
 		User user = new User("zeg", "password");
 		UserController ctrl = new UserController();
 		ctrl.addUser(user);
