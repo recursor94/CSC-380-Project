@@ -1,0 +1,20 @@
+|Use Case UC-X: Login/Registration|
+_______
+Initiating Actor:   Any of: Customer
+
+Actor's Goal:       To login to System with account information or create an account if he or she does not yet have one.
+
+Participating Actors:       LoginView, UserController, User
+
+Preconditions:     * The user account name and inputed password match an existing password if logging in. 
+                   * The chosen username does not already exist in the database 
+                   * The User is prompted with a gui display for entering their account username and password
+
+Postconditions:    * Options to view User account information, itenerary information and make Booking decisions are made displayed in a view
+
+Flow of Events for Main Success Scenario:
+    -> 1. Customer opens the application and is presented with a login view with username and password input fields as well as a "login" button and a "register" button
+
+    <- 2. View calls login in UserController to find the matching user and test whether the password is valid.
+    <- 3. if the Username and Password are valid, application opens the next display
+    <- 4.  System starts a new session, and begins a timer for automatically logging out the user
