@@ -20,6 +20,7 @@
 
 
 
+<br/><br/><br/><br/><br/><br/>
 
  
 **Use Case UC-2:** | Payment
@@ -39,6 +40,7 @@
 
 
 
+<br/><br/><br/><br/><br/><br/>
 
 
 **Use Case UC-3:** | Create User
@@ -60,7 +62,7 @@
 **->** | 6. | The user is notified of a successful account creation and an account is generated with the input information
 
 
-
+<br/><br/><br/><br/><br/><br/>
 
 
 **Use Case UC-4:** | Login
@@ -79,7 +81,7 @@
 **<-** | 3. | The user is notified of their successful login and brought to the main application page
 
 
-
+<br/><br/><br/><br/><br/><br/>
 
 
 **Use Case UC-5:** | Create Trip
@@ -97,7 +99,7 @@
 **->** | 2. | The user selects one of the trips to cancel the trip and confirms their cancellation
 **<-** | 3. | The user is notified that their trip is cancelled and is removed from their list of trips 
 
-
+<br/><br/><br/><br/><br/><br/>
 
 
 
@@ -118,7 +120,7 @@
 
 
 
-
+<br/><br/><br/><br/><br/><br/>
 
 
 **Use Case UC-7:** | Display Hotels
@@ -138,7 +140,7 @@
 
 
 
-
+<br/><br/><br/><br/><br/><br/>
 
 
 **Use Case UC-8:** | Display Car Rental
