@@ -143,26 +143,6 @@
 
 **Use Case UC-8:** | Display Car Rental
 -------------------|---------
-**Related Requirements:** | REQ13
-**Initiating Actor:** | A User
-**Actor's Goal** | To view a list of rental car services nearby the flight's destination
-**Participating Actors:** | UserController, User, RentalCar
-**Preconditions:** | To have a user who has booked a trip who selects a trip as their destination target (main trip to search for a nearby car rental business)
-**Postconditions:** | User is presented with a list of car rentals to select from (to book)
-
-**Flow of Events for Main Success Scenario** | X | X
----------------------------------------------|---|----
-**<-** | 1. | The user is given a list of car rentals in the area nearby the destination of their trip
-**->** | 2. | The user selects a car rental business from the list.
-**<-** | 3. | The selected car rental service information (cars, rates, information) is displayed to the user
-
-
-
-
-
-
-**Use Case UC-9:** | Display Car Rental
--------------------|---------
 **Related Requirements:** | REQ13, REQ14
 **Initiating Actor:** | A User
 **Actor's Goal** | To view a list of rental car services nearby the flight's destination
@@ -175,5 +155,3 @@
 **<-** | 1. | The user is given a list of car rentals in the area nearby the destination of their trip
 **->** | 2. | The user selects a car rental business from the list.
 **<-** | 3. | The selected car rental service information (cars, rates, information) is displayed to the user
-
-
