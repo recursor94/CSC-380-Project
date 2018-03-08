@@ -30,7 +30,7 @@ public class UserCaseTest {
 	}
 	
 	@Test
-	public void testFindTrip() {
+	public void testFindAndAddTrip() {
 		User user = new User ("apz", "zpa12");
 		UserController ctrl = new UserController();
 		ctrl.addUser(user);
