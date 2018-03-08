@@ -38,6 +38,7 @@ REQ19      |    4c    | The system shall display various types of vehicles to re
 REQ20      |    4d    | The system shall allow users to book their car rental.
 REQ21      |    4e    | The system shall allow users to pay for car rentals using our application.
 
+<br/><br/>
 
 ## User Stories
 > Person = 1 pts,
@@ -68,6 +69,8 @@ ST-19      | As a user, I will be able to view the vehicles available for rental
 ST-20      | As a user, I will be able to rent a vehicle based on type and make. | 6 pt(s)
 ST-21      | As a user, I will be able to pay for the vehicle rental. | 3 pt(s)
 
+<br/><br/>
+
 ## Use Cases
 
 
@@ -90,7 +93,7 @@ ST-21      | As a user, I will be able to pay for the vehicle rental. | 3 pt(s)
 
 
 
-<br/><br/><br/><br/><br/><br/>
+<br/><br/>
 
  
 **Use Case UC-2:** | Payment
@@ -110,7 +113,7 @@ ST-21      | As a user, I will be able to pay for the vehicle rental. | 3 pt(s)
 
 
 
-<br/><br/><br/><br/><br/><br/>
+<br/><br/>
 
 
 **Use Case UC-3:** | Create User
@@ -132,7 +135,7 @@ ST-21      | As a user, I will be able to pay for the vehicle rental. | 3 pt(s)
 **->** | 6. | The user is notified of a successful account creation and an account is generated with the input information
 
 
-<br/><br/><br/><br/><br/><br/>
+<br/><br/>
 
 
 **Use Case UC-4:** | Login/Logout
@@ -151,7 +154,7 @@ ST-21      | As a user, I will be able to pay for the vehicle rental. | 3 pt(s)
 **<-** | 3. | The user is notified of their successful action and brought to the main application page
 
 
-<br/><br/><br/><br/><br/><br/>
+<br/><br/>
 
 
 **Use Case UC-5:** | Cancel Trip
@@ -169,7 +172,7 @@ ST-21      | As a user, I will be able to pay for the vehicle rental. | 3 pt(s)
 **->** | 2. | The user selects one of the trips to cancel the trip and confirms their cancellation
 **<-** | 3. | The user is notified that their trip is cancelled and is removed from their list of trips 
 
-<br/><br/><br/><br/><br/><br/>
+<br/><br/>
 
 
 
@@ -190,7 +193,7 @@ ST-21      | As a user, I will be able to pay for the vehicle rental. | 3 pt(s)
 
 
 
-<br/><br/><br/><br/><br/><br/>
+<br/><br/>
 
 
 **Use Case UC-7:** | Display Hotels
@@ -210,7 +213,7 @@ ST-21      | As a user, I will be able to pay for the vehicle rental. | 3 pt(s)
 
 
 
-<br/><br/><br/><br/><br/><br/>
+<br/><br/>
 
 
 **Use Case UC-8:** | Display Car Rental
@@ -229,7 +232,7 @@ ST-21      | As a user, I will be able to pay for the vehicle rental. | 3 pt(s)
 **<-** | 3. | The selected car rental service information (cars, rates, information) is displayed to the user
 
 
-<br/><br/><br/><br/><br/><br/>
+<br/><br/>
 
 
 **Use Case UC-9:** | Administrative Create
@@ -247,7 +250,7 @@ ST-21      | As a user, I will be able to pay for the vehicle rental. | 3 pt(s)
 **->** | 2. | The admin confirms the details entered
 **<-** | 3. | A flight/car/hotel rental is generated and is available for service
 
-
+<br/><br/>
 
 ## Traceability matrix
 
