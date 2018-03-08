@@ -16,28 +16,25 @@ All payments would be handled through the in-house system.
 
 Identifier | Priority | Requirement
 ---------- | ---------| -----------
-REQ7       |    1a    | The system shall allow an administrator to 
-create flights for the user to select from
-REQ8       |    1b    | The system shall allow an administrator to 
-REQ1       |    1c    | The system shall allow users to book flights (view arrival and destination).  
-REQ2       |    1d    | The system shall allow users to select a seat for their flight.
-REQ3       |    1e    | The system shall allow users to setup their baggage plan for their flight.
-REQ4       |    1f    | The system shall allow users to cancel/change their flight.
-REQ5       |    1g    | The system shall allow users to view the itinerary of their flight.
-REQ6       |    1h    | The system shall allow users to find their itinerary by flight number.
-create planes that can be assigned to flights
-REQ11      |    2a    | The system should have a login feature where users are able to create/login to their user accounts.
-REQ12      |    2b    | The system shall allow users to pay for the flight using our application.
-REQ13      |    2c    | The system shall allow the user to logout of the application.
-REQ9       |    3a    | The system shall allow an administrator to add hotels to a list for the user to view and select from.
-
-REQ14      |    3b    | The system shall present the user with a list of hotels by the destination airport.
-REQ15      |    3c    | The system shall present the prices of the specific hotel (rooms and rates) to the user.
-REQ16      |    3d    | The system shall allow users to book a hotel room for a specific amount of days.
-REQ17      |    3e    | The system shall allow users to pay for their hotel booking with our application.
-REQ18      |    4a    | The system shall allow users to see a list of car rental services by their airport destination.
-REQ19      |    4b    | The system shall display various types of vehicles to rent (with rates).
-REQ10      |    4c    | The system shall allow an administrator to add cars to a list for the user to view and select from.
+REQ1       |    1a    | The system shall allow an administrator to create flights for the user to select from
+REQ2       |    1b    | The system shall allow an administrator to create planes that can be assigned to flights
+REQ3       |    1c    | The system shall allow users to book flights (view arrival and destination).  
+REQ4       |    1d    | The system shall allow users to select a seat for their flight.
+REQ5       |    1e    | The system shall allow users to setup their baggage plan for their flight.
+REQ6       |    1f    | The system shall allow users to cancel/change their flight.
+REQ7       |    1g    | The system shall allow users to view the itinerary of their flight.
+REQ8       |    1h    | The system shall allow users to find their itinerary by flight number.create planes that can be assigned to flights
+REQ9       |    2a    | The system should have a login feature where users are able to create/login to their user accounts.
+REQ10      |    2b    | The system shall allow users to pay for the flight using our application.
+REQ11      |    2c    | The system shall allow the user to logout of the application.
+REQ12      |    3a    | The system shall allow an administrator to add hotels to a list for the user to view and select from.
+REQ13      |    3b    | The system shall present the user with a list of hotels by the destination airport.
+REQ14      |    3c    | The system shall present the prices of the specific hotel (rooms and rates) to the user.
+REQ15      |    3d    | The system shall allow users to book a hotel room for a specific amount of days.
+REQ16      |    3e    | The system shall allow users to pay for their hotel booking with our application.
+REQ17      |    4a    | The system shall allow an administrator to add cars to a list for the user to view and select from.
+REQ18      |    4b    | The system shall allow users to see a list of car rental services by their airport destination.
+REQ19      |    4c    | The system shall display various types of vehicles to rent (with rates).
 REQ20      |    4d    | The system shall allow users to book their car rental.
 REQ21      |    4e    | The system shall allow users to pay for rentals using our application.
 
