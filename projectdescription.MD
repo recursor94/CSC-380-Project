@@ -76,12 +76,12 @@ ST-21      | As a user, I will be able to pay for the vehicle rental. | 3 pt(s)
 
 **Use Case UC-1:** | Booking
 -------------------|---------
-**Related Requirements:** | REQ3, REQ4, REQ5, REQ15, 
+**Related Requirements:** | REQ3, REQ4, REQ5, REQ15, REQ20  
 **Initiating Actor:** | A User
 **Actor's Goal** | To successfully book a flight, hotel, and/or car
 **Participating Actors:** | Flight, Airplane, LocalDateTime, User, Hotel, Car, Booking, UserController
 **Preconditions:** | There must be a user, a flight, and an airplane
-**Postconditions:** | The user should have a booked trip saved in a trip list with automatic seating assigned.
+**Postconditions:** | The user should have a booked trip saved in a trip list with automatic seating assigned
 
 **Flow of Events for Main Success Scenario** | X | X
 ---------------------------------------------|---|----
@@ -89,7 +89,7 @@ ST-21      | As a user, I will be able to pay for the vehicle rental. | 3 pt(s)
 **->** | 2. | The user is able to select a flight
 **<-** | 3. | The user is presented with baggage options to choose from
 **->** | 4. | The user is able to select a baggage plan
-**<-** | 5. | The user is notified that their flights has been successfully booked
+**<-** | 5. | The user is notified that their flight has been successfully booked
 
 
 
@@ -98,16 +98,16 @@ ST-21      | As a user, I will be able to pay for the vehicle rental. | 3 pt(s)
  
 **Use Case UC-2:** | Payment
 -------------------|---------
-**Related Requirements:** | REQ10, REQ16, REQ18, REQ21
+**Related Requirements:** | REQ10, REQ16, REQ21
 **Initiating Actor:** | A User
-**Actor's Goal** | To make payment for trips/hotel
+**Actor's Goal** | To make payment for trips/hotel/rental car
 **Participating Actors:** | UserController, User, Payment
 **Preconditions:** | To have a user who has booked a flight (hotel/car rental optional)
 **Postconditions:** | User has added payment details to pay for services available
 
 **Flow of Events for Main Success Scenario** | X | X
 ---------------------------------------------|---|----
-**<-** | 1. | The user is presented with input for payment details
+**<-** | 1. | The user is presented with input fields for payment details
 **->** | 2. | The user inputs required information
 **<-** | 3. | The user is notified that their payment method is valid and has been confirmed
 
@@ -120,19 +120,19 @@ ST-21      | As a user, I will be able to pay for the vehicle rental. | 3 pt(s)
 -------------------|---------
 **Related Requirements:** | REQ9
 **Initiating Actor:** | A User
-**Actor's Goal** | To successfully create a use account
+**Actor's Goal** | To successfully create a user account
 **Participating Actors:** | UserController, User, SessionCache, LoginDisplay
 **Preconditions:** | Application is running
 **Postconditions:** | The user has created an account which they can use to login
 
 **Flow of Events for Main Success Scenario** | X | X
 ---------------------------------------------|---|----
-**<-** | 1. | The user is presented proper fields to enter their details
-**->** | 2. | The user inputs their user, password, and confirms their details
+**<-** | 1. | The user is presented with proper fields to enter their details
+**->** | 2. | The user inputs their user name, password, and confirms their details
 **<-** | 3. | (If a username exists, user must choose different username)
 **<-** | 4. | (If a password is invalid, user must choose different password)
-**<-** | 5. | The user inputs a valid user name and password and confirms details
-**->** | 6. | The user is notified of a successful account creation and an account is generated with the input information
+**->** | 5. | The user inputs a valid user name and password and confirms details
+**<-** | 6. | The user is notified of a successful account creation and an account is generated with the input information
 
 
 <br/><br/>
@@ -142,7 +142,7 @@ ST-21      | As a user, I will be able to pay for the vehicle rental. | 3 pt(s)
 -------------------|---------
 **Related Requirements:** | REQ9, REQ11
 **Initiating Actor:** | A User
-**Actor's Goal** | To login to the apz application
+**Actor's Goal** | To login to the APZ application
 **Participating Actors:** | UserController, User, SessionCache, LoginDisplay
 **Preconditions:** | Application is running and has loaded list of saved created users
 **Postconditions:** | User has successfully logged into the application and can access internal services
@@ -169,8 +169,8 @@ ST-21      | As a user, I will be able to pay for the vehicle rental. | 3 pt(s)
 **Flow of Events for Main Success Scenario** | X | X
 ---------------------------------------------|---|----
 **<-** | 1. | The user is presented with options to cancel a trip based on a generated list
-**->** | 2. | The user selects one of the trips to cancel the trip and confirms their cancellation
-**<-** | 3. | The user is notified that their trip is cancelled and is removed from their list of trips 
+**->** | 2. | The user selects one of the trips to cancel and confirms their cancellation
+**<-** | 3. | The user is notified that their trip is cancelled and it is removed from their list of trips 
 
 <br/><br/>
 
@@ -182,7 +182,7 @@ ST-21      | As a user, I will be able to pay for the vehicle rental. | 3 pt(s)
 **Initiating Actor:** | A User
 **Actor's Goal** | To view details of booked trip
 **Participating Actors:** | UserController, User, Booking, Flight, Airplane, Seating, Payment
-**Preconditions:** | To have a user who has booked a trip and to have made payment.
+**Preconditions:** | To have a user who has booked a trip and has made payment
 **Postconditions:** | User is presented with a page with details of their scheduled trip
 
 **Flow of Events for Main Success Scenario** | X | X
@@ -241,12 +241,12 @@ ST-21      | As a user, I will be able to pay for the vehicle rental. | 3 pt(s)
 **Initiating Actor:** | An Admin
 **Actor's Goal** | To create flights, car rentals, and hotel renting
 **Participating Actors:** | Flight, Airplane, Seating, RentalCar, Hotel
-**Preconditions:** | To have a the application running
+**Preconditions:** | To have the application running
 **Postconditions:** | To generate a flight/car/hotel in the area
 
 **Flow of Events for Main Success Scenario** | X | X
 ---------------------------------------------|---|----
-**<-** | 1. | The admin inputs details a flight to be created (or car/hotel rental)
+**->** | 1. | The admin inputs details for a flight to be created (or car/hotel rental)
 **->** | 2. | The admin confirms the details entered
 **<-** | 3. | A flight/car/hotel rental is generated and is available for service
 
@@ -273,7 +273,7 @@ REQ14		|	 |    |    |    |    |    |  X |    |
 REQ15		|  X |    |    |    |    |    |    |	|
 REQ16		|  	 |  X |    |    |    |    |    |    |
 REQ17		|	 |    |    |    |    |    |    |    |  X 
-REQ18		|	 |  X |    |    |    |    |    |  X |
+REQ18		|	 |    |    |    |    |    |    |  X |
 REQ19		|	 |    |    |    |    |    |    |  X |
-REQ20		|	 |    |    |    |    |    |    |  X |
+REQ20		|  X |    |    |    |    |    |    |  X |
 REQ21		|	 |	X |	   |    |    |    |    |    |
