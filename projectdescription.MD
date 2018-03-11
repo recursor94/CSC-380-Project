@@ -16,14 +16,14 @@ All payments would be handled through the in-house system.
 
 Identifier | Priority | Requirement
 ---------- | ---------| -----------
-REQ1       |    1a    | The system shall allow an administrator to create flights for the user to select from
-REQ2       |    1b    | The system shall allow an administrator to create planes that can be assigned to flights
+REQ1       |    1a    | The system shall allow an administrator to create flights for the user to select from.
+REQ2       |    1b    | The system shall allow an administrator to create planes that can be assigned to flights.
 REQ3       |    1c    | The system shall allow users to book flights (view arrival and destination).  
 REQ4       |    1d    | The system shall allow users to select a seat for their flight.
 REQ5       |    1e    | The system shall allow users to setup their baggage plan for their flight.
 REQ6       |    1f    | The system shall allow users to cancel/change their flight.
 REQ7       |    1g    | The system shall allow users to view the itinerary of their flight.
-REQ8       |    1h    | The system shall allow users to find their itinerary by flight number.create planes that can be assigned to flights
+REQ8       |    1h    | The system shall allow users to find their itinerary by flight number.
 REQ9       |    2a    | The system should have a login feature where users are able to create/login to their user accounts.
 REQ10      |    2b    | The system shall allow users to pay for the flight using our application.
 REQ11      |    2c    | The system shall allow the user to logout of the application.
@@ -63,7 +63,7 @@ ST-13      | As a user, I will be able to view hotels nearby my airport destinat
 ST-14      | As a user, I will be able to view rooms from a specified hotel. | 4 pt(s)
 ST-15      | As a user, I will be able to select a room from a specified hotel to check-in. | 4 pt(s)
 ST-16      | As a user, I will be able to pay for the booked hotel room. | 3 pt(s)
-ST-17      | As an administrator of the system, I will be able to create and add cars to a list for the user to view and select from | 3 pt(s)
+ST-17      | As an administrator of the system, I will be able to create and add cars to a list for the user to view and select from. | 3 pt(s)
 ST-18      | As a user, I will be able to view car rental businesses nearby my airport destination. | 3 pt(s)
 ST-19      | As a user, I will be able to view the vehicles available for rental based on rate. | 4 pt(s)
 ST-20      | As a user, I will be able to rent a vehicle based on type and make. | 6 pt(s)
@@ -78,8 +78,8 @@ ST-21      | As a user, I will be able to pay for the vehicle rental. | 3 pt(s)
 -------------------|---------
 **Related Requirements:** | REQ3, REQ4, REQ5, REQ15, REQ20  
 **Initiating Actor:** | A User
-**Actor's Goal** | To successfully book a flight, hotel, and/or car
-**Participating Actors:** | Flight, Airplane, LocalDateTime, User, Hotel, Car, Booking, UserController
+**Actor's Goal:** | To successfully book a flight, hotel, and/or car
+**Participating Actors:** | Flight, Airplane, LocalDateTime, User, Hotel, RentalCar, Booking, UserController
 **Preconditions:** | There must be a user, a flight, and an airplane
 **Postconditions:** | The user should have a booked trip saved in a trip list with automatic seating assigned
 
@@ -100,7 +100,7 @@ ST-21      | As a user, I will be able to pay for the vehicle rental. | 3 pt(s)
 -------------------|---------
 **Related Requirements:** | REQ10, REQ16, REQ21
 **Initiating Actor:** | A User
-**Actor's Goal** | To make payment for trips/hotel/rental car
+**Actor's Goal:** | To make payment for trips/hotel/rental car
 **Participating Actors:** | UserController, User, Payment
 **Preconditions:** | To have a user who has booked a flight (hotel/car rental optional)
 **Postconditions:** | User has added payment details to pay for services available
@@ -120,7 +120,7 @@ ST-21      | As a user, I will be able to pay for the vehicle rental. | 3 pt(s)
 -------------------|---------
 **Related Requirements:** | REQ9
 **Initiating Actor:** | A User
-**Actor's Goal** | To successfully create a user account
+**Actor's Goal:** | To successfully create a user account
 **Participating Actors:** | UserController, User, SessionCache, LoginDisplay
 **Preconditions:** | Application is running
 **Postconditions:** | The user has created an account which they can use to login
@@ -129,7 +129,7 @@ ST-21      | As a user, I will be able to pay for the vehicle rental. | 3 pt(s)
 ---------------------------------------------|---|----
 **<-** | 1. | The user is presented with proper fields to enter their details
 **->** | 2. | The user inputs their user name, password, and confirms their details
-**<-** | 3. | (If a username exists, user must choose different username)
+**<-** | 3. | (If a user name exists, user must choose different username)
 **<-** | 4. | (If a password is invalid, user must choose different password)
 **->** | 5. | The user inputs a valid user name and password and confirms details
 **<-** | 6. | The user is notified of a successful account creation and an account is generated with the input information
@@ -142,9 +142,9 @@ ST-21      | As a user, I will be able to pay for the vehicle rental. | 3 pt(s)
 -------------------|---------
 **Related Requirements:** | REQ9, REQ11
 **Initiating Actor:** | A User
-**Actor's Goal** | To login to the APZ application
+**Actor's Goal:** | To login to the APZ application
 **Participating Actors:** | UserController, User, SessionCache, LoginDisplay
-**Preconditions:** | Application is running and has loaded list of saved created users
+**Preconditions:** | Application is running and has loaded a list of saved created users
 **Postconditions:** | User has successfully logged into the application and can access internal services
 
 **Flow of Events for Main Success Scenario** | X | X
@@ -161,7 +161,7 @@ ST-21      | As a user, I will be able to pay for the vehicle rental. | 3 pt(s)
 -------------------|---------
 **Related Requirements:** | REQ3, REQ4, REQ6
 **Initiating Actor:** | A User
-**Actor's Goal** | To cancel a booked trip
+**Actor's Goal:** | To cancel a booked trip
 **Participating Actors:** | UserController, User, Booking
 **Preconditions:** | To have a user who has booked a trip (flight)
 **Postconditions:** | The user is notified that their trip has been cancelled
@@ -180,7 +180,7 @@ ST-21      | As a user, I will be able to pay for the vehicle rental. | 3 pt(s)
 -------------------|---------
 **Related Requirements:** | REQ7, REQ8
 **Initiating Actor:** | A User
-**Actor's Goal** | To view details of booked trip
+**Actor's Goal:** | To view details of a booked trip
 **Participating Actors:** | UserController, User, Booking, Flight, Airplane, Seating, Payment
 **Preconditions:** | To have a user who has booked a trip and has made payment
 **Postconditions:** | User is presented with a page with details of their scheduled trip
@@ -200,7 +200,7 @@ ST-21      | As a user, I will be able to pay for the vehicle rental. | 3 pt(s)
 -------------------|---------
 **Related Requirements:** | REQ13, REQ14
 **Initiating Actor:** | A User
-**Actor's Goal** | To view a list of hotels near the flight's destination
+**Actor's Goal:** | To view a list of hotels near the flight's destination
 **Participating Actors:** | UserController, User, Hotel
 **Preconditions:** | To have a user who has booked a trip who selects a trip as their destination target (main trip to search for nearby hotels)
 **Postconditions:** | User is presented with a list of hotels to select from (to book)
@@ -208,7 +208,7 @@ ST-21      | As a user, I will be able to pay for the vehicle rental. | 3 pt(s)
 **Flow of Events for Main Success Scenario** | X | X
 ---------------------------------------------|---|----
 **<-** | 1. | The user is given a list of hotels in the area nearby the destination of their trip
-**->** | 2. | The user selects a hotel from the list of hotels generated.
+**->** | 2. | The user selects a hotel from the list of hotels generated
 **<-** | 3. | The selected hotel information (rates, details, etc.) is displayed to the user
 
 
@@ -220,7 +220,7 @@ ST-21      | As a user, I will be able to pay for the vehicle rental. | 3 pt(s)
 -------------------|---------
 **Related Requirements:** | REQ18, REQ19, REQ20
 **Initiating Actor:** | A User
-**Actor's Goal** | To view a list of rental car services nearby the flight's destination
+**Actor's Goal:** | To view a list of rental car services nearby the flight's destination
 **Participating Actors:** | UserController, User, RentalCar
 **Preconditions:** | To have a user who has booked a trip who selects a trip as their destination target (main trip to search for a nearby car rental business)
 **Postconditions:** | User is presented with a list of car rentals to select from (to book)
@@ -228,7 +228,7 @@ ST-21      | As a user, I will be able to pay for the vehicle rental. | 3 pt(s)
 **Flow of Events for Main Success Scenario** | X | X
 ---------------------------------------------|---|----
 **<-** | 1. | The user is given a list of car rentals in the area nearby the destination of their trip
-**->** | 2. | The user selects a car rental business from the list.
+**->** | 2. | The user selects a car rental business from the list
 **<-** | 3. | The selected car rental service information (cars, rates, information) is displayed to the user
 
 
@@ -239,7 +239,7 @@ ST-21      | As a user, I will be able to pay for the vehicle rental. | 3 pt(s)
 -------------------|---------
 **Related Requirements:** | REQ1, REQ2, REQ12, REQ17
 **Initiating Actor:** | An Admin
-**Actor's Goal** | To create flights, car rentals, and hotel renting
+**Actor's Goal:** | To create flights, car rentals, and hotel renting
 **Participating Actors:** | Flight, Airplane, Seating, RentalCar, Hotel
 **Preconditions:** | To have the application running
 **Postconditions:** | To generate a flight/car/hotel in the area
