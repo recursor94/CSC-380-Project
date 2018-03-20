@@ -1,31 +1,28 @@
-Login Screen
-Registration/Create Screen
-Home screen
+Login Screen - Zak
+Registration/Create Screen - Andrew
+Home screen - Jimmy
 
-Flight screen >
+Flight screen >	- Zak
 
-	Book flight	
-		> find flight 
-		<> payment	// if not setup
-		> confirmation
+	Book flight	- Andrew
+		> find flight 	
+		> confirmation 
 
-	Cancel Flight
+	Cancel Flight	-Jimmy
 		> list of flights booked display
 		> prompt to cancel one
 		> confirmation 
-	View MY Flight 
+	View MY Flight - Zak
 		> list of flights booked to display
 		> show flight information
 
-
-
-
-	Change flight	
+	Change flight	- Andrew
 		> list of flights booked display
 		> prompt to change info
-	
-Account management >
+
+Account management > 
 	Change password
 	Payment information
 		> add payment information
 		> change payment information
+
