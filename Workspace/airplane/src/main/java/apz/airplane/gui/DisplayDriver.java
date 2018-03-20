@@ -28,7 +28,8 @@ public class DisplayDriver extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		uc = new UserController();
 		bp = new BorderPane();
-		new LoginView(primaryStage);
+		new UserRegistrationView(primaryStage);
+		//new LoginView(primaryStage);
 	}
 
 
