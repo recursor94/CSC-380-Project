@@ -1,0 +1,31 @@
+Login Screen
+Registration/Create Screen
+Home screen
+
+Flight screen >
+
+	Book flight	
+		> find flight 
+		<> payment	// if not setup
+		> confirmation
+
+	Cancel Flight
+		> list of flights booked display
+		> prompt to cancel one
+		> confirmation 
+	View MY Flight 
+		> list of flights booked to display
+		> show flight information
+
+
+
+
+	Change flight	
+		> list of flights booked display
+		> prompt to change info
+	
+Account management >
+	Change password
+	Payment information
+		> add payment information
+		> change payment information

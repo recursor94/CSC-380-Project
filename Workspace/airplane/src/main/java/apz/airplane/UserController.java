@@ -9,6 +9,7 @@ public class UserController {
 	
 	public UserController() {
 		userList = new ArrayList<>();
+		// load in the file
 	}
 	
 	public void addUser (User user) {
