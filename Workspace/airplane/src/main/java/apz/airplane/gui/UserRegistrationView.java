@@ -1,8 +1,5 @@
 package apz.airplane.gui;
 
-import java.time.LocalTime;
-
-import apz.airplane.SessionCache;
 import apz.airplane.User;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -73,26 +70,25 @@ public class UserRegistrationView {
 	}
 	
 	public void actionEvents() {
-		//DisplayDriver.getUserController().addUser(new User("asd", "asd"));
-		
 		registerButton.setOnAction((event) -> {
-		
+			
+		//Checks if a user name exists already
+		if (userField.getText().equals(DisplayDriver.getUserController().checkUsername(userField.getText()))) {
+			System.out.println("The username you chose already exists");
+		}
+		//If a user name does not already exist
+		else {
+			//If the text fields are not empty, it creates a user 
 			if (!(userField.getText().isEmpty()) && !(passField.getText().isEmpty())) {
 				User user = new User (userField.getText(), passField.getText());
 				DisplayDriver.getUserController().addUser(user);
-				System.out.println("User successfully created!");
-				
-				SessionCache session = new SessionCache(user, LocalTime.now());
-				System.out.println("Username: " + userField.getText());
-				System.out.println("Password: " + passField.getText());
-				
-				System.out.println("Session: " + session);
+				System.out.println("User successfully created!");				
+				System.out.println(DisplayDriver.getUserController());
 			}
 			else {
 				System.out.println("You must enter a user name and a password");
 			}
-			
-//			primaryStage.close();
+		}
 		});
 	}
 }

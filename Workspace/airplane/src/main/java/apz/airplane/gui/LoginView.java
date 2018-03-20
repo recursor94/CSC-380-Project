@@ -75,7 +75,6 @@ public class LoginView {
 				SessionCache session = new SessionCache(user, LocalTime.now());
 				System.out.println("Username: " + userField.getText());
 				System.out.println("Password: " + passField.getText());
-				
 				System.out.println("Session: " + session);
 			}
 			

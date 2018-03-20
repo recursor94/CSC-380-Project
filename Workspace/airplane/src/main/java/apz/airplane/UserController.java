@@ -35,6 +35,16 @@ public class UserController {
 		return null;
 	}
 	
+	//This checks to see if a username already exists and returns it if it does
+	public String checkUsername (String username) {
+		for(User user : userList) {
+			if(user.getUsername().equals(username)) {
+				return user.getUsername();
+			}
+		}
+		return null;
+	}
+	
 	public User login(String username, String password) {
 		for(User user : userList) {
 			if(user.getUsername().equals(username) && user.validatePassword(password)) {
