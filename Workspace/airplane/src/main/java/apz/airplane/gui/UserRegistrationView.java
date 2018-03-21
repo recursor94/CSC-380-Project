@@ -73,7 +73,7 @@ public class UserRegistrationView {
 		registerButton.setOnAction((event) -> {
 			
 		//Checks if a user name exists already
-		if (userField.getText().equals(DisplayDriver.getUserController().checkUsername(userField.getText()))) {
+		if (DisplayDriver.getUserController().userExists(userField.getText())) {
 			System.out.println("The username you chose already exists");
 		}
 		//If a user name does not already exist

@@ -35,14 +35,14 @@ public class UserController {
 		return null;
 	}
 	
-	//This checks to see if a username already exists and returns it if it does
-	public String checkUsername (String username) {
+	//This checks to see if a username exists
+	public boolean userExists (String username) {
 		for(User user : userList) {
 			if(user.getUsername().equals(username)) {
-				return user.getUsername();
+				return true;
 			}
 		}
-		return null;
+		return false;
 	}
 	
 	public User login(String username, String password) {
