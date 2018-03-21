@@ -32,7 +32,7 @@ public class Booking {
 
 	@Override
 	public String toString() {
-		return "Booking [flight=" + flight + ", bookDate=" + bookDate + "]";
+		return flight.getDestinationName() + "-" + flight.getFlightNum();
 	}
 
 //	/**

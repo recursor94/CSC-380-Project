@@ -28,8 +28,9 @@ public class DisplayDriver extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		uc = new UserController();
 		bp = new BorderPane();
-		new UserRegistrationView(primaryStage);
-		//new LoginView(primaryStage);
+//		new UserRegistrationView(primaryStage);
+		new LoginView(primaryStage);
+//		new CancelFlightView(primaryStage);
 	}
 
 

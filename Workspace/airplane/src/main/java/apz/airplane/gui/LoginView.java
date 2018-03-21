@@ -76,6 +76,8 @@ public class LoginView {
 				System.out.println("Username: " + userField.getText());
 				System.out.println("Password: " + passField.getText());
 				System.out.println("Session: " + session);
+				
+				new CancelFlightView(primaryStage);
 			}
 			
 //			primaryStage.close();
