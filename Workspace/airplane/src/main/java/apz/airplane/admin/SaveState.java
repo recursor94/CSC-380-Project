@@ -32,5 +32,18 @@ public class SaveState {
 			e.printStackTrace();
 		}
 	}
+/*	public static void saveFlight(ArrayList<Flight> flight) {
+		FileOutputStream fileOut;
+		ObjectOutputStream objectOut;
+		try {
+			fileOut = new FileOutputStream("flightobject.apz");
+			objectOut = new ObjectOutputStream(fileOut);
+			objectOut.writeObject(flight);
+			objectOut.close();
+			System.out.println("The Object was succesfully written to a file");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}*/
 
 }

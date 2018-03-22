@@ -20,6 +20,14 @@ public class AdminAddPlane {
 	private VBox mainPane = new VBox(10);
 	private ArrayList<Airplane> planeList = new ArrayList<>();
 
+	public ListView<Airplane> getListOfPlanes() {
+		return listOfPlanes;
+	}
+	public ArrayList<Airplane> getPlaneList() {
+		return planeList;
+	}
+
+
 	public AdminAddPlane() {
 		loadFile();
 		
@@ -27,7 +35,7 @@ public class AdminAddPlane {
 		TextField airlineField = new TextField();
 		ComboBox<Integer> seatsField = new ComboBox();
 		
-		for (int i = 1; i < 200; i++)
+		for (int i = 1; i <= 200; i++)
 			seatsField.getItems().add(i);
 		
 		seatsField.setValue(1);

@@ -31,14 +31,11 @@ public class UserRegistrationView {
 	
 	private VBox rootPane;
 	private HBox userBox, passBox;
-	private Stage primaryStage;
 	
-	public UserRegistrationView(Stage primaryStage) {
-		this.primaryStage = primaryStage;
+	public UserRegistrationView() {
 		initialize();
 		actionEvents();
 		content();
-		properties();
 	}
 	
 	public void initialize() {
@@ -62,13 +59,6 @@ public class UserRegistrationView {
 		rootPane.setAlignment(Pos.CENTER);
 		
 		DisplayDriver.getBorderPane().setCenter(rootPane);
-	}
-	
-	public void properties() {
-		primaryStage.setTitle(APP_TITLE);
-		primaryStage.setScene(new Scene(DisplayDriver.getBorderPane(), FRAME_WIDTH, FRAME_HEIGHT));
-		primaryStage.initStyle(StageStyle.UTILITY);
-		primaryStage.show();
 	}
 	
 	public void actionEvents() {
@@ -96,7 +86,7 @@ public class UserRegistrationView {
 				msg.setContentText("Your account has been created!");
 				msg.showAndWait();
 				System.out.println(DisplayDriver.getUserController());
-				new ViewFlightWindow(primaryStage);
+				//new ViewFlightWindow(primaryStage);
 				
 			}
 			else {

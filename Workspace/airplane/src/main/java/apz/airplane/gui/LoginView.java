@@ -25,10 +25,12 @@ public class LoginView {
 	private static final String LABEL_USERNAME = "Username: ";
 	private static final String LABEL_PASSWORD = "Password: ";
 	private static final String BUTTON_LOGIN = "Login";
+	private static final String BUTTON_CREATE = "Create User";
 
 	private TextField userField;
 	private PasswordField passField;
 	private Button loginButton;
+	private Button createUserButton;
 	
 	private VBox rootPane;
 	private HBox userBox, passBox;
@@ -51,12 +53,13 @@ public class LoginView {
 		passField = new PasswordField();
 		
 		loginButton = new Button(BUTTON_LOGIN);
+		createUserButton = new Button(BUTTON_CREATE);
 	}
 	
 	public void content() {
 		userBox.getChildren().addAll(new Label(LABEL_USERNAME), userField);
 		passBox.getChildren().addAll(new Label(LABEL_PASSWORD), passField);
-		rootPane.getChildren().addAll(userBox, passBox, loginButton);
+		rootPane.getChildren().addAll(userBox, passBox, loginButton, createUserButton);
 		
 		userBox.setAlignment(Pos.CENTER);
 		passBox.setAlignment(Pos.CENTER);
@@ -81,6 +84,10 @@ public class LoginView {
 			}
 			
 //			primaryStage.close();
+		});
+		
+		createUserButton.setOnAction(event -> {
+			new UserRegistrationView();
 		});
 	}
 	
