@@ -3,6 +3,8 @@ package apz.airplane.gui;
 import apz.airplane.User;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -75,6 +77,11 @@ public class UserRegistrationView {
 		//Checks if a user name exists already
 		if (DisplayDriver.getUserController().userExists(userField.getText())) {
 			System.out.println("The username you chose already exists");
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("User Name Already Exists");
+			alert.setHeaderText("ERROR: The User Name Already Exists");
+			alert.setContentText("Please choose a different user name");
+			alert.showAndWait();
 		}
 		//If a user name does not already exist
 		else {
@@ -82,10 +89,22 @@ public class UserRegistrationView {
 			if (!(userField.getText().isEmpty()) && !(passField.getText().isEmpty())) {
 				User user = new User (userField.getText(), passField.getText());
 				DisplayDriver.getUserController().addUser(user);
-				System.out.println("User successfully created!");				
+				System.out.println("User successfully created!");
+				Alert msg = new Alert(AlertType.INFORMATION);
+				msg.setTitle("Successful User Creation");
+				msg.setHeaderText(null);
+				msg.setContentText("Your account has been created!");
+				msg.showAndWait();
 				System.out.println(DisplayDriver.getUserController());
+				new ViewFlightWindow(primaryStage);
+				
 			}
 			else {
+				Alert alert2 = new Alert(AlertType.ERROR);
+				alert2.setTitle("Empty Field");
+				alert2.setHeaderText("ERROR: You must enter a user name and password");
+				alert2.setContentText("Please enter a user name and password");
+				alert2.showAndWait();
 				System.out.println("You must enter a user name and a password");
 			}
 		}
