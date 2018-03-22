@@ -1,6 +1,8 @@
 package apz.airplane;
 
-public class Airplane {
+import java.io.Serializable;
+
+public class Airplane implements Serializable {
 	
 	private int planeNum;
 	private String airline;

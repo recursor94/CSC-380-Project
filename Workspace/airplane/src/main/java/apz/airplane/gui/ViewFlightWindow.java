@@ -46,7 +46,7 @@ public class ViewFlightWindow {
 		mainPane.setAlignment(Pos.CENTER);
 		mainPane.getChildren().addAll(new Label("List of Flights you made"), list, viewButton);
 		stage.setTitle("View Flight Screen");
-		DisplayDriver.getMainPane().setCenter(mainPane);
+		DisplayDriver.getBorderPane().setCenter(mainPane);
 	}
 
 	

@@ -68,7 +68,7 @@ public class CancelFlightView {
 		mainPane.setAlignment(Pos.CENTER);
 		mainPane.getChildren().addAll(new Label("List of Flights you made"), list, confirmButton);
 		stage.setTitle("Cancel Flight Screen");
-		DisplayDriver.getMainPane().setCenter(mainPane);
+		DisplayDriver.getBorderPane().setCenter(mainPane);
 	}
 	
 	public void createdStuff() {

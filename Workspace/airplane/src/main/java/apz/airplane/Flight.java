@@ -5,17 +5,18 @@ import java.time.LocalDateTime;
 public class Flight {
 	
 	private Airplane plane;
-	private String destinationName;
-	private LocalDateTime arrival, departure;
+	private String destinationName, arrivalName;
+	private LocalDateTime arrivalTime, departureTime;
 	// maybe time here too
 	private int flightNum;
 	
-	public Flight(Airplane plane, String destinationName, LocalDateTime arrival, LocalDateTime departure, int flightNum) {
+	public Flight(Airplane plane, String destinationName, String arrivalName, LocalDateTime arrivalTime, LocalDateTime departureTime, int flightNum) {
 		super();
 		this.plane = plane;
 		this.destinationName = destinationName;
-		this.arrival = arrival;
-		this.departure = departure;
+		this.arrivalName = arrivalName;
+		this.arrivalTime = arrivalTime;
+		this.departureTime = departureTime;
 		this.flightNum = flightNum;
 	}
 
@@ -35,20 +36,28 @@ public class Flight {
 		this.destinationName = destinationName;
 	}
 
-	public LocalDateTime getArrival() {
-		return arrival;
+	public String getArrivalName() {
+		return arrivalName;
 	}
 
-	public void setArrival(LocalDateTime arrival) {
-		this.arrival = arrival;
+	public void setArrivalName(String arrivalName) {
+		this.arrivalName = arrivalName;
 	}
 
-	public LocalDateTime getDeparture() {
-		return departure;
+	public LocalDateTime getArrivalTime() {
+		return arrivalTime;
 	}
 
-	public void setDeparture(LocalDateTime departure) {
-		this.departure = departure;
+	public void setArrivalTime(LocalDateTime arrivalTime) {
+		this.arrivalTime = arrivalTime;
+	}
+
+	public LocalDateTime getDepartureTime() {
+		return departureTime;
+	}
+
+	public void setDepartureTime(LocalDateTime departureTime) {
+		this.departureTime = departureTime;
 	}
 
 	public int getFlightNum() {
@@ -61,8 +70,8 @@ public class Flight {
 
 	@Override
 	public String toString() {
-		return "Flight [plane=" + plane + ", destinationName=" + destinationName + ", arrival=" + arrival
-				+ ", departure=" + departure + ", flightNum=" + flightNum + "]";
+		return "Flight [plane=" + plane + ", destinationName=" + destinationName + ", arrivalTime=" + arrivalTime
+				+ ", departureTime=" + departureTime + ", flightNum=" + flightNum + "]";
 	}
 
 }

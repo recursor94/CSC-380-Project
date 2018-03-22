@@ -1,8 +1,9 @@
 package apz.airplane;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
-public class Seating {
+public class Seating implements Serializable {
 	
 	//average plane has 200
 	private User[] seating;	// must limit on if more users are trying to be added. maybe boolean return method isFull();
