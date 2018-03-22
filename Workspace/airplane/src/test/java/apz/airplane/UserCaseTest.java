@@ -38,7 +38,7 @@ public class UserCaseTest {
 		LocalDateTime departure =  LocalDateTime.of(2018, 3, 12, 6, 55);
 		LocalDateTime arrival = LocalDateTime.of(2018, 3, 12, 11, 35);
 		Airplane plane = new Airplane(8, "APZ Airlines", 11);
-		Flight flight = new Flight(plane, "Chicago", arrival, departure, 62918);
+		Flight flight = new Flight(plane,"Las Vegas", "Chicago", arrival, departure, 62918);
 		Booking trip = new Booking(flight, bookDate, user);
 		user.addTrip(trip);
 		assertEquals(trip, user.findTrip(flight));
@@ -53,8 +53,8 @@ public class UserCaseTest {
 		LocalDateTime departure =  LocalDateTime.of(2018, 3, 12, 6, 55);
 		LocalDateTime arrival = LocalDateTime.of(2018, 3, 12, 11, 35);
 		Airplane plane = new Airplane(8, "APZ Airlines", 11);
-		Flight flight = new Flight(plane, "Chicago", arrival, departure, 62918);
-		Flight flight2 = new Flight(plane, "Hawaii", arrival, departure, 62919);
+		Flight flight = new Flight(plane,"Charlotte", "Chicago", arrival, departure, 62918);
+		Flight flight2 = new Flight(plane,"Detroit", "Hawaii", arrival, departure, 62919);
 		Booking trip = new Booking(flight, bookDate, user);
 		user.addTrip(trip);
 		
@@ -71,7 +71,7 @@ public class UserCaseTest {
 		LocalDateTime departure =  LocalDateTime.of(2018, 3, 12, 6, 55);
 		LocalDateTime arrival = LocalDateTime.of(2018, 3, 12, 11, 35);
 		Airplane plane = new Airplane(8, "APZ Airlines", 11);
-		Flight flight = new Flight(plane, "Chicago", arrival, departure, 62918);
+		Flight flight = new Flight(plane,"Maui", "Chicago", arrival, departure, 62918);
 		Booking trip = new Booking(flight, bookDate, user);
 		user.addTrip(trip);
 		assertEquals(true, user.removeTrip(flight));
@@ -86,8 +86,8 @@ public class UserCaseTest {
 		LocalDateTime departure =  LocalDateTime.of(2018, 3, 12, 6, 55);
 		LocalDateTime arrival = LocalDateTime.of(2018, 3, 12, 11, 35);
 		Airplane plane = new Airplane(8, "APZ Airlines", 11);
-		Flight flight = new Flight(plane, "Chicago", arrival, departure, 62918);
-		Flight flight2 = new Flight(plane, "Hawaii", arrival, departure, 62919);
+		Flight flight = new Flight(plane,"New Orleans", "Chicago", arrival, departure, 62918);
+		Flight flight2 = new Flight(plane,"San Francisco", "Hawaii", arrival, departure, 62919);
 		Booking trip = new Booking(flight, bookDate, user);
 		user.addTrip(trip);
 		

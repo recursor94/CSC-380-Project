@@ -76,7 +76,7 @@ public class CancelFlightView {
 		LocalDateTime bookDate = LocalDateTime.now();
 		LocalDateTime departure =  LocalDateTime.of(2018, 3, 12, 7, 45);
 		LocalDateTime arrival = LocalDateTime.of(2018, 3, 12, 12, 55);
-		Flight flight = new Flight(airplane, "Hawaii", arrival, departure, 40908 );
+		Flight flight = new Flight(airplane,"New York", "Hawaii", arrival, departure, 40908 );
 		Booking trip = new Booking(flight, bookDate, user);
 		user.addTrip(trip);
 		
@@ -84,7 +84,7 @@ public class CancelFlightView {
 		LocalDateTime bookDate2 = LocalDateTime.now();
 		LocalDateTime departure2 =  LocalDateTime.of(2018, 3, 12, 7, 45);
 		LocalDateTime arrival2 = LocalDateTime.of(2018, 3, 12, 12, 55);
-		Flight flight2 = new Flight(airplane2, "YOU ES OF AYE", arrival2, departure2, 40908 );
+		Flight flight2 = new Flight(airplane2,"Italy", "YOU ES OF AYE", arrival2, departure2, 40908 );
 		Booking trip2 = new Booking(flight2, bookDate2, user);
 		user.addTrip(trip2);
 	}

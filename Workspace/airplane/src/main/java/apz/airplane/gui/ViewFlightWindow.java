@@ -55,7 +55,7 @@ public class ViewFlightWindow {
 		LocalDateTime bookDate = LocalDateTime.now();
 		LocalDateTime departure =  LocalDateTime.of(2018, 3, 29, 7, 45);
 		LocalDateTime arrival = LocalDateTime.of(2018, 3, 29, 12, 55);
-		Flight flight = new Flight(airplane, "Hawaii", arrival, departure, 40908 );
+		Flight flight = new Flight(airplane, "New York", "Hawaii", arrival, departure, 40908 );
 		Booking trip = new Booking(flight, bookDate, user);
 		user.addTrip(trip);
 		
@@ -63,7 +63,7 @@ public class ViewFlightWindow {
 		LocalDateTime bookDate2 = LocalDateTime.now();
 		LocalDateTime departure2 =  LocalDateTime.of(2018, 3, 25, 9, 55);
 		LocalDateTime arrival2 = LocalDateTime.of(2018, 3, 25, 1, 55);
-		Flight flight2 = new Flight(airplane2, "Chicago", arrival2, departure2, 12917 );
+		Flight flight2 = new Flight(airplane2,"New Orleans", "Chicago", arrival2, departure2, 12917 );
 		Booking trip2 = new Booking(flight2, bookDate2, user);
 		user.addTrip(trip2);
 	}

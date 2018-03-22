@@ -37,5 +37,22 @@ public class UserControllerCaseTest {
 		ctrl.addUser(user);
 		assertEquals(false, ctrl.removeUser("zerg"));
 	}
+	
+	@Test
+	public void userExistsTest() {
+		User user = new User("zeg", "pass");
+		UserController ctrl = new UserController();
+		ctrl.addUser(user);
+		assertEquals(true, ctrl.userExists("zeg"));
+		
+	}
+	@Test
+	public void userNonExistsTest() {
+		User user = new User("zeg", "pass");
+		UserController ctrl = new UserController();
+		ctrl.addUser(user);
+		assertEquals(false, ctrl.userExists("zerg"));
+		
+	}
 
 }
