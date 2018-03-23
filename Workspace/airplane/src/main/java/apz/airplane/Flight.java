@@ -12,16 +12,20 @@ public class Flight implements Serializable {
 	// maybe time here too
 	private int flightNum;
 	
-	public Flight(Airplane plane, String destinationName, String arrivalName, Time arrivalTime, Time departureTime, int flightNum) {
-		super();
+	
+	
+	public Flight(Airplane plane, String destinationName, String arrivalName, LocalDate arriveDate,
+			LocalDate departureDate, Time arrivalTime, Time departureTime, int flightNum) {
 		this.plane = plane;
 		this.destinationName = destinationName;
 		this.arrivalName = arrivalName;
+		this.arriveDate = arriveDate;
+		this.departureDate = departureDate;
 		this.arrivalTime = arrivalTime;
 		this.departureTime = departureTime;
 		this.flightNum = flightNum;
 	}
-	
+
 	public Airplane getPlane() {
 		return plane;
 	}

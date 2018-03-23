@@ -1,14 +1,14 @@
 package apz.airplane;
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public class Booking implements Serializable {
 	
 	private Flight flight;
-	private LocalDateTime bookDate;
+	private LocalDate bookDate;
 	private Airplane plane;
 	
-	public Booking(Flight flight, LocalDateTime bookDate, User user) {
+	public Booking(Flight flight, LocalDate bookDate, User user) {
 		this.flight = flight;
 		this.bookDate = bookDate;
 		plane = flight.getPlane();
@@ -23,11 +23,11 @@ public class Booking implements Serializable {
 		this.flight = flight;
 	}
 
-	public LocalDateTime getBookDate() {
+	public LocalDate getBookDate() {
 		return bookDate;
 	}
 
-	public void setBookDate(LocalDateTime bookDate) {
+	public void setBookDate(LocalDate bookDate) {
 		this.bookDate = bookDate;
 	}
 
