@@ -1,11 +1,7 @@
 package apz.jimmeh.idostuff;
 
-import java.time.LocalTime;
-
-import apz.airplane.SessionCache;
 import apz.airplane.User;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -13,7 +9,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 public class LoginWindow {
 	
@@ -67,10 +62,8 @@ public class LoginWindow {
 			User user = DisplayDriver.getUserController().login(userField.getText(), passField.getText());
 			
 			if (user != null) {
-				SessionCache session = new SessionCache(user, LocalTime.now());
 				System.out.println("Username: " + userField.getText());
 				System.out.println("Password: " + passField.getText());
-				System.out.println("Session: " + session);
 				
 //				new CancelFlightView(primaryStage);
 			}
