@@ -1,8 +1,11 @@
 package apz.airplane;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class UserController {
+public class UserController implements Serializable {
+	
+	// Default ID KEEP IN MIND FOR LATER
 	
 	// need book function that searches through userList for user then adds booking to their arraylist
 	private ArrayList<User> userList;

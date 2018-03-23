@@ -33,7 +33,7 @@ public class AdminAddPlane {
 		
 		TextField planeField = new TextField();
 		TextField airlineField = new TextField();
-		ComboBox<Integer> seatsField = new ComboBox();
+		ComboBox<Integer> seatsField = new ComboBox<>();
 		
 		for (int i = 1; i <= 200; i++)
 			seatsField.getItems().add(i);

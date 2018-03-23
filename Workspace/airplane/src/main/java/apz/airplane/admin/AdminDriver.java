@@ -6,7 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class AdminView extends Application {
+public class AdminDriver extends Application {
 	
 	private VBox mainPane = new VBox(10);
 	private Button addPlaneButton = new Button("Add a Plane");
@@ -26,7 +26,7 @@ public class AdminView extends Application {
 		});
 		
 		addFlightButton.setOnAction(event -> {
-			new AdminAddFlight();
+			new AdminAddFlight(primaryStage);
 		});
 		
 		primaryStage.setScene(new Scene(mainPane, 500, 500));

@@ -1,16 +1,18 @@
 package apz.airplane;
 
-import java.time.LocalDateTime;
+import java.io.Serializable;
+import java.time.LocalDate;
 
-public class Flight {
+public class Flight implements Serializable {
 	
 	private Airplane plane;
 	private String destinationName, arrivalName;
-	private LocalDateTime arrivalTime, departureTime;
+	private LocalDate arriveDate, departureDate;		// getter and setters
+	private Time arrivalTime, departureTime;
 	// maybe time here too
 	private int flightNum;
 	
-	public Flight(Airplane plane, String destinationName, String arrivalName, LocalDateTime arrivalTime, LocalDateTime departureTime, int flightNum) {
+	public Flight(Airplane plane, String destinationName, String arrivalName, Time arrivalTime, Time departureTime, int flightNum) {
 		super();
 		this.plane = plane;
 		this.destinationName = destinationName;
@@ -19,7 +21,7 @@ public class Flight {
 		this.departureTime = departureTime;
 		this.flightNum = flightNum;
 	}
-
+	
 	public Airplane getPlane() {
 		return plane;
 	}
@@ -44,19 +46,35 @@ public class Flight {
 		this.arrivalName = arrivalName;
 	}
 
-	public LocalDateTime getArrivalTime() {
+	public LocalDate getArriveDate() {
+		return arriveDate;
+	}
+
+	public void setArriveDate(LocalDate arriveDate) {
+		this.arriveDate = arriveDate;
+	}
+
+	public LocalDate getDepartureDate() {
+		return departureDate;
+	}
+
+	public void setDepartureDate(LocalDate departureDate) {
+		this.departureDate = departureDate;
+	}
+
+	public Time getArrivalTime() {
 		return arrivalTime;
 	}
 
-	public void setArrivalTime(LocalDateTime arrivalTime) {
+	public void setArrivalTime(Time arrivalTime) {
 		this.arrivalTime = arrivalTime;
 	}
 
-	public LocalDateTime getDepartureTime() {
+	public Time getDepartureTime() {
 		return departureTime;
 	}
 
-	public void setDepartureTime(LocalDateTime departureTime) {
+	public void setDepartureTime(Time departureTime) {
 		this.departureTime = departureTime;
 	}
 

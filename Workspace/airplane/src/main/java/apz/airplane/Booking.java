@@ -1,7 +1,8 @@
 package apz.airplane;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class Booking {
+public class Booking implements Serializable {
 	
 	private Flight flight;
 	private LocalDateTime bookDate;

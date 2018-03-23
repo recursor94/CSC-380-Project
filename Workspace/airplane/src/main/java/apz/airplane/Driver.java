@@ -26,11 +26,11 @@ public class Driver {
 		airplane.getSeats().addTo(new User("Pooper", "Scooper"));
 	
 		//Creating a flight and a Booking trip and test to toString methods
-		Flight flight = new Flight(airplane, "New York", "Hawaii", arrival, departure, 40908 );
-		Booking trip = new Booking(flight, bookDate, me);
-		System.out.println(trip);
-		System.out.println(flight);
-		System.out.println(airplane);
+//		Flight flight = new Flight(airplane, "New York", "Hawaii", arrival, departure, 40908 );
+//		Booking trip = new Booking(flight, bookDate, me);
+//		System.out.println(trip);
+//		System.out.println(flight);
+//		System.out.println(airplane);
 	}
 
 }
