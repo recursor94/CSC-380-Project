@@ -2,10 +2,12 @@ package apz.airplane.gui;
 
 import apz.airplane.User;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -16,6 +18,7 @@ public class LoginView {
 	private PasswordField passField;
 	private Button loginButton;
 	private Button createUserButton;
+	private HBox buttons = new HBox(10);
 	
 	private VBox rootPane;
 	private HBox userBox, passBox;
@@ -38,12 +41,14 @@ public class LoginView {
 		
 		loginButton = new Button("Login");
 		createUserButton = new Button("Register");
+		buttons.getChildren().addAll(loginButton, createUserButton);
+		buttons.setAlignment(Pos.CENTER);
 	}
 	
 	public void content() {
 		userBox.getChildren().addAll(new Label("Username: "), userField);
 		passBox.getChildren().addAll(new Label("Password: "), passField);
-		rootPane.getChildren().addAll(userBox, passBox, loginButton, createUserButton);
+		rootPane.getChildren().addAll(userBox, passBox, buttons);
 		
 		userBox.setAlignment(Pos.CENTER);
 		passBox.setAlignment(Pos.CENTER);
@@ -61,8 +66,20 @@ public class LoginView {
 			if (user != null) {
 				System.out.println("Username: " + userField.getText());
 				System.out.println("Password: " + passField.getText());
-				
-//				new CancelFlightView(primaryStage);
+				Alert msg = new Alert(AlertType.INFORMATION);
+				msg.setTitle("Successful Login");
+				msg.setHeaderText(null);
+				msg.setContentText("Your login was successful");
+				msg.showAndWait();
+			}
+			else {
+				System.out.println("Invalid user name or password");
+				Alert alert2 = new Alert(AlertType.ERROR);
+				alert2.setTitle("Invalid Login");
+				alert2.setContentText("ERROR: You must enter a valid user name and password");
+				alert2.setHeaderText(null);
+				alert2.showAndWait();
+				System.out.println("You must enter a user name and a password");
 			}
 			
 //			primaryStage.close();
