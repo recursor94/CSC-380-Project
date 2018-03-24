@@ -44,6 +44,7 @@ public class AdminAddFlight {
 
 		Button createFlightButton = new Button("Create Flight");
 		Button createAirportButton = new Button("Create Airport");
+		Button removeFlightButton = new Button("Remove Flight");
 		departDate = new DatePicker();
 		departDate.setEditable(false);
 		arriveDate = new DatePicker();
@@ -78,7 +79,7 @@ public class AdminAddFlight {
 
 		mainPane.getChildren().addAll(new Label("Plane Selection"), planeBox, new Label("Departure Airport"), departField,
 				new Label("Arrival Airport"), arriveField, new Label("Departure Time"), departTimeBox, new Label("Arrival Time"), arriveTimeBox, createAirportButton, new Label("Departure Date"), departDate,
-				new Label("Arrival Date"), arriveDate, createFlightButton, flights);
+				new Label("Arrival Date"), arriveDate, createFlightButton, flights, removeFlightButton);
 
 		Stage stage = new Stage();
 		stage.initOwner(mainStage);
@@ -98,6 +99,13 @@ public class AdminAddFlight {
 			SaveState.saveFlight(flightList);
 			loadFile();
 			
+		});
+		
+		removeFlightButton.setOnAction(event -> {
+			Flight flight = flights.getSelectionModel().getSelectedItem();
+			flightList.remove(flight);
+			SaveState.saveFlight(flightList);
+			loadFile();
 		});
 	}
 	
