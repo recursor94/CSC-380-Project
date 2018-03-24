@@ -85,11 +85,11 @@ public class SaveState {
 		return planeList;
 	}
 	
-/*	public static void saveFlight(ArrayList<Flight> flight) {
+	public static void saveFlight(ArrayList<Flight> flight) {
 		FileOutputStream fileOut;
 		ObjectOutputStream objectOut;
 		try {
-			fileOut = new FileOutputStream("flightobject.apz");
+			fileOut = new FileOutputStream("flightObject.apz");
 			objectOut = new ObjectOutputStream(fileOut);
 			objectOut.writeObject(flight);
 			objectOut.close();
@@ -97,6 +97,6 @@ public class SaveState {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}*/
+	}
 
 }

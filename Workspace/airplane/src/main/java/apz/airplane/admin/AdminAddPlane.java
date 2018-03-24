@@ -19,13 +19,7 @@ public class AdminAddPlane {
 
 	private VBox mainPane = new VBox(10);
 	private ArrayList<Airplane> planeList = new ArrayList<>();
-
-	public ListView<Airplane> getListOfPlanes() {
-		return listOfPlanes;
-	}
-	public ArrayList<Airplane> getPlaneList() {
-		return planeList;
-	}
+	private ListView<Airplane> listOfPlanes = new ListView<>();
 
 
 	public AdminAddPlane() {
@@ -78,7 +72,6 @@ public class AdminAddPlane {
 		stage.show();
 	}
 
-	ListView<Airplane> listOfPlanes = new ListView();
 
 	public void loadFile() {
 		FileInputStream fileIn;

@@ -16,15 +16,6 @@ import javafx.stage.StageStyle;
 
 public class UserRegistrationView {
 
-	private static final int FRAME_WIDTH = 350;
-	private static final int FRAME_HEIGHT = 400;
-	
-	// if we're going to do this, lets make a text dir
-	private static final String APP_TITLE = "APZ Airplane Application";
-	private static final String LABEL_USERNAME = "Username: ";
-	private static final String LABEL_PASSWORD = "Password: ";
-	private static final String BUTTON_REGISTER = "Register";
-
 	private TextField userField;
 	private PasswordField passField;
 	private Button registerButton;
@@ -46,12 +37,12 @@ public class UserRegistrationView {
 		userField = new TextField();
 		passField = new PasswordField();
 		
-		registerButton = new Button(BUTTON_REGISTER);
+		registerButton = new Button("Register");
 	}
 	
 	public void content() {
-		userBox.getChildren().addAll(new Label(LABEL_USERNAME), userField);
-		passBox.getChildren().addAll(new Label(LABEL_PASSWORD), passField);
+		userBox.getChildren().addAll(new Label("Username: "), userField);
+		passBox.getChildren().addAll(new Label("Password: "), passField);
 		rootPane.getChildren().addAll(userBox, passBox, registerButton);
 		
 		userBox.setAlignment(Pos.CENTER);
@@ -79,6 +70,7 @@ public class UserRegistrationView {
 			if (!(userField.getText().isEmpty()) && !(passField.getText().isEmpty())) {
 				User user = new User (userField.getText(), passField.getText());
 				DisplayDriver.getUserController().addUser(user);
+				UserControlSaveState.saveInformation(DisplayDriver.getUserController());
 				System.out.println("User successfully created!");
 				Alert msg = new Alert(AlertType.INFORMATION);
 				msg.setTitle("Successful User Creation");
@@ -86,6 +78,7 @@ public class UserRegistrationView {
 				msg.setContentText("Your account has been created!");
 				msg.showAndWait();
 				System.out.println(DisplayDriver.getUserController());
+				new LoginView();
 				//new ViewFlightWindow(primaryStage);
 				
 			}
