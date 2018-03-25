@@ -50,6 +50,7 @@ public class CreateAirport {
 			String airport = airports.getSelectionModel().getSelectedItem();
 			airportList.remove(airport);
 			State.saveAirport(airportList);
+			AddFlight.populateComboBoxes();
 			loadFile();
 		});
 		mainPane.getChildren().addAll(new Label("Airport Name"), airportField, buttons, airports);
