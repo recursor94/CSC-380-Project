@@ -1,6 +1,7 @@
-package apz.jimmeh.idostuff;
+package apz.airplane.gui;
 
 import apz.airplane.UserController;
+import apz.airplane.util.State;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Scene;
@@ -11,7 +12,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-public class DisplayDriver extends Application {
+public class APZLauncher extends Application {
 	
 	//rootpane and usermanagement
 	
@@ -26,37 +27,19 @@ public class DisplayDriver extends Application {
 		launch(args);
 	}
 	
-	public static UserController getUserController() {
-		return uc;
-	}
-	
-	public static BorderPane getBorderPane() {
-		return bp;
-	}
-	
-	public static Stage getStage() {
-		return stage;
-	}
-
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		stage = primaryStage;
-		uc = UserSaveState.loadInformation();
+		uc = State.loadInformation();
 		bp = new BorderPane();
 		createMenuBar();
-		
-		new LoginWindow();
 		
 		primaryStage.setScene(new Scene(bp, 300, 400));
 		primaryStage.initStyle(StageStyle.UTILITY);
 		primaryStage.setTitle("APZ Airplane Application");
 		primaryStage.show();
 		
-		
-//		bp.setOnKeyPressed(event -> {
-//			if (event.getCode() == KeyCode.A)
-//				System.out.println("A was pressed");
-//		});
+		new LoginWindow();
 	}
 	
 	
@@ -75,5 +58,16 @@ public class DisplayDriver extends Application {
 		});
 	}
 
+	public static UserController getUserController() {
+		return uc;
+	}
+	
+	public static BorderPane getBorderPane() {
+		return bp;
+	}
+	
+	public static Stage getStage() {
+		return stage;
+	}
 
 }

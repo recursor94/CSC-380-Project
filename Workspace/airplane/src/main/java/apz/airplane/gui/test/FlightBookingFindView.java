@@ -1,4 +1,4 @@
-package apz.airplane.gui;
+package apz.airplane.gui.test;
 
 import javafx.application.Application;
 import javafx.scene.Scene;

@@ -19,7 +19,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class AdminAddFlight {
+public class AddFlight {
 	private VBox mainPane = new VBox(10);
 	private ArrayList<Flight> flightList = new ArrayList<>();
 	private ListView<Flight> flights = new ListView<>();
@@ -31,11 +31,11 @@ public class AdminAddFlight {
 	static ComboBox<String> arriveTimeBox = new ComboBox<>();
 	static ComboBox<String> departTimeBox = new ComboBox<>();
 
-	public AdminAddFlight(Stage mainStage) {
+	public AddFlight(Stage mainStage) {
 		loadFile();
 		ComboBox<Airplane> planeBox = new ComboBox<>();
 		
-		ArrayList<Airplane> planeList = SaveState.loadPlanes();
+		ArrayList<Airplane> planeList = State.loadPlanes();
 		for (int i = 0; i < planeList.size(); i++) {
 			planeBox.getItems().add(planeList.get(i));
 		}
@@ -96,7 +96,7 @@ public class AdminAddFlight {
 			LocalDate leaving = departDate.getValue();
 			LocalDate arriving = arriveDate.getValue();
 			flightList.add(new Flight (plane, outgoing, incoming, arriving, leaving, arrival, departure, 102));
-			SaveState.saveFlight(flightList);
+			State.saveFlight(flightList);
 			loadFile();
 			
 		});
@@ -104,7 +104,7 @@ public class AdminAddFlight {
 		removeFlightButton.setOnAction(event -> {
 			Flight flight = flights.getSelectionModel().getSelectedItem();
 			flightList.remove(flight);
-			SaveState.saveFlight(flightList);
+			State.saveFlight(flightList);
 			loadFile();
 		});
 	}
@@ -113,7 +113,7 @@ public class AdminAddFlight {
 		departField.getItems().clear();
 		arriveField.getItems().clear();
 		
-		ArrayList<String> airportList = SaveState.loadAirports();
+		ArrayList<String> airportList = State.loadAirports();
 		for (int i = 0; i < airportList.size(); i++) {
 			departField.getItems().add(airportList.get(i));
 			arriveField.getItems().add(airportList.get(i));

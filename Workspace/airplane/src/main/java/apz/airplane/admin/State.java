@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import apz.airplane.Airplane;
 import apz.airplane.Flight;
 
-public class SaveState {
+public class State {
 
 //	public SaveState(ArrayList<Airplane> plane) throws IOException {
 //		FileOutputStream fileOut = new FileOutputStream("planeobject.apz");

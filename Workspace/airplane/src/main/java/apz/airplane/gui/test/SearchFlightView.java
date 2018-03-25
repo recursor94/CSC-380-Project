@@ -1,4 +1,4 @@
-package apz.airplane.gui;
+package apz.airplane.gui.test;
 
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
