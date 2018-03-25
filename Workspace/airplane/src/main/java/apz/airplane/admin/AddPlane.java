@@ -15,14 +15,14 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class AdminAddPlane {
+public class AddPlane {
 
 	private VBox mainPane = new VBox(10);
 	private ArrayList<Airplane> planeList = new ArrayList<>();
 	private ListView<Airplane> listOfPlanes = new ListView<>();
 
 
-	public AdminAddPlane() {
+	public AddPlane() {
 		loadFile();
 		
 		TextField planeField = new TextField();
@@ -44,7 +44,7 @@ public class AdminAddPlane {
 
 			planeList.add(new Airplane(planeNum, airlineName, seatCap));
 
-			SaveState.savePlane(planeList);
+			State.savePlane(planeList);
 			loadFile();
 		});
 
@@ -63,7 +63,7 @@ public class AdminAddPlane {
 		removeButton.setOnAction(event -> {
 			Airplane plane = listOfPlanes.getSelectionModel().getSelectedItem();
 			planeList.remove(plane);
-			SaveState.savePlane(planeList);
+			State.savePlane(planeList);
 			loadFile();
 		});
 

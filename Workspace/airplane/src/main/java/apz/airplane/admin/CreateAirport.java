@@ -24,7 +24,7 @@ public class CreateAirport {
 	
 	public CreateAirport() {
 		loadFile();
-		airportList = SaveState.loadAirports();
+		airportList = State.loadAirports();
 		TextField airportField = new TextField();
 		Button createButton = new Button("Create Airport");
 		Button removeButton = new Button("Remove");
@@ -35,8 +35,11 @@ public class CreateAirport {
 		
 		createButton.setOnAction(event -> {
 			airportList.add(airportField.getText());
-			SaveState.saveAirport(airportList);
-			AdminAddFlight.populateComboBoxes();
+			
+			airports.getItems().add(airportField.getText());
+			
+			State.saveAirport(airportList);
+			AddFlight.populateComboBoxes();
 		});
 		
 		viewButton.setOnAction(event -> {
@@ -46,7 +49,8 @@ public class CreateAirport {
 		removeButton.setOnAction(event -> {
 			String airport = airports.getSelectionModel().getSelectedItem();
 			airportList.remove(airport);
-			SaveState.saveAirport(airportList);
+			State.saveAirport(airportList);
+			AddFlight.populateComboBoxes();
 			loadFile();
 		});
 		mainPane.getChildren().addAll(new Label("Airport Name"), airportField, buttons, airports);

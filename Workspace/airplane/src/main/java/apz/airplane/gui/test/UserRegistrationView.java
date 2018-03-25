@@ -1,4 +1,4 @@
-package apz.jimmeh.idostuff;
+package apz.airplane.gui.test;
 
 import apz.airplane.User;
 import javafx.geometry.Pos;
@@ -14,7 +14,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-public class RegisterWindow {
+public class UserRegistrationView {
 
 	private TextField userField;
 	private PasswordField passField;
@@ -23,7 +23,7 @@ public class RegisterWindow {
 	private VBox rootPane;
 	private HBox userBox, passBox;
 	
-	public RegisterWindow() {
+	public UserRegistrationView() {
 		initialize();
 		actionEvents();
 		content();
@@ -70,7 +70,7 @@ public class RegisterWindow {
 			if (!(userField.getText().isEmpty()) && !(passField.getText().isEmpty())) {
 				User user = new User (userField.getText(), passField.getText());
 				DisplayDriver.getUserController().addUser(user);
-				UserSaveState.saveInformation(DisplayDriver.getUserController());
+				UserControlSaveState.saveInformation(DisplayDriver.getUserController());
 				System.out.println("User successfully created!");
 				Alert msg = new Alert(AlertType.INFORMATION);
 				msg.setTitle("Successful User Creation");
@@ -78,7 +78,7 @@ public class RegisterWindow {
 				msg.setContentText("Your account has been created!");
 				msg.showAndWait();
 				System.out.println(DisplayDriver.getUserController());
-				new LoginWindow();
+				new LoginView();
 				//new ViewFlightWindow(primaryStage);
 				
 			}

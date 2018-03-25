@@ -1,4 +1,4 @@
-package apz.airplane.gui;
+package apz.airplane.util;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -9,9 +9,9 @@ import java.util.ArrayList;
 
 import apz.airplane.UserController;
 
-public class UserControlSaveState {
+public class State {
 	
-	private static String ucFilePath = "listOfUsers.apz";
+	private static String ucFilePath = "userList.apz";
 	
 	public static void saveInformation(UserController uc) {
 		FileOutputStream fileOut;
