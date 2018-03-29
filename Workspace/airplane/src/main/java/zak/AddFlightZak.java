@@ -15,6 +15,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -88,16 +89,23 @@ public class AddFlightZak {
 		stage.show();
 
 		createFlightButton.setOnAction(event -> {
-			AirplaneZak plane = planeBox.getSelectionModel().getSelectedItem();
-			TimeZak departure = new TimeZak (departTimeBox.getSelectionModel().getSelectedItem());
-			TimeZak arrival = new TimeZak (arriveTimeBox.getSelectionModel().getSelectedItem());
-			String outgoing = departField.getSelectionModel().getSelectedItem();
-			String incoming = arriveField.getSelectionModel().getSelectedItem();
-			LocalDate leaving = departDate.getValue();
-			LocalDate arriving = arriveDate.getValue();
-			flightList.add(new FlightZak (plane, outgoing, incoming, arriving, leaving, arrival, departure, 102));
-			StateZakAdmin.saveFlight(flightList);
-			loadFile();
+			if (!planeBox.getSelectionModel().isEmpty() && !departTimeBox.getSelectionModel().isEmpty() && !arriveTimeBox.getSelectionModel().isEmpty()
+					&& !arriveField.getSelectionModel().isEmpty() && !departField.getSelectionModel().isEmpty() && !departDate.equals(null) && !arriveDate.equals(null)) {
+				AirplaneZak plane = planeBox.getSelectionModel().getSelectedItem();
+				TimeZak departure = new TimeZak (departTimeBox.getSelectionModel().getSelectedItem());
+				TimeZak arrival = new TimeZak (arriveTimeBox.getSelectionModel().getSelectedItem());
+				String outgoing = departField.getSelectionModel().getSelectedItem();
+				String incoming = arriveField.getSelectionModel().getSelectedItem();
+				LocalDate leaving = departDate.getValue();
+				LocalDate arriving = arriveDate.getValue();
+				flightList.add(new FlightZak (plane, outgoing, incoming, arriving, leaving, arrival, departure, 102));
+				StateZakAdmin.saveFlight(flightList);
+				loadFile();
+			}
+			else 
+			{
+				MessageBoxZak.message(AlertType.INFORMATION, "Invalid Data Entry", "You must enter data into all fields");
+			}
 			
 		});
 		

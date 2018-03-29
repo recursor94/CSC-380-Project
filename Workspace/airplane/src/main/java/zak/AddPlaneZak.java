@@ -12,6 +12,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -38,14 +39,17 @@ public class AddPlaneZak {
 		Button testButton = new Button("Load");
 
 		createButton.setOnAction(event -> {
-			int planeNum = Integer.valueOf(planeField.getText());
-			String airlineName = airlineField.getText();
-			int seatCap = Integer.valueOf(seatsField.getSelectionModel().getSelectedItem());
-
-			planeList.add(new AirplaneZak(planeNum, airlineName, seatCap));
-
-			StateZakAdmin.savePlane(planeList);
+			if (!planeField.getText().isEmpty() && !airlineField.getText().isEmpty() && !seatsField.getSelectionModel().equals(null)) {
+				int planeNum = Integer.valueOf(planeField.getText());
+				String airlineName = airlineField.getText();
+				int seatCap = Integer.valueOf(seatsField.getSelectionModel().getSelectedItem());
+				planeList.add(new AirplaneZak(planeNum, airlineName, seatCap));
+				StateZakAdmin.savePlane(planeList);
 			loadFile();
+			}
+			else {
+				MessageBoxZak.message(AlertType.INFORMATION, "Invalid Data", "You must enter all of the necessary data");
+			}
 		});
 
 		testButton.setOnAction(event -> {
