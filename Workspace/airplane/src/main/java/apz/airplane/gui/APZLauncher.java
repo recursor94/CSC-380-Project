@@ -1,5 +1,6 @@
 package apz.airplane.gui;
 
+import apz.airplane.User;
 import apz.airplane.UserController;
 import apz.airplane.util.State;
 import javafx.application.Application;
@@ -16,6 +17,7 @@ public class APZLauncher extends Application {
 	
 	//rootpane and usermanagement
 	
+	private static User user;
 	private static UserController uc;
 	private static BorderPane bp;
 	private static MenuBar menubar;
@@ -56,6 +58,14 @@ public class APZLauncher extends Application {
 		exitItem.setOnAction(event -> {
 			Platform.exit();
 		});
+	}
+	
+	public static void setCurrentUser(User userLogged) {
+		user = userLogged;
+	}
+	
+	public static User getCurrentUser() {
+		return user;
 	}
 
 	public static UserController getUserController() {

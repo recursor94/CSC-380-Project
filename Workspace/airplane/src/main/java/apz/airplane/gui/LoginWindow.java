@@ -1,5 +1,7 @@
 package apz.airplane.gui;
 
+import java.time.LocalDate;
+
 import apz.airplane.User;
 import apz.airplane.util.MessageBox;
 import javafx.geometry.Pos;
@@ -78,7 +80,7 @@ public class LoginWindow {
 				System.out.println("Password: " + passField.getText());
 				
 				MessageBox.message(AlertType.INFORMATION, "APZ Airplane Application", "Welcome " + userField.getText() + " to the APZ Application!");
-				
+				APZLauncher.setCurrentUser(user);
 				new CancelFlightWindow();
 			} else {
 				status.setText("Incorrect user or password combination!");
