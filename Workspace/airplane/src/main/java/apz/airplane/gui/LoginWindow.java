@@ -70,7 +70,7 @@ public class LoginWindow {
 	}
 	
 	public void actionEvents() {
-		APZLauncher.getUserController().addUser(new User("asd", "asd"));
+		//APZLauncher.getUserController().addUser(new User("asd", "asd"));
 		
 		loginButton.setOnAction((event) -> {
 			User user = APZLauncher.getUserController().login(userField.getText(), passField.getText());
@@ -81,8 +81,10 @@ public class LoginWindow {
 				
 				MessageBox.message(AlertType.INFORMATION, "APZ Airplane Application", "Welcome " + userField.getText() + " to the APZ Application!");
 				APZLauncher.setCurrentUser(user);
-				new CancelFlightWindow();
-			} else {
+				//new CancelFlightWindow();
+				new BookFlightWindow();
+			} 
+			else {
 				status.setText("Incorrect user or password combination!");
 			}
 			

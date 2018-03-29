@@ -33,7 +33,7 @@ public class Booking implements Serializable {
 
 	@Override
 	public String toString() {
-		return flight.getDestinationName() + "-" + flight.getFlightNum();
+		return "Flight from " +  flight.getDestinationName() + "-" + flight.getFlightNum();
 	}
 
 //	/**

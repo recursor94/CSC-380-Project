@@ -6,7 +6,9 @@ import java.io.ObjectInputStream;
 import java.util.ArrayList;
 
 import apz.airplane.Airplane;
+import apz.airplane.util.MessageBox;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -34,12 +36,17 @@ public class CreateAirport {
 		
 		
 		createButton.setOnAction(event -> {
-			airportList.add(airportField.getText());
-			
-			airports.getItems().add(airportField.getText());
-			
-			State.saveAirport(airportList);
-			AddFlight.populateComboBoxes();
+			if (!airportField.getText().isEmpty()) {
+				airportList.add(airportField.getText());
+				
+				airports.getItems().add(airportField.getText());
+				
+				State.saveAirport(airportList);
+				AddFlight.populateComboBoxes();
+			}
+			else {
+				MessageBox.message(AlertType.ERROR, "No Data Entered", "You must enter an aiport name");
+			}
 		});
 		
 		viewButton.setOnAction(event -> {

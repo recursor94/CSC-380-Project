@@ -6,7 +6,9 @@ import java.io.ObjectInputStream;
 import java.util.ArrayList;
 
 import apz.airplane.Airplane;
+import apz.airplane.util.MessageBox;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -38,14 +40,19 @@ public class AddPlane {
 		Button testButton = new Button("Load");
 
 		createButton.setOnAction(event -> {
-			int planeNum = Integer.valueOf(planeField.getText());
-			String airlineName = airlineField.getText();
-			int seatCap = Integer.valueOf(seatsField.getSelectionModel().getSelectedItem());
-
-			planeList.add(new Airplane(planeNum, airlineName, seatCap));
-
-			State.savePlane(planeList);
-			loadFile();
+			if (!planeField.getText().isEmpty() && !airlineField.getText().isEmpty() && !seatsField.getSelectionModel().equals(null)) {
+				int planeNum = Integer.valueOf(planeField.getText());
+				String airlineName = airlineField.getText();
+				int seatCap = Integer.valueOf(seatsField.getSelectionModel().getSelectedItem());
+	
+				planeList.add(new Airplane(planeNum, airlineName, seatCap));
+	
+				State.savePlane(planeList);
+				loadFile();
+			}
+			else {
+				MessageBox.message(AlertType.ERROR, "Invalid Data", "You must enter all of the necessary data");
+			}
 		});
 
 		testButton.setOnAction(event -> {

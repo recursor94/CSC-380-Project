@@ -98,5 +98,22 @@ public class State {
 			e.printStackTrace();
 		}
 	}
+	public static ArrayList<Flight> loadFlights() {
+		ArrayList<Flight> flightList = new ArrayList<>();
+		FileInputStream fileIn;
+		try {
+			fileIn = new FileInputStream("flightObject.apz");
+			ObjectInputStream objectIn = new ObjectInputStream(fileIn);
+
+			Object obj = objectIn.readObject();
+			System.out.println("The Object has been read from the file");
+			objectIn.close();
+			flightList = (ArrayList<Flight>) obj;
+		} catch (IOException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return flightList;
+
+}
 
 }

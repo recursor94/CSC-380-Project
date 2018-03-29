@@ -9,7 +9,9 @@ import java.util.ArrayList;
 import apz.airplane.Airplane;
 import apz.airplane.Flight;
 import apz.airplane.Time;
+import apz.airplane.util.MessageBox;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -88,18 +90,25 @@ public class AddFlight {
 		stage.show();
 
 		createFlightButton.setOnAction(event -> {
-			Airplane plane = planeBox.getSelectionModel().getSelectedItem();
-			Time departure = new Time (departTimeBox.getSelectionModel().getSelectedItem());
-			Time arrival = new Time (arriveTimeBox.getSelectionModel().getSelectedItem());
-			String outgoing = departField.getSelectionModel().getSelectedItem();
-			String incoming = arriveField.getSelectionModel().getSelectedItem();
-			LocalDate leaving = departDate.getValue();
-			LocalDate arriving = arriveDate.getValue();
-			flightList.add(new Flight (plane, outgoing, incoming, arriving, leaving, arrival, departure, 102));
-			State.saveFlight(flightList);
-			loadFile();
-			
+			if (!planeBox.getSelectionModel().isEmpty() && !departTimeBox.getSelectionModel().isEmpty() && !arriveTimeBox.getSelectionModel().isEmpty()
+					&& !arriveField.getSelectionModel().isEmpty() && !departField.getSelectionModel().isEmpty() && departDate != null 
+					&& arriveDate != null) {
+				Airplane plane = planeBox.getSelectionModel().getSelectedItem();
+				Time departure = new Time (departTimeBox.getSelectionModel().getSelectedItem());
+				Time arrival = new Time (arriveTimeBox.getSelectionModel().getSelectedItem());
+				String outgoing = departField.getSelectionModel().getSelectedItem();
+				String incoming = arriveField.getSelectionModel().getSelectedItem();
+				LocalDate leaving = departDate.getValue();
+				LocalDate arriving = arriveDate.getValue();
+				flightList.add(new Flight (plane, outgoing, incoming, arriving, leaving, arrival, departure, 102));
+				State.saveFlight(flightList);
+				loadFile();
+			}
+			else {
+				MessageBox.message(AlertType.ERROR, "Invalid Data Entry", "You must enter data into all fields");
+			}
 		});
+		
 		
 		removeFlightButton.setOnAction(event -> {
 			Flight flight = flights.getSelectionModel().getSelectedItem();
