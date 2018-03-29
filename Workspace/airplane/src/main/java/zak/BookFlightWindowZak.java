@@ -28,7 +28,7 @@ public class BookFlightWindowZak {
 		mainPane.getChildren().addAll(new Label("Select a flight date"), calendar, findFlightButton, new Label("List of flights on selected date"), flights);
 
 		findFlightButton.setOnAction(event -> {
-			//if (!calendar.equals(null)) {
+			if (calendar.getValue() != null) {
 				flightList = findFlights(calendar.getValue());
 				
 				if (!flights.getItems().isEmpty())
@@ -39,10 +39,10 @@ public class BookFlightWindowZak {
 				if (flights.getItems().isEmpty() ) {
 					MessageBoxZak.message(AlertType.INFORMATION, "No Flights Found", "There are no flights scheduled for " + calendar.getValue());
 				}
-			//}
-			//else {
-			//	MessageBoxZak.message(AlertType.INFORMATION, "ERROR", "You must select a date");
-			//}
+			}
+			else {
+				MessageBoxZak.message(AlertType.INFORMATION, "ERROR", "You must select a date");
+			}
 		});
 		
 		ZakLauncher.getBorderPane().setCenter(mainPane);
