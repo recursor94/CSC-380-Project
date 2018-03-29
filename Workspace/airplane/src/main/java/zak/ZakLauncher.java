@@ -1,13 +1,21 @@
 package zak;
 
+import java.util.Optional;
+
+import apz.airplane.Booking;
 import apz.airplane.UserController;
+import apz.airplane.util.MessageBox;
 import apz.airplane.util.State;
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.Scene;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -21,6 +29,7 @@ public class ZakLauncher extends Application {
 	private static MenuBar menubar;
 	private static Menu fileMenu;
 	private static MenuItem exitItem;
+	private static MenuItem logoutItem;
 	private static Stage stage;
 	
 	public static void main(String[] args) {
@@ -47,14 +56,23 @@ public class ZakLauncher extends Application {
 		menubar = new MenuBar();
 		fileMenu = new Menu("File");
 		exitItem = new MenuItem("Exit");
+		logoutItem = new MenuItem("Logout");
 		
 		
 		menubar.getMenus().add(fileMenu);
-		fileMenu.getItems().add(exitItem);
+		fileMenu.getItems().addAll(exitItem, logoutItem);
 		bp.setTop(menubar);
 		
 		exitItem.setOnAction(event -> {
 			Platform.exit();
+		});
+		
+		logoutItem.setOnAction(event -> {
+			Optional<ButtonType> result = MessageBox.message(AlertType.CONFIRMATION, "Logout Confirmation",
+					"Do you wish to logout?");
+			if (result.get() == ButtonType.OK) {
+				new LoginWindowZak();
+			}
 		});
 	}
 

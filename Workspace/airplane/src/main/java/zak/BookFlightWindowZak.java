@@ -34,6 +34,10 @@ public class BookFlightWindowZak {
 				flights.getItems().clear();
 			for (int i = 0; i < flightList.size(); i++)
 				flights.getItems().add(flightList.get(i));
+			
+			if (flights.getItems().isEmpty() ) {
+				MessageBoxZak.message(AlertType.INFORMATION, "No Flights Found", "There are no flights scheduled for " + calendar.getValue());
+			}
 		});
 		
 		ZakLauncher.getBorderPane().setCenter(mainPane);
