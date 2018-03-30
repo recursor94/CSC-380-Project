@@ -21,7 +21,7 @@ public class State {
 			objectOut = new ObjectOutputStream(fileOut);
 			objectOut.writeObject(uc);
 			objectOut.close();
-			System.out.println("The Object was succesfully written to a file");
+			System.out.println("The Object was successfully written to a file");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

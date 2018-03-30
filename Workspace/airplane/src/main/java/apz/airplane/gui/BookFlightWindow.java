@@ -31,6 +31,7 @@ public class BookFlightWindow {
 		Button findFlightButton = new Button("Find Flights");
 		Button bookFlightButton = new Button("Book Flight");
 	    calendar = new DatePicker();
+	    calendar.setEditable(false);
 		mainPane.getChildren().addAll(new Label("Select a flight date"), calendar, findFlightButton, 
 				new Label("List of flights on selected date"), flights, bookFlightButton);
 

@@ -87,7 +87,7 @@ public class AddPlane {
 			ObjectInputStream objectIn = new ObjectInputStream(fileIn);
 
 			Object obj = objectIn.readObject();
-			System.out.println("The Object has been read from the file");
+			//System.out.println("The Object has been read from the file");
 			objectIn.close();
 			planeList = (ArrayList<Airplane>) obj;
 

@@ -5,9 +5,11 @@ import java.io.Serializable;
 public class Time implements Serializable {
 	
 	private double time;
+	private String timeString;
 	
 	public Time(String time) {	// for ex. 3:00 PM converts to 15 in double and 3:30 PM converts to 15.5;
 		double tempTime = 0;
+		timeString = time;
 		
 		// Separate to find AM or PM
 		String[] timeSplit = time.split(" ");
@@ -32,12 +34,12 @@ public class Time implements Serializable {
 	}
 	
 	public String getTimeString() {
-		return "12:30 AM"; 	// not real input ,check addFlight;
+		return timeString; 	// not real input ,check addFlight;
 	}
 
 	@Override
 	public String toString() {
-		return "Time [time=" + time + "]";
+		return "Time [time=" + timeString + "]";
 	}
 
 }

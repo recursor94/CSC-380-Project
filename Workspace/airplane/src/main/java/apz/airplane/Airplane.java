@@ -40,7 +40,7 @@ public class Airplane implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Airplane [planeNum=" + planeNum + ", airline=" + airline + ", seatArray=" + seats + "]";
+		return "Plane # " + planeNum + "\tAirline: " + airline;
 	}
 	
 }

@@ -29,7 +29,7 @@ public class State {
 			objectOut = new ObjectOutputStream(fileOut);
 			objectOut.writeObject(plane);
 			objectOut.close();
-			System.out.println("The Object was succesfully written to a file");
+			System.out.println("The Object was successfully written to a file");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -43,7 +43,7 @@ public class State {
 			objectOut = new ObjectOutputStream(fileOut);
 			objectOut.writeObject(airport);
 			objectOut.close();
-			System.out.println("The Object was succesfully written to a file");
+			System.out.println("The Object was successfully written to a file");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -93,7 +93,7 @@ public class State {
 			objectOut = new ObjectOutputStream(fileOut);
 			objectOut.writeObject(flight);
 			objectOut.close();
-			System.out.println("The Object was succesfully written to a file");
+			System.out.println("The Object was successfully written to a file");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

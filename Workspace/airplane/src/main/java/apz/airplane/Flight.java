@@ -92,8 +92,9 @@ public class Flight implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Flight [plane=" + plane + ", destinationName=" + destinationName + ", arrivalTime=" + arrivalTime
-				+ ", departureTime=" + departureTime + ", flightNum=" + flightNum + "]";
+		return "Flight from " + arrivalName + " to " + destinationName + "\nFlight # " + flightNum
+				+ "\tDeparture: " + departureDate + "\t" + departureTime.getTimeString();
+	
 	}
 
 }
