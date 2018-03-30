@@ -1,3 +1,4 @@
+User
 --
 -userList: ArrayList<User>
 --
