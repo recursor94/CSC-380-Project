@@ -1,6 +1,6 @@
 User
 --
--userList: ArrayList<User>
+-userList: ArrayList&lt;User&gt;
 --
 +UserController() <br/>
 +addUser(User): void <br/>
