@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>20</x>
+      <y>20</y>
+      <w>210</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>User
+--
+-username: String
+-password: String
+-tripList: ArayList&lt;Booking&gt;
+--
++User(String, String)
++getUsername(): String
++setUsername(String): void
++getPassword(): String
++setPassword(String): void
+-generatePasswordHash(String): String
++validatePassword(String): boolean
++addTrip(Booking): void
++removeTrip(Flight): boolean
++findTrip(Flight): Booking
++getTripList(): ArrayList&lt;Booking&gt;
++toString(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
