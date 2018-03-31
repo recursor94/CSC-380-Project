@@ -6,6 +6,7 @@ import java.io.ObjectInputStream;
 import java.util.ArrayList;
 
 import apz.airplane.Airplane;
+import apz.airplane.Airport;
 import apz.airplane.util.MessageBox;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;
@@ -19,7 +20,7 @@ import javafx.stage.Stage;
 
 public class CreateAirport {
 	
-	private ArrayList<String> airportList = new ArrayList<>();
+	private ArrayList<Airport> airportList = new ArrayList<>();
 	private VBox mainPane = new VBox(10);
 	private ListView<String> airports = new ListView<>();
 
@@ -37,10 +38,12 @@ public class CreateAirport {
 		
 		createButton.setOnAction(event -> {
 			if (!airportField.getText().isEmpty()) {
-				airportList.add(airportField.getText());
+			//The airport name and city will be split by a comma and a space	
+				String[] airportFieldPartition = airportField.getText().split(", ");
+				Airport airport = new Airport(airportFieldPartition[0], airportFieldPartition[1]);
+				airportList.add(airport);
 				
 				airports.getItems().add(airportField.getText());
-				
 				State.saveAirport(airportList);
 				AddFlight.populateComboBoxes();
 			}
@@ -76,12 +79,12 @@ public class CreateAirport {
 			Object obj = objectIn.readObject();
 			//System.out.println("The Object has been read from the file");
 			objectIn.close();
-			airportList = (ArrayList<String>) obj;
+			airportList = (ArrayList<Airport>) obj;
 
 			if (!airports.getItems().isEmpty())
 				airports.getItems().clear();
 			for (int i = 0; i < airportList.size(); i++)
-				airports.getItems().add(airportList.get(i));
+				airports.getItems().add(airportList.get(i).toString());
 
 		} catch (IOException | ClassNotFoundException e) {
 			e.printStackTrace();

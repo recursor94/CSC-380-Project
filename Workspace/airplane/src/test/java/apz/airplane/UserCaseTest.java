@@ -40,7 +40,9 @@ public class UserCaseTest {
 		LocalDate arrival = LocalDate.of(2018, 3, 12);
 		Time departTime = new Time ("12:00 PM");
 		Time arriveTime = new Time ("7:00 PM");
-		Flight flight = new Flight(plane,"New Orleans", "Chicago", arrival, departure, departTime, arriveTime, 62918);
+		Airport departingAirport = new Airport("Syracuse Hancock International", "Syracuse, New York");
+		Airport destinationAirport = new Airport("Batman Airport", "Batman, Turkey"); //Yes, this is a real city and airport. 
+		Flight flight = new Flight(plane,departingAirport, destinationAirport, arrival, departure, departTime, arriveTime, 62918);
 		Booking trip = new Booking(flight, bookDate, user);
 		user.addTrip(trip);
 		assertEquals(trip, user.findTrip(flight));
@@ -57,8 +59,12 @@ public class UserCaseTest {
 		LocalDate arrival = LocalDate.of(2018, 3, 12);
 		Time departTime = new Time ("12:00 PM");
 		Time arriveTime = new Time ("7:00 PM");
-		Flight flight = new Flight(plane,"New Orleans", "Chicago", arrival, departure, departTime, arriveTime, 62918);
-		Flight flight2 = new Flight(plane,"San Francisco", "Hawaii", arrival, departure, departTime, arriveTime, 62919);
+		Airport departingAirport1 = new Airport("Louis Armstrong New Orleans International", "New Orleans, Louisiana");
+		Airport destinationAirport1 = new Airport("San Francisco International Airport", "San Francisco, California");
+		Airport departingAirport2 = new Airport("Syracuse Hancock International", "Syracuse, New York");
+		Airport destinationAirport2 = new Airport("Batman Airport", "Batman, Turkey"); //Yes, this is a real city and airport. 
+		Flight flight = new Flight(plane, departingAirport1, destinationAirport1, arrival, departure, departTime, arriveTime, 62918);
+		Flight flight2 = new Flight(plane,departingAirport2, destinationAirport2, arrival, departure, departTime, arriveTime, 62919);
 		Booking trip = new Booking(flight, bookDate, user);
 		user.addTrip(trip);
 		
@@ -77,7 +83,9 @@ public class UserCaseTest {
 		LocalDate arrival = LocalDate.of(2018, 3, 12);
 		Time departTime = new Time ("12:00 PM");
 		Time arriveTime = new Time ("7:00 PM");
-		Flight flight = new Flight(airplane,"New York", "Hawaii", arrival, departure, departTime, arriveTime, 40908 );
+		Airport departingAirport = new Airport("Syracuse Hancock International", "Syracuse, New York");
+		Airport destinationAirport = new Airport("Batman Airport", "Batman, Turkey"); //Yes, this is a real city and airport. 
+		Flight flight = new Flight(airplane, departingAirport, destinationAirport, arrival, departure, departTime, arriveTime, 40908 );
 		Booking trip = new Booking(flight, bookDate, user);
 		user.addTrip(trip);
 		assertEquals(true, user.removeTrip(flight));
@@ -94,8 +102,12 @@ public class UserCaseTest {
 		LocalDate arrival = LocalDate.of(2018, 3, 12);
 		Time departTime = new Time ("12:00 PM");
 		Time arriveTime = new Time ("7:00 PM");
-		Flight flight = new Flight(plane,"New Orleans", "Chicago", arrival, departure, departTime, arriveTime, 62918);
-		Flight flight2 = new Flight(plane,"San Francisco", "Hawaii", arrival, departure, departTime, arriveTime, 62919);
+		Airport departingAirport = new Airport("Syracuse Hancock International", "Syracuse, New York");
+		Airport destinationAirport = new Airport("Batman Airport", "Batman, Turkey"); //Yes, this is a real city and airport. 
+		Airport departingAirport2 = new Airport("Louis Armstrong New Orleans International", "New Orleans, Louisiana");
+		Airport destinationAirport2 = new Airport("San Francisco International Airport", "San Francisco, California");
+		Flight flight = new Flight(plane,departingAirport, destinationAirport, arrival, departure, departTime, arriveTime, 62918);
+		Flight flight2 = new Flight(plane,departingAirport2, destinationAirport2, arrival, departure, departTime, arriveTime, 62919);
 		Booking trip = new Booking(flight, bookDate, user);
 		user.addTrip(trip);
 		

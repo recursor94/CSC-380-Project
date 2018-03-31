@@ -9,6 +9,7 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 import apz.airplane.Airplane;
+import apz.airplane.Airport;
 import apz.airplane.Flight;
 
 public class State {
@@ -35,7 +36,7 @@ public class State {
 		}
 	}
 	
-	public static void saveAirport(ArrayList<String> airport) {
+	public static void saveAirport(Airport airport) {
 		FileOutputStream fileOut;
 		ObjectOutputStream objectOut;
 		try {
