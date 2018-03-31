@@ -6,7 +6,7 @@ import java.time.LocalDate;
 public class Flight implements Serializable {
 	
 	private Airplane plane;
-	private String destinationName, arrivalName;
+	private Airport arrivingAirport, destinationAirport;
 	private LocalDate arriveDate, departureDate;		// getter and setters
 	private Time arrivalTime, departureTime;
 	// maybe time here too
@@ -14,11 +14,11 @@ public class Flight implements Serializable {
 	
 	
 	
-	public Flight(Airplane plane, String destinationName, String arrivalName, LocalDate arriveDate,
+	public Flight(Airplane plane, Airport startingAirport, Airport destinationAirport, LocalDate arriveDate,
 			LocalDate departureDate, Time arrivalTime, Time departureTime, int flightNum) {
 		this.plane = plane;
-		this.destinationName = destinationName;
-		this.arrivalName = arrivalName;
+		this.arrivingAirport = startingAirport;
+		this.destinationAirport = destinationAirport;
 		this.arriveDate = arriveDate;
 		this.departureDate = departureDate;
 		this.arrivalTime = arrivalTime;
@@ -34,20 +34,20 @@ public class Flight implements Serializable {
 		this.plane = plane;
 	}
 
-	public String getDestinationName() {
-		return destinationName;
+	public Airport getDestinationAirport() {
+		return destinationAirport;
 	}
 
-	public void setDestinationName(String destinationName) {
-		this.destinationName = destinationName;
+	public void setDestinationAirport(Airport destinationName) {
+		this.destinationAirport = destinationAirport;
 	}
 
-	public String getArrivalName() {
-		return arrivalName;
+	public Airport getArrivingAirport() {
+		return arrivingAirport;
 	}
 
-	public void setArrivalName(String arrivalName) {
-		this.arrivalName = arrivalName;
+	public void setArrivingAirport(Airport arrivingAirport) {
+		this.arrivingAirport = arrivingAirport;
 	}
 
 	public LocalDate getArriveDate() {
@@ -92,7 +92,7 @@ public class Flight implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Flight from " + arrivalName + " to " + destinationName + "\nFlight # " + flightNum
+		return "Flight from " + arrivingAirport + " to " + destinationAirport + "\nFlight # " + flightNum
 				+ "\tDeparture: " + departureDate + "\t" + departureTime.getTimeString();
 	
 	}

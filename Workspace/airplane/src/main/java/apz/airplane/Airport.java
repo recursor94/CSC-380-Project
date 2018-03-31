@@ -1,6 +1,8 @@
 package apz.airplane;
 
-public class Airport {
+import java.io.Serializable;
+
+public class Airport implements Serializable{
 	private String name;
 	private String city;
 	
