@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 import apz.airplane.Airplane;
+import apz.airplane.Airport;
 import apz.airplane.Flight;
 import apz.airplane.Time;
 import apz.airplane.util.MessageBox;
@@ -100,10 +101,11 @@ public class AddFlight {
 				Time arrival = new Time (arriveTimeBox.getSelectionModel().getSelectedItem());
 				String outgoing = departField.getSelectionModel().getSelectedItem();
 				String incoming = arriveField.getSelectionModel().getSelectedItem();
+				Airport departingAirport= new Airport(outgoing, incoming);
 				LocalDate leaving = departDate.getValue();
 				LocalDate arriving = arriveDate.getValue();
 				int flightNum = Integer.valueOf(flightNumField.getText());
-				flightList.add(new Flight (plane, outgoing, incoming, arriving, leaving, arrival, departure, flightNum));
+				flightList.add(new Flight (plane, null, null, arriving, leaving, arrival, departure, flightNum));//TODO:  FIX THIS. Use real airports
 				State.saveFlight(flightList);
 				loadFile();
 			}

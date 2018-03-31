@@ -6,7 +6,7 @@ import java.time.LocalDate;
 public class Flight implements Serializable {
 	
 	private Airplane plane;
-	private Airport arrivingAirport, destinationAirport;
+	private Airport departureAirport, destinationAirport;
 	private LocalDate arriveDate, departureDate;		// getter and setters
 	private Time arrivalTime, departureTime;
 	// maybe time here too
@@ -14,10 +14,10 @@ public class Flight implements Serializable {
 	
 	
 	
-	public Flight(Airplane plane, Airport startingAirport, Airport destinationAirport, LocalDate arriveDate,
+	public Flight(Airplane plane, Airport departureAirport, Airport destinationAirport, LocalDate arriveDate,
 			LocalDate departureDate, Time arrivalTime, Time departureTime, int flightNum) {
 		this.plane = plane;
-		this.arrivingAirport = startingAirport;
+		this.departureAirport = departureAirport;
 		this.destinationAirport = destinationAirport;
 		this.arriveDate = arriveDate;
 		this.departureDate = departureDate;
@@ -42,12 +42,12 @@ public class Flight implements Serializable {
 		this.destinationAirport = destinationAirport;
 	}
 
-	public Airport getArrivingAirport() {
-		return arrivingAirport;
+	public Airport getDepartureAirport() {
+		return departureAirport;
 	}
 
-	public void setArrivingAirport(Airport arrivingAirport) {
-		this.arrivingAirport = arrivingAirport;
+	public void setDepartureAirport(Airport arrivingAirport) {
+		this.departureAirport = arrivingAirport;
 	}
 
 	public LocalDate getArriveDate() {
@@ -92,7 +92,7 @@ public class Flight implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Flight from " + arrivingAirport + " to " + destinationAirport + "\nFlight # " + flightNum
+		return "Flight from " + departureAirport + " to " + destinationAirport + "\nFlight # " + flightNum
 				+ "\tDeparture: " + departureDate + "\t" + departureTime.getTimeString();
 	
 	}

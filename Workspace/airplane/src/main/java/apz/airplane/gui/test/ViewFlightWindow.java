@@ -2,6 +2,7 @@ package apz.airplane.gui.test;
 
 import java.time.LocalDate;
 import apz.airplane.Airplane;
+import apz.airplane.Airport;
 import apz.airplane.Booking;
 import apz.airplane.Flight;
 import apz.airplane.Time;
@@ -37,7 +38,7 @@ public class ViewFlightWindow {
 				Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setTitle("View Selected Flight");
 				alert.setHeaderText(null);
-				String text = "Destination: " + foundBooking.getFlight().getDestinationName() + "\nFlight Number: "
+				String text = "Destination: " + foundBooking.getFlight().getDestinationAirport().getCity() + "\nFlight Number: "
 						+ foundBooking.getFlight().getFlightNum();
 				alert.setContentText(text);
 				alert.showAndWait();
@@ -57,7 +58,9 @@ public class ViewFlightWindow {
 		LocalDate arrival = LocalDate.of(2018, 3, 12);
 		Time departTime = new Time ("12:00 PM");
 		Time arriveTime = new Time ("7:00 PM");
-		Flight flight = new Flight(airplane,"New York", "Hawaii", arrival, departure, departTime, arriveTime, 40908 );
+		Airport departingAirport = new Airport("JFK", "New York");
+		Airport destinationAirport = new Airport("Kona International", "Kona, HW");
+		Flight flight = new Flight(airplane,departingAirport, destinationAirport, arrival, departure, departTime, arriveTime, 40908 );
 		Booking trip = new Booking(flight, bookDate, user);
 		user.addTrip(trip);
 		

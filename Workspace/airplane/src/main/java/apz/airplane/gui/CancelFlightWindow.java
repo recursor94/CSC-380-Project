@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.Optional;
 
 import apz.airplane.Airplane;
+import apz.airplane.Airport;
 import apz.airplane.Booking;
 import apz.airplane.Flight;
 import apz.airplane.Time;
@@ -84,7 +85,9 @@ public class CancelFlightWindow {
 		LocalDate arrival = LocalDate.of(2018, 3, 12);
 		Time departTime = new Time("12:00 PM");
 		Time arriveTime = new Time("7:00 PM");
-		Flight flight = new Flight(airplane, "New York", "Hawaii", arrival, departure, departTime, arriveTime, 40908);
+		Airport departureAirport = new Airport("JFK", "New York");
+		Airport destinationAirport = new Airport("Syracuse Hancock International", "Syracuse");
+		Flight flight = new Flight(airplane, departureAirport, destinationAirport, arrival, departure, departTime, arriveTime, 40908);
 		Booking trip = new Booking(flight, bookDate, user);
 		user.addTrip(trip);
 
