@@ -1,7 +1,7 @@
 package apz.airplane.admin;
 
+import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -14,19 +14,15 @@ import apz.airplane.Flight;
 
 public class State {
 
-//	public SaveState(ArrayList<Airplane> plane) throws IOException {
-//		FileOutputStream fileOut = new FileOutputStream("planeobject.apz");
-//		ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
-//		objectOut.writeObject(plane);
-//		objectOut.close();
-//		System.out.println("The Object was succesfully written to a file");
-//	}
+	private static String planeObject = "planeList.apz";
+	private static String airportObject = "airportList.apz";
+	private static String flightObject = "flightList.apz";
 
 	public static void savePlane(ArrayList<Airplane> plane) {
 		FileOutputStream fileOut;
 		ObjectOutputStream objectOut;
 		try {
-			fileOut = new FileOutputStream("planeobject.apz");
+			fileOut = new FileOutputStream(planeObject);
 			objectOut = new ObjectOutputStream(fileOut);
 			objectOut.writeObject(plane);
 			objectOut.close();
@@ -35,12 +31,12 @@ public class State {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public static void saveAirports(ArrayList<Airport> airports) {
 		FileOutputStream fileOut;
 		ObjectOutputStream objectOut;
 		try {
-			fileOut = new FileOutputStream("airportobject.apz");
+			fileOut = new FileOutputStream(airportObject);
 			objectOut = new ObjectOutputStream(fileOut);
 			objectOut.writeObject(airports);
 			objectOut.close();
@@ -50,47 +46,11 @@ public class State {
 		}
 	}
 
-	public static ArrayList<Airport> loadAirports() {
-		ArrayList<Airport> airportList = new ArrayList<>();
-		FileInputStream fileIn;
-		try {
-			fileIn = new FileInputStream("airportobject.apz");
-			ObjectInputStream objectIn = new ObjectInputStream(fileIn);
-
-			Object obj = objectIn.readObject();
-			System.out.println("The Object has been read from the file");
-			objectIn.close();
-			airportList = (ArrayList<Airport>) obj;
-
-		} catch (IOException | ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-		return airportList;
-	}
-
-	public static ArrayList<Airplane> loadPlanes() {
-		ArrayList<Airplane> planeList = new ArrayList<>();
-		FileInputStream fileIn;
-		try {
-			fileIn = new FileInputStream("planeobject.apz");
-			ObjectInputStream objectIn = new ObjectInputStream(fileIn);
-
-			Object obj = objectIn.readObject();
-			System.out.println("The Object has been read from the file");
-			objectIn.close();
-			planeList = (ArrayList<Airplane>) obj;
-		} catch (IOException | ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-		
-		return planeList;
-	}
-	
 	public static void saveFlight(ArrayList<Flight> flight) {
 		FileOutputStream fileOut;
 		ObjectOutputStream objectOut;
 		try {
-			fileOut = new FileOutputStream("flightObject.apz");
+			fileOut = new FileOutputStream(flightObject);
 			objectOut = new ObjectOutputStream(fileOut);
 			objectOut.writeObject(flight);
 			objectOut.close();
@@ -99,22 +59,66 @@ public class State {
 			e.printStackTrace();
 		}
 	}
-	public static ArrayList<Flight> loadFlights() {
-		ArrayList<Flight> flightList = new ArrayList<>();
-		FileInputStream fileIn;
-		try {
-			fileIn = new FileInputStream("flightObject.apz");
-			ObjectInputStream objectIn = new ObjectInputStream(fileIn);
 
-			Object obj = objectIn.readObject();
-			System.out.println("The Object has been read from the file");
-			objectIn.close();
-			flightList = (ArrayList<Flight>) obj;
-		} catch (IOException | ClassNotFoundException e) {
-			e.printStackTrace();
+	public static ArrayList<Airplane> loadPlanes() {
+		if (new File(flightObject).isFile()) {
+			ArrayList<Airplane> planeList = new ArrayList<>();
+			FileInputStream fileIn;
+			try {
+				fileIn = new FileInputStream(planeObject);
+				ObjectInputStream objectIn = new ObjectInputStream(fileIn);
+
+				Object obj = objectIn.readObject();
+				System.out.println("The Object has been read from the file");
+				objectIn.close();
+				planeList = (ArrayList<Airplane>) obj;
+			} catch (IOException | ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+			return planeList;
 		}
-		return flightList;
+		return new ArrayList<Airplane>();
+	}
 
-}
+	public static ArrayList<Airport> loadAirports() {
+		if (new File(flightObject).isFile()) {
+			ArrayList<Airport> airportList = new ArrayList<>();
+			FileInputStream fileIn;
+			try {
+				fileIn = new FileInputStream(airportObject);
+				ObjectInputStream objectIn = new ObjectInputStream(fileIn);
+
+				Object obj = objectIn.readObject();
+				System.out.println("The Object has been read from the file");
+				objectIn.close();
+				airportList = (ArrayList<Airport>) obj;
+
+			} catch (IOException | ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+			return airportList;
+		}
+		return new ArrayList<Airport>();
+	}
+
+	public static ArrayList<Flight> loadFlights() {
+		if (new File(flightObject).isFile()) {
+			ArrayList<Flight> flightList = new ArrayList<>();
+			FileInputStream fileIn;
+			try {
+				fileIn = new FileInputStream(flightObject);
+				ObjectInputStream objectIn = new ObjectInputStream(fileIn);
+
+				Object obj = objectIn.readObject();
+				System.out.println("The Object has been read from the file");
+				objectIn.close();
+				flightList = (ArrayList<Flight>) obj;
+			} catch (IOException | ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+			return flightList;
+		}
+		return new ArrayList<Flight>();
+	}
 
 }

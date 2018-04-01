@@ -5,9 +5,6 @@ import java.util.ArrayList;
 
 public class UserController implements Serializable {
 	
-	// Default ID KEEP IN MIND FOR LATER
-	
-	// need book function that searches through userList for user then adds booking to their arraylist
 	private static final long serialVersionUID = 1L;
 	private ArrayList<User> userList;
 	
