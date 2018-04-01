@@ -73,7 +73,7 @@ public class AddFlight {
 
 	private void actionEvents() {
 		createAirportButton.setOnAction(event -> {
-			new CreateAirport();
+			new AddAirport();
 		});
 
 		createFlightButton.setOnAction(event -> {
