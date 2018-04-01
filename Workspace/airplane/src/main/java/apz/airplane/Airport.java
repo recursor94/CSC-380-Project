@@ -28,6 +28,6 @@ public class Airport implements Serializable{
 	}
 	
 	public String toString() {
-		return "Airport name:\t" + getName() + "Airport city:\t" + getCity();
+		return name + ", " + city;
 	}
 }
