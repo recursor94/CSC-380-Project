@@ -27,7 +27,6 @@ public class AddPlane {
 	private Button createButton, removeButton;
 	
 	public AddPlane() {
-		loadFile();
 		initialize();
 		content();
 		actionEvents();
@@ -40,6 +39,7 @@ public class AddPlane {
 		seatField = new ComboBox<>();
 		createButton = new Button("Create");
 		removeButton = new Button("Remove");
+		loadFile(); // need to load initial values.
 	}
 
 	private void content() {
