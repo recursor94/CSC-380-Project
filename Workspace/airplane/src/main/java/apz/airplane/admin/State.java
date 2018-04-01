@@ -61,7 +61,8 @@ public class State {
 	}
 
 	public static ArrayList<Airplane> loadPlanes() {
-		if (new File(flightObject).isFile()) {
+		if (new File(planeObject).exists()) {
+			System.out.println("YES");
 			ArrayList<Airplane> planeList = new ArrayList<>();
 			FileInputStream fileIn;
 			try {
@@ -81,7 +82,7 @@ public class State {
 	}
 
 	public static ArrayList<Airport> loadAirports() {
-		if (new File(flightObject).isFile()) {
+		if (new File(airportObject).exists()) {
 			ArrayList<Airport> airportList = new ArrayList<>();
 			FileInputStream fileIn;
 			try {
@@ -102,7 +103,7 @@ public class State {
 	}
 
 	public static ArrayList<Flight> loadFlights() {
-		if (new File(flightObject).isFile()) {
+		if (new File(flightObject).exists()) {
 			ArrayList<Flight> flightList = new ArrayList<>();
 			FileInputStream fileIn;
 			try {

@@ -22,87 +22,72 @@ public class AddPlane {
 	private VBox mainPane = new VBox(10);
 	private ArrayList<Airplane> planeList = new ArrayList<>();
 	private ListView<Airplane> listOfPlanes = new ListView<>();
-
-
+	private TextField planeField, airlineField;
+	private ComboBox<Integer> seatField;
+	private Button createButton, removeButton;
+	
 	public AddPlane() {
 		loadFile();
-		
-		TextField planeField = new TextField();
-		TextField airlineField = new TextField();
-		ComboBox<Integer> seatsField = new ComboBox<>();
-		
+		initialize();
+		content();
+		actionEvents();
+		properties();
+	}
+
+	private void initialize() {
+		planeField = new TextField();
+		airlineField = new TextField();
+		seatField = new ComboBox<>();
+		createButton = new Button("Create");
+		removeButton = new Button("Remove");
+	}
+
+	private void content() {
 		for (int i = 1; i <= 200; i++)
-			seatsField.getItems().add(i);
+			seatField.getItems().add(i);
+		seatField.setValue(1);
 		
-		seatsField.setValue(1);
-		
-		Button createButton = new Button("Create");
-		Button testButton = new Button("Load");
-
-		createButton.setOnAction(event -> {
-			if (!planeField.getText().isEmpty() && !airlineField.getText().isEmpty() && !seatsField.getSelectionModel().equals(null)) {
-				int planeNum = Integer.valueOf(planeField.getText());
-				String airlineName = airlineField.getText();
-				int seatCap = Integer.valueOf(seatsField.getSelectionModel().getSelectedItem());
-	
-				planeList.add(new Airplane(planeNum, airlineName, seatCap));
-	
-				State.savePlane(planeList);
-				loadFile();
-			}
-			else {
-				MessageBox.message(AlertType.ERROR, "Invalid Data", "You must enter all of the necessary data");
-			}
-		});
-
-		testButton.setOnAction(event -> {
-			resetList();
-			System.out.println(planeList);
-			loadFile();
-			System.out.println(planeList);
-		});
-
-		Button removeButton = new Button("Remove");
-
 		mainPane.getChildren().addAll(new Label("Plane Number"), planeField, new Label("Airline Name"), airlineField,
-				new Label("Seat Capacity"), seatsField, createButton, testButton, listOfPlanes, removeButton);
-
+				new Label("Seat Capacity"), seatField, createButton, listOfPlanes, removeButton);
+	}
+	
+	private void actionEvents() {
+		createButton.setOnAction(event -> {
+			
+			if (planeField.getText().isEmpty() && airlineField.getText().isEmpty() || planeField.getText().isEmpty() || airlineField.getText().isEmpty())
+				MessageBox.message(AlertType.ERROR, "Invalid Data", "You must enter all of the necessary data");
+			else {
+				planeList.add(new Airplane(Integer.valueOf(planeField.getText()), airlineField.getText(), Integer.valueOf(seatField.getSelectionModel().getSelectedItem())));
+				State.savePlane(planeList);
+				System.out.println(planeList);
+				loadFile();
+				System.out.println(planeList);
+			}
+			
+		});
+		
 		removeButton.setOnAction(event -> {
 			Airplane plane = listOfPlanes.getSelectionModel().getSelectedItem();
 			planeList.remove(plane);
 			State.savePlane(planeList);
 			loadFile();
 		});
+	}
 
+	private void properties() {
 		Stage stage = new Stage();
 		stage.setScene(new Scene(mainPane, 200, 500));
 		stage.show();
 	}
 
-
 	public void loadFile() {
-		FileInputStream fileIn;
-		try {
-			fileIn = new FileInputStream("planeobject.apz");
-			ObjectInputStream objectIn = new ObjectInputStream(fileIn);
+		planeList = State.loadPlanes();
+		System.out.println(planeList);
 
-			Object obj = objectIn.readObject();
-			//System.out.println("The Object has been read from the file");
-			objectIn.close();
-			planeList = (ArrayList<Airplane>) obj;
-
-			if (!listOfPlanes.getItems().isEmpty())
-				listOfPlanes.getItems().clear();
-			for (int i = 0; i < planeList.size(); i++)
-				listOfPlanes.getItems().add(planeList.get(i));
-
-		} catch (IOException | ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-	}
-
-	public void resetList() {
-		planeList = new ArrayList<>();
+		if (!listOfPlanes.getItems().isEmpty())
+			listOfPlanes.getItems().clear();
+		for (int i = 0; i < planeList.size(); i++)
+			listOfPlanes.getItems().add(planeList.get(i));
 	}
 
 }
