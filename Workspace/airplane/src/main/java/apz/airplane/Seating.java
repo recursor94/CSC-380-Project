@@ -6,6 +6,7 @@ import java.util.Arrays;
 public class Seating implements Serializable {
 	
 	//average plane has 200
+	private static final long serialVersionUID = 1L;
 	private User[] seating;	// must limit on if more users are trying to be added. maybe boolean return method isFull();
 	
 	public Seating(int capacity) {
@@ -27,6 +28,11 @@ public class Seating implements Serializable {
 	}
 	
 	public void remove(User user) {
+		if (isFull()) {
+			System.out.println("NO ONE IN LIST TO REMOVE");
+			return;
+		}
+		
 		for (int i = 0; i < seating.length; i++) {
 			if (seating[i] != null) 
 				if (seating[i] == user) {

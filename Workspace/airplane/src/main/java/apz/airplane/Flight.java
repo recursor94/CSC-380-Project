@@ -5,14 +5,12 @@ import java.time.LocalDate;
 
 public class Flight implements Serializable {
 	
+	private static final long serialVersionUID = 1L;
 	private Airplane plane;
 	private Airport departureAirport, destinationAirport;
-	private LocalDate arriveDate, departureDate;		// getter and setters
+	private LocalDate arriveDate, departureDate;
 	private Time arrivalTime, departureTime;
-	// maybe time here too
 	private int flightNum;
-	
-	
 	
 	public Flight(Airplane plane, Airport departureAirport, Airport destinationAirport, LocalDate arriveDate,
 			LocalDate departureDate, Time arrivalTime, Time departureTime, int flightNum) {
@@ -38,7 +36,7 @@ public class Flight implements Serializable {
 		return destinationAirport;
 	}
 
-	public void setDestinationAirport(Airport destinationName) {
+	public void setDestinationAirport(Airport destinationAirport) {
 		this.destinationAirport = destinationAirport;
 	}
 

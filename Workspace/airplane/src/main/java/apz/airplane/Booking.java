@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 public class Booking implements Serializable {
 	
+	private static final long serialVersionUID = 1L;
 	private Flight flight;
 	private LocalDate bookDate;
 	private Airplane plane;
@@ -35,16 +36,5 @@ public class Booking implements Serializable {
 	public String toString() {
 		return flight.toString() + "\tArrival: " + flight.getArrivalTime().getTimeString() + "\nFlight booked on " + bookDate;
 	}
-
-//	/**
-//	 * Generate itenerary including the flight
-//	 * @return
-//	 */
-//	public String generateItenerary() {
-//		String itenerary = "Username:\t" + user.getUsername();
-//		//itenerary += "\nSeat:\t" + bookedPlane.getSeatArray().
-//		return itenerary;
-//	}
-
 
 }

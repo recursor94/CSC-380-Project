@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 public class Airplane implements Serializable {
 	
+	private static final long serialVersionUID = 1L;
 	private int planeNum;
 	private String airline;
 	private Seating seats;
