@@ -101,11 +101,14 @@ public class AddFlight {
 				Time arrival = new Time (arriveTimeBox.getSelectionModel().getSelectedItem());
 				String outgoing = departField.getSelectionModel().getSelectedItem();
 				String incoming = arriveField.getSelectionModel().getSelectedItem();
-				Airport departingAirport= new Airport(outgoing, incoming);
+				String [] partitionOutgoing = outgoing.split(", "); //airport name and city will be seperated by a comma and a space
+				String[] partitionIncoming = incoming.split(", ");
+				Airport outgoingAirport = new Airport(partitionOutgoing[0], partitionOutgoing[1]);
+				Airport incomingAirport = new Airport(partitionIncoming[0], partitionIncoming[1]);
 				LocalDate leaving = departDate.getValue();
 				LocalDate arriving = arriveDate.getValue();
 				int flightNum = Integer.valueOf(flightNumField.getText());
-				flightList.add(new Flight (plane, null, null, arriving, leaving, arrival, departure, flightNum));//TODO:  FIX THIS. Use real airports
+				flightList.add(new Flight (plane, incomingAirport, outgoingAirport, arriving, leaving, arrival, departure, flightNum));//TODO:  FIX THIS. Use real airports
 				State.saveFlight(flightList);
 				loadFile();
 			}
@@ -127,10 +130,10 @@ public class AddFlight {
 		departField.getItems().clear();
 		arriveField.getItems().clear();
 		
-		ArrayList<String> airportList = State.loadAirports();
+		ArrayList<Airport> airportList = State.loadAirports();
 		for (int i = 0; i < airportList.size(); i++) {
-			departField.getItems().add(airportList.get(i));
-			arriveField.getItems().add(airportList.get(i));
+			departField.getItems().add(airportList.get(i).toString());
+			arriveField.getItems().add(airportList.get(i).toString());
 		}
 		
 		departField.setValue("Select an Airport");

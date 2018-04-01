@@ -44,7 +44,7 @@ public class CreateAirport {
 				airportList.add(airport);
 				
 				airports.getItems().add(airportField.getText());
-				State.saveAirport(airportList);
+				State.saveAirports(airportList);
 				AddFlight.populateComboBoxes();
 			}
 			else {
@@ -57,9 +57,15 @@ public class CreateAirport {
 		});
 		
 		removeButton.setOnAction(event -> {
-			String airport = airports.getSelectionModel().getSelectedItem();
-			airportList.remove(airport);
-			State.saveAirport(airportList);
+			String sAirport = airports.getSelectionModel().getSelectedItem();
+			for(Airport airport : airportList) {
+				//iterate through all airports, if the toStrings match with user selected item, remove it from the database
+				if(airport.toString().equals(sAirport)) {
+					airportList.remove(airport);
+					break;
+				}
+			}
+			State.saveAirports(airportList);
 			AddFlight.populateComboBoxes();
 			loadFile();
 		});

@@ -36,13 +36,13 @@ public class State {
 		}
 	}
 	
-	public static void saveAirport(Airport airport) {
+	public static void saveAirports(ArrayList<Airport> airports) {
 		FileOutputStream fileOut;
 		ObjectOutputStream objectOut;
 		try {
 			fileOut = new FileOutputStream("airportobject.apz");
 			objectOut = new ObjectOutputStream(fileOut);
-			objectOut.writeObject(airport);
+			objectOut.writeObject(airports);
 			objectOut.close();
 			System.out.println("The Object was successfully written to a file");
 		} catch (IOException e) {
@@ -50,8 +50,8 @@ public class State {
 		}
 	}
 
-	public static ArrayList<String> loadAirports() {
-		ArrayList<String> airportList = new ArrayList<>();
+	public static ArrayList<Airport> loadAirports() {
+		ArrayList<Airport> airportList = new ArrayList<>();
 		FileInputStream fileIn;
 		try {
 			fileIn = new FileInputStream("airportobject.apz");
@@ -60,7 +60,7 @@ public class State {
 			Object obj = objectIn.readObject();
 			System.out.println("The Object has been read from the file");
 			objectIn.close();
-			airportList = (ArrayList<String>) obj;
+			airportList = (ArrayList<Airport>) obj;
 
 		} catch (IOException | ClassNotFoundException e) {
 			e.printStackTrace();
