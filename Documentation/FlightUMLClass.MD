@@ -8,7 +8,7 @@ Flight
 -departureDate: LocalDate<br/>
 -arrivalTime: Time<br/>
 -departureTime: Time<br/>
-flightNum: int
+-flightNum: int
 --
 +Flight(Airplane, Airport, Airport, LocalDate,LocalDate, Time, Time, int)
 +getPlane(): Airplane<br/>
