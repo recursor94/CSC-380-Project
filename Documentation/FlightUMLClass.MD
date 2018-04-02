@@ -10,7 +10,7 @@ Flight
 -departureTime: Time<br/>
 -flightNum: int
 --
-+Flight(Airplane, Airport, Airport, LocalDate,LocalDate, Time, Time, int)
++Flight(Airplane, Airport, Airport, LocalDate, LocalDate, Time, Time, int)<br/>
 +getPlane(): Airplane<br/>
 +setPlane(Airplane): void<br/>
 +getDestinationAirport(): Airport<br/>
