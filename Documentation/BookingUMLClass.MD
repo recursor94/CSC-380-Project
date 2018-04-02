@@ -1,5 +1,6 @@
 Booking
 --
+-serialVersionUID: long
 -flight: Flight <br/>
 -bookDate: LocalDate <br/>
 -plane: Airplane <br/>

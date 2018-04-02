@@ -5,13 +5,33 @@ import java.io.Serializable;
 public class Time implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
-	private double time;
+	private double timeDouble;
 	private String timeString;
 	
 	public Time(String time) {	// for ex. 3:00 PM converts to 15 in double and 3:30 PM converts to 15.5;
-		double tempTime = 0;
 		timeString = time;
-		
+		timeDouble = parseTime(time);
+	}
+	
+	public void setTimeDouble(String time) {
+		timeDouble = parseTime(time);
+	}
+	
+	public double getTimeDouble() {
+		return timeDouble;
+	}
+	
+	public void setTimeString(String time) {
+		timeString = time;
+	}
+	
+	public String getTimeString() {
+		return timeString; 	
+	}
+	
+	private double parseTime(String time) {
+		double tempTime = 0;
+
 		// Separate to find AM or PM
 		String[] timeSplit = time.split(" ");
 		if (timeSplit[1].equals("PM")) {
@@ -20,27 +40,18 @@ public class Time implements Serializable {
 		} else if (timeSplit[1].equals("AM") && timeSplit[0].contains("12")) {
 				tempTime += 12;
 		}
-		
 		String[] numSplit = timeSplit[0].split(":");
 		tempTime += Double.valueOf(numSplit[0]);
-		
+		// Add .5 if the time is on the half hour
 		if (Integer.valueOf(numSplit[1]) == 30)
 			tempTime += .5;
 		
-		this.time = tempTime;
-	}
-	
-	public double getTimeDouble() {
-		return time;
-	}
-	
-	public String getTimeString() {
-		return timeString; 	// not real input ,check addFlight;
+		return tempTime;
 	}
 
 	@Override
 	public String toString() {
-		return "Time [time=" + timeString + "]";
+		return "Time [time = " + timeString + "]";
 	}
 
 }

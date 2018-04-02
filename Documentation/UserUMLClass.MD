@@ -1,5 +1,6 @@
 User
 --
+-serialVersionUID: long <br/>
 -username: String <br/>
 -password: String <br/>
 -tripList: ArayList&lt;Booking&gt;

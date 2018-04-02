@@ -10,7 +10,7 @@ public class Flight implements Serializable {
 	private Airport departureAirport, destinationAirport;
 	private LocalDate arriveDate, departureDate;
 	private Time arrivalTime, departureTime;
-	private int flightNum;
+	private int flightNum;	//Should we change this to a string?
 	
 	public Flight(Airplane plane, Airport departureAirport, Airport destinationAirport, LocalDate arriveDate,
 			LocalDate departureDate, Time arrivalTime, Time departureTime, int flightNum) {

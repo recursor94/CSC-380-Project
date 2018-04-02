@@ -1,5 +1,6 @@
 User
 --
+-serialVersionUID: long <br/>
 -userList: ArrayList&lt;User&gt;
 --
 +UserController() <br/>
