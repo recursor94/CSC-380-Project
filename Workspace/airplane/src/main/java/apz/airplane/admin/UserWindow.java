@@ -93,7 +93,6 @@ public class UserWindow {
 					System.out.println("User successfully created!");
 					MessageBox.message(AlertType.INFORMATION, "Successful User Creation", "Your account has been created!");
 					System.out.println(uc);
-					//new ViewFlightWindow(primaryStage);
 				}	
 			}
 			else {

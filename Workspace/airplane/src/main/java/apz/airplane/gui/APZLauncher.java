@@ -20,9 +20,6 @@ public class APZLauncher extends Application {
 	private static User user;
 	private static UserController uc;
 	private static BorderPane bp;
-	private static MenuBar menubar;
-	private static Menu fileMenu;
-	private static MenuItem exitItem;
 	private static Stage stage;
 	
 	public static void main(String[] args) {
@@ -34,30 +31,13 @@ public class APZLauncher extends Application {
 		stage = primaryStage;
 		uc = State.loadInformation();
 		bp = new BorderPane();
-		createMenuBar();
 		
 		primaryStage.setScene(new Scene(bp, 300, 400));
-		primaryStage.initStyle(StageStyle.UTILITY);
+//		primaryStage.initStyle(StageStyle.UTILITY);
 		primaryStage.setTitle("APZ Airplane Application");
 		primaryStage.show();
 		
 		new LoginWindow();
-	}
-	
-	
-	private static void createMenuBar() {
-		menubar = new MenuBar();
-		fileMenu = new Menu("File");
-		exitItem = new MenuItem("Exit");
-		
-		
-		menubar.getMenus().add(fileMenu);
-		fileMenu.getItems().add(exitItem);
-		bp.setTop(menubar);
-		
-		exitItem.setOnAction(event -> {
-			Platform.exit();
-		});
 	}
 	
 	public static void setCurrentUser(User userLogged) {
