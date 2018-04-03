@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import apz.airplane.Airplane;
 import apz.airplane.Airport;
 import apz.airplane.util.MessageBox;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -47,6 +49,7 @@ public class AddAirport {
 	}
 
 	public void actionEvents() {
+		
 		createButton.setOnAction(event -> {
 			
 			if (airportNameField.getText().isEmpty() && airportCityField.getText().isEmpty() || airportNameField.getText().isEmpty() || airportCityField.getText().isEmpty())
@@ -67,15 +70,21 @@ public class AddAirport {
 
 		removeButton.setOnAction(event -> {
 			String sAirport = airportView.getSelectionModel().getSelectedItem();
-			for (Airport airport : airportList) {
-				if (airport.toString().equals(sAirport)) {
+			Airport airport = findAirport(sAirport);
+				if (findAirport(sAirport) != null) {
 					airportList.remove(airport);
-					break;
 				}
-			}
 			State.saveAirports(airportList);
 			AddFlight.populateComboBoxes();	// NEED TO CHANGE BUT THIS UPDATES COMBOBOX. NEED TO HAVE STATIC BOXES WITH THESE DATA INSIDE?
 			loadFile();
+		});
+		airportView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+
+			@Override
+			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+				System.out.println("Selected airport " + newValue);
+			}
+			
 		});
 	}
 
@@ -91,6 +100,16 @@ public class AddAirport {
 		content();
 		actionEvents();
 		properties();
+	}
+	private Airport findAirport(String sAirport) {
+		//For searching database of airports for airport by string
+		sAirport = airportView.getSelectionModel().getSelectedItem();
+		for (Airport airport : airportList) {
+			if (airport.toString().equals(sAirport)) {
+				return airport;
+			}
+		}
+		return null;
 	}
 
 	public void loadFile() {
