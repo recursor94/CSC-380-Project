@@ -85,7 +85,7 @@ public class UserWindow {
 			if (!(username.isEmpty()) && !(password.isEmpty())) {
 				if (username.contains(" ")) 
 					MessageBox.message(AlertType.ERROR, "Invalid User Name", "Your user name cannot contain the empty space character");
-				if (password.contains(" ")) 
+				else if (password.contains(" ")) 
 					MessageBox.message(AlertType.ERROR, "Invalid Password", "Your password cannot contain the empty space character");
 				else {
 					uc.addUser(new User (username, password));
