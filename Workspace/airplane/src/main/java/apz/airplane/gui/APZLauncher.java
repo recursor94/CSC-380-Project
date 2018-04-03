@@ -15,11 +15,9 @@ import javafx.stage.StageStyle;
 
 public class APZLauncher extends Application {
 	
-	//rootpane and usermanagement
-	
 	private static User user;
 	private static UserController uc;
-	private static BorderPane bp;
+	private static BorderPane root;
 	private static Stage stage;
 	
 	public static void main(String[] args) {
@@ -30,9 +28,9 @@ public class APZLauncher extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		stage = primaryStage;
 		uc = State.loadInformation();
-		bp = new BorderPane();
+		root = new BorderPane();
 		
-		primaryStage.setScene(new Scene(bp, 300, 400));
+		primaryStage.setScene(new Scene(root, 300, 400));
 //		primaryStage.initStyle(StageStyle.UTILITY);
 		primaryStage.setTitle("APZ Airplane Application");
 		primaryStage.show();
@@ -53,7 +51,7 @@ public class APZLauncher extends Application {
 	}
 	
 	public static BorderPane getBorderPane() {
-		return bp;
+		return root;
 	}
 	
 	public static Stage getStage() {
