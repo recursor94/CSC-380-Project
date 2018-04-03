@@ -102,9 +102,13 @@ public class AddAirport {
 				//if an airport is selected, change interface buttons and field labels to the change interface
 				if(selectedAirport != null) {
 					createButton.setText("Change Airport");
+					airportNameField.setText(selectedAirport.getName());
+					airportCityField.setText(selectedAirport.getCity());
 				}
 				else {
 					createButton.setText("Create Airport");
+					airportNameField.setText("");
+					airportCityField.setText("");
 				}
 			}
 			
