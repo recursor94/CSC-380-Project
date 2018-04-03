@@ -5,13 +5,13 @@ import java.util.ArrayList;
 import apz.airplane.User;
 import apz.airplane.UserController;
 import apz.airplane.util.MessageBox;
-import apz.airplane.util.VerifyUserInput;
+import apz.airplane.util.State;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -24,7 +24,7 @@ public class UserManagement {
 	private UserController uc;
 	private ListView<User> userList = new ListView<>();
 	private TextField userField, passField;
-	private Button createButton, removeButton, viewButton;
+	private Button createButton, removeButton;
 	
 	public UserManagement() {
 		initialize();
@@ -38,13 +38,12 @@ public class UserManagement {
 		passField = new TextField();
 		createButton = new Button("Create");
 		removeButton = new Button("Remove");
-		viewButton = new Button("View");
 		loadFile();
 	}
 	
 	private void content() {
 		
-		subPane.getChildren().addAll(createButton, removeButton, viewButton);
+		subPane.getChildren().addAll(createButton, removeButton);
 		mainPane.getChildren().addAll(new Label("Enter Username"), userField, new Label("Enter Password"), passField,
 				subPane, userList);
 	}
@@ -58,7 +57,7 @@ public class UserManagement {
 	private void actionEvents() {
 		createButton.setOnAction(event -> {
 			if (!userField.getText().isEmpty() && !passField.getText().isEmpty()) {
-				VerifyUserInput.verifyInput(userField.getText(), passField.getText(), uc);
+				verifyInput(userField.getText(), passField.getText());
 				loadFile();
 			}
 			
@@ -76,13 +75,31 @@ public class UserManagement {
 				MessageBox.message(AlertType.ERROR, "ERROR: No User Selected", "You must select a user to remove");
 			}
 		});
-		
-		viewButton.setOnAction(event -> {
-			System.out.println("List Of Users:");
-			for(int i = 0; i < users.size(); i++) {
-			System.out.println(users.get(i).getUsername());
+	}
+	
+	private void verifyInput(String username, String password) {
+		if (uc.userExists(username)) {
+			System.out.println("The username you chose already exists");
+			MessageBox.message(AlertType.ERROR, "ERROR: The User Name Already Exists", "Please choose a different user name");
+		} else {
+			if (!(username.isEmpty()) && !(password.isEmpty())) {
+				if (username.contains(" ")) 
+					MessageBox.message(AlertType.ERROR, "Invalid User Name", "Your user name cannot contain the empty space character");
+				if (password.contains(" ")) 
+					MessageBox.message(AlertType.ERROR, "Invalid Password", "Your password cannot contain the empty space character");
+				else {
+					uc.addUser(new User (username, password));
+					State.saveInformation(uc);
+					System.out.println("User successfully created!");
+					MessageBox.message(AlertType.INFORMATION, "Successful User Creation", "Your account has been created!");
+					System.out.println(uc);
+					//new ViewFlightWindow(primaryStage);
+				}	
 			}
-		});
+			else {
+				MessageBox.message(AlertType.ERROR, "ERROR: You must enter a user name and password", "Please enter a user name and password");
+			}
+		}
 	}
 	
 	private void loadFile() {
@@ -92,6 +109,5 @@ public class UserManagement {
 			userList.getItems().clear();
 		for (int i = 0; i < users.size(); i++)
 			userList.getItems().add(users.get(i));
-		
 	}
 }
