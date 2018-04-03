@@ -23,15 +23,15 @@ public class AdminLauncher extends Application {
 		mainPane.getChildren().addAll(addPlaneButton, addFlightButton, userManageButton);
 		
 		addPlaneButton.setOnAction(event -> {
-			new AddPlane();
+			new PlaneWindow();
 		});
 		
 		addFlightButton.setOnAction(event -> {
-			new AddFlight(primaryStage);
+			new FlightWindow(primaryStage);
 		});
 		
 		userManageButton.setOnAction(event -> {
-			new UserManagement();
+			new UserWindow();
 		});
 		
 		primaryStage.setScene(new Scene(mainPane, 500, 500));

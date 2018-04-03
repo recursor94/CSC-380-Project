@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import apz.airplane.Booking;
 import apz.airplane.Flight;
 import apz.airplane.User;
-import apz.airplane.admin.State;
+import apz.airplane.admin.AdminState;
 import apz.airplane.util.MessageBox;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
@@ -71,7 +71,7 @@ public class BookFlightWindow {
 
 	public ArrayList<Flight> findFlights(LocalDate departure) {
 		
-		ArrayList<Flight> searchFlights = State.loadFlights();
+		ArrayList<Flight> searchFlights = AdminState.loadFlights();
 		ArrayList<Flight> flightsFound = new ArrayList<>();
 		
 		for (int i = 0; i < searchFlights.size(); i ++) {

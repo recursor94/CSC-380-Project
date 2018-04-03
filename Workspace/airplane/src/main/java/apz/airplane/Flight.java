@@ -10,7 +10,7 @@ public class Flight implements Serializable {
 	private Airport departureAirport, destinationAirport;
 	private LocalDate arriveDate, departureDate;
 	private Time arrivalTime, departureTime;
-	private int flightNum;	//Should we change this to a string?
+	private int flightNum;
 	
 	public Flight(Airplane plane, Airport departureAirport, Airport destinationAirport, LocalDate arriveDate,
 			LocalDate departureDate, Time arrivalTime, Time departureTime, int flightNum) {
@@ -90,8 +90,8 @@ public class Flight implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Flight from " + departureAirport + " to " + destinationAirport + "\nFlight # " + flightNum
-				+ "\tDeparture: " + departureDate + "\t" + departureTime.getTimeString();
+		return "Flight from " + departureAirport + " to " + destinationAirport + "\nFlight #" + flightNum
+				+ "\tDeparture: " + departureDate + "\nTime: " + departureTime.getTimeString();
 	
 	}
 
