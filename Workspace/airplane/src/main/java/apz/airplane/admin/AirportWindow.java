@@ -23,7 +23,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class AddAirport {
+public class AirportWindow {
 
 	private VBox mainPane;
 	private HBox buttonBox;
@@ -64,16 +64,16 @@ public class AddAirport {
 				selectedAirport.setCity(airportCityField.getText());
 				int selectedIndex = airportView.getSelectionModel().getSelectedIndex();
 				airportView.getItems().set(selectedIndex, selectedAirport.toString()); //set the selected item in the list view to the new airport value
-				State.saveAirports(airportList);
-				AddFlight.populateComboBoxes();
+				AdminState.saveAirports(airportList);
+				FlightWindow.populateComboBoxes();
 			}
 			else {
 				Airport airport = new Airport(airportNameField.getText(), airportCityField.getText());
 				airportList.add(airport);
 
 				airportView.getItems().add(airport.getName() + ", " + airport.getCity());
-				State.saveAirports(airportList);
-				AddFlight.populateComboBoxes();
+				AdminState.saveAirports(airportList);
+				FlightWindow.populateComboBoxes();
 			}
 		});
 
@@ -87,8 +87,8 @@ public class AddAirport {
 				if (findAirport(sAirport) != null) {
 					airportList.remove(airport);
 				}
-			State.saveAirports(airportList);
-			AddFlight.populateComboBoxes();	// NEED TO CHANGE BUT THIS UPDATES COMBOBOX. NEED TO HAVE STATIC BOXES WITH THESE DATA INSIDE?
+			AdminState.saveAirports(airportList);
+			FlightWindow.populateComboBoxes();	// NEED TO CHANGE BUT THIS UPDATES COMBOBOX. NEED TO HAVE STATIC BOXES WITH THESE DATA INSIDE?
 			loadFile();
 		});
 		airportView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
@@ -130,7 +130,7 @@ public class AddAirport {
 		activeScene = stage.getScene(); //used for getting escape key press
 	}
 
-	public AddAirport() {
+	public AirportWindow() {
 		initialize();
 		content();
 		properties(); //I have to swap properties and action event, otherwise activeScene wont exist when trying to add key event
@@ -148,7 +148,7 @@ public class AddAirport {
 	}
 
 	public void loadFile() {
-		airportList = State.loadAirports();
+		airportList = AdminState.loadAirports();
 		if (!airportView.getItems().isEmpty())
 			airportView.getItems().clear();
 		for (int i = 0; i < airportList.size(); i++)

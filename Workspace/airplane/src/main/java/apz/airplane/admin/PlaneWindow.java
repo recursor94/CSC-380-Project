@@ -17,7 +17,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class AddPlane {
+public class PlaneWindow {
 
 	private VBox mainPane = new VBox(10);
 	private ArrayList<Airplane> planeList = new ArrayList<>();
@@ -26,7 +26,7 @@ public class AddPlane {
 	private ComboBox<Integer> seatField;
 	private Button createButton, removeButton;
 	
-	public AddPlane() {
+	public PlaneWindow() {
 		initialize();
 		content();
 		actionEvents();
@@ -58,7 +58,7 @@ public class AddPlane {
 				MessageBox.message(AlertType.ERROR, "Invalid Data", "You must enter all of the necessary data");
 			else {
 				planeList.add(new Airplane(Integer.valueOf(planeField.getText()), airlineField.getText(), Integer.valueOf(seatField.getSelectionModel().getSelectedItem())));
-				State.savePlane(planeList);
+				AdminState.savePlane(planeList);
 				System.out.println(planeList);
 				loadFile();
 				System.out.println(planeList);
@@ -69,7 +69,7 @@ public class AddPlane {
 		removeButton.setOnAction(event -> {
 			Airplane plane = listOfPlanes.getSelectionModel().getSelectedItem();
 			planeList.remove(plane);
-			State.savePlane(planeList);
+			AdminState.savePlane(planeList);
 			loadFile();
 		});
 	}
@@ -81,7 +81,7 @@ public class AddPlane {
 	}
 
 	public void loadFile() {
-		planeList = State.loadPlanes();
+		planeList = AdminState.loadPlanes();
 		System.out.println(planeList);
 
 		if (!listOfPlanes.getItems().isEmpty())

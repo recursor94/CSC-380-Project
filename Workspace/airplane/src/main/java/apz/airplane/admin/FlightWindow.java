@@ -20,7 +20,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class AddFlight {
+public class FlightWindow {
 	private VBox mainPane;
 	private ArrayList<Flight> flightList;
 	private ListView<Flight> flightView;
@@ -31,7 +31,7 @@ public class AddFlight {
 	private static ComboBox<String> arriveTimeBox, departTimeBox;
 	private Button createFlightButton, createAirportButton, removeFlightButton;
 
-	public AddFlight(Stage mainStage) {
+	public FlightWindow(Stage mainStage) {
 		initialize();
 		content();
 		actionEvents();
@@ -73,7 +73,7 @@ public class AddFlight {
 
 	private void actionEvents() {
 		createAirportButton.setOnAction(event -> {
-			new AddAirport();
+			new AirportWindow();
 		});
 
 		createFlightButton.setOnAction(event -> {
@@ -96,7 +96,7 @@ public class AddFlight {
 				int flightNum = Integer.valueOf(flightNumField.getText());
 				flightList.add(new Flight(plane, incomingAirport, outgoingAirport, arriving, leaving, arrival,
 						departure, flightNum));// TODO: FIX THIS. Use real airports
-				State.saveFlight(flightList);
+				AdminState.saveFlight(flightList);
 				loadFlights();
 			} else {
 				MessageBox.message(AlertType.ERROR, "Invalid Data Entry", "You must enter data into all fields");
@@ -106,7 +106,7 @@ public class AddFlight {
 		removeFlightButton.setOnAction(event -> {
 			Flight flight = flightView.getSelectionModel().getSelectedItem();
 			flightList.remove(flight);
-			State.saveFlight(flightList);
+			AdminState.saveFlight(flightList);
 			loadFlights();
 		});
 	}
@@ -147,7 +147,7 @@ public class AddFlight {
 		departAirportBox.getItems().clear();
 		arriveAirportBox.getItems().clear();
 
-		ArrayList<Airport> airportList = State.loadAirports();
+		ArrayList<Airport> airportList = AdminState.loadAirports();
 		for (int i = 0; i < airportList.size(); i++) {
 			departAirportBox.getItems().add(airportList.get(i).toString());
 			arriveAirportBox.getItems().add(airportList.get(i).toString());
@@ -158,7 +158,7 @@ public class AddFlight {
 	}
 
 	public void loadFlights() {
-		flightList = State.loadFlights();
+		flightList = AdminState.loadFlights();
 		if (!flightView.getItems().isEmpty())
 			flightView.getItems().clear();
 		for (int i = 0; i < flightList.size(); i++)
@@ -166,7 +166,7 @@ public class AddFlight {
 	}
 	
 	private void loadPlanes() { // DEFAULT TO GET VALUE WHEN OPEN PROGRAM
-		ArrayList<Airplane> planeList = State.loadPlanes();
+		ArrayList<Airplane> planeList = AdminState.loadPlanes();
 		for (int i = 0; i < planeList.size(); i++) {
 			planeBox.getItems().add(planeList.get(i));
 		}

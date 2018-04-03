@@ -16,7 +16,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class UserManagement {
+public class UserWindow {
 	
 	private VBox mainPane = new VBox(10);
 	private HBox subPane = new HBox(10);
@@ -26,7 +26,7 @@ public class UserManagement {
 	private TextField userField, passField;
 	private Button createButton, removeButton;
 	
-	public UserManagement() {
+	public UserWindow() {
 		initialize();
 		content();
 		actionEvents();

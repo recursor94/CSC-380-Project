@@ -12,7 +12,7 @@ import apz.airplane.Airplane;
 import apz.airplane.Airport;
 import apz.airplane.Flight;
 
-public class State {
+public class AdminState {
 
 	private static String planeObject = "planeList.apz";
 	private static String airportObject = "airportList.apz";
