@@ -9,5 +9,6 @@ User
 +findUser(String): User <br/>
 +userExists(String): boolean <br/>
 +login(String, String): User <br/>
++getUserList(): ArrayList&lt;User&gt; <br/>
 +toString(): String
 --

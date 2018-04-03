@@ -1,6 +1,7 @@
 package apz.airplane.gui;
 
 import apz.airplane.User;
+import apz.airplane.util.MessageBox;
 import apz.airplane.util.State;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -54,42 +55,47 @@ public class RegisterWindow {
 	}
 	
 	public void actionEvents() {
+		//I made a static method in a new class called VerifyUserInput that I may use here. I am using it in the admin UserManagement class
 		registerButton.setOnAction((event) -> {
 			
-		//Checks if a user name exists already
+		//Checks if a user name exists already 
 		if (APZLauncher.getUserController().userExists(userField.getText())) {
 			System.out.println("The username you chose already exists");
-			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("User Name Already Exists");
-			alert.setHeaderText("ERROR: The User Name Already Exists");
-			alert.setContentText("Please choose a different user name");
-			alert.showAndWait();
+			MessageBox.message(AlertType.ERROR, "ERROR: The User Name Already Exists", "Please choose a different user name");
 		}
 		//If a user name does not already exist
 		else {
-			//If the text fields are not empty, it creates a user 
+			//Check if the text fields are empty
 			if (!(userField.getText().isEmpty()) && !(passField.getText().isEmpty())) {
-				User user = new User (userField.getText(), passField.getText());
-				APZLauncher.getUserController().addUser(user);
-				State.saveInformation(APZLauncher.getUserController());
-				System.out.println("User successfully created!");
-				Alert msg = new Alert(AlertType.INFORMATION);
-				msg.setTitle("Successful User Creation");
-				msg.setHeaderText(null);
-				msg.setContentText("Your account has been created!");
-				msg.showAndWait();
-				System.out.println(APZLauncher.getUserController());
-				new LoginWindow();
-				//new ViewFlightWindow(primaryStage);
 				
+				//Check if the username contains any empty spaces
+				if (userField.getText().contains(" ")) {
+					MessageBox.message(AlertType.ERROR, "Invalid User Name", "Your user name cannot contain the empty space character");
+					
+				}
+				//Check if the password contains empty spaces 
+				else if (passField.getText().contains(" ")) {
+					MessageBox.message(AlertType.ERROR, "Invalid Password", "Your password cannot contain the empty space character");
+				}
+				// IF WE WANT A PASSWORD TO BE A CERTAIN LENGTH, WE CAN ADD THIS ELSE IF IN
+//				else if (passField.getText().length() < 8) {
+//					MessageBox.message(AlertType.ERROR, "Invalid Password", "Your password must be at least 8 characters long");
+//				}
+				//Create a user if there are not errors in the input
+				else {
+					User user = new User (userField.getText(), passField.getText());
+					APZLauncher.getUserController().addUser(user);
+					State.saveInformation(APZLauncher.getUserController());
+					System.out.println("User successfully created!");
+					MessageBox.message(AlertType.INFORMATION, "Successful User Creation", "Your account has been created!");
+					System.out.println(APZLauncher.getUserController());
+					new LoginWindow();
+					//new ViewFlightWindow(primaryStage);
+				}	
 			}
+			//Display error if the textfields are empty
 			else {
-				Alert alert2 = new Alert(AlertType.ERROR);
-				alert2.setTitle("Empty Field");
-				alert2.setHeaderText("ERROR: You must enter a user name and password");
-				alert2.setContentText("Please enter a user name and password");
-				alert2.showAndWait();
-				System.out.println("You must enter a user name and a password");
+				MessageBox.message(AlertType.ERROR, "ERROR: You must enter a user name and password", "Please enter a user name and password");
 			}
 		}
 		});

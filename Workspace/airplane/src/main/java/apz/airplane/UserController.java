@@ -55,6 +55,10 @@ public class UserController implements Serializable {
 		return null;
 	}
 	
+	public ArrayList<User> getUserList() {
+		return userList;
+	}
+	
 	@Override
 	public String toString() {
 		return "User List\n-----------\n" + userList;

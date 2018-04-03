@@ -11,6 +11,7 @@ public class AdminLauncher extends Application {
 	private VBox mainPane = new VBox(10);
 	private Button addPlaneButton = new Button("Add a Plane");
 	private Button addFlightButton = new Button("Add a Flight");
+	private Button userManageButton = new Button("User Management");
 
 	public static void main(String[] args) {
 		launch(args);
@@ -19,7 +20,7 @@ public class AdminLauncher extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		
-		mainPane.getChildren().addAll(addPlaneButton, addFlightButton);
+		mainPane.getChildren().addAll(addPlaneButton, addFlightButton, userManageButton);
 		
 		addPlaneButton.setOnAction(event -> {
 			new AddPlane();
@@ -27,6 +28,10 @@ public class AdminLauncher extends Application {
 		
 		addFlightButton.setOnAction(event -> {
 			new AddFlight(primaryStage);
+		});
+		
+		userManageButton.setOnAction(event -> {
+			new UserManagement();
 		});
 		
 		primaryStage.setScene(new Scene(mainPane, 500, 500));
