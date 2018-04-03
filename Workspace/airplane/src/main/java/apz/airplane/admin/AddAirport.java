@@ -10,12 +10,15 @@ import apz.airplane.Airport;
 import apz.airplane.util.MessageBox;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -29,6 +32,7 @@ public class AddAirport {
 	private TextField airportNameField, airportCityField;
 	private Button createButton, removeButton, viewButton;
 	private Airport selectedAirport; //to be used in change interface
+	private Scene activeScene;
 
 	public void initialize() {
 		airportList = new ArrayList<>();
@@ -105,6 +109,17 @@ public class AddAirport {
 			}
 			
 		});
+		activeScene.setOnKeyReleased(new EventHandler<KeyEvent>() {
+
+			@Override
+			public void handle(KeyEvent keyEvent) {
+				if(keyEvent.getCode() == KeyCode.ESCAPE) {
+					airportView.getSelectionModel().clearSelection();
+
+				}
+				
+			}
+		});
 	}
 
 	public void properties() {
@@ -112,13 +127,14 @@ public class AddAirport {
 		stage.setScene(new Scene(mainPane, 300, 450));
 		stage.setTitle("Create Airport");
 		stage.show();
+		activeScene = stage.getScene(); //used for getting escape key press
 	}
 
 	public AddAirport() {
 		initialize();
 		content();
+		properties(); //I have to swap properties and action event, otherwise activeScene wont exist when trying to add key event
 		actionEvents();
-		properties();
 	}
 	private Airport findAirport(String sAirport) {
 		//For searching database of airports for airport by string
