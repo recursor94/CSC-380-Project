@@ -56,13 +56,7 @@ public class UserWindow {
 	
 	private void actionEvents() {
 		createButton.setOnAction(event -> {
-			//if (!userField.getText().isEmpty() && !passField.getText().isEmpty()) {
-				verifyInput(userField.getText(), passField.getText());
-				//loadFile();
-		//	}
-			
-			//else
-				//MessageBox.message(AlertType.ERROR, "ERROR: You must enter a user name and password", "Please enter a user name and password");
+			verifyInput(userField.getText(), passField.getText());
 		});
 		removeButton.setOnAction(event -> {
 			if(userList.getSelectionModel().getSelectedItem() != null) {

@@ -4,8 +4,6 @@ import apz.airplane.User;
 import apz.airplane.util.MessageBox;
 import apz.airplane.util.State;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -13,8 +11,6 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 public class RegisterWindow {
 
@@ -57,8 +53,7 @@ public class RegisterWindow {
 	public void actionEvents() {
 		//I made a static method in a new class called VerifyUserInput that I may use here. I am using it in the admin UserManagement class
 		registerButton.setOnAction((event) -> {
-			
-		verifyInput();
+			verifyInput();
 		});
 	}
 	
