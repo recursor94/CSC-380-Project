@@ -58,6 +58,11 @@ public class RegisterWindow {
 		//I made a static method in a new class called VerifyUserInput that I may use here. I am using it in the admin UserManagement class
 		registerButton.setOnAction((event) -> {
 			
+		verifyInput();
+		});
+	}
+	
+	private void verifyInput() {
 		//Checks if a user name exists already 
 		if (APZLauncher.getUserController().userExists(userField.getText())) {
 			System.out.println("The username you chose already exists");
@@ -78,9 +83,9 @@ public class RegisterWindow {
 					MessageBox.message(AlertType.ERROR, "Invalid Password", "Your password cannot contain the empty space character");
 				}
 				// IF WE WANT A PASSWORD TO BE A CERTAIN LENGTH, WE CAN ADD THIS ELSE IF IN
-//				else if (passField.getText().length() < 8) {
-//					MessageBox.message(AlertType.ERROR, "Invalid Password", "Your password must be at least 8 characters long");
-//				}
+//						else if (passField.getText().length() < 8) {
+//							MessageBox.message(AlertType.ERROR, "Invalid Password", "Your password must be at least 8 characters long");
+//						}
 				//Create a user if there are not errors in the input
 				else {
 					User user = new User (userField.getText(), passField.getText());
@@ -98,6 +103,5 @@ public class RegisterWindow {
 				MessageBox.message(AlertType.ERROR, "ERROR: You must enter a user name and password", "Please enter a user name and password");
 			}
 		}
-		});
 	}
 }

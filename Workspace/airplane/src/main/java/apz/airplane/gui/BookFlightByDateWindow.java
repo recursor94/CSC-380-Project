@@ -20,21 +20,34 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-public class BookFlightWindow {
+public class BookFlightByDateWindow {
 	private VBox mainPane = new VBox(10);
 	private ListView<Flight> flights = new ListView <>();
 	private ArrayList <Flight> flightList = new ArrayList<>();
 	private DatePicker calendar;
+	private Button findFlightButton, bookFlightButton;
 	
 	
-	public BookFlightWindow() {
-		Button findFlightButton = new Button("Find Flights");
-		Button bookFlightButton = new Button("Book Flight");
+	public BookFlightByDateWindow() {
+		initialize();
+		content();
+		actionEvents();
+	}
+	
+	private void initialize() {
+		findFlightButton = new Button("Find Flights");
+		bookFlightButton = new Button("Book Flight");
 	    calendar = new DatePicker();
 	    calendar.setEditable(false);
+	}
+	
+	private void content() {
 		mainPane.getChildren().addAll(new Label("Select a flight date"), calendar, findFlightButton, 
 				new Label("List of flights on selected date"), flights, bookFlightButton);
-
+		APZLauncher.getBorderPane().setCenter(mainPane);
+	}
+	
+	private void actionEvents() {
 		findFlightButton.setOnAction(event -> {
 			if (calendar.getValue() != null) {
 				flightList = findFlights(calendar.getValue());
@@ -44,7 +57,7 @@ public class BookFlightWindow {
 				for (int i = 0; i < flightList.size(); i++)
 					flights.getItems().add(flightList.get(i));
 				
-				if (flights.getItems().isEmpty() ) {
+				if (flights.getItems().isEmpty()) {
 					MessageBox.message(AlertType.INFORMATION, "No Flights Found", "There are no flights scheduled for " + calendar.getValue());
 				}
 			}
@@ -52,6 +65,7 @@ public class BookFlightWindow {
 				MessageBox.message(AlertType.ERROR, "ERROR", "You must select a date");
 			}
 		});
+		
 		bookFlightButton.setOnAction(event -> {
 			if (!flights.getSelectionModel().isEmpty()) {
 				User user = APZLauncher.getCurrentUser();
@@ -61,15 +75,12 @@ public class BookFlightWindow {
 				System.out.println(user.getTripList());
 			}
 			else {
-				MessageBox.message(AlertType.INFORMATION, "No Data Entered", "You must select a flight to book");
-}
+				MessageBox.message(AlertType.INFORMATION, "No Flight Selected", "You must select a flight to book");
+			}
 		});
-		
-		APZLauncher.getBorderPane().setCenter(mainPane);
 	}
 
-
-	public ArrayList<Flight> findFlights(LocalDate departure) {
+	private ArrayList<Flight> findFlights(LocalDate departure) {
 		
 		ArrayList<Flight> searchFlights = AdminState.loadFlights();
 		ArrayList<Flight> flightsFound = new ArrayList<>();

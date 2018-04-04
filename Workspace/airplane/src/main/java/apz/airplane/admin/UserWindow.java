@@ -56,13 +56,13 @@ public class UserWindow {
 	
 	private void actionEvents() {
 		createButton.setOnAction(event -> {
-			if (!userField.getText().isEmpty() && !passField.getText().isEmpty()) {
+			//if (!userField.getText().isEmpty() && !passField.getText().isEmpty()) {
 				verifyInput(userField.getText(), passField.getText());
-				loadFile();
-			}
+				//loadFile();
+		//	}
 			
-			else
-				MessageBox.message(AlertType.ERROR, "ERROR: You must enter a user name and password", "Please enter a user name and password");
+			//else
+				//MessageBox.message(AlertType.ERROR, "ERROR: You must enter a user name and password", "Please enter a user name and password");
 		});
 		removeButton.setOnAction(event -> {
 			if(userList.getSelectionModel().getSelectedItem() != null) {
@@ -93,6 +93,7 @@ public class UserWindow {
 					System.out.println("User successfully created!");
 					MessageBox.message(AlertType.INFORMATION, "Successful User Creation", "Your account has been created!");
 					System.out.println(uc);
+					loadFile();
 				}	
 			}
 			else {

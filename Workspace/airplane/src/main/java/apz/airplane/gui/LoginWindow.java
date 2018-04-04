@@ -70,7 +70,6 @@ public class LoginWindow {
 	}
 	
 	public void actionEvents() {
-		//APZLauncher.getUserController().addUser(new User("asd", "asd"));
 		
 		loginButton.setOnAction((event) -> {
 			User user = APZLauncher.getUserController().login(userField.getText(), passField.getText());
@@ -83,7 +82,7 @@ public class LoginWindow {
 				APZLauncher.setCurrentUser(user);
 				new APZMenuBar();					// on logout it will remove menubar
 				//new CancelFlightWindow();
-				new BookFlightWindow();
+				new BookFlightByDestinationWindow();
 			} 
 			else {
 				status.setText("Incorrect user or password combination!");

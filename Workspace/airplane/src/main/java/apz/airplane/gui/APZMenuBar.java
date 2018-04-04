@@ -9,7 +9,7 @@ public class APZMenuBar {
 	
 	private MenuBar menuBar;
 	private Menu fileMenu, flightMenu, accountMenu;
-	private MenuItem exitItem;
+	private MenuItem exitItem, logoutItem;
 	private MenuItem bookFlightItem, viewFlightItem, scheduleFlightItem;
 	private MenuItem manageAccountItem, managePaymentItem, manageBookingItem;
 	
@@ -27,7 +27,7 @@ public class APZMenuBar {
 		accountMenu = new Menu("My Account");
 		
 		exitItem = new MenuItem("Exit");
-		
+		logoutItem = new MenuItem("Logout");
 		bookFlightItem = new MenuItem("Book a trip");
 		viewFlightItem = new MenuItem("View my trips");
 		scheduleFlightItem = new MenuItem("Current Schedules");
@@ -40,7 +40,7 @@ public class APZMenuBar {
 	private void content() {
 		menuBar.getMenus().addAll(fileMenu, flightMenu, accountMenu);
 		
-		fileMenu.getItems().add(exitItem);
+		fileMenu.getItems().addAll(exitItem, logoutItem);
 		flightMenu.getItems().addAll(bookFlightItem, viewFlightItem, scheduleFlightItem);
 		accountMenu.getItems().addAll(manageAccountItem, managePaymentItem, manageBookingItem);
 		
@@ -50,6 +50,11 @@ public class APZMenuBar {
 	private void actionEvents() {
 		exitItem.setOnAction(event -> {
 			Platform.exit();
+		});
+		
+		logoutItem.setOnAction(event -> {
+			new LoginWindow();
+			APZLauncher.getBorderPane().setTop(null);
 		});
 	}
 
