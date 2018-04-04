@@ -56,6 +56,10 @@ public class APZMenuBar {
 			new LoginWindow();
 			APZLauncher.getBorderPane().setTop(null);
 		});
+		
+		manageBookingItem.setOnAction(event -> {
+			new CancelFlightWindow();
+		});
 	}
 
 }
