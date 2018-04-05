@@ -81,23 +81,37 @@ public class FlightWindow {
 					&& !arriveTimeBox.getSelectionModel().isEmpty() && !arriveAirportBox.getSelectionModel().isEmpty()
 					&& !departAirportBox.getSelectionModel().isEmpty() && departDatePicker != null
 					&& arriveDatePicker != null && !flightNumField.getText().isEmpty()) {
-				Airplane plane = planeBox.getSelectionModel().getSelectedItem();
-				Time departure = new Time(departTimeBox.getSelectionModel().getSelectedItem());
-				Time arrival = new Time(arriveTimeBox.getSelectionModel().getSelectedItem());
-				String outgoing = departAirportBox.getSelectionModel().getSelectedItem();
-				String incoming = arriveAirportBox.getSelectionModel().getSelectedItem();
-				String[] partitionOutgoing = outgoing.split(", "); // airport name and city will be seperated by a comma
-																	// and a space
-				String[] partitionIncoming = incoming.split(", ");
-				Airport outgoingAirport = new Airport(partitionOutgoing[0], partitionOutgoing[1]);
-				Airport incomingAirport = new Airport(partitionIncoming[0], partitionIncoming[1]);
-				LocalDate leaving = departDatePicker.getValue();
-				LocalDate arriving = arriveDatePicker.getValue();
-				int flightNum = Integer.valueOf(flightNumField.getText());
-				flightList.add(new Flight(plane, incomingAirport, outgoingAirport, arriving, leaving, arrival,
-						departure, flightNum));// TODO: FIX THIS. Use real airports
-				AdminState.saveFlight(flightList);
-				loadFlights();
+				
+				//Check to make sure the depart date is before (or the same as) the arrive date
+				if(departDatePicker.getValue().isAfter(arriveDatePicker.getValue())) {
+					MessageBox.message(AlertType.ERROR, "Invalid Data Entry", "Your departure date can not be after your arrival date");
+				}
+				else {
+					Airplane plane = planeBox.getSelectionModel().getSelectedItem();
+					Time departure = new Time(departTimeBox.getSelectionModel().getSelectedItem());
+					Time arrival = new Time(arriveTimeBox.getSelectionModel().getSelectedItem());
+					String outgoing = departAirportBox.getSelectionModel().getSelectedItem();
+					String incoming = arriveAirportBox.getSelectionModel().getSelectedItem();
+					String[] partitionOutgoing = outgoing.split(", "); // airport name and city will be seperated by a comma
+																		// and a space
+					String[] partitionIncoming = incoming.split(", ");
+					Airport outgoingAirport = new Airport(partitionOutgoing[0], partitionOutgoing[1]);
+					Airport incomingAirport = new Airport(partitionIncoming[0], partitionIncoming[1]);
+					LocalDate leaving = departDatePicker.getValue();
+					LocalDate arriving = arriveDatePicker.getValue();
+					int flightNum = Integer.valueOf(flightNumField.getText());
+					
+					//If the dates are the same, check to see if the depart time is before the arrive time
+					if((departure.getTimeDouble() > arrival.getTimeDouble()) && leaving.equals(arriving)) {
+						MessageBox.message(AlertType.ERROR, "Invalid Data Entry", "Your departure time must be before your arrival time");
+					}
+					else {
+						flightList.add(new Flight(plane, outgoingAirport, incomingAirport, arriving, leaving, arrival,
+								departure, flightNum));// TODO: FIX THIS. Use real airports
+						AdminState.saveFlight(flightList);
+						loadFlights();
+					}
+				}
 			} else {
 				MessageBox.message(AlertType.ERROR, "Invalid Data Entry", "You must enter data into all fields");
 			}
