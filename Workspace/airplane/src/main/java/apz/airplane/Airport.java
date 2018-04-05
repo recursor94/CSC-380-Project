@@ -22,7 +22,6 @@ public class Airport implements Serializable{
 	}
 
 	public String getCity() {
-		return city;
 	}
 
 	public void setCity(String city) {
