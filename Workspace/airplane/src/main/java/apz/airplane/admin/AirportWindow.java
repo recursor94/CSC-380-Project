@@ -21,6 +21,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class AirportWindow {
@@ -50,7 +51,7 @@ public class AirportWindow {
 
 	public void content() {
 		buttonBox.getChildren().addAll(createButton, removeButton, viewButton);
-		mainPane.getChildren().addAll(new Label("Airport Name"), new Label("Name"), airportNameField, new Label("City"), airportCityField, buttonBox, airportView);
+		mainPane.getChildren().addAll(new Label("Airport Name"), airportNameField, new Label("City"), airportCityField, buttonBox, airportView);
 	}
 
 	public void actionEvents() {
@@ -128,6 +129,7 @@ public class AirportWindow {
 
 	public void properties() {
 		Stage stage = new Stage();
+		stage.initModality(Modality.APPLICATION_MODAL);
 		stage.setScene(new Scene(mainPane, 300, 450));
 		stage.setTitle("Create Airport");
 		stage.show();

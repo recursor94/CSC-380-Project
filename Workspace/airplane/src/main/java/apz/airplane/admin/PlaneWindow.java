@@ -15,6 +15,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class PlaneWindow {
@@ -76,7 +77,9 @@ public class PlaneWindow {
 
 	private void properties() {
 		Stage stage = new Stage();
-		stage.setScene(new Scene(mainPane, 200, 500));
+		stage.initModality(Modality.APPLICATION_MODAL);
+		stage.setTitle("Create Planes");
+		stage.setScene(new Scene(mainPane, 300, 500));
 		stage.show();
 	}
 

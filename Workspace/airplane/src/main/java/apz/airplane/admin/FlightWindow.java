@@ -16,12 +16,14 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class FlightWindow {
 	private VBox mainPane;
+	private HBox planeSelectPane, flightNumPane, airportLblPane, airportBoxPane, timeLblPane, timeBoxPane, dateLblPane, datePickPane; 
 	private ArrayList<Flight> flightList;
 	private ListView<Flight> flightView;
 	private TextField flightNumField;
@@ -40,6 +42,14 @@ public class FlightWindow {
 	
 	private void initialize() {
 		mainPane = new VBox(10);
+		planeSelectPane = new HBox(10);
+		flightNumPane = new HBox(10);
+		airportLblPane = new HBox(60);
+		airportBoxPane = new HBox(10);
+		timeLblPane = new HBox(20);
+		timeBoxPane = new HBox(10);
+		dateLblPane = new HBox(130);
+		datePickPane = new HBox(10);
 		flightList = new ArrayList<>();
 		flightView = new ListView<>();
 		flightNumField = new TextField();
@@ -63,12 +73,21 @@ public class FlightWindow {
 	private void content() {
 		arriveDatePicker.setEditable(false);
 		departDatePicker.setEditable(false);
-
-		mainPane.getChildren().addAll(new Label("Plane Selection"), planeBox, new Label("Flight Number"),
-				flightNumField, new Label("Departure Airport"), departAirportBox, new Label("Arrival Airport"),
-				arriveAirportBox, createAirportButton, new Label("Departure Time"), departTimeBox, new Label("Arrival Time"), arriveTimeBox,
-				new Label("Departure Date"), departDatePicker, new Label("Arrival Date"),
-				arriveDatePicker, createFlightButton, flightView, removeFlightButton);
+		planeSelectPane.getChildren().addAll(new Label("Plane Selection"), planeBox);
+		flightNumPane.getChildren().addAll(new Label("Flight Number"),flightNumField);
+		airportLblPane.getChildren().addAll(new Label("Departure Airport"), new Label("Arrival Airport"));
+		airportBoxPane.getChildren().addAll(departAirportBox, arriveAirportBox, createAirportButton);
+		timeLblPane.getChildren().addAll(new Label("Departure Time"), new Label("Arrival Time"));
+		timeBoxPane.getChildren().addAll(departTimeBox, arriveTimeBox);
+		dateLblPane.getChildren().addAll(new Label("Departure Date"), new Label("Arrival Date"));
+		datePickPane.getChildren().addAll(departDatePicker, arriveDatePicker, createFlightButton);
+		mainPane.getChildren().addAll(planeSelectPane, flightNumPane, airportLblPane, airportBoxPane, timeLblPane,
+				timeBoxPane, dateLblPane, datePickPane,flightView, removeFlightButton);
+//		mainPane.getChildren().addAll(new Label("Plane Selection"), planeBox, new Label("Flight Number"),
+//				flightNumField, new Label("Departure Airport"), departAirportBox, new Label("Arrival Airport"),
+//				arriveAirportBox, createAirportButton, new Label("Departure Time"), departTimeBox, new Label("Arrival Time"), arriveTimeBox,
+//				new Label("Departure Date"), departDatePicker, new Label("Arrival Date"),
+//				arriveDatePicker, createFlightButton, flightView, removeFlightButton);
 	}
 
 	private void actionEvents() {
@@ -128,8 +147,9 @@ public class FlightWindow {
 	private void properties(Stage mainStage) {
 		Stage stage = new Stage();
 		stage.initOwner(mainStage);
+		stage.setTitle("Create Flights");
 		stage.initModality(Modality.APPLICATION_MODAL);
-		stage.setScene(new Scene(mainPane, 500, 800));
+		stage.setScene(new Scene(mainPane, 600, 800));
 		stage.show();
 	}
 

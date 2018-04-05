@@ -50,6 +50,7 @@ public class UserWindow {
 	
 	private void properties() {
 		Stage stage = new Stage();
+		stage.setTitle("Create Users");
 		stage.setScene(new Scene(mainPane, 350, 500));
 		stage.show();
 	}
