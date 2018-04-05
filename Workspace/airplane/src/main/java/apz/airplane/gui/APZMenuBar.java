@@ -60,6 +60,10 @@ public class APZMenuBar {
 		manageBookingItem.setOnAction(event -> {
 			new CancelFlightWindow();
 		});
+		
+		bookFlightItem.setOnAction(event -> {
+			new BookFlightByDateWindow();
+		});
 	}
 
 }

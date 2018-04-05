@@ -11,6 +11,7 @@ import apz.airplane.Time;
 import apz.airplane.User;
 import apz.airplane.gui.test.DisplayDriver;
 import apz.airplane.util.MessageBox;
+import apz.airplane.util.State;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
@@ -69,11 +70,11 @@ public class CancelFlightWindow {
 					user.removeTrip(foundBooking.getFlight());
 					ObservableList<Booking> asd = FXCollections.observableArrayList(user.getTripList());
 					list.setItems(asd);
+					State.saveInformation(APZLauncher.getUserController());
 
 				} else {
 					System.out.println(":(");
 				}
-
 			}
 
 		});
