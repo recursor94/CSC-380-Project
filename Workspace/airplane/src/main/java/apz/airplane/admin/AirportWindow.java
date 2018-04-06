@@ -55,9 +55,9 @@ public class AirportWindow {
 	}
 
 	public void actionEvents() {
-		
+
 		createButton.setOnAction(event -> {
-			
+
 			if (airportNameField.getText().isEmpty() && airportCityField.getText().isEmpty() || airportNameField.getText().isEmpty() || airportCityField.getText().isEmpty())
 				MessageBox.message(AlertType.ERROR, "No Data Entered", "You must enter an aiport name");
 			else if(selectedAirport != null) {
@@ -83,23 +83,28 @@ public class AirportWindow {
 		});
 
 		removeButton.setOnAction(event -> {
-			String sAirport = airportView.getSelectionModel().getSelectedItem();
-			Airport airport = findAirport(sAirport);
-				if (findAirport(sAirport) != null) {
-					airportList.remove(airport);
-				}
-			AdminState.saveAirports(airportList);
-			FlightWindow.populateComboBoxes();	// NEED TO CHANGE BUT THIS UPDATES COMBOBOX. NEED TO HAVE STATIC BOXES WITH THESE DATA INSIDE?
-			loadFile();
+			if (airportView.getSelectionModel().getSelectedItem() != null) {
+				String sAirport = airportView.getSelectionModel().getSelectedItem();
+				Airport airport = findAirport(sAirport);
+					if (findAirport(sAirport) != null) {
+						airportList.remove(airport);
+					}
+				AdminState.saveAirports(airportList);
+				FlightWindow.populateComboBoxes();	// NEED TO CHANGE BUT THIS UPDATES COMBOBOX. NEED TO HAVE STATIC BOXES WITH THESE DATA INSIDE?
+				loadFile();
+			}
+			else {
+				MessageBox.message(AlertType.ERROR, "ERROR: No Airport Selected", "You must select an airport to remove");
+			}
 		});
 		airportView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
 
 			@Override
 			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
 				System.out.println("Selected airport " + newValue);
-				
+
 				selectedAirport = findAirport(newValue);
-				
+
 				//if an airport is selected, change interface buttons and field labels to the change interface
 				if(selectedAirport != null) {
 					createButton.setText("Change Airport");
@@ -112,7 +117,7 @@ public class AirportWindow {
 					airportCityField.setText("");
 				}
 			}
-			
+
 		});
 		activeScene.setOnKeyReleased(new EventHandler<KeyEvent>() {
 
@@ -122,7 +127,7 @@ public class AirportWindow {
 					airportView.getSelectionModel().clearSelection();
 
 				}
-				
+
 			}
 		});
 	}
@@ -160,5 +165,5 @@ public class AirportWindow {
 		for (int i = 0; i < airportList.size(); i++)
 			airportView.getItems().add(airportList.get(i).toString());
 	}
-	
+
 }

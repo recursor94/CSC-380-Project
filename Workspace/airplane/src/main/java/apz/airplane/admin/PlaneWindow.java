@@ -26,7 +26,7 @@ public class PlaneWindow {
 	private TextField planeField, airlineField;
 	private ComboBox<Integer> seatField;
 	private Button createButton, removeButton;
-	
+
 	public PlaneWindow() {
 		initialize();
 		content();
@@ -47,14 +47,14 @@ public class PlaneWindow {
 		for (int i = 1; i <= 200; i++)
 			seatField.getItems().add(i);
 		seatField.setValue(1);
-		
+
 		mainPane.getChildren().addAll(new Label("Plane Number"), planeField, new Label("Airline Name"), airlineField,
 				new Label("Seat Capacity"), seatField, createButton, listOfPlanes, removeButton);
 	}
-	
+
 	private void actionEvents() {
 		createButton.setOnAction(event -> {
-			
+
 			if (planeField.getText().isEmpty() && airlineField.getText().isEmpty() || planeField.getText().isEmpty() || airlineField.getText().isEmpty())
 				MessageBox.message(AlertType.ERROR, "Invalid Data", "You must enter all of the necessary data");
 			else {
@@ -64,14 +64,19 @@ public class PlaneWindow {
 				loadFile();
 				System.out.println(planeList);
 			}
-			
+
 		});
-		
+
 		removeButton.setOnAction(event -> {
-			Airplane plane = listOfPlanes.getSelectionModel().getSelectedItem();
-			planeList.remove(plane);
-			AdminState.savePlane(planeList);
-			loadFile();
+			if (listOfPlanes.getSelectionModel().getSelectedItem() != null) {
+				Airplane plane = listOfPlanes.getSelectionModel().getSelectedItem();
+				planeList.remove(plane);
+				AdminState.savePlane(planeList);
+				loadFile();
+			}
+			else {
+				MessageBox.message(AlertType.ERROR, "ERROR: No Plane Selected", "You must select a plane to remove");
+			}
 		});
 	}
 
