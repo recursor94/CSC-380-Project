@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>9</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>126</x>
+      <y>27</y>
+      <w>189</w>
+      <h>171</h>
+    </coordinates>
+    <panel_attributes>UserController
+--
+-serialVersionUID: long
+-userList: ArrayList&lt;User&gt;
+--
++UserController()
++addUser(User): void
++removeUser(String): boolean
++findUser(String): User
++userExists(String): boolean
++login(String, String): User
++getUserList(): ArrayList&lt;User&gt;
++toString(): String
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>351</x>
+      <y>27</y>
+      <w>234</w>
+      <h>270</h>
+    </coordinates>
+    <panel_attributes>User
+--
+-serialVersionUID: long
+-username: String
+-password: String
+-tripList: ArayList&lt;Booking&gt;
+--
++User(String, String)
++getUsername(): String
++setUsername(String): void
++getPassword(): String
++setPassword(String): void
+-generatePasswordHash(String): String
++validatePassword(String): boolean
++addTrip(Booking): void
++removeTrip(Flight): boolean
++findTrip(Flight): Booking
++getTripList(): ArrayList&lt;Booking&gt;
++toString(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>306</x>
+      <y>126</y>
+      <w>63</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;50.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>630</x>
+      <y>738</y>
+      <w>189</w>
+      <h>171</h>
+    </coordinates>
+    <panel_attributes>Time
+--
+-serialVersionUID: long
+-timeDouble: double
+-timeString: String
+--
++Time(String) &lt;br/&gt;
++setTimeDouble(String): void &lt;br/&gt;
++getTimeDouble(): double &lt;br/&gt;
++setTimeString(String): void &lt;br/&gt;
++getTimeString(): String &lt;br/&gt;
+-parseTime(String): double 
++toString(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>162</x>
+      <y>387</y>
+      <w>189</w>
+      <h>198</h>
+    </coordinates>
+    <panel_attributes>Seating
+--
+-serialVersionUID: long
+-seating: User [ ]
+--
++Seating(int)
++addTo(User): void
++remove(User): void
++isOnBoard(User): boolean
++getSeatName(User): String
++setSeatNaming(int): String
++isFull(): boolean
++getCapacity(): int
++toString(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>612</x>
+      <y>243</y>
+      <w>225</w>
+      <h>459</h>
+    </coordinates>
+    <panel_attributes>Flight
+--
+-serialVersionUID: long
+-plane: Airplane
+-departureAirport: Airport
+-destinationAirport: Airport
+-arriveDate: LocalDate
+-departureDate: LocalDate
+-arrivalTime: Time
+-departureTime: Time
+flightNum: int
+--
++Flight(Airplane, Airport, 
+Airport, LocalDate,
+LocalDate, Time, Time, int)
++getPlane(): Airplane
++setPlane(Airplane): void
++getDestinationAirport(): Airport
++setDestinationAirport(Airport): void
++getDepartureAirport(): Airport
++setDepartureAirport(Airport): void
++getArriveDate(): LocalDate
++setArriveDate(LocalDate): void
++getDepartureDate(): LocalDate
++setDepartureDate(LocalDate): void
++getArrivalTime(): Time
++setArrivalTime(Time): void
++getDepartureTime(): Time
++setDepartureTime(Time): void
++getFlightNum(): int
++setFlightNum(int): void
++toString(): String
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>621</x>
+      <y>27</y>
+      <w>198</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>Booking
+--
+-serialVersionUID: long
+-flight: Flight
+-bookDate: LocalDate
+-plane: Airplane
+--
++Booking(Flight, LocalDate, User)
++getFlight(): Flight
++setFlight(Flight): void
++getBookDate(): LocalDate
++setBookDate(LocalDate): void
++toString(): String
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>387</x>
+      <y>621</y>
+      <w>189</w>
+      <h>171</h>
+    </coordinates>
+    <panel_attributes>Airport
+--
+-serialVersionUID: long
+-name: String
+-city: String
+--
++Airport(String, String)
++getName(): String
++setName(String): void
++getCity(): String
++setCity(String): void
++toString(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>387</x>
+      <y>387</y>
+      <w>189</w>
+      <h>207</h>
+    </coordinates>
+    <panel_attributes>Airplane
+--
+-serialVersionUID: long
+-planeNume: int
+-airline: String
+-seats: Seating
+--
++Airplane(int, String, int)
++getPlaneNum(): int
++setPlaneNum(int): void
++getAirline(): String
++setAirline(String): void
++getSeats(): Seating
++setSeats(Seating): void
++toString(): String
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>576</x>
+      <y>126</y>
+      <w>63</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;50.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>117</x>
+      <y>621</y>
+      <w>234</w>
+      <h>252</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Enumeration&gt;&gt;
+Province
+--
+NY
+CA
+PA
+FL
+TX
++strNY: String
++strCA: String
++strPA: String
++strFL: String
++strTX: String
+--
++getCityName(String): Province
++getCityName(Province): String
++getRate(Province): double
++getProvinces(): ArrayList&lt;Province&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>711</x>
+      <y>693</y>
+      <w>27</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>567</x>
+      <y>639</y>
+      <w>63</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>50.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>342</x>
+      <y>684</y>
+      <w>63</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>50.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>567</x>
+      <y>468</y>
+      <w>63</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>50.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>342</x>
+      <y>468</y>
+      <w>63</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>50.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>693</x>
+      <y>198</y>
+      <w>27</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
+  </element>
+</diagram>
