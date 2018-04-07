@@ -4,8 +4,8 @@
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>30</x>
-      <y>20</y>
+      <x>50</x>
+      <y>70</y>
       <w>100</w>
       <h>30</h>
     </coordinates>
@@ -15,8 +15,8 @@
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>220</x>
-      <y>20</y>
+      <x>240</x>
+      <y>70</y>
       <w>100</w>
       <h>30</h>
     </coordinates>
@@ -26,19 +26,19 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>70</x>
-      <y>40</y>
+      <x>90</x>
+      <y>90</y>
       <w>30</w>
-      <h>150</h>
+      <h>210</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;130.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;190.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>260</x>
-      <y>40</y>
+      <x>280</x>
+      <y>90</y>
       <w>30</w>
       <h>90</h>
     </coordinates>
@@ -48,8 +48,8 @@
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>260</x>
-      <y>110</y>
+      <x>280</x>
+      <y>160</y>
       <w>20</w>
       <h>60</h>
     </coordinates>
@@ -59,8 +59,8 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>70</x>
-      <y>100</y>
+      <x>90</x>
+      <y>150</y>
       <w>210</w>
       <h>40</h>
     </coordinates>
@@ -71,13 +71,81 @@ getSeats()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>70</x>
-      <y>140</y>
+      <x>90</x>
+      <y>190</y>
       <w>210</w>
       <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 return seats: Seating</panel_attributes>
     <additional_attributes>10.0;20.0;190.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1720</x>
+      <y>70</y>
+      <w>100</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>SimpleClass</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>360</x>
+      <y>70</y>
+      <w>100</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>: Airline</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>400</x>
+      <y>230</y>
+      <w>20</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>400</x>
+      <y>90</y>
+      <w>30</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;140.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>90</x>
+      <y>230</y>
+      <w>330</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;
+getAirline()</panel_attributes>
+    <additional_attributes>10.0;20.0;310.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>90</x>
+      <y>260</y>
+      <w>330</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+return airline: Airline</panel_attributes>
+    <additional_attributes>10.0;20.0;310.0;20.0</additional_attributes>
   </element>
 </diagram>
