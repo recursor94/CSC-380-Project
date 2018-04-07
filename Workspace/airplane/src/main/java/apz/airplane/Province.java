@@ -1,20 +1,42 @@
 package apz.airplane;
 
+import java.util.ArrayList;
+
 public enum Province {
 	
 	NY, CA, PA, FL, TX;
 	
+	static String strNY = "New York";
+	static String strPA = "Pennsylvania";
+	static String strFL = "Florida";
+	static String strCA = "California";
+	static String strTX = "Texas";
+	
+	public static Province getCityName(String city) {
+		if (city.equals(strNY)) 
+			return NY;
+		else if (city.equals(strPA))
+			return PA;
+		else if (city.equals(strFL))
+			return FL;
+		else if (city.equals(strCA))
+			return CA;
+		else if (city.equals(strTX))
+			return TX;
+		return null;
+	}
+	
 	public static String getCityName(Province city) {
 		if (city == NY) 
-			return "New York";
+			return strNY;
 		else if (city == PA)
-			return "Pennsylvania";
+			return strPA;
 		else if (city == FL)
-			return "Florida";
+			return strFL;
 		else if (city == CA)
-			return "California";
+			return strCA;
 		else if (city == TX)
-			return "Texas";
+			return strTX;
 		return null;
 	}
 	
@@ -30,6 +52,16 @@ public enum Province {
 		else if (city == TX)
 			return 75;
 		return 0;
+	}
+	
+	public static ArrayList<Province> getProvinces() {
+		ArrayList<Province> pList = new ArrayList<>();
+		pList.add(NY);
+		pList.add(CA);
+		pList.add(PA);
+		pList.add(FL);
+		pList.add(TX);
+		return pList;
 	}
 
 }
