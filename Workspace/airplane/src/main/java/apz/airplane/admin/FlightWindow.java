@@ -29,8 +29,7 @@ public class FlightWindow {
 	private TextField flightNumField;
 	private DatePicker departDatePicker, arriveDatePicker;
 	private static ComboBox<Airplane> planeBox;
-	private static ComboBox<String> departAirportBox, arriveAirportBox;
-	private static ComboBox<String> arriveTimeBox, departTimeBox;
+	private static ComboBox<String> departAirportBox, arriveAirportBox, arriveTimeBox, departTimeBox;
 	private Button createFlightButton, createAirportButton, removeFlightButton;
 
 	public FlightWindow(Stage mainStage) {
@@ -63,14 +62,14 @@ public class FlightWindow {
 		createFlightButton = new Button("Create Flight");
 		createAirportButton = new Button("Create Airport");
 		removeFlightButton = new Button("Remove Flight");
+	}
 
+	private void content() {
 		addTimeToBox();
 		loadPlanes();
 		loadFlights();
 		populateComboBoxes();
-	}
-
-	private void content() {
+		
 		arriveDatePicker.setEditable(false);
 		departDatePicker.setEditable(false);
 		planeSelectPane.getChildren().addAll(new Label("Plane Selection"), planeBox);
@@ -83,11 +82,6 @@ public class FlightWindow {
 		datePickPane.getChildren().addAll(departDatePicker, arriveDatePicker, createFlightButton);
 		mainPane.getChildren().addAll(planeSelectPane, flightNumPane, airportLblPane, airportBoxPane, timeLblPane,
 				timeBoxPane, dateLblPane, datePickPane,flightView, removeFlightButton);
-//		mainPane.getChildren().addAll(new Label("Plane Selection"), planeBox, new Label("Flight Number"),
-//				flightNumField, new Label("Departure Airport"), departAirportBox, new Label("Arrival Airport"),
-//				arriveAirportBox, createAirportButton, new Label("Departure Time"), departTimeBox, new Label("Arrival Time"), arriveTimeBox,
-//				new Label("Departure Date"), departDatePicker, new Label("Arrival Date"),
-//				arriveDatePicker, createFlightButton, flightView, removeFlightButton);
 	}
 
 	private void actionEvents() {
@@ -96,23 +90,26 @@ public class FlightWindow {
 		});
 
 		createFlightButton.setOnAction(event -> {
+			
+			// Put message box first then have all others. Always == and !=
+			// CHECK IF SAME AIRPORT OTHERWISE REJECT
 			if (!planeBox.getSelectionModel().isEmpty() && !departTimeBox.getSelectionModel().isEmpty()
 					&& !arriveTimeBox.getSelectionModel().isEmpty() && !arriveAirportBox.getSelectionModel().isEmpty()
 					&& !departAirportBox.getSelectionModel().isEmpty() && departDatePicker != null
 					&& arriveDatePicker != null && !flightNumField.getText().isEmpty()) {
 				
 				//Check to make sure the depart date is before (or the same as) the arrive date
-				if(departDatePicker.getValue().isAfter(arriveDatePicker.getValue())) {
+				if(departDatePicker.getValue().isAfter(arriveDatePicker.getValue())) 
 					MessageBox.message(AlertType.ERROR, "Invalid Data Entry", "Your departure date can not be after your arrival date");
-				}
 				else {
 					Airplane plane = planeBox.getSelectionModel().getSelectedItem();
 					Time departure = new Time(departTimeBox.getSelectionModel().getSelectedItem());
 					Time arrival = new Time(arriveTimeBox.getSelectionModel().getSelectedItem());
+					
+					// Lets name outgoing and incoming self-explanatory variables
 					String outgoing = departAirportBox.getSelectionModel().getSelectedItem();
 					String incoming = arriveAirportBox.getSelectionModel().getSelectedItem();
-					String[] partitionOutgoing = outgoing.split(", "); // airport name and city will be seperated by a comma
-																		// and a space
+					String[] partitionOutgoing = outgoing.split(", ");
 					String[] partitionIncoming = incoming.split(", ");
 					Airport outgoingAirport = new Airport(partitionOutgoing[0], partitionOutgoing[1]);
 					Airport incomingAirport = new Airport(partitionIncoming[0], partitionIncoming[1]);
@@ -131,9 +128,8 @@ public class FlightWindow {
 						loadFlights();
 					}
 				}
-			} else {
+			} else 
 				MessageBox.message(AlertType.ERROR, "Invalid Data Entry", "You must enter data into all fields");
-			}
 		});
 
 		removeFlightButton.setOnAction(event -> {
@@ -166,10 +162,9 @@ public class FlightWindow {
 					timeType = "AM";
 				else
 					timeType = "PM";
-
 				num -= 12;
 			}
-
+			
 			arriveTimeBox.getItems().add(num + ":00 " + timeType);
 			departTimeBox.getItems().add(num + ":00 " + timeType);
 			arriveTimeBox.getItems().add(num + ":30 " + timeType);
@@ -189,7 +184,15 @@ public class FlightWindow {
 
 		departAirportBox.setValue("Select an Airport");
 		arriveAirportBox.setValue("Select an Airport");
-	}
+		
+		if (departAirportBox.getItems().size() < 2 || arriveAirportBox.getItems().size() < 2 || departAirportBox.getItems().size() < 2 && arriveAirportBox.getItems().size() < 2) {
+			departAirportBox.setDisable(true);
+			arriveAirportBox.setDisable(true);
+		} else {
+			departAirportBox.setDisable(false);
+			arriveAirportBox.setDisable(false);
+		}
+	} 
 
 	public void loadFlights() {
 		flightList = AdminState.loadFlights();
@@ -199,11 +202,10 @@ public class FlightWindow {
 			flightView.getItems().add(flightList.get(i));
 	}
 	
-	private void loadPlanes() { // DEFAULT TO GET VALUE WHEN OPEN PROGRAM
+	private void loadPlanes() {
 		ArrayList<Airplane> planeList = AdminState.loadPlanes();
-		for (int i = 0; i < planeList.size(); i++) {
+		for (int i = 0; i < planeList.size(); i++) 
 			planeBox.getItems().add(planeList.get(i));
-		}
 		if (!planeList.isEmpty())
 			planeBox.setValue(planeList.get(0));
 	}

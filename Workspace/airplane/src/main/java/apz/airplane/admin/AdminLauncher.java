@@ -19,7 +19,6 @@ public class AdminLauncher extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		
 		mainPane.getChildren().addAll(addPlaneButton, addFlightButton, userManageButton);
 		
 		addPlaneButton.setOnAction(event -> {
