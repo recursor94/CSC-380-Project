@@ -80,7 +80,7 @@ public class LoginWindow {
 				
 				MessageBox.message(AlertType.INFORMATION, "APZ Airplane Application", "Welcome " + userField.getText() + " to the APZ Application!");
 				APZLauncher.setCurrentUser(user);
-				new APZMenuBar();					// on logout it will remove menubar
+				new UtilMenuBar();					// on logout it will remove menubar
 				//new CancelFlightWindow();
 				new BookFlightByDestinationWindow();
 			} 

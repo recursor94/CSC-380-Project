@@ -5,7 +5,7 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 
-public class APZMenuBar {
+public class UtilMenuBar {
 	
 	private MenuBar menuBar;
 	private Menu fileMenu, flightMenu, accountMenu;
@@ -14,7 +14,7 @@ public class APZMenuBar {
 	private MenuItem manageAccountItem, managePaymentItem, manageBookingItem;
 	
 	
-	public APZMenuBar() {
+	public UtilMenuBar() {
 		//check if top already has menubar?
 			initialize();
 			content();
