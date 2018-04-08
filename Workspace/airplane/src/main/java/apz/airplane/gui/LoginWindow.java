@@ -77,9 +77,8 @@ public class LoginWindow {
 		
 		
 		rootPane.setOnKeyPressed(event -> {
-			if (event.getCode() == KeyCode.ENTER) {
+			if (event.getCode() == KeyCode.ENTER)
 				tryLogin();
-			}
 		});
 		
 		loginButton.setOnAction((event) -> {

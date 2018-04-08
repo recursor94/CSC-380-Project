@@ -262,7 +262,7 @@ TX
 +strFL: String
 +strTX: String
 --
-+getCityName(String): Province
++getCityEnum(String): Province
 +getCityName(Province): String
 +getRate(Province): double
 +getProvinces(): ArrayList&lt;Province&gt;</panel_attributes>

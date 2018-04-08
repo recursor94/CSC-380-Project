@@ -94,7 +94,6 @@ public class FlightWindow {
 		createFlightButton.setOnAction(event -> {
 			
 			// Put message box first then have all others. Always == and !=
-			// CHECK IF SAME AIRPORT OTHERWISE REJECT
 			if (!planeBox.getSelectionModel().isEmpty() && !departTimeBox.getSelectionModel().isEmpty()
 					&& !arriveTimeBox.getSelectionModel().isEmpty() && !arriveAirportBox.getSelectionModel().isEmpty()
 					&& !departAirportBox.getSelectionModel().isEmpty() && departDatePicker != null
@@ -103,6 +102,12 @@ public class FlightWindow {
 				//Check to make sure the depart date is before (or the same as) the arrive date
 				if(departDatePicker.getValue().isAfter(arriveDatePicker.getValue())) 
 					MessageBox.message(AlertType.ERROR, "Invalid Data Entry", "Your departure date can not be after your arrival date");
+				//Check to make sure you are not creating a flight in the past
+				else if(departDatePicker.getValue().isBefore(LocalDate.now()))
+					MessageBox.message(AlertType.ERROR, "Invalid Data Entry", "Your flight cannot depart on a date that has already past");
+				//Check to make sure the airports for departure and arrival are different
+				else if(departAirportBox.getSelectionModel().getSelectedItem().equals(arriveAirportBox.getSelectionModel().getSelectedItem()))
+						MessageBox.message(AlertType.ERROR, "Invalid Data Entry", "Your departure airport cannot be the same as your arrival airport");
 				else {
 					Airplane plane = planeBox.getSelectionModel().getSelectedItem();
 					Time departure = new Time(departTimeBox.getSelectionModel().getSelectedItem());
@@ -120,12 +125,12 @@ public class FlightWindow {
 					int flightNum = Integer.valueOf(flightNumField.getText());
 					
 					//If the dates are the same, check to see if the depart time is before the arrive time
-					if((departure.getTimeDouble() > arrival.getTimeDouble()) && leaving.equals(arriving)) {
-						MessageBox.message(AlertType.ERROR, "Invalid Data Entry", "Your departure time must be before your arrival time");
+					if((departure.getTimeDouble() >= arrival.getTimeDouble()) && leaving.equals(arriving)) {
+						MessageBox.message(AlertType.ERROR, "Invalid Data Entry", "Your arrival time must be after your departure time");
 					}
 					else {
 						flightList.add(new Flight(plane, outgoingAirport, incomingAirport, arriving, leaving, arrival,
-								departure, flightNum));// TODO: FIX THIS. Use real airports
+								departure, flightNum));
 						AdminState.saveFlight(flightList);
 						loadFlights();
 					}
