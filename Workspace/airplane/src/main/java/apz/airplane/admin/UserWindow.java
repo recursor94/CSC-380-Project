@@ -65,7 +65,8 @@ public class UserWindow {
 		VBox innerBox = new VBox(10);
 		innerBox.getChildren().addAll(new Label("User List"), userView, removeButton);
 		
-		mainPane.setDividerPositions(.5);
+		mainPane.setDividerPositions(.4);
+//		mainPane.setDisable(value);	disable divider movement find way
 		
 		mainPane.getItems().addAll(gridPane, innerBox);
 	}
@@ -73,7 +74,7 @@ public class UserWindow {
 	private void properties() {
 		Stage stage = new Stage();
 		stage.setTitle("Create Users");
-		stage.setScene(new Scene(mainPane, 550, 150));
+		stage.setScene(new Scene(mainPane, 650, 150));
 		stage.show();
 	}
 	

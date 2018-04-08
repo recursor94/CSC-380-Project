@@ -1,18 +1,15 @@
 package apz.airplane.gui;
 
-import java.time.LocalDate;
-
 import apz.airplane.User;
 import apz.airplane.util.MessageBox;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.input.KeyCode;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -32,12 +29,9 @@ public class LoginWindow {
 	
 	private VBox rootPane;
 	private HBox userBox, passBox, buttonBox;
-	private Stage primaryStage;
-	
 	private Text status;
 	
 	public LoginWindow() {
-		primaryStage = APZLauncher.getStage();
 		initialize();
 		content();
 		actionEvents();
@@ -99,7 +93,7 @@ public class LoginWindow {
 			
 			MessageBox.message(AlertType.INFORMATION, "APZ Airplane Application", "Welcome " + userField.getText() + " to the APZ Application!");
 			APZLauncher.setCurrentUser(user);
-			new UtilMenuBar();					// on logout it will remove menubar
+			new UtilMenuBar();
 			new BookFlightByDestinationWindow();
 		} 
 		else {

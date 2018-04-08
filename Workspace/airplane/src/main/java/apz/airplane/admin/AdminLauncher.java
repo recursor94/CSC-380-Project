@@ -33,7 +33,7 @@ public class AdminLauncher extends Application {
 			new UserWindow();
 		});
 		
-		primaryStage.setScene(new Scene(mainPane, 500, 500));
+		primaryStage.setScene(new Scene(mainPane, 250, 250));
 		primaryStage.setTitle("Admin Debug Window");
 		primaryStage.show();
 	}
