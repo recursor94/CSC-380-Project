@@ -92,15 +92,28 @@ return seats: Seating</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
-    <id>UMLGeneric</id>
+    <id>Relation</id>
     <coordinates>
-      <x>360</x>
-      <y>70</y>
-      <w>100</w>
-      <h>30</h>
+      <x>90</x>
+      <y>260</y>
+      <w>330</w>
+      <h>40</h>
     </coordinates>
-    <panel_attributes>: Airline</panel_attributes>
-    <additional_attributes/>
+    <panel_attributes>lt=&lt;-
+return airline: Airline</panel_attributes>
+    <additional_attributes>10.0;20.0;310.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>90</x>
+      <y>230</y>
+      <w>330</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;
+getAirline()</panel_attributes>
+    <additional_attributes>10.0;20.0;310.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
@@ -125,27 +138,14 @@ return seats: Seating</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;140.0</additional_attributes>
   </element>
   <element>
-    <id>Relation</id>
+    <id>UMLGeneric</id>
     <coordinates>
-      <x>90</x>
-      <y>230</y>
-      <w>330</w>
-      <h>40</h>
+      <x>360</x>
+      <y>70</y>
+      <w>100</w>
+      <h>30</h>
     </coordinates>
-    <panel_attributes>lt=-&gt;&gt;
-getAirline()</panel_attributes>
-    <additional_attributes>10.0;20.0;310.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>90</x>
-      <y>260</y>
-      <w>330</w>
-      <h>40</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-
-return airline: Airline</panel_attributes>
-    <additional_attributes>10.0;20.0;310.0;20.0</additional_attributes>
+    <panel_attributes>: Airline</panel_attributes>
+    <additional_attributes/>
   </element>
 </diagram>
