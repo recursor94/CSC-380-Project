@@ -12,7 +12,7 @@ public enum Province {
 	static String strCA = "California";
 	static String strTX = "Texas";
 	
-	public static Province getCityName(String city) {
+	public static Province getCityEnum(String city) {
 		if (city.equals(strNY)) 
 			return NY;
 		else if (city.equals(strPA))
