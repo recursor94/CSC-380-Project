@@ -1,8 +1,5 @@
 package apz.airplane.admin;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.util.ArrayList;
 
 import apz.airplane.Airplane;
@@ -21,9 +18,9 @@ import javafx.stage.Stage;
 public class PlaneWindow {
 
 	private VBox mainPane = new VBox(10);
-	private ArrayList<Airplane> planeList = new ArrayList<>();
-	private ListView<Airplane> listOfPlanes = new ListView<>();
-	private TextField planeField, airlineField;
+	private ArrayList<Airplane> planeList;
+	private ListView<Airplane> planeView;
+	private TextField planeNumField, airlineField;
 	private ComboBox<Integer> seatField;
 	private Button createButton, removeButton;
 
@@ -35,7 +32,9 @@ public class PlaneWindow {
 	}
 
 	private void initialize() {
-		planeField = new TextField();
+		planeList = new ArrayList<>();
+		planeView = new ListView<>();
+		planeNumField = new TextField();
 		airlineField = new TextField();
 		seatField = new ComboBox<>();
 		createButton = new Button("Create");
@@ -48,17 +47,17 @@ public class PlaneWindow {
 			seatField.getItems().add(i);
 		seatField.setValue(1);
 
-		mainPane.getChildren().addAll(new Label("Plane Number"), planeField, new Label("Airline Name"), airlineField,
-				new Label("Seat Capacity"), seatField, createButton, listOfPlanes, removeButton);
+		mainPane.getChildren().addAll(new Label("Plane Number"), planeNumField, new Label("Airline Name"), airlineField,
+				new Label("Seat Capacity"), seatField, createButton, planeView, removeButton);
 	}
 
 	private void actionEvents() {
 		createButton.setOnAction(event -> {
 
-			if (planeField.getText().isEmpty() && airlineField.getText().isEmpty() || planeField.getText().isEmpty() || airlineField.getText().isEmpty())
+			if (planeNumField.getText().isEmpty() && airlineField.getText().isEmpty() || planeNumField.getText().isEmpty() || airlineField.getText().isEmpty())
 				MessageBox.message(AlertType.ERROR, "Invalid Data", "You must enter all of the necessary data");
 			else {
-				planeList.add(new Airplane(Integer.valueOf(planeField.getText()), airlineField.getText(), Integer.valueOf(seatField.getSelectionModel().getSelectedItem())));
+				planeList.add(new Airplane(Integer.valueOf(planeNumField.getText()), airlineField.getText(), Integer.valueOf(seatField.getSelectionModel().getSelectedItem())));
 				AdminState.savePlane(planeList);
 				System.out.println(planeList);
 				loadFile();
@@ -68,15 +67,14 @@ public class PlaneWindow {
 		});
 
 		removeButton.setOnAction(event -> {
-			if (listOfPlanes.getSelectionModel().getSelectedItem() != null) {
-				Airplane plane = listOfPlanes.getSelectionModel().getSelectedItem();
+			if (planeView.getSelectionModel().getSelectedItem() != null) {
+				Airplane plane = planeView.getSelectionModel().getSelectedItem();
 				planeList.remove(plane);
 				AdminState.savePlane(planeList);
 				loadFile();
 			}
-			else {
+			else 
 				MessageBox.message(AlertType.ERROR, "ERROR: No Plane Selected", "You must select a plane to remove");
-			}
 		});
 	}
 
@@ -92,10 +90,10 @@ public class PlaneWindow {
 		planeList = AdminState.loadPlanes();
 		System.out.println(planeList);
 
-		if (!listOfPlanes.getItems().isEmpty())
-			listOfPlanes.getItems().clear();
+		if (!planeView.getItems().isEmpty())
+			planeView.getItems().clear();
 		for (int i = 0; i < planeList.size(); i++)
-			listOfPlanes.getItems().add(planeList.get(i));
+			planeView.getItems().add(planeList.get(i));
 	}
 
 }

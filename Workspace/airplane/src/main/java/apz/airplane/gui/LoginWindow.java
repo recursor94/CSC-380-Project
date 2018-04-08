@@ -4,9 +4,11 @@ import java.time.LocalDate;
 
 import apz.airplane.User;
 import apz.airplane.util.MessageBox;
+import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.input.KeyCode;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -20,6 +22,8 @@ import javafx.stage.Stage;
 public class LoginWindow {
 	
 	// if we're going to do this, lets make a text dir
+	
+	private int loginAttempt = 0;
 
 	private TextField userField;
 	private PasswordField passField;
@@ -71,29 +75,44 @@ public class LoginWindow {
 	
 	public void actionEvents() {
 		
-		loginButton.setOnAction((event) -> {
-			User user = APZLauncher.getUserController().login(userField.getText(), passField.getText());
-			
-			if (user != null) {
-				System.out.println("Username: " + userField.getText());
-				System.out.println("Password: " + passField.getText());
-				
-				MessageBox.message(AlertType.INFORMATION, "APZ Airplane Application", "Welcome " + userField.getText() + " to the APZ Application!");
-				APZLauncher.setCurrentUser(user);
-				new UtilMenuBar();					// on logout it will remove menubar
-				//new CancelFlightWindow();
-				new BookFlightByDestinationWindow();
-			} 
-			else {
-				status.setText("Incorrect user or password combination!");
+		
+		rootPane.setOnKeyPressed(event -> {
+			if (event.getCode() == KeyCode.ENTER) {
+				tryLogin();
 			}
-			
-//			primaryStage.close();
+		});
+		
+		loginButton.setOnAction((event) -> {
+			tryLogin();
 		});
 		
 		createUserButton.setOnAction(event -> {
 			new RegisterWindow();
 		});
+	}
+	
+	private void tryLogin() {
+		++loginAttempt;
+		User user = APZLauncher.getUserController().login(userField.getText(), passField.getText());
+		if (user != null) {
+			System.out.println("Username: " + userField.getText());
+			System.out.println("Password: " + passField.getText());
+			
+			MessageBox.message(AlertType.INFORMATION, "APZ Airplane Application", "Welcome " + userField.getText() + " to the APZ Application!");
+			APZLauncher.setCurrentUser(user);
+			new UtilMenuBar();					// on logout it will remove menubar
+			new BookFlightByDestinationWindow();
+		} 
+		else {
+			if (loginAttempt < 5) 
+				status.setText("Login Attempt " + loginAttempt + "\nIncorrect user or password combination!");
+			else if (loginAttempt == 5) {
+				status.setText("Last login attempt" + "\nIncorrect user or password combination!");
+			} else if (loginAttempt > 5){
+				MessageBox.message(AlertType.ERROR, null, "Your account has been locked out. Try again in 5 minutes!");
+				Platform.exit();
+			}
+		}
 	}
 	
 }

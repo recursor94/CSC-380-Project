@@ -13,15 +13,16 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class UserWindow {
 	
-	private GridPane mainPane;
-//	private VBox mainPane = new VBox(10);
-//	private HBox subPane = new HBox(10);
+	private SplitPane mainPane;
+	private GridPane gridPane;
 	private ArrayList<User> userList;
 	private UserController uc;
 	private TextField userField; 
@@ -37,60 +38,59 @@ public class UserWindow {
 	}
 	
 	private void initialize() {
-		mainPane = new GridPane();
+		mainPane = new SplitPane();
+		gridPane = new GridPane();
 		userList = new ArrayList<>();
 		userField = new TextField();
 		passField = new PasswordField();
 		createButton = new Button("Create");
 		removeButton = new Button("Remove");
 		userView = new ListView<>();
-//		loadFile();
+		loadFile();
 	}
 	
 	private void content() { // col row
-		mainPane.add(new Label("Username"), 0, 0);
-		mainPane.add(userField, 1, 0);
+		gridPane.add(new Label("Username"), 0, 0);
+		gridPane.add(userField, 1, 0);
 		
-		mainPane.add(new Label("Password"), 0, 1);
-		mainPane.add(passField, 1, 1);
+		gridPane.add(new Label("Password"), 0, 1);
+		gridPane.add(passField, 1, 1);
 		
-		mainPane.add(createButton, 0, 2);
-		mainPane.add(removeButton, 1, 2);
+		gridPane.add(createButton, 0, 2);
 		
-		mainPane.add(userView, 1, 3);
+		gridPane.setVgap(10);
+		gridPane.setHgap(10);
+		gridPane.setAlignment(Pos.CENTER);
 		
-		mainPane.setVgap(10);
-		mainPane.setHgap(10);
-		mainPane.setAlignment(Pos.CENTER);
+		VBox innerBox = new VBox(10);
+		innerBox.getChildren().addAll(new Label("User List"), userView, removeButton);
 		
+		mainPane.setDividerPositions(.5);
 		
-//		subPane.getChildren().addAll(createButton, removeButton);
-//		mainPane.getChildren().addAll(new Label("Enter Username"), userField, new Label("Enter Password"), passField,
-//				subPane, userList);
+		mainPane.getItems().addAll(gridPane, innerBox);
 	}
 	
 	private void properties() {
 		Stage stage = new Stage();
 		stage.setTitle("Create Users");
-		stage.setScene(new Scene(mainPane, 350, 500));
+		stage.setScene(new Scene(mainPane, 550, 150));
 		stage.show();
 	}
 	
 	private void actionEvents() {
-//		createButton.setOnAction(event -> {
-//			verifyInput(userField.getText(), passField.getText());
-//		});
-//		removeButton.setOnAction(event -> {
-//			if(userList.getSelectionModel().getSelectedItem() != null) {
-//				User user = userList.getSelectionModel().getSelectedItem();
-//				uc.removeUser(user.getUsername());
-//				apz.airplane.util.State.saveInformation(uc);
-//				loadFile();
-//			}
-//			else {
-//				MessageBox.message(AlertType.ERROR, "ERROR: No User Selected", "You must select a user to remove");
-//			}
-//		});
+		createButton.setOnAction(event -> {
+			verifyInput(userField.getText(), passField.getText());
+		});
+		removeButton.setOnAction(event -> {
+			if(userView.getSelectionModel().getSelectedItem() != null) {
+				User user = userView.getSelectionModel().getSelectedItem();
+				uc.removeUser(user.getUsername());
+				apz.airplane.util.State.saveInformation(uc);
+				loadFile();
+			}
+			else
+				MessageBox.message(AlertType.ERROR, "ERROR: No User Selected", "You must select a user to remove");
+		});
 	}
 	
 	private void verifyInput(String username, String password) {
@@ -109,21 +109,20 @@ public class UserWindow {
 					System.out.println("User successfully created!");
 					MessageBox.message(AlertType.INFORMATION, "Successful User Creation", "Your account has been created!");
 					System.out.println(uc);
-//					loadFile();
+					loadFile();
 				}	
 			}
-			else {
+			else 
 				MessageBox.message(AlertType.ERROR, "ERROR: You must enter a user name and password", "Please enter a user name and password");
-			}
 		}
 	}
-	
-//	private void loadFile() {
-//		uc = apz.airplane.util.State.loadInformation();
-//		users = uc.getUserList();
-//		if (!userList.getItems().isEmpty())
-//			userList.getItems().clear();
-//		for (int i = 0; i < users.size(); i++)
-//			userList.getItems().add(users.get(i));
-//	}
+
+	private void loadFile() {
+		uc = apz.airplane.util.State.loadInformation();
+		userList = uc.getUserList();
+		if (!userView.getItems().isEmpty())
+			userView.getItems().clear();
+		for (int i = 0; i < userList.size(); i++)
+			userView.getItems().add(userList.get(i));
+	}
 }

@@ -8,6 +8,7 @@ import apz.airplane.Airport;
 import apz.airplane.Flight;
 import apz.airplane.Time;
 import apz.airplane.util.MessageBox;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -82,6 +83,7 @@ public class FlightWindow {
 		datePickPane.getChildren().addAll(departDatePicker, arriveDatePicker, createFlightButton);
 		mainPane.getChildren().addAll(planeSelectPane, flightNumPane, airportLblPane, airportBoxPane, timeLblPane,
 				timeBoxPane, dateLblPane, datePickPane,flightView, removeFlightButton);
+		mainPane.setAlignment(Pos.CENTER);
 	}
 
 	private void actionEvents() {
