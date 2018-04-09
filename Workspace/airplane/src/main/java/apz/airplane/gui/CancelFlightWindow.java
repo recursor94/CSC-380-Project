@@ -29,7 +29,6 @@ public class CancelFlightWindow {
 	private ListView<Booking> list;
 	private static VBox mainPane;
 	private Button confirmButton;
-	//User user = new User("Andrew", "pendrew");
 	private User user = APZLauncher.getCurrentUser();
 
 	public CancelFlightWindow() {

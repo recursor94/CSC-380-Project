@@ -4,6 +4,7 @@ import javafx.application.Platform;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.SeparatorMenuItem;
 
 public class UtilMenuBar {
 	
@@ -15,7 +16,6 @@ public class UtilMenuBar {
 	
 	
 	public UtilMenuBar() {
-		//check if top already has menubar?
 			initialize();
 			content();
 			actionEvents();
@@ -29,7 +29,7 @@ public class UtilMenuBar {
 		exitItem = new MenuItem("Exit");
 		logoutItem = new MenuItem("Logout");
 		bookFlightItem = new MenuItem("Book a trip");
-		viewFlightItem = new MenuItem("View my trips");
+		viewFlightItem = new MenuItem("View my upcoming trips");
 		scheduleFlightItem = new MenuItem("Current Schedules");
 		
 		manageAccountItem = new MenuItem("Information");
@@ -40,7 +40,7 @@ public class UtilMenuBar {
 	private void content() {
 		menuBar.getMenus().addAll(fileMenu, flightMenu, accountMenu);
 		
-		fileMenu.getItems().addAll(exitItem, logoutItem);
+		fileMenu.getItems().addAll(exitItem, new SeparatorMenuItem(), logoutItem);
 		flightMenu.getItems().addAll(bookFlightItem, viewFlightItem, scheduleFlightItem);
 		accountMenu.getItems().addAll(manageAccountItem, managePaymentItem, manageBookingItem);
 		

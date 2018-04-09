@@ -23,6 +23,10 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class FlightWindow {
+	
+	
+//	private GridPane mainPane; Lets change it up.
+	
 	private VBox mainPane;
 	private HBox planeSelectPane, flightNumPane, airportLblPane, airportBoxPane, timeLblPane, timeBoxPane, dateLblPane, datePickPane; 
 	private ArrayList<Flight> flightList;

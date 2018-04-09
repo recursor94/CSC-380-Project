@@ -31,7 +31,6 @@ public class APZLauncher extends Application {
 		root = new BorderPane();
 		
 		primaryStage.setScene(new Scene(root, 300, 400));
-//		primaryStage.initStyle(StageStyle.UTILITY);
 		primaryStage.setTitle("APZ Airplane Application");
 		primaryStage.show();
 		

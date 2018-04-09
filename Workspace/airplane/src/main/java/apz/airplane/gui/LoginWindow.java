@@ -18,14 +18,11 @@ import javafx.stage.Stage;
 
 public class LoginWindow {
 	
-	// if we're going to do this, lets make a text dir
-	
 	private int loginAttempt = 0;
 
 	private TextField userField;
 	private PasswordField passField;
-	private Button loginButton;
-	private Button createUserButton;
+	private Button loginButton, registerButton;
 	
 	private VBox rootPane;
 	private HBox userBox, passBox, buttonBox;
@@ -50,7 +47,7 @@ public class LoginWindow {
 		status.setFill(Color.RED);
 		
 		loginButton = new Button("Login");
-		createUserButton = new Button("Register");
+		registerButton = new Button("Register");
 	}
 	
 	public void content() {
@@ -61,15 +58,13 @@ public class LoginWindow {
 		
 		userBox.getChildren().addAll(new Label("Username: "), userField);
 		passBox.getChildren().addAll(new Label("Password: "), passField);
-		buttonBox.getChildren().addAll(loginButton, createUserButton);
+		buttonBox.getChildren().addAll(loginButton, registerButton);
 		rootPane.getChildren().addAll(status, userBox, passBox, buttonBox);
 		
 		APZLauncher.getBorderPane().setCenter(rootPane);
 	}
 	
 	public void actionEvents() {
-		
-		
 		rootPane.setOnKeyPressed(event -> {
 			if (event.getCode() == KeyCode.ENTER)
 				tryLogin();
@@ -79,7 +74,7 @@ public class LoginWindow {
 			tryLogin();
 		});
 		
-		createUserButton.setOnAction(event -> {
+		registerButton.setOnAction(event -> {
 			new RegisterWindow();
 		});
 	}
@@ -95,13 +90,12 @@ public class LoginWindow {
 			APZLauncher.setCurrentUser(user);
 			new UtilMenuBar();
 			new BookFlightByDestinationWindow();
-		} 
-		else {
+		} else {
 			if (loginAttempt < 5) 
 				status.setText("Login Attempt " + loginAttempt + "\nIncorrect user or password combination!");
-			else if (loginAttempt == 5) {
+			else if (loginAttempt == 5)
 				status.setText("Last login attempt" + "\nIncorrect user or password combination!");
-			} else if (loginAttempt > 5){
+			else if (loginAttempt > 5){
 				MessageBox.message(AlertType.ERROR, null, "Your account has been locked out. Try again in 5 minutes!");
 				Platform.exit();
 			}
