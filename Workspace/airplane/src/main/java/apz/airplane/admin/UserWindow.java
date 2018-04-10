@@ -66,8 +66,6 @@ public class UserWindow {
 		innerBox.getChildren().addAll(new Label("User List"), userView, removeButton);
 		
 		mainPane.setDividerPositions(.4);
-//		mainPane.setDisable(value);	disable divider movement find way
-		
 		mainPane.getItems().addAll(gridPane, innerBox);
 	}
 	

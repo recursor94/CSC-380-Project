@@ -4,14 +4,9 @@ import apz.airplane.User;
 import apz.airplane.UserController;
 import apz.airplane.util.State;
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.scene.Scene;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 public class APZLauncher extends Application {
 	

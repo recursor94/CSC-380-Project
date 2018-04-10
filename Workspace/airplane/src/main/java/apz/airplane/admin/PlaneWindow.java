@@ -16,7 +16,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class PlaneWindow {
-
+	
 	private VBox mainPane = new VBox(10);
 	private ArrayList<Airplane> planeList;
 	private ListView<Airplane> planeView;
