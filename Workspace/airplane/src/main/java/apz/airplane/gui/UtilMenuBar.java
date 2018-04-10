@@ -57,7 +57,7 @@ public class UtilMenuBar {
 			APZLauncher.getBorderPane().setTop(null);
 		});
 		
-		manageBookingItem.setOnAction(event -> {
+		viewFlightItem.setOnAction(event -> {
 			new CancelFlightWindow();
 		});
 		
