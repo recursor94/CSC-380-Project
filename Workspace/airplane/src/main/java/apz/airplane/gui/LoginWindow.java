@@ -89,7 +89,8 @@ public class LoginWindow {
 			MessageBox.message(AlertType.INFORMATION, "APZ Airplane Application", "Welcome " + userField.getText() + " to the APZ Application!");
 			APZLauncher.setCurrentUser(user);
 			new UtilMenuBar();
-			new BookFlightByDestinationWindow();
+			//new BookFlightByDestinationWindow();
+			new HomeScreenWindow();
 		} else {
 			if (loginAttempt < 5) 
 				status.setText("Login Attempt " + loginAttempt + "\nIncorrect user or password combination!");
