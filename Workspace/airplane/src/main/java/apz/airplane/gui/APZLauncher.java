@@ -1,5 +1,7 @@
 package apz.airplane.gui;
 
+import java.util.Timer;
+
 import apz.airplane.User;
 import apz.airplane.UserController;
 import apz.airplane.util.State;
@@ -19,6 +21,7 @@ public class APZLauncher extends Application {
 	private static UserController uc;
 	private static BorderPane root;
 	private static Stage stage;
+	private Timer timer;
 	
 	public static void main(String[] args) {
 		launch(args);
@@ -29,7 +32,6 @@ public class APZLauncher extends Application {
 		stage = primaryStage;
 		uc = State.loadInformation();
 		root = new BorderPane();
-		
 		primaryStage.setScene(new Scene(root, 300, 400));
 		primaryStage.setTitle("APZ Airplane Application");
 		primaryStage.show();
