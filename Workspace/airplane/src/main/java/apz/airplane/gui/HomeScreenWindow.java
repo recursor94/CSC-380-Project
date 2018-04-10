@@ -1,10 +1,13 @@
 package apz.airplane.gui;
 
+import java.util.ArrayList;
+
 import apz.airplane.Flight;
 import apz.airplane.admin.AdminState;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -19,6 +22,7 @@ public class HomeScreenWindow {
 	private VBox rootPane;
 	private Stage primaryStage;
 	private ListView activeFlightView;
+	private ComboBox cityComboBox;
 
 	public HomeScreenWindow() {
 		initialize();
@@ -45,6 +49,8 @@ public class HomeScreenWindow {
 		activeFlightView = new ListView<String>();
 	}
 	
-
+	private ArrayList<Flight> getFlightsInOrder() {
+		return null;
+	}
 
 }
