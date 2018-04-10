@@ -9,12 +9,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 
 public class LoginWindow {
 	
@@ -59,7 +60,12 @@ public class LoginWindow {
 		userBox.getChildren().addAll(new Label("Username: "), userField);
 		passBox.getChildren().addAll(new Label("Password: "), passField);
 		buttonBox.getChildren().addAll(loginButton, registerButton);
-		rootPane.getChildren().addAll(status, userBox, passBox, buttonBox);
+		
+		ImageView img = new ImageView(new Image("file:img.png"));
+		img.setFitWidth(150);
+		img.setFitHeight(150);
+		
+		rootPane.getChildren().addAll(img, status, userBox, passBox, buttonBox);
 		
 		APZLauncher.getBorderPane().setCenter(rootPane);
 	}
