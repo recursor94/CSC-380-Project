@@ -5,23 +5,24 @@ import java.util.ArrayList;
 
 import apz.airplane.Booking;
 import apz.airplane.Flight;
+import apz.airplane.Province;
 import apz.airplane.User;
 import apz.airplane.admin.AdminState;
 import apz.airplane.util.MessageBox;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 
 public class BookFlightByDestinationWindow {
 	
 	private VBox mainPane = new VBox(10);
-	private ListView<Flight> flights = new ListView <>();
+	private ListView<Flight> flightView = new ListView <>();
 	private ArrayList <Flight> flightList = new ArrayList<>();
-	private TextField destinationField;
 	private Button findFlightButton, bookFlightButton;
+	private ComboBox<String> destinationBox;
 	
 	public BookFlightByDestinationWindow() {
 		initialize();
@@ -32,12 +33,13 @@ public class BookFlightByDestinationWindow {
 	private void initialize() {
 		findFlightButton = new Button("Find Flights");
 		bookFlightButton = new Button("Book Flight");
-		destinationField = new TextField();
+		destinationBox = new ComboBox<>();
 		
 	}
 	
 	private void content() {
-		mainPane.getChildren().addAll(new Label("Enter your desired destination"), destinationField, findFlightButton, flights, bookFlightButton);
+		populateProvince();
+		mainPane.getChildren().addAll(new Label("Select your desired destination"), destinationBox, findFlightButton, flightView, bookFlightButton);
 		APZLauncher.getBorderPane().setCenter(mainPane);
 	}
 
@@ -47,9 +49,9 @@ public class BookFlightByDestinationWindow {
 		});
 		
 		bookFlightButton.setOnAction(event -> {
-			if (!flights.getSelectionModel().isEmpty()) {
+			if (!flightView.getSelectionModel().isEmpty()) {
 				User user = APZLauncher.getCurrentUser();
-				user.addTrip(new Booking(flights.getSelectionModel().getSelectedItem(), LocalDate.now(), user));
+				user.addTrip(new Booking(flightView.getSelectionModel().getSelectedItem(), LocalDate.now(), user));
 				MessageBox.message(AlertType.INFORMATION, "Successful Booking", "Your flight has been booked!");
 				apz.airplane.util.State.saveInformation(APZLauncher.getUserController());
 				System.out.println(user.getTripList());
@@ -60,26 +62,35 @@ public class BookFlightByDestinationWindow {
 		});
 	}
 	
+	private void populateProvince() {
+		ArrayList<Province> pList = Province.getProvinces();
+
+		destinationBox.setValue(Province.getCityName(pList.get(0)));
+
+		for (int i = 0; i < pList.size(); i++)
+			destinationBox.getItems().add(Province.getCityName(pList.get(i)));
+	}
+	
 	private ArrayList<Flight> findFlights() {
 		ArrayList<Flight> searchFlights = AdminState.loadFlights();
 		ArrayList<Flight> flightsFound = new ArrayList<>();
-		if(!destinationField.getText().isEmpty()) {
-			
+		if(destinationBox.getSelectionModel().getSelectedItem().equals(null)) {
+			MessageBox.message(AlertType.ERROR, "ERROR: Invalid Data Entry", "You must enter a destination");
+		}
+		else {	
+			String destination = destinationBox.getSelectionModel().getSelectedItem();
 			for (int i = 0; i < searchFlights.size(); i ++) {
-				if (destinationField.getText().equals(searchFlights.get(i).getDestinationAirport().getCity())) {
+				if (destination.equals(searchFlights.get(i).getDestinationAirport().getCity())) {
 					flightList.add(searchFlights.get(i));
 				}
 			}
-			if (!flights.getItems().isEmpty())
-				flights.getItems().clear();
+			if (!flightView.getItems().isEmpty())
+				flightView.getItems().clear();
 			for (int i = 0; i < flightList.size(); i++)
-				flights.getItems().add(flightList.get(i));
-			if (flights.getItems().isEmpty()) {
-				MessageBox.message(AlertType.INFORMATION, "No Flights Found", "There are no flights going to " + destinationField.getText());
+				flightView.getItems().add(flightList.get(i));
+			if (flightView.getItems().isEmpty()) {
+				MessageBox.message(AlertType.INFORMATION, "No Flights Found", "There are no flights going to " + destination);
 			}
-		}
-		else {
-			MessageBox.message(AlertType.ERROR, "ERROR: Invalid Data Entry", "You must enter a destination");
 		}
 		return flightsFound;
 	}
