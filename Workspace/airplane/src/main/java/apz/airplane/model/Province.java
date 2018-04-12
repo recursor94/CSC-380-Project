@@ -40,6 +40,20 @@ public enum Province {
 		return null;
 	}
 	
+	public static double getRate(String city) {
+		if (city.equals(strNY))
+			return 50;
+		else if (city.equals(strPA))
+			return 90;
+		else if (city.equals(strFL)) 
+			return 35;
+		else if (city.equals(strCA))
+			return 60;
+		else if (city.equals(strTX))
+			return 75;
+		return 0;
+	}
+	
 	public static double getRate(Province city) {
 		if (city == NY)
 			return 50;
@@ -63,5 +77,5 @@ public enum Province {
 		pList.add(TX);
 		return pList;
 	}
-
+	
 }

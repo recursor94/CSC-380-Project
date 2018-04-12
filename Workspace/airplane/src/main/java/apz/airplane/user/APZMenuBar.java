@@ -11,7 +11,7 @@ public class APZMenuBar {
 	private MenuBar menuBar;
 	private Menu fileMenu, flightMenu, accountMenu, bookMenu;
 	private MenuItem exitItem, logoutItem;
-	private MenuItem bookByDateItem, bookByDestinationItem;
+	private MenuItem bookATripItem, bookByDateItem, bookByDestinationItem;
 	private MenuItem viewFlightItem, scheduleFlightItem;
 	private MenuItem manageAccountItem, managePaymentItem, manageBookingItem;
 	
@@ -28,8 +28,10 @@ public class APZMenuBar {
 		accountMenu = new Menu("My Account");
 		bookMenu = new Menu("Book a trip");
 		
+		bookATripItem = new MenuItem("Book a trip");
 		bookByDateItem = new MenuItem("Book flight by date");
 		bookByDestinationItem = new MenuItem("Book flight by destination");
+		
 		exitItem = new MenuItem("Exit");
 		logoutItem = new MenuItem("Logout");
 		viewFlightItem = new MenuItem("View my upcoming trips");
@@ -41,8 +43,7 @@ public class APZMenuBar {
 	}
 	
 	private void content() {
-		
-		bookMenu.getItems().addAll(bookByDateItem, bookByDestinationItem);
+		bookMenu.getItems().addAll(bookATripItem, new SeparatorMenuItem(), bookByDateItem, bookByDestinationItem);
 		fileMenu.getItems().addAll(exitItem, new SeparatorMenuItem(), logoutItem);
 		flightMenu.getItems().addAll(bookMenu, viewFlightItem, scheduleFlightItem);
 		accountMenu.getItems().addAll(manageAccountItem, managePaymentItem, manageBookingItem);
@@ -79,6 +80,10 @@ public class APZMenuBar {
 		
 		bookByDestinationItem.setOnAction(event -> {
 			new BookFlightByDestinationWindow();
+		});
+		
+		bookATripItem.setOnAction(event -> {
+			new JBookingWindow();
 		});
 	}
 
