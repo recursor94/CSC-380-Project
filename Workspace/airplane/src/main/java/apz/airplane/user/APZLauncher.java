@@ -27,6 +27,7 @@ public class APZLauncher extends Application {
 		
 		primaryStage.setScene(new Scene(root, 300, 400));
 		primaryStage.setTitle("APZ Airplane Application");
+		primaryStage.setResizable(false);
 		primaryStage.show();
 		
 		new LoginWindow();
