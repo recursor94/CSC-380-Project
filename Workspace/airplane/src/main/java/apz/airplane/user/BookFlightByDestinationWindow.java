@@ -3,16 +3,10 @@ package apz.airplane.user;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-<<<<<<< HEAD:Workspace/airplane/src/main/java/apz/airplane/user/BookFlightByDestinationWindow.java
-=======
-import apz.airplane.Booking;
-import apz.airplane.Flight;
-import apz.airplane.Province;
-import apz.airplane.User;
->>>>>>> 8d4f653c4c66a54de313ddf520b8900b19aad362:Workspace/airplane/src/main/java/apz/airplane/gui/BookFlightByDestinationWindow.java
 import apz.airplane.admin.AdminState;
 import apz.airplane.model.Booking;
 import apz.airplane.model.Flight;
+import apz.airplane.model.Province;
 import apz.airplane.model.User;
 import apz.airplane.util.MessageBox;
 import javafx.scene.control.Alert.AlertType;

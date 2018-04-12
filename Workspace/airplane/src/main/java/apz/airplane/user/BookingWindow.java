@@ -21,7 +21,6 @@ public class BookingWindow {
 			initialize();
 			content();
 			properties();
-			
 		}
 		
 		private void initialize() {

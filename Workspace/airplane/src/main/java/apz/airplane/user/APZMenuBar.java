@@ -69,17 +69,16 @@ public class APZMenuBar {
 			new BookFlightByDateWindow();
 		});
 		
-<<<<<<< HEAD:Workspace/airplane/src/main/java/apz/airplane/user/APZMenuBar.java
 		manageAccountItem.setOnAction(event -> {
 			new InformationWindow();
 		});
 		
 		manageBookingItem.setOnAction(event -> {
 			new BookingWindow();
-=======
+		});
+		
 		bookByDestinationItem.setOnAction(event -> {
 			new BookFlightByDestinationWindow();
->>>>>>> 8d4f653c4c66a54de313ddf520b8900b19aad362:Workspace/airplane/src/main/java/apz/airplane/gui/UtilMenuBar.java
 		});
 	}
 
