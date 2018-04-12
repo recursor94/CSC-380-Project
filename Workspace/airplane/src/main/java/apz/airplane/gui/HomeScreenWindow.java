@@ -56,6 +56,9 @@ public class HomeScreenWindow {
 		timeLabel.setText(LocalDateTime.now().toString());
 		rootPane.getChildren().addAll(timeLabel, activeFlightView);
 		APZLauncher.getBorderPane().setCenter(rootPane);
+		
+		realTimeClock.stop();
+		realTimeClock.playFromStart();
 	
 	}
 
@@ -69,6 +72,7 @@ public class HomeScreenWindow {
 		        timeSecond = cal.get(Calendar.SECOND);
 		        timeMinute = cal.get(Calendar.MINUTE);
 		        timeHour = cal.get(Calendar.HOUR);
+		        String minuteString = timeMinute + "";
 		        
 		        if(timeHour >= 12) {
 		        	timeHour -=12;
@@ -76,9 +80,10 @@ public class HomeScreenWindow {
 		        else if(timeHour == 0) {
 		        	timeHour = 12;
 		        }
-		        System.out.println(cal.get(Calendar.HOUR));
-		        //System.out.println(hour + ":" + (minute) + ":" + second);
-		        timeLabel.setText(timeHour + ":" + (timeMinute) + ":" + timeSecond);
+		        if(timeMinute < 10) {
+		        	minuteString = "0" + timeMinute;
+		        }
+		        timeLabel.setText(timeHour + ":" + (minuteString) + ":" + timeSecond);
 		    }),
 		         new KeyFrame(Duration.seconds(1))
 		    );
