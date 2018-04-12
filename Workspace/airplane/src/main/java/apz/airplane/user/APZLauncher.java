@@ -1,14 +1,9 @@
 package apz.airplane.user;
 
-<<<<<<< HEAD:Workspace/airplane/src/main/java/apz/airplane/gui/APZLauncher.java
 import java.util.Timer;
 
-import apz.airplane.User;
-import apz.airplane.UserController;
-=======
 import apz.airplane.model.User;
 import apz.airplane.model.UserController;
->>>>>>> fe89f75140c24e17929d657d7213d212565a35d6:Workspace/airplane/src/main/java/apz/airplane/user/APZLauncher.java
 import apz.airplane.util.State;
 import javafx.application.Application;
 import javafx.scene.Scene;

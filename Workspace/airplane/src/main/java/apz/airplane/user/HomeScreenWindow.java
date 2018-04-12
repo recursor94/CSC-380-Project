@@ -1,11 +1,11 @@
-package apz.airplane.gui;
+package apz.airplane.user;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import apz.airplane.Flight;
+import apz.airplane.model.Flight;
 import apz.airplane.admin.AdminState;
 import apz.airplane.util.State;
 import javafx.animation.Animation;
