@@ -8,12 +8,14 @@ public class Booking implements Serializable {
 	private Flight flight;
 	private LocalDate bookDate;
 	private Airplane plane;
+	private double tripCost;
 	
 	public Booking(Flight flight, LocalDate bookDate, User user) {
 		this.flight = flight;
 		this.bookDate = bookDate;
 		plane = flight.getPlane();
 		plane.getSeats().addTo(user);
+		tripCost = Province.getRate(flight.getDepartureAirport().getCity()) + Province.getRate(flight.getDestinationAirport().getCity());
 	}	
 	
 	public Flight getFlight() {
@@ -30,6 +32,14 @@ public class Booking implements Serializable {
 
 	public void setBookDate(LocalDate bookDate) {
 		this.bookDate = bookDate;
+	}
+	
+	public double getTripCost() {
+		return tripCost;
+	}
+	
+	public void setTripCost(double cost) {
+		tripCost = cost;
 	}
 
 	@Override

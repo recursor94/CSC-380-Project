@@ -8,12 +8,14 @@ public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private String username;
 	private String password;
-	private ArrayList<Booking> tripList;	
+	private ArrayList<Booking> tripList;
+	private ArrayList<Payment> paymentInformation;
 
 	public User(String username, String password) {
 		this.username = username;
 		this.password = generatePasswordHash(password);
 		tripList = new ArrayList<>();
+		paymentInformation = new ArrayList<>();
 	}
 	
 	public String getUsername() {
@@ -53,6 +55,20 @@ public class User implements Serializable {
 		for(Booking trip : tripList) {
 			if(trip.getFlight().equals(flight)) {
 				tripList.remove(trip);
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public void addPayment(Payment information) {
+		paymentInformation.add(information);
+	}
+	
+	public boolean removePayment(Payment information) {
+		for(Payment info : paymentInformation) {
+			if(info == information) {
+				paymentInformation.remove(info);
 				return true;
 			}
 		}
