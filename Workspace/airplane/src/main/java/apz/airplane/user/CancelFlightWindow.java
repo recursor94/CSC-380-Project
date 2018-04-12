@@ -38,7 +38,7 @@ public class CancelFlightWindow {
 		mainPane = new VBox(10);
 
 		list = new ListView<>();
-		confirmButton = new Button("Confirm Selection");
+		confirmButton = new Button("Cancel Flight");
 	}
 
 	private void content() {
@@ -71,6 +71,9 @@ public class CancelFlightWindow {
 				} else {
 					System.out.println(":(");
 				}
+			}
+			else {
+				MessageBox.message(AlertType.ERROR, "ERROR", "You must select a flight to cancel");
 			}
 
 		});

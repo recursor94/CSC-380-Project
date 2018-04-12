@@ -9,9 +9,10 @@ import javafx.scene.control.SeparatorMenuItem;
 public class APZMenuBar {
 	
 	private MenuBar menuBar;
-	private Menu fileMenu, flightMenu, accountMenu;
+	private Menu fileMenu, flightMenu, accountMenu, bookMenu;
 	private MenuItem exitItem, logoutItem;
-	private MenuItem bookFlightItem, viewFlightItem, scheduleFlightItem;
+	private MenuItem bookByDateItem, bookByDestinationItem;
+	private MenuItem viewFlightItem, scheduleFlightItem;
 	private MenuItem manageAccountItem, managePaymentItem, manageBookingItem;
 	
 	
@@ -25,10 +26,12 @@ public class APZMenuBar {
 		fileMenu = new Menu("File");
 		flightMenu = new Menu("Flights");
 		accountMenu = new Menu("My Account");
+		bookMenu = new Menu("Book a trip");
 		
+		bookByDateItem = new MenuItem("Book flight by date");
+		bookByDestinationItem = new MenuItem("Book flight by destination");
 		exitItem = new MenuItem("Exit");
 		logoutItem = new MenuItem("Logout");
-		bookFlightItem = new MenuItem("Book a trip");
 		viewFlightItem = new MenuItem("View my upcoming trips");
 		scheduleFlightItem = new MenuItem("Current Schedules");
 		
@@ -38,11 +41,12 @@ public class APZMenuBar {
 	}
 	
 	private void content() {
-		menuBar.getMenus().addAll(fileMenu, flightMenu, accountMenu);
 		
+		bookMenu.getItems().addAll(bookByDateItem, bookByDestinationItem);
 		fileMenu.getItems().addAll(exitItem, new SeparatorMenuItem(), logoutItem);
-		flightMenu.getItems().addAll(bookFlightItem, viewFlightItem, scheduleFlightItem);
+		flightMenu.getItems().addAll(bookMenu, viewFlightItem, scheduleFlightItem);
 		accountMenu.getItems().addAll(manageAccountItem, managePaymentItem, manageBookingItem);
+		menuBar.getMenus().addAll(fileMenu, flightMenu, accountMenu);
 		
 		APZLauncher.getBorderPane().setTop(menuBar);
 	}
@@ -61,16 +65,21 @@ public class APZMenuBar {
 			new CancelFlightWindow();
 		});
 		
-		bookFlightItem.setOnAction(event -> {
+		bookByDateItem.setOnAction(event -> {
 			new BookFlightByDateWindow();
 		});
 		
+<<<<<<< HEAD:Workspace/airplane/src/main/java/apz/airplane/user/APZMenuBar.java
 		manageAccountItem.setOnAction(event -> {
 			new InformationWindow();
 		});
 		
 		manageBookingItem.setOnAction(event -> {
 			new BookingWindow();
+=======
+		bookByDestinationItem.setOnAction(event -> {
+			new BookFlightByDestinationWindow();
+>>>>>>> 8d4f653c4c66a54de313ddf520b8900b19aad362:Workspace/airplane/src/main/java/apz/airplane/gui/UtilMenuBar.java
 		});
 	}
 
