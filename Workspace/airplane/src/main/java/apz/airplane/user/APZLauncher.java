@@ -2,7 +2,7 @@ package apz.airplane.user;
 
 import apz.airplane.model.User;
 import apz.airplane.model.UserController;
-import apz.airplane.util.State;
+import apz.airplane.util.APZState;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
@@ -22,7 +22,7 @@ public class APZLauncher extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		stage = primaryStage;
-		uc = State.loadInformation();
+		uc = APZState.loadInformation();
 		root = new BorderPane();
 		
 		primaryStage.setScene(new Scene(root, 300, 400));

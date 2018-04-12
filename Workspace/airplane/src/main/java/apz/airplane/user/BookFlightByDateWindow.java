@@ -71,7 +71,7 @@ public class BookFlightByDateWindow {
 				User user = APZLauncher.getCurrentUser();
 				user.addTrip(new Booking(flightView.getSelectionModel().getSelectedItem(), LocalDate.now(), user));
 				MessageBox.message(AlertType.INFORMATION, "Successful Booking", "Your flight has been booked!");
-				apz.airplane.util.State.saveInformation(APZLauncher.getUserController());
+				apz.airplane.util.APZState.saveInformation(APZLauncher.getUserController());
 				System.out.println(user.getTripList());
 			} else {
 				MessageBox.message(AlertType.INFORMATION, "No Flight Selected", "You must select a flight to book");

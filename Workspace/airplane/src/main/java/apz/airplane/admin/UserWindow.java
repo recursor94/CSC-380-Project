@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import apz.airplane.model.User;
 import apz.airplane.model.UserController;
 import apz.airplane.util.MessageBox;
-import apz.airplane.util.State;
+import apz.airplane.util.APZState;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;
@@ -84,7 +84,7 @@ public class UserWindow {
 			if(userView.getSelectionModel().getSelectedItem() != null) {
 				User user = userView.getSelectionModel().getSelectedItem();
 				uc.removeUser(user.getUsername());
-				apz.airplane.util.State.saveInformation(uc);
+				apz.airplane.util.APZState.saveInformation(uc);
 				loadFile();
 			}
 			else
@@ -104,7 +104,7 @@ public class UserWindow {
 					MessageBox.message(AlertType.ERROR, "Invalid Password", "Your password cannot contain the empty space character");
 				else {
 					uc.addUser(new User (username, password));
-					State.saveInformation(uc);
+					APZState.saveInformation(uc);
 					System.out.println("User successfully created!");
 					MessageBox.message(AlertType.INFORMATION, "Successful User Creation", "Your account has been created!");
 					System.out.println(uc);
@@ -117,7 +117,7 @@ public class UserWindow {
 	}
 
 	private void loadFile() {
-		uc = apz.airplane.util.State.loadInformation();
+		uc = apz.airplane.util.APZState.loadInformation();
 		userList = uc.getUserList();
 		if (!userView.getItems().isEmpty())
 			userView.getItems().clear();

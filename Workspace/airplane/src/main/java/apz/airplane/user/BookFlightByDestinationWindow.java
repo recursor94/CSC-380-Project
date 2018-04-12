@@ -34,7 +34,6 @@ public class BookFlightByDestinationWindow {
 		findFlightButton = new Button("Find Flights");
 		bookFlightButton = new Button("Book Flight");
 		destinationBox = new ComboBox<>();
-		
 	}
 	
 	private void content() {
@@ -53,7 +52,7 @@ public class BookFlightByDestinationWindow {
 				User user = APZLauncher.getCurrentUser();
 				user.addTrip(new Booking(flightView.getSelectionModel().getSelectedItem(), LocalDate.now(), user));
 				MessageBox.message(AlertType.INFORMATION, "Successful Booking", "Your flight has been booked!");
-				apz.airplane.util.State.saveInformation(APZLauncher.getUserController());
+				apz.airplane.util.APZState.saveInformation(APZLauncher.getUserController());
 				System.out.println(user.getTripList());
 			}
 			else {

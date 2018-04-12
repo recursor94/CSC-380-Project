@@ -2,7 +2,7 @@ package apz.airplane.user;
 
 import apz.airplane.model.User;
 import apz.airplane.util.MessageBox;
-import apz.airplane.util.State;
+import apz.airplane.util.APZState;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -81,7 +81,7 @@ public class RegisterWindow {
 			else {
 				User user = new User (userField.getText(), passField.getText());
 				APZLauncher.getUserController().addUser(user);
-				State.saveInformation(APZLauncher.getUserController());
+				APZState.saveInformation(APZLauncher.getUserController());
 				System.out.println("User successfully created!");
 				MessageBox.message(AlertType.INFORMATION, "Successful User Creation", "Your account has been created!");
 				System.out.println(APZLauncher.getUserController());
