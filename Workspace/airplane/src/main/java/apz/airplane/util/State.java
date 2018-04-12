@@ -8,8 +8,12 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
+<<<<<<< HEAD
 import apz.airplane.Flight;
 import apz.airplane.UserController;
+=======
+import apz.airplane.model.UserController;
+>>>>>>> fe89f75140c24e17929d657d7213d212565a35d6
 
 public class State {
 	

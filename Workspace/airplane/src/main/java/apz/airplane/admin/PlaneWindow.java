@@ -2,7 +2,7 @@ package apz.airplane.admin;
 
 import java.util.ArrayList;
 
-import apz.airplane.Airplane;
+import apz.airplane.model.Airplane;
 import apz.airplane.util.MessageBox;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;

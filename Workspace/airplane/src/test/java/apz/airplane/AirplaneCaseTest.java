@@ -4,6 +4,11 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import apz.airplane.model.Airplane;
+import apz.airplane.model.Seating;
+import apz.airplane.model.User;
+import apz.airplane.model.UserController;
+
 public class AirplaneCaseTest {
 
 	@Test

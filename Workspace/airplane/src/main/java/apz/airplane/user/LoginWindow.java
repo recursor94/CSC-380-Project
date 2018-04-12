@@ -1,6 +1,6 @@
-package apz.airplane.gui;
+package apz.airplane.user;
 
-import apz.airplane.User;
+import apz.airplane.model.User;
 import apz.airplane.util.MessageBox;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
@@ -91,12 +91,16 @@ public class LoginWindow {
 		if (user != null) {
 			System.out.println("Username: " + userField.getText());
 			System.out.println("Password: " + passField.getText());
-			
 			MessageBox.message(AlertType.INFORMATION, "APZ Airplane Application", "Welcome " + userField.getText() + " to the APZ Application!");
 			APZLauncher.setCurrentUser(user);
+<<<<<<< HEAD:Workspace/airplane/src/main/java/apz/airplane/gui/LoginWindow.java
 			new UtilMenuBar();
 			//new BookFlightByDestinationWindow();
 			new HomeScreenWindow();
+=======
+			new APZMenuBar();
+			new BookFlightByDestinationWindow();
+>>>>>>> fe89f75140c24e17929d657d7213d212565a35d6:Workspace/airplane/src/main/java/apz/airplane/user/LoginWindow.java
 		} else {
 			if (loginAttempt < 5) 
 				status.setText("Login Attempt " + loginAttempt + "\nIncorrect user or password combination!");

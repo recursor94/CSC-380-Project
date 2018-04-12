@@ -1,4 +1,4 @@
-package apz.airplane;
+package apz.airplane.model;
 
 import java.io.Serializable;
 import java.time.LocalDate;

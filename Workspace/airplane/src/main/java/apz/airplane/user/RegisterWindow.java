@@ -1,10 +1,12 @@
-package apz.airplane.gui;
+package apz.airplane.user;
 
-import apz.airplane.User;
+import apz.airplane.model.User;
 import apz.airplane.util.MessageBox;
 import apz.airplane.util.State;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -17,9 +19,10 @@ public class RegisterWindow {
 	private TextField userField;
 	private PasswordField passField;
 	private Button registerButton;
+	private Button backButton;
 	
 	private VBox rootPane;
-	private HBox userBox, passBox;
+	private HBox userBox, passBox, buttonBox;
 	
 	public RegisterWindow() {
 		initialize();
@@ -31,19 +34,28 @@ public class RegisterWindow {
 		rootPane = new VBox(10);
 		userBox = new HBox(10);
 		passBox = new HBox(10);
+		buttonBox = new HBox(10);
 		userField = new TextField();
 		passField = new PasswordField();
 		registerButton = new Button("Register");
+		backButton = new Button("Back");
 	}
 	
 	public void content() {
-		userBox.getChildren().addAll(new Label("Username: "), userField);
-		passBox.getChildren().addAll(new Label("Password: "), passField);
-		rootPane.getChildren().addAll(userBox, passBox, registerButton);
-		
 		userBox.setAlignment(Pos.CENTER);
 		passBox.setAlignment(Pos.CENTER);
 		rootPane.setAlignment(Pos.CENTER);
+		buttonBox.setAlignment(Pos.CENTER);
+		
+		userBox.getChildren().addAll(new Label("Username: "), userField);
+		passBox.getChildren().addAll(new Label("Password: "), passField);
+		buttonBox.getChildren().addAll(registerButton, backButton);
+		
+		ImageView img = new ImageView(new Image("file:img.png"));
+		img.setFitWidth(150);
+		img.setFitHeight(150);
+		
+		rootPane.getChildren().addAll(img, userBox, passBox, buttonBox);
 		
 		APZLauncher.getBorderPane().setCenter(rootPane);
 	}
@@ -54,6 +66,10 @@ public class RegisterWindow {
 				MessageBox.message(AlertType.ERROR, "ERROR: You must enter a user name and password", "Please enter a user name and password");
 			else
 				verifyInput();
+		});
+		
+		backButton.setOnAction(event -> {
+			new LoginWindow();
 		});
 	}
 	

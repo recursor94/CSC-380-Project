@@ -2,8 +2,8 @@ package apz.airplane.admin;
 
 import java.util.ArrayList;
 
-import apz.airplane.Airport;
-import apz.airplane.Province;
+import apz.airplane.model.Airport;
+import apz.airplane.model.Province;
 import apz.airplane.util.MessageBox;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;

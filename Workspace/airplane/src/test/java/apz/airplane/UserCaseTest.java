@@ -6,6 +6,14 @@ import java.time.LocalDate;
 
 import org.junit.Test;
 
+import apz.airplane.model.Airplane;
+import apz.airplane.model.Airport;
+import apz.airplane.model.Booking;
+import apz.airplane.model.Flight;
+import apz.airplane.model.Time;
+import apz.airplane.model.User;
+import apz.airplane.model.UserController;
+
 public class UserCaseTest {
 
 	@Test

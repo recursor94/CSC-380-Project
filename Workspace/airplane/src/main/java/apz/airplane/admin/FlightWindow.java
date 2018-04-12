@@ -3,10 +3,10 @@ package apz.airplane.admin;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-import apz.airplane.Airplane;
-import apz.airplane.Airport;
-import apz.airplane.Flight;
-import apz.airplane.Time;
+import apz.airplane.model.Airplane;
+import apz.airplane.model.Airport;
+import apz.airplane.model.Flight;
+import apz.airplane.model.Time;
 import apz.airplane.util.MessageBox;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;

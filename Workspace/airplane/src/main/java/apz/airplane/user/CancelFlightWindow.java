@@ -1,28 +1,25 @@
-package apz.airplane.gui;
+package apz.airplane.user;
 
 import java.time.LocalDate;
 import java.util.Optional;
 
-import apz.airplane.Airplane;
-import apz.airplane.Airport;
-import apz.airplane.Booking;
-import apz.airplane.Flight;
-import apz.airplane.Time;
-import apz.airplane.User;
-import apz.airplane.gui.test.DisplayDriver;
+import apz.airplane.model.Airplane;
+import apz.airplane.model.Airport;
+import apz.airplane.model.Booking;
+import apz.airplane.model.Flight;
+import apz.airplane.model.Time;
+import apz.airplane.model.User;
 import apz.airplane.util.MessageBox;
 import apz.airplane.util.State;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
 public class CancelFlightWindow {
 
@@ -41,7 +38,7 @@ public class CancelFlightWindow {
 		mainPane = new VBox(10);
 
 		list = new ListView<>();
-		confirmButton = new Button("Confirm Selection");
+		confirmButton = new Button("Cancel Flight");
 	}
 
 	private void content() {
@@ -74,6 +71,9 @@ public class CancelFlightWindow {
 				} else {
 					System.out.println(":(");
 				}
+			}
+			else {
+				MessageBox.message(AlertType.ERROR, "ERROR", "You must select a flight to cancel");
 			}
 
 		});
