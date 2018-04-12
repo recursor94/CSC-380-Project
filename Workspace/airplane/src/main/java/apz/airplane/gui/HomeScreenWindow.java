@@ -51,7 +51,9 @@ public class HomeScreenWindow {
 
 	private void content() {
 		
-		ObservableList<Flight> flights = FXCollections.observableArrayList(getFlightsToday());
+		ArrayList<Flight> orderedFlights = getFlightsToday();
+		orderFlightsByTime(orderedFlights);
+		ObservableList<Flight> flights = FXCollections.observableArrayList(orderedFlights);
 		activeFlightView.setItems(flights);
 		timeLabel.setText(LocalDateTime.now().toString());
 		rootPane.getChildren().addAll(timeLabel, activeFlightView);
@@ -101,17 +103,26 @@ public class HomeScreenWindow {
 		}
 		return flightsToday;
 	}
-	/*private void orderFlightsByTime(ArrayList<Flight> flightsToday) {
-		Flight lastAddedFlight = flightsToday.get(0);
-		ArrayList<Flight> orderedFlights = new ArrayList<>();
+	private void orderFlightsByTime(ArrayList<Flight> flightsToday) {
+		Flight temp;
+		Flight previous;
+
 		for(int i = 0; i < flightsToday.size(); i++) {
+			 previous = flightsToday.get(i);
+			
 			for(int j = 0; j < flightsToday.size(); j++) {
-				
+				double previousTime = previous.getDepartureTime().getTimeDouble();
+				double comparisonTime = flightsToday.get(j).getArrivalTime().getTimeDouble();
+				if(comparisonTime < previousTime) {
+					temp = flightsToday.get(i);
+					flightsToday.set(i, flightsToday.get(j));
+					flightsToday.set(j, temp);
+				}
 			}
 			
 		} 
 			
-		}*/ 
+		} 
 		
 	}
 
