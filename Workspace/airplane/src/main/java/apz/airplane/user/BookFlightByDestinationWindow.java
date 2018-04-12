@@ -1,12 +1,12 @@
-package apz.airplane.gui;
+package apz.airplane.user;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-import apz.airplane.Booking;
-import apz.airplane.Flight;
-import apz.airplane.User;
 import apz.airplane.admin.AdminState;
+import apz.airplane.model.Booking;
+import apz.airplane.model.Flight;
+import apz.airplane.model.User;
 import apz.airplane.util.MessageBox;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;

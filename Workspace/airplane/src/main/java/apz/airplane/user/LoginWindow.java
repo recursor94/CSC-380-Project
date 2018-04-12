@@ -1,6 +1,6 @@
-package apz.airplane.gui;
+package apz.airplane.user;
 
-import apz.airplane.User;
+import apz.airplane.model.User;
 import apz.airplane.util.MessageBox;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
@@ -91,10 +91,9 @@ public class LoginWindow {
 		if (user != null) {
 			System.out.println("Username: " + userField.getText());
 			System.out.println("Password: " + passField.getText());
-			
 			MessageBox.message(AlertType.INFORMATION, "APZ Airplane Application", "Welcome " + userField.getText() + " to the APZ Application!");
 			APZLauncher.setCurrentUser(user);
-			new UtilMenuBar();
+			new APZMenuBar();
 			new BookFlightByDestinationWindow();
 		} else {
 			if (loginAttempt < 5) 

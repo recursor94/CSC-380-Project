@@ -4,6 +4,9 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import apz.airplane.model.User;
+import apz.airplane.model.UserController;
+
 public class UserControllerCaseTest {
 
 	@Test

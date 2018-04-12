@@ -1,4 +1,4 @@
-package apz.airplane.gui;
+package apz.airplane.user;
 
 public class HomeWindow {
 	

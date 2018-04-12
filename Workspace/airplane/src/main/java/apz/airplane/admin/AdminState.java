@@ -8,9 +8,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
-import apz.airplane.Airplane;
-import apz.airplane.Airport;
-import apz.airplane.Flight;
+import apz.airplane.model.Airplane;
+import apz.airplane.model.Airport;
+import apz.airplane.model.Flight;
 
 public class AdminState {
 

@@ -1,4 +1,4 @@
-package apz.airplane.gui;
+package apz.airplane.user;
 
 import javafx.application.Platform;
 import javafx.scene.control.Menu;
@@ -6,7 +6,7 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SeparatorMenuItem;
 
-public class UtilMenuBar {
+public class APZMenuBar {
 	
 	private MenuBar menuBar;
 	private Menu fileMenu, flightMenu, accountMenu;
@@ -15,7 +15,7 @@ public class UtilMenuBar {
 	private MenuItem manageAccountItem, managePaymentItem, manageBookingItem;
 	
 	
-	public UtilMenuBar() {
+	public APZMenuBar() {
 			initialize();
 			content();
 			actionEvents();
@@ -63,6 +63,14 @@ public class UtilMenuBar {
 		
 		bookFlightItem.setOnAction(event -> {
 			new BookFlightByDateWindow();
+		});
+		
+		manageAccountItem.setOnAction(event -> {
+			new InformationWindow();
+		});
+		
+		manageBookingItem.setOnAction(event -> {
+			new BookingWindow();
 		});
 	}
 

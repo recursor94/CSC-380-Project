@@ -1,6 +1,6 @@
-package apz.airplane.gui;
+package apz.airplane.user;
 
-import apz.airplane.User;
+import apz.airplane.model.User;
 import apz.airplane.util.MessageBox;
 import apz.airplane.util.State;
 import javafx.geometry.Pos;

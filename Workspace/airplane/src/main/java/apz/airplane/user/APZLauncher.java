@@ -1,7 +1,7 @@
-package apz.airplane.gui;
+package apz.airplane.user;
 
-import apz.airplane.User;
-import apz.airplane.UserController;
+import apz.airplane.model.User;
+import apz.airplane.model.UserController;
 import apz.airplane.util.State;
 import javafx.application.Application;
 import javafx.scene.Scene;
