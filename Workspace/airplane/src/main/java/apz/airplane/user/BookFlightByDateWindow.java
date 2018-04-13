@@ -31,6 +31,7 @@ public class BookFlightByDateWindow {
 		initialize();
 		content();
 		actionEvents();
+		properties();
 	}
 
 	private void initialize() {
@@ -45,10 +46,12 @@ public class BookFlightByDateWindow {
 
 	private void content() {
 		mainPane.getChildren().addAll(new Label("Select a flight date"), calendar, findFlightButton,
-				new Label("List of flightView on selected date"), flightView, bookFlightButton);
+				new Label("List of flights on selected date"), flightView, bookFlightButton);
+	}
+	
+	private void properties() {
 		APZLauncher.getBorderPane().setCenter(mainPane);
 	}
-
 	private void actionEvents() {
 		findFlightButton.setOnAction(event -> {
 			if (calendar.getValue() != null) {
@@ -60,7 +63,7 @@ public class BookFlightByDateWindow {
 					flightView.getItems().add(flightList.get(i));
 
 				if (flightView.getItems().isEmpty())
-					MessageBox.message(AlertType.INFORMATION, "No Flights Found", "There are no flightView scheduled for " + calendar.getValue());
+					MessageBox.message(AlertType.INFORMATION, "No Flights Found", "There are no flights scheduled for " + calendar.getValue());
 
 			} else 
 				MessageBox.message(AlertType.ERROR, "ERROR", "You must select a date");

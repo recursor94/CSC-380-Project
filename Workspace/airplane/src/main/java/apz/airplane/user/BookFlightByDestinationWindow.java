@@ -28,6 +28,7 @@ public class BookFlightByDestinationWindow {
 		initialize();
 		content();
 		actionEvents();
+		properties();
 	}
 	
 	private void initialize() {
@@ -39,9 +40,11 @@ public class BookFlightByDestinationWindow {
 	private void content() {
 		populateProvince();
 		mainPane.getChildren().addAll(new Label("Select your desired destination"), destinationBox, findFlightButton, flightView, bookFlightButton);
+	}
+	
+	private void properties() {
 		APZLauncher.getBorderPane().setCenter(mainPane);
 	}
-
 	private void actionEvents() {
 		findFlightButton.setOnAction(event -> {
 			flightList = findFlights();
