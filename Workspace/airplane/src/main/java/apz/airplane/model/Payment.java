@@ -8,16 +8,14 @@ public class Payment {
 	private String state;
 	private int zipcode;
 	private int cardNum;
-	private double cost;
 	
-	public Payment(String name, String street, String city, String state, int zipcode, int cardNum, double cost) {
+	public Payment(String name, String street, String city, String state, int zipcode, int cardNum) {
 		this.name = name;
 		this.street = street;
 		this.city = city;
 		this.state = state;
 		this.zipcode = zipcode;
 		this.cardNum = cardNum;
-		this.cost = cost;
 	}
 	public String getName() {
 		return name;
@@ -55,11 +53,9 @@ public class Payment {
 	public void setCardNum(int cardNum) {
 		this.cardNum = cardNum;
 	}
-	
-	public double getCost() {
-		return cost;
-	}
-	public void setCost(double cost) {
-		this.cost = cost;
+	@Override
+	public String toString() {
+		return "Payment [name=" + name + ", street=" + street + ", city=" + city + ", state=" + state + ", zipcode="
+				+ zipcode + ", cardNum=" + cardNum + "]";
 	}
 }

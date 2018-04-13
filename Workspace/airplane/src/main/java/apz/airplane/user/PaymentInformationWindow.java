@@ -1,6 +1,12 @@
 package apz.airplane.user;
 
+import apz.airplane.model.Payment;
+import apz.airplane.model.User;
+import apz.airplane.util.APZState;
+import apz.airplane.util.IsInteger;
+import apz.airplane.util.MessageBox;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -13,11 +19,13 @@ public class PaymentInformationWindow {
 	private TextField cardNumField, nameField, addressField, cityField, zipCodeField;
 	private ComboBox<String> stateBox;
 	private Button submitButton;
+	private User user;
 
 	public PaymentInformationWindow() {
 		initialize();
 		content();
 		properties();
+		actionEvents();
 	}
 	
 	private void initialize() {
@@ -32,6 +40,8 @@ public class PaymentInformationWindow {
 	}
 	
 	private void content() {
+		
+		user = APZLauncher.getCurrentUser();
 		populateStates();
 		
 		rootPane.setHgap(10);
@@ -63,6 +73,50 @@ public class PaymentInformationWindow {
 		APZLauncher.getBorderPane().setCenter(rootPane);
 		APZLauncher.getStage().setHeight(425);
 		APZLauncher.getStage().setWidth(500);
+	}
+	
+	private void actionEvents() {
+		submitButton.setOnAction(event -> {
+			verifyInput();
+		});
+	}
+	
+	private void verifyInput () {
+		if(!(cardNumField.getText().isEmpty()) && !(nameField.getText().isEmpty()) && !(zipCodeField.getText().isEmpty())
+				&& !(addressField.getText().isEmpty()) && !(cityField.getText().isEmpty()) && !(stateBox.getSelectionModel().isEmpty()) ) {
+			if(IsInteger.isInteger(cardNumField.getText())) {
+				if(IsInteger.isInteger(zipCodeField.getText())) {
+					if(cardNumField.getText().length() == 16) {
+						if(zipCodeField.getText().length() == 5) {
+							String name = nameField.getText();
+							String street = addressField.getText();
+							String city = cityField.getText();
+							String state = stateBox.getSelectionModel().getSelectedItem();
+							int zip = Integer.valueOf(zipCodeField.getText());
+							int cardNum = Integer.valueOf(cardNumField.getText());
+							Payment payment = new Payment(name, street, city, state, zip, cardNum);
+							user.addPayment(payment);
+							APZState.saveInformation(APZLauncher.getUserController());
+						}
+						else {
+							MessageBox.message(AlertType.ERROR, "Invalid Data Entry", "You must enter a 5 digit zip code");
+						}
+					}
+					else {
+						MessageBox.message(AlertType.ERROR, "Invalid Data Entry", "You must enter a 16 digit card number");
+					}		
+				}
+				else {
+					MessageBox.message(AlertType.ERROR, "Invalid Data Entry", "You must enter an integer for a zip code");
+				}
+			}
+			else {
+				MessageBox.message(AlertType.ERROR, "Invalid Data Entry", "You must enter an integer for a card number");
+			}
+		}
+		else {
+			MessageBox.message(AlertType.ERROR, "Invalid Data Entry", "You must enter data into all fields");
+		}
 	}
 	
 	private void populateStates() {

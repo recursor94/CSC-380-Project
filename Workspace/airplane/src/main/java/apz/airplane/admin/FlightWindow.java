@@ -7,6 +7,7 @@ import apz.airplane.model.Airplane;
 import apz.airplane.model.Airport;
 import apz.airplane.model.Flight;
 import apz.airplane.model.Time;
+import apz.airplane.util.IsInteger;
 import apz.airplane.util.MessageBox;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -112,6 +113,10 @@ public class FlightWindow {
 				//Check to make sure the airports for departure and arrival are different
 				else if(departAirportBox.getSelectionModel().getSelectedItem().equals(arriveAirportBox.getSelectionModel().getSelectedItem()))
 						MessageBox.message(AlertType.ERROR, "Invalid Data Entry", "Your departure airport cannot be the same as your arrival airport");
+				//Check if the flight number is an integer
+				else if(!(IsInteger.isInteger(flightNumField.getText()))) {
+					MessageBox.message(AlertType.ERROR, "Invalid Data Entry", "The flight number must be an integer");
+				}
 				else {
 					Airplane plane = planeBox.getSelectionModel().getSelectedItem();
 					Time departure = new Time(departTimeBox.getSelectionModel().getSelectedItem());
