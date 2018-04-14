@@ -3,6 +3,7 @@ package apz.airplane.admin;
 import java.util.ArrayList;
 
 import apz.airplane.model.Airplane;
+import apz.airplane.util.IsInteger;
 import apz.airplane.util.MessageBox;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;
@@ -56,6 +57,9 @@ public class PlaneWindow {
 
 			if (planeNumField.getText().isEmpty() && airlineField.getText().isEmpty() || planeNumField.getText().isEmpty() || airlineField.getText().isEmpty())
 				MessageBox.message(AlertType.ERROR, "Invalid Data", "You must enter all of the necessary data");
+			else if(!(IsInteger.isInteger(planeNumField.getText()))) {
+				MessageBox.message(AlertType.ERROR, "Invalid Data", "The plane number must be an integer");
+			}
 			else {
 				planeList.add(new Airplane(Integer.valueOf(planeNumField.getText()), airlineField.getText(), Integer.valueOf(seatField.getSelectionModel().getSelectedItem())));
 				AdminState.savePlane(planeList);

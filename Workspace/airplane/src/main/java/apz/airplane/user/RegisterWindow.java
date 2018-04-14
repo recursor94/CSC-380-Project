@@ -28,9 +28,10 @@ public class RegisterWindow {
 		initialize();
 		actionEvents();
 		content();
+		properties();
 	}
 	
-	public void initialize() {
+	private void initialize() {
 		rootPane = new VBox(10);
 		userBox = new HBox(10);
 		passBox = new HBox(10);
@@ -41,7 +42,7 @@ public class RegisterWindow {
 		backButton = new Button("Back");
 	}
 	
-	public void content() {
+	private void content() {
 		userBox.setAlignment(Pos.CENTER);
 		passBox.setAlignment(Pos.CENTER);
 		rootPane.setAlignment(Pos.CENTER);
@@ -57,10 +58,15 @@ public class RegisterWindow {
 		
 		rootPane.getChildren().addAll(img, userBox, passBox, buttonBox);
 		
-		APZLauncher.getBorderPane().setCenter(rootPane);
 	}
 	
-	public void actionEvents() {
+	private void properties() {
+		APZLauncher.getBorderPane().setCenter(rootPane);
+		APZLauncher.getStage().setHeight(400);
+		APZLauncher.getStage().setWidth(300);
+	}
+	
+	private void actionEvents() {
 		registerButton.setOnAction((event) -> {
 			if ((userField.getText().isEmpty()) || (passField.getText().isEmpty()))
 				MessageBox.message(AlertType.ERROR, "ERROR: You must enter a user name and password", "Please enter a user name and password");

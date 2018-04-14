@@ -32,6 +32,7 @@ public class CancelFlightWindow {
 		initialize();
 		content();
 		actionEvents();
+		properties();
 	}
 
 	private void initialize() {
@@ -50,6 +51,9 @@ public class CancelFlightWindow {
 
 		mainPane.setAlignment(Pos.CENTER);
 		mainPane.getChildren().addAll(new Label("List of Flights you made"), list, confirmButton);
+		
+	}
+	private void properties() {
 		APZLauncher.getBorderPane().setCenter(mainPane);
 	}
 

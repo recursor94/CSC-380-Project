@@ -33,9 +33,10 @@ public class LoginWindow {
 		initialize();
 		content();
 		actionEvents();
+		properties();
 	}
 	
-	public void initialize() {
+	private void initialize() {
 		rootPane = new VBox(10);
 		userBox = new HBox(10);
 		passBox = new HBox(10);
@@ -51,7 +52,7 @@ public class LoginWindow {
 		registerButton = new Button("Register");
 	}
 	
-	public void content() {
+	private void content() {
 		userBox.setAlignment(Pos.CENTER);
 		passBox.setAlignment(Pos.CENTER);
 		rootPane.setAlignment(Pos.CENTER);
@@ -66,11 +67,15 @@ public class LoginWindow {
 		img.setFitHeight(150);
 		
 		rootPane.getChildren().addAll(img, status, userBox, passBox, buttonBox);
-		
-		APZLauncher.getBorderPane().setCenter(rootPane);
 	}
 	
-	public void actionEvents() {
+	private void properties() {
+		APZLauncher.getBorderPane().setCenter(rootPane);
+		APZLauncher.getStage().setHeight(400);
+		APZLauncher.getStage().setWidth(300);
+	}
+	
+	private void actionEvents() {
 		rootPane.setOnKeyPressed(event -> {
 			if (event.getCode() == KeyCode.ENTER)
 				tryLogin();

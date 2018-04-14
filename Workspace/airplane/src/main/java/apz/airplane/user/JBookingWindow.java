@@ -1,8 +1,10 @@
 package apz.airplane.user;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import apz.airplane.model.Airport;
+import apz.airplane.model.Booking;
 import apz.airplane.util.APZState;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -66,11 +68,30 @@ public class JBookingWindow {
 	}
 	
 	private void actionEvents() {
-		
+		searchButton.setOnAction(event -> {
+			ArrayList<Booking> bookList = APZLauncher.getCurrentUser().getTripList();
+			
+			
+			for (int i = 0; i < bookList.size(); i++) {
+				LocalDate date = bookList.get(i).getFlight().getArriveDate();
+				String departAirport = bookList.get(i).getFlight().getDepartureAirport().toString();
+				String arriveAirport = bookList.get(i).getFlight().getDestinationAirport().toString();
+				
+				
+				if (departAirport == cityDepartBox.getValue() && arriveAirport == cityArrivalBox.getValue() && date == datePicker.getValue()) {
+					
+				}
+			}
+			
+			
+//			new JBookingResultWindow();
+		});
 	}
 	
 	private void properties() {
 		APZLauncher.getBorderPane().setCenter(mainPane);
+		APZLauncher.getStage().setWidth(400);
+		APZLauncher.getStage().setHeight(300);
 	}
 	
 	private void populateComboBox() {

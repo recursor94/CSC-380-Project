@@ -9,6 +9,8 @@ public class Booking implements Serializable {
 	private LocalDate bookDate;
 	private Airplane plane;
 	private double tripCost;
+
+	// Payment information in here for selected card used
 	
 	public Booking(Flight flight, LocalDate bookDate, User user) {
 		this.flight = flight;
