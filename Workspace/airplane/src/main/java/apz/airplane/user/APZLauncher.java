@@ -32,7 +32,7 @@ public class APZLauncher extends Application {
 		primaryStage.setResizable(false);
 		primaryStage.show();
 		
-		new LoginWindow();
+		new HomeScreenWindow();
 	}
 	
 	public static void setCurrentUser(User userLogged) {

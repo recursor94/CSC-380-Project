@@ -6,8 +6,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import apz.airplane.model.Flight;
-import apz.airplane.admin.AdminState;
-import apz.airplane.util.State;
+import apz.airplane.util.APZState;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -17,10 +16,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -31,7 +28,7 @@ public class HomeScreenWindow {
 	private Stage primaryStage;
 	private ListView activeFlightView;
 	private ComboBox cityComboBox;
-	private Label timeLabel;
+	private Text timeLabel;
 	private Timeline realTimeClock;
 	
 	private int timeHour;
@@ -67,7 +64,7 @@ public class HomeScreenWindow {
 	private void initialize() {
 		rootPane = new VBox(10);
 		activeFlightView = new ListView<String>();
-		timeLabel = new Label("00:00");
+		timeLabel = new Text("00:00");
 		
 		  realTimeClock = new Timeline(new KeyFrame(Duration.ZERO, e -> {            
 		        Calendar cal = Calendar.getInstance();
@@ -94,7 +91,7 @@ public class HomeScreenWindow {
 	}
 	
 	private ArrayList<Flight> getFlightsToday() {
-		ArrayList<Flight> allFlights = State.loadFlights();
+		ArrayList<Flight> allFlights = APZState.loadFlights();
 		ArrayList<Flight> flightsToday  = new ArrayList<Flight>(); //has to be new arraylist
 		for(Flight flight : allFlights) {
 			if(flight.getArriveDate().isEqual(LocalDate.now())) {
