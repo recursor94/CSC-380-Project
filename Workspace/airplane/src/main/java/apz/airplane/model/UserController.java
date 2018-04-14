@@ -10,7 +10,6 @@ public class UserController implements Serializable {
 	
 	public UserController() {
 		userList = new ArrayList<>();
-		// load in the file
 	}
 	
 	public void addUser (User user) {
