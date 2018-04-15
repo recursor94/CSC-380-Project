@@ -12,6 +12,7 @@ import apz.airplane.util.APZState;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -126,7 +127,9 @@ public class HomeScreenWindow {
 	private void initTableColumnCallbacks() {
 		flightNumber.setCellValueFactory(new PropertyValueFactory<Flight, Integer>("flightNum"));
 		departingCity.setCellValueFactory(new PropertyValueFactory<Flight, Airport>("departureAirport"));
-		destinationCity.setCellFactory(new PropertyValueFactory<Flight, Airport>("destinationAirport"));
+		/*destinationCity.setCellFactory(cellData -> {
+			return new SimpleObjectProperty<String>(cellData.getValue());
+		}); */
 		//departingTime.setCellFactory(new PropertyValueFactory<Flight, Time>("departingTime"));
 	}
 	private void fillTableData(ArrayList<Flight> flights) {
