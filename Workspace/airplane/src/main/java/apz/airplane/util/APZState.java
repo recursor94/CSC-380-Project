@@ -9,12 +9,14 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 import apz.airplane.model.Airport;
+import apz.airplane.model.Flight;
 import apz.airplane.model.UserController;
 
 public class APZState {
 	
 	private static String ucFilePath = "userList.apz";
 	private static String airportObject = "airportList.apz";
+	private static String flightObject = "flightList.apz";
 	
 	public static void saveInformation(UserController uc) {
 		FileOutputStream fileOut;
@@ -67,6 +69,26 @@ public class APZState {
 			return airportList;
 		}
 		return new ArrayList<Airport>();
+	}
+	
+	public static ArrayList<Flight> loadFlights() {
+		if (new File(flightObject).exists()) {
+			ArrayList<Flight> flightList = new ArrayList<>();
+			FileInputStream fileIn;
+			try {
+				fileIn = new FileInputStream(flightObject);
+				ObjectInputStream objectIn = new ObjectInputStream(fileIn);
+
+				Object obj = objectIn.readObject();
+				System.out.println("The Object has been read from the file");
+				objectIn.close();
+				flightList = (ArrayList<Flight>) obj;
+			} catch (IOException | ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+			return flightList;
+		}
+		return new ArrayList<Flight>();
 	}
 
 }
