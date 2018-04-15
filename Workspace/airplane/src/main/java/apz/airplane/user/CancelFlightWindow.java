@@ -26,7 +26,7 @@ public class CancelFlightWindow {
 	private ListView<Booking> list;
 	private static VBox mainPane;
 	private Button confirmButton;
-	private User user = APZLauncher.getCurrentUser();
+	private User user;
 
 	public CancelFlightWindow() {
 		initialize();
@@ -46,6 +46,7 @@ public class CancelFlightWindow {
 //		createdStuff();
 //		ObservableList<String> items = FXCollections.observableArrayList("Delta 03/12/2018", "Jet Blue 04/06/2017");
 //
+		user = APZLauncher.getCurrentUser();
 		ObservableList<Booking> displayList = FXCollections.observableArrayList(user.getTripList());
 		list.setItems(displayList);
 
@@ -55,6 +56,8 @@ public class CancelFlightWindow {
 	}
 	private void properties() {
 		APZLauncher.getBorderPane().setCenter(mainPane);
+		APZLauncher.getStage().setHeight(400);
+		APZLauncher.getStage().setWidth(350);
 	}
 
 	private void actionEvents() {
