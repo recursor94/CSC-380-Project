@@ -25,6 +25,9 @@ public class APZLauncher extends Application {
 		uc = APZState.loadInformation();
 		root = new BorderPane();
 		
+		// THIS SHOULD BE DEFAULT SIZE FOR OUR WINDOW
+//		APZLauncher.getStage().setWidth(500);
+//		APZLauncher.getStage().setHeight(600);
 		primaryStage.setScene(new Scene(root, 300, 400));
 		primaryStage.setTitle("APZ Airplane Application");
 		primaryStage.setResizable(false);
