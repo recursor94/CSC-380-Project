@@ -69,7 +69,7 @@ public class HomeScreenWindow {
 		//ObservableList<Flight> flights = FXCollections.observableArrayList(orderedFlights);
 		timeLabel.setText(LocalDateTime.now().toString());
 		setupTableContents();
-		initTableColumnCallbacks();
+		initTableColumnValues();
 		rootPane.getChildren().addAll(timeLabel, flightTable);
 		APZLauncher.getBorderPane().setCenter(rootPane);
 		ScrollPane scrollPane = new ScrollPane();
@@ -124,13 +124,11 @@ public class HomeScreenWindow {
 		fillTableData(getFlightsToday());
 		
 	}
-	private void initTableColumnCallbacks() {
+	private void initTableColumnValues() {
 		flightNumber.setCellValueFactory(new PropertyValueFactory<Flight, Integer>("flightNum"));
 		departingCity.setCellValueFactory(new PropertyValueFactory<Flight, Airport>("departureAirport"));
-		/*destinationCity.setCellFactory(cellData -> {
-			return new SimpleObjectProperty<String>(cellData.getValue());
-		}); */
-		//departingTime.setCellFactory(new PropertyValueFactory<Flight, Time>("departingTime"));
+		destinationCity.setCellValueFactory(new PropertyValueFactory<Flight, Airport>("destinationAirport"));
+		//departingTime.setCellFactory(new PropertyValueFactory<Flight, Time>("departureTime"));
 	}
 	private void fillTableData(ArrayList<Flight> flights) {
 		System.out.println("Filling");
