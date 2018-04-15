@@ -7,28 +7,25 @@ import java.util.Calendar;
 
 import apz.airplane.model.Airport;
 import apz.airplane.model.Flight;
-import apz.airplane.model.Time;
 import apz.airplane.util.APZState;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableColumn.CellDataFeatures;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.util.Callback;
 import javafx.util.Duration;
 
 public class HomeScreenWindow {
@@ -66,6 +63,7 @@ public class HomeScreenWindow {
 
 	private void content() {
 		
+		flightsToday = getFlightsToday();
 		orderFlightsByTime();
 		//ObservableList<Flight> flights = FXCollections.observableArrayList(orderedFlights);
 		timeLabel.setText(LocalDateTime.now().toString());
@@ -97,15 +95,13 @@ public class HomeScreenWindow {
 		
 		 	
 	private void setupTableContents() {
-		ObservableList<Flight> flightData = FXCollections.observableArrayList(flights);
+		ObservableList<Flight> flightData = FXCollections.observableArrayList(flightsToday);
 		flightTable.setItems(flightData);
 		flightTable.getColumns().addAll(flightNumber, departingCity, destinationCity, departingTime);
 		flightNumber.setCellValueFactory(new PropertyValueFactory<Flight, Integer>("flightNum"));
 		departingCity.setCellValueFactory(new PropertyValueFactory<Flight, Airport>("departureAirport"));
 		destinationCity.setCellValueFactory(new PropertyValueFactory<Flight, Airport>("destinationAirport"));
 		//departingTime.setCellFactory(new PropertyValueFactory<Flight, Time>("departureTime"));
-		
-		
 	}	
 	private void setupClock() {
 		 realTimeClock = new Timeline(new KeyFrame(Duration.ZERO, e -> {            
@@ -126,12 +122,44 @@ public class HomeScreenWindow {
 		        }
 		        timeLabel.setText(timeHour + ":" + (minuteString) + ":" + timeSecond);
 		    }),
-		         new KeyFrame(Duration.seconds(1))
+		         new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent> (){
+
+					@Override
+					public void handle(ActionEvent event) {
+						for(Flight flight : flightsToday) {
+							if(flight != null) {
+								double departureTime = flight.getDepartureTime().getTimeDouble();
+								int departureHour = (int) departureTime; 
+								int departureMinute = 0;
+								
+								if(departureTime % 1 == 0) {
+									departureMinute = 30;
+								}	
+								
+								if(departureHour == timeHour && departureMinute == timeMinute) {
+									System.out.println("Time To Run");
+									flightTable.getItems().remove(flight);
+								}
+								
+							}
+							
+						}
+					}
+		        	 
+		         })
 		    );
-		    realTimeClock.setCycleCount(Animation.INDEFINITE);
-		    realTimeClock.play();
+//		 KeyFrame updateTable = new KeyFrame(Duration.seconds(50), new EventHandler<ActionEvent>() {
+//
+//			@Override
+//			public void handle(ActionEvent arg0) {
+//				System.out.println("Hey");
+//			}
+//			 
+//		 });
+		 //realTimeClock.getKeyFrames().add(updateTable);
+		 realTimeClock.setCycleCount(Animation.INDEFINITE);
+		 realTimeClock.play();
 		    }
-	}
 	private ArrayList<Flight> getFlightsToday() {
 		ArrayList<Flight> allFlights = APZState.loadFlights();
 		ArrayList<Flight> flightsToday  = new ArrayList<Flight>(); //has to be new arraylist
