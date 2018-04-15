@@ -13,11 +13,11 @@ import apz.airplane.model.Flight;
 import apz.airplane.model.UserController;
 
 public class APZState {
-
+	
 	private static String ucFilePath = "userList.apz";
 	private static String airportObject = "airportList.apz";
 	private static String flightObject = "flightList.apz";
-
+	
 	public static void saveInformation(UserController uc) {
 		FileOutputStream fileOut;
 		ObjectOutputStream objectOut;
@@ -31,7 +31,7 @@ public class APZState {
 			e.printStackTrace();
 		}
 	}
-
+	
 	public static UserController loadInformation() {
 		UserController uc = new UserController();
 		FileInputStream fileIn;
@@ -49,7 +49,7 @@ public class APZState {
 		}
 		return uc;
 	}
-
+	
 	public static ArrayList<Airport> loadAirports() {
 		if (new File(airportObject).exists()) {
 			ArrayList<Airport> airportList = new ArrayList<>();
@@ -70,6 +70,7 @@ public class APZState {
 		}
 		return new ArrayList<Airport>();
 	}
+	
 	public static ArrayList<Flight> loadFlights() {
 		if (new File(flightObject).exists()) {
 			ArrayList<Flight> flightList = new ArrayList<>();
@@ -89,4 +90,5 @@ public class APZState {
 		}
 		return new ArrayList<Flight>();
 	}
+
 }

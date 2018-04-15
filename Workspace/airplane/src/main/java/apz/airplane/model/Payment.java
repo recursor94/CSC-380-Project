@@ -1,15 +1,20 @@
 package apz.airplane.model;
 
-public class Payment {
+import java.io.Serializable;
+
+public class Payment implements Serializable {
 	
+	private static final long serialVersionUID = 1L;
 	private String name;
 	private String street;
 	private String city;
 	private String state;
 	private int zipcode;
-	private int cardNum;
+	private long cardNum;
 	
-	public Payment(String name, String street, String city, String state, int zipcode, int cardNum) {
+	// needs expiration date, CCV
+	
+	public Payment(String name, String street, String city, String state, int zipcode, long cardNum) {
 		this.name = name;
 		this.street = street;
 		this.city = city;
@@ -47,10 +52,10 @@ public class Payment {
 	public void setZipcode(int zipcode) {
 		this.zipcode = zipcode;
 	}
-	public int getCardNum() {
+	public long getCardNum() {
 		return cardNum;
 	}
-	public void setCardNum(int cardNum) {
+	public void setCardNum(long cardNum) {
 		this.cardNum = cardNum;
 	}
 	@Override

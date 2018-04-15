@@ -39,6 +39,14 @@ public class User implements Serializable {
 		
 	}
 	
+	public ArrayList<Payment> getPaymentInformation() {
+		return paymentInformation;
+	}
+
+	public void setPaymentInformation(ArrayList<Payment> paymentInformation) {
+		this.paymentInformation = paymentInformation;
+	}
+
 	public boolean validatePassword(String userInput) { 
 		String inputHash = generatePasswordHash(userInput);
 		if(inputHash.equals(password)){ //compare the hash of the inputed hash to the stored password hash.  If they're equal return true

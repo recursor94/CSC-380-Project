@@ -1,10 +1,11 @@
-package apz.airplane.user;
+package jimmy.pack;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 import apz.airplane.model.Airport;
-import apz.airplane.model.Booking;
+import apz.airplane.model.Flight;
+import apz.airplane.user.APZLauncher;
 import apz.airplane.util.APZState;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -69,22 +70,19 @@ public class JBookingWindow {
 	
 	private void actionEvents() {
 		searchButton.setOnAction(event -> {
-			ArrayList<Booking> bookList = APZLauncher.getCurrentUser().getTripList();
-			
+			ArrayList<Flight> bookList = APZState.loadFlights();
+			ArrayList<Flight> bookFoundList = new ArrayList<>();
 			
 			for (int i = 0; i < bookList.size(); i++) {
-				LocalDate date = bookList.get(i).getFlight().getArriveDate();
-				String departAirport = bookList.get(i).getFlight().getDepartureAirport().toString();
-				String arriveAirport = bookList.get(i).getFlight().getDestinationAirport().toString();
+				LocalDate date = bookList.get(i).getDepartureDate();
+				String departAirport = bookList.get(i).getDepartureAirport().toString();
+				String arriveAirport = bookList.get(i).getDestinationAirport().toString();
 				
-				
-				if (departAirport == cityDepartBox.getValue() && arriveAirport == cityArrivalBox.getValue() && date == datePicker.getValue()) {
-					
-				}
+				if (departAirport.equals(cityDepartBox.getValue()) && arriveAirport.equals(cityArrivalBox.getValue()) && date.equals(datePicker.getValue()))
+					bookFoundList.add(bookList.get(i));
 			}
 			
-			
-//			new JBookingResultWindow();
+			new BookingResultWindow(bookFoundList);
 		});
 	}
 	
