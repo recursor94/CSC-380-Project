@@ -47,6 +47,7 @@ public class HomeScreenWindow {
 	//TableColumn destinationAirport = new TableColumn("Destination Airport");
 	TableColumn destinationCity;
 	TableColumn departingTime;
+	ArrayList<Flight> flightsToday;
 	
 	private int timeHour;
 	private int timeMinute;
@@ -65,11 +66,10 @@ public class HomeScreenWindow {
 
 	private void content() {
 		
-		orderFlightsByTime(getFlightsToday());
+		orderFlightsByTime();
 		//ObservableList<Flight> flights = FXCollections.observableArrayList(orderedFlights);
 		timeLabel.setText(LocalDateTime.now().toString());
 		setupTableContents();
-		initTableColumnValues();
 		rootPane.getChildren().addAll(timeLabel, flightTable);
 		APZLauncher.getBorderPane().setCenter(rootPane);
 		ScrollPane scrollPane = new ScrollPane();
@@ -83,12 +83,32 @@ public class HomeScreenWindow {
 	}
 
 	private void initialize() {
+		flightsToday = new ArrayList<>();
 		rootPane = new VBox(10);
 		activeFlightView = new ListView<String>();
 		flightTable = new TableView<>();
+		flightNumber = new TableColumn("Flight Number");
+		departingCity = new TableColumn("Arriving From");
+		destinationCity = new TableColumn("Departing To");
+		departingTime = new TableColumn("Scheduled");
 		timeLabel = new Text("00:00");
+		setupClock();
+	}
 		
-		  realTimeClock = new Timeline(new KeyFrame(Duration.ZERO, e -> {            
+		 	
+	private void setupTableContents() {
+		ObservableList<Flight> flightData = FXCollections.observableArrayList(flights);
+		flightTable.setItems(flightData);
+		flightTable.getColumns().addAll(flightNumber, departingCity, destinationCity, departingTime);
+		flightNumber.setCellValueFactory(new PropertyValueFactory<Flight, Integer>("flightNum"));
+		departingCity.setCellValueFactory(new PropertyValueFactory<Flight, Airport>("departureAirport"));
+		destinationCity.setCellValueFactory(new PropertyValueFactory<Flight, Airport>("destinationAirport"));
+		//departingTime.setCellFactory(new PropertyValueFactory<Flight, Time>("departureTime"));
+		
+		
+	}	
+	private void setupClock() {
+		 realTimeClock = new Timeline(new KeyFrame(Duration.ZERO, e -> {            
 		        Calendar cal = Calendar.getInstance();
 		        timeSecond = cal.get(Calendar.SECOND);
 		        timeMinute = cal.get(Calendar.MINUTE);
@@ -110,32 +130,8 @@ public class HomeScreenWindow {
 		    );
 		    realTimeClock.setCycleCount(Animation.INDEFINITE);
 		    realTimeClock.play();
+		    }
 	}
-	
-	private void setupTableContents() {
-		flightNumber = new TableColumn("Flight Number");
-		//TableColumn departingAirport = new TableColumn("Departing Airpot");
-		departingCity = new TableColumn("Arriving From");
-		//TableColumn destinationAirport = new TableColumn("Destination Airport");
-		destinationCity = new TableColumn("Departing To");
-		departingTime = new TableColumn("Scheduled");
-		
-		flightTable.getColumns().addAll(flightNumber, departingCity, destinationCity, departingTime);
-		fillTableData(getFlightsToday());
-		
-	}
-	private void initTableColumnValues() {
-		flightNumber.setCellValueFactory(new PropertyValueFactory<Flight, Integer>("flightNum"));
-		departingCity.setCellValueFactory(new PropertyValueFactory<Flight, Airport>("departureAirport"));
-		destinationCity.setCellValueFactory(new PropertyValueFactory<Flight, Airport>("destinationAirport"));
-		//departingTime.setCellFactory(new PropertyValueFactory<Flight, Time>("departureTime"));
-	}
-	private void fillTableData(ArrayList<Flight> flights) {
-		System.out.println("Filling");
-		ObservableList<Flight> flightData = FXCollections.observableArrayList(flights);
-		flightTable.setItems(flightData);
-	}
-	
 	private ArrayList<Flight> getFlightsToday() {
 		ArrayList<Flight> allFlights = APZState.loadFlights();
 		ArrayList<Flight> flightsToday  = new ArrayList<Flight>(); //has to be new arraylist
@@ -147,7 +143,7 @@ public class HomeScreenWindow {
 		System.out.println(flightsToday.size());
 		return flightsToday;
 	}
-	private void orderFlightsByTime(ArrayList<Flight> flightsToday) {
+	private void orderFlightsByTime() {
 		Flight temp;
 		Flight previous;
 

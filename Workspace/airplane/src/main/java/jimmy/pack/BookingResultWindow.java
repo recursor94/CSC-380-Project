@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import apz.airplane.model.Flight;
 import apz.airplane.user.APZLauncher;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Separator;
@@ -46,6 +47,8 @@ public class BookingResultWindow {
 				new BookingPaymentWindow(trip);
 			});
 		}
+		
+		tripBox.setAlignment(Pos.CENTER);
 	}
 
 	private void properties() {
