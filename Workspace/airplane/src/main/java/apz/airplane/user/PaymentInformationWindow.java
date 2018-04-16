@@ -102,7 +102,7 @@ public class PaymentInformationWindow {
 				int zip = Integer.valueOf(zipCodeField.getText());
 				long cardNum = Long.valueOf(cardNumField.getText());
 				user.addPayment(new Payment(name, street, city, state, zip, cardNum));
-				APZState.saveInformation(APZLauncher.getUserController());
+				APZState.saveInformation();
 				System.out.println(user.getPaymentInformation());
 			}
 		}

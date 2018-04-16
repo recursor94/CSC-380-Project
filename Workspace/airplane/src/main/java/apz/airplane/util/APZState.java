@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import apz.airplane.model.Airport;
 import apz.airplane.model.Flight;
 import apz.airplane.model.UserController;
+import apz.airplane.user.APZLauncher;
 
 public class APZState {
 	
@@ -18,13 +19,13 @@ public class APZState {
 	private static String airportObject = "airportList.apz";
 	private static String flightObject = "flightList.apz";
 	
-	public static void saveInformation(UserController uc) {
+	public static void saveInformation() {
 		FileOutputStream fileOut;
 		ObjectOutputStream objectOut;
 		try {
 			fileOut = new FileOutputStream(ucFilePath);
 			objectOut = new ObjectOutputStream(fileOut);
-			objectOut.writeObject(uc);
+			objectOut.writeObject(APZLauncher.getUserController());
 			objectOut.close();
 			System.out.println("The Object was successfully written to a file");
 		} catch (IOException e) {

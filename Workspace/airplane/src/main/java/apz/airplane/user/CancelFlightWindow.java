@@ -73,7 +73,7 @@ public class CancelFlightWindow {
 					user.removeTrip(foundBooking.getFlight());
 					ObservableList<Booking> asd = FXCollections.observableArrayList(user.getTripList());
 					list.setItems(asd);
-					APZState.saveInformation(APZLauncher.getUserController());
+					APZState.saveInformation();
 
 				} else {
 					System.out.println(":(");
