@@ -82,54 +82,32 @@ public class PaymentInformationWindow {
 	}
 	
 	private void verifyInput () {
-		
-		String name = nameField.getText();
-		String street = addressField.getText();
-		String city = cityField.getText();
-		String state = stateBox.getSelectionModel().getSelectedItem();
-		int zip = Integer.valueOf(zipCodeField.getText());
-		long cardNum = Long.valueOf(cardNumField.getText());						// don't use int. OVERFLOW
-		Payment payment = new Payment(name, street, city, state, zip, cardNum);
-		user.addPayment(payment);
-		APZState.saveInformation(APZLauncher.getUserController());
-		
 		//ERROR WITH EXCEPTIONS. WAY TOO LENGTHY
 		
-//		if(!(cardNumField.getText().isEmpty()) && !(nameField.getText().isEmpty()) && !(zipCodeField.getText().isEmpty())
-//				&& !(addressField.getText().isEmpty()) && !(cityField.getText().isEmpty()) && !(stateBox.getSelectionModel().isEmpty()) ) {
-//			if(IsInteger.isInteger(cardNumField.getText())) {
-//				if(IsInteger.isInteger(zipCodeField.getText())) {
-//					if(cardNumField.getText().length() == 16) {
-//						if(zipCodeField.getText().length() == 5) {
-//							String name = nameField.getText();
-//							String street = addressField.getText();
-//							String city = cityField.getText();
-//							String state = stateBox.getSelectionModel().getSelectedItem();
-//							int zip = Integer.valueOf(zipCodeField.getText());
-//							int cardNum = Integer.valueOf(cardNumField.getText());
-//							Payment payment = new Payment(name, street, city, state, zip, cardNum);
-//							user.addPayment(payment);
-//							APZState.saveInformation(APZLauncher.getUserController());
-//						}
-//						else {
-//							MessageBox.message(AlertType.ERROR, "Invalid Data Entry", "You must enter a 5 digit zip code");
-//						}
-//					}
-//					else {
-//						MessageBox.message(AlertType.ERROR, "Invalid Data Entry", "You must enter a 16 digit card number");
-//					}		
-//				}
-//				else {
-//					MessageBox.message(AlertType.ERROR, "Invalid Data Entry", "You must enter an integer for a zip code");
-//				}
-//			}
-//			else {
-//				MessageBox.message(AlertType.ERROR, "Invalid Data Entry", "You must enter an integer for a card number");
-//			}
-//		}
-//		else {
-//			MessageBox.message(AlertType.ERROR, "Invalid Data Entry", "You must enter data into all fields");
-//		}
+		if(!(cardNumField.getText().isEmpty()) && !(nameField.getText().isEmpty()) && !(zipCodeField.getText().isEmpty())
+			&& !(addressField.getText().isEmpty()) && !(cityField.getText().isEmpty()) && !(stateBox.getSelectionModel().isEmpty())) {
+			if(!(IsInteger.isInteger(cardNumField.getText())))
+				MessageBox.message(AlertType.ERROR, "Invalid Data Entry", "You must enter an integer for a card number");
+			else if(!(IsInteger.isInteger(zipCodeField.getText())))
+				MessageBox.message(AlertType.ERROR, "Invalid Data Entry", "You must enter an integer for a zip code");
+			else if(cardNumField.getText().length() != 16)
+				MessageBox.message(AlertType.ERROR, "Invalid Data Entry", "You must enter a 16 digit card number");
+			else if(zipCodeField.getText().length() != 5)
+				MessageBox.message(AlertType.ERROR, "Invalid Data Entry", "You must enter a 5 digit zip code");
+			else {
+				String name = nameField.getText();
+				String street = addressField.getText();
+				String city = cityField.getText();
+				String state = stateBox.getSelectionModel().getSelectedItem();
+				int zip = Integer.valueOf(zipCodeField.getText());
+				long cardNum = Long.valueOf(cardNumField.getText());
+				user.addPayment(new Payment(name, street, city, state, zip, cardNum));
+				APZState.saveInformation();
+				System.out.println(user.getPaymentInformation());
+			}
+		}
+		else 
+			MessageBox.message(AlertType.ERROR, "Invalid Data Entry", "You must enter data into all fields");
 	}
 	
 	private void populateStates() {

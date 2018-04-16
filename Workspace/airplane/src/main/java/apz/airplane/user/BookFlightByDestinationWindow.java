@@ -18,9 +18,9 @@ import javafx.scene.layout.VBox;
 
 public class BookFlightByDestinationWindow {
 	
-	private VBox mainPane = new VBox(10);
-	private ListView<Flight> flightView = new ListView <>();
-	private ArrayList <Flight> flightList = new ArrayList<>();
+	private VBox mainPane;
+	private ListView<Flight> flightView;
+	private ArrayList <Flight> flightList;
 	private Button findFlightButton, bookFlightButton;
 	private ComboBox<String> destinationBox;
 	
@@ -32,6 +32,9 @@ public class BookFlightByDestinationWindow {
 	}
 	
 	private void initialize() {
+		mainPane = new VBox(10);
+		flightView = new ListView <>();
+	    flightList = new ArrayList<>();
 		findFlightButton = new Button("Find Flights");
 		bookFlightButton = new Button("Book Flight");
 		destinationBox = new ComboBox<>();
@@ -55,7 +58,7 @@ public class BookFlightByDestinationWindow {
 				User user = APZLauncher.getCurrentUser();
 				user.addTrip(new Booking(flightView.getSelectionModel().getSelectedItem(), LocalDate.now(), user));
 				MessageBox.message(AlertType.INFORMATION, "Successful Booking", "Your flight has been booked!");
-				apz.airplane.util.APZState.saveInformation(APZLauncher.getUserController());
+				apz.airplane.util.APZState.saveInformation();
 				System.out.println(user.getTripList());
 			}
 			else {

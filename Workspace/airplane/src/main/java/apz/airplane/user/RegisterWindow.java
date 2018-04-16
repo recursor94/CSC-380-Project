@@ -103,7 +103,7 @@ public class RegisterWindow {
 			else {
 				User user = new User (userField.getText(), passField.getText());
 				APZLauncher.getUserController().addUser(user);
-				APZState.saveInformation(APZLauncher.getUserController());
+				APZState.saveInformation();
 				System.out.println("User successfully created!");
 				MessageBox.message(AlertType.INFORMATION, "Successful User Creation", "Your account has been created!");
 				System.out.println(APZLauncher.getUserController());

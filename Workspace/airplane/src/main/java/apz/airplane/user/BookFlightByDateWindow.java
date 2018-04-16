@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
 public class BookFlightByDateWindow {
@@ -36,16 +37,21 @@ public class BookFlightByDateWindow {
 		findFlightButton = new Button("Find Flights");
 		bookFlightButton = new Button("Book Flight");
 		calendar = new DatePicker();
-		calendar.setEditable(false);
+		
 	}
 
 	private void content() {
+		calendar.setEditable(false);
+		calendar.setMaxWidth(200);
+		
 		mainPane.getChildren().addAll(new Label("Select a flight date"), calendar, findFlightButton,
 				new Label("List of flights on selected date"), flightView, bookFlightButton);
 	}
 	
 	private void properties() {
 		APZLauncher.getBorderPane().setCenter(mainPane);
+		APZLauncher.getStage().setWidth(450);
+		APZLauncher.getStage().setHeight(450);
 	}
 	private void actionEvents() {
 		findFlightButton.setOnAction(event -> {
@@ -69,7 +75,7 @@ public class BookFlightByDateWindow {
 				User user = APZLauncher.getCurrentUser();
 				user.addTrip(new Booking(flightView.getSelectionModel().getSelectedItem(), LocalDate.now(), user));
 				MessageBox.message(AlertType.INFORMATION, "Successful Booking", "Your flight has been booked!");
-				apz.airplane.util.APZState.saveInformation(APZLauncher.getUserController());
+				apz.airplane.util.APZState.saveInformation();
 				System.out.println(user.getTripList());
 			} else {
 				MessageBox.message(AlertType.INFORMATION, "No Flight Selected", "You must select a flight to book");
