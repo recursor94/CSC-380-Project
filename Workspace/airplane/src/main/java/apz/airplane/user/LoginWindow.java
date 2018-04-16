@@ -100,9 +100,9 @@ public class LoginWindow {
 			APZLauncher.setCurrentUser(user);
 			new APZMenuBar();
 			//new BookFlightByDestinationWindow();
-			new HomeScreenWindow();
 			new APZMenuBar();
-			new BookFlightByDestinationWindow();
+			new HomeScreenWindow();
+//			new BookFlightByDestinationWindow();
 		} else {
 			if (loginAttempt < 5) 
 				status.setText("Login Attempt " + loginAttempt + "\nIncorrect user or password combination!");
