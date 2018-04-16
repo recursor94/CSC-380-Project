@@ -84,7 +84,7 @@ public class UserWindow {
 			if(userView.getSelectionModel().getSelectedItem() != null) {
 				User user = userView.getSelectionModel().getSelectedItem();
 				uc.removeUser(user.getUsername());
-				apz.airplane.util.APZState.saveInformation(uc);
+				APZState.saveInformation();
 				loadFile();
 			}
 			else
@@ -104,7 +104,7 @@ public class UserWindow {
 					MessageBox.message(AlertType.ERROR, "Invalid Password", "Your password cannot contain the empty space character");
 				else {
 					uc.addUser(new User (username, password));
-					APZState.saveInformation(uc);
+					APZState.saveInformation();
 					System.out.println("User successfully created!");
 					MessageBox.message(AlertType.INFORMATION, "Successful User Creation", "Your account has been created!");
 					System.out.println(uc);

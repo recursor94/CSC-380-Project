@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
 public class BookFlightByDateWindow {
@@ -36,16 +37,21 @@ public class BookFlightByDateWindow {
 		findFlightButton = new Button("Find Flights");
 		bookFlightButton = new Button("Book Flight");
 		calendar = new DatePicker();
-		calendar.setEditable(false);
+		
 	}
 
 	private void content() {
+		calendar.setEditable(false);
+		calendar.setMaxWidth(200);
+		
 		mainPane.getChildren().addAll(new Label("Select a flight date"), calendar, findFlightButton,
 				new Label("List of flights on selected date"), flightView, bookFlightButton);
 	}
 	
 	private void properties() {
 		APZLauncher.getBorderPane().setCenter(mainPane);
+		APZLauncher.getStage().setWidth(450);
+		APZLauncher.getStage().setHeight(450);
 	}
 	private void actionEvents() {
 		findFlightButton.setOnAction(event -> {
