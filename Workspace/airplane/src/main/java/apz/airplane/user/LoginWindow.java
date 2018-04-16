@@ -100,7 +100,7 @@ public class LoginWindow {
 			APZLauncher.setCurrentUser(user);
 			new APZMenuBar();
 			//new BookFlightByDestinationWindow();
-			new APZMenuBar();
+//			new APZMenuBar();
 			new HomeScreenWindow();
 //			new BookFlightByDestinationWindow();
 		} else {
