@@ -11,13 +11,21 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 
 public class PaymentInformationWindow {
 	
-	private GridPane rootPane;
-	private TextField cardNumField, nameField, addressField, cityField, zipCodeField;
-	private ComboBox<String> stateBox;
+	private Text header;
+	private VBox mainPane;
+	private HBox expirationPane, infoPane;
+	private GridPane gridPane;
+	private TextField cardNumField, CCVNumField, nameField, addressField, cityField, zipCodeField;
+	private ComboBox<String> monthBox, yearBox, stateBox;
 	private Button submitButton;
 	private User user;
 
@@ -29,49 +37,70 @@ public class PaymentInformationWindow {
 	}
 	
 	private void initialize() {
-		rootPane = new GridPane();
+		header = new Text("Enter Payment Information");
+		mainPane = new VBox(10);
+		infoPane = new HBox(10);
+		expirationPane = new HBox(10);
+		gridPane = new GridPane();
 		cardNumField = new TextField();
+		CCVNumField = new TextField();
 		nameField = new TextField();
 		addressField = new TextField();
 		cityField = new TextField();
 		zipCodeField = new TextField();
+		monthBox = new ComboBox<>();
+		yearBox = new ComboBox<>();
 		stateBox = new ComboBox<>();
 		submitButton = new Button("Submit");
 	}
 	
 	private void content() {
 		
+		header.setFont(new Font(32));
+		
+		CCVNumField.setMaxWidth(50);
+		CCVNumField.setTooltip(new Tooltip("CCV"));
+		
 		user = APZLauncher.getCurrentUser();
+		
+		populateExpirationFields();
 		populateStates();
 		
-		rootPane.setHgap(10);
-		rootPane.setVgap(10);
+		expirationPane.getChildren().addAll(monthBox, yearBox);
 		
-		rootPane.add(new Label("Credit Card Number: "), 0, 0);
-		rootPane.add(cardNumField, 1, 0);
+		infoPane.getChildren().addAll(cardNumField, CCVNumField);
+		gridPane.setHgap(10);
+		gridPane.setVgap(10);
 		
-		rootPane.add(new Label("Enter Your Name: "), 0, 1);
-		rootPane.add(nameField, 1, 1);
+		gridPane.add(new Label("Credit Card Number: "), 0, 0);
+		gridPane.add(infoPane, 1, 0);
 		
-		rootPane.add(new Label("Enter Your Address: "), 0, 2);
-		rootPane.add(addressField, 1, 2);	
+		gridPane.add(new Label("Select Expiration Date: "), 0, 1);
+		gridPane.add(expirationPane, 1, 1);
 		
-		rootPane.add(new Label("Enter Your City: "), 0, 3);
-		rootPane.add(cityField, 1, 3);
+		gridPane.add(new Label("Enter Your Name: "), 0, 2);
+		gridPane.add(nameField, 1, 2);
 		
-		rootPane.add(new Label("Enter Your Zip Code: "), 0, 4);
-		rootPane.add(zipCodeField, 1, 4);
+		gridPane.add(new Label("Enter Your Address: "), 0, 3);
+		gridPane.add(addressField, 1, 3);	
 		
-		rootPane.add(new Label("Select Your State: "), 0, 5);
-		rootPane.add(stateBox, 1, 5);
+		gridPane.add(new Label("Enter Your City: "), 0, 4);
+		gridPane.add(cityField, 1, 4);
 		
-		rootPane.add(submitButton, 0, 6);
+		gridPane.add(new Label("Enter Your Zip Code: "), 0, 5);
+		gridPane.add(zipCodeField, 1, 5);
 		
-		rootPane.setAlignment(Pos.CENTER);
+		gridPane.add(new Label("Select Your State: "), 0, 6);
+		gridPane.add(stateBox, 1, 6);
+		
+		gridPane.setAlignment(Pos.CENTER);
+		
+		mainPane.getChildren().addAll(header, gridPane, submitButton);
+		mainPane.setAlignment(Pos.CENTER);
 	}
 	private void properties() {
-		APZLauncher.getBorderPane().setCenter(rootPane);
-		APZLauncher.getStage().setHeight(425);
+		APZLauncher.getBorderPane().setCenter(mainPane);
+		APZLauncher.getStage().setHeight(500);
 		APZLauncher.getStage().setWidth(500);
 	}
 	
@@ -82,10 +111,11 @@ public class PaymentInformationWindow {
 	}
 	
 	private void verifyInput () {
-		//ERROR WITH EXCEPTIONS. WAY TOO LENGTHY
 		
 		if(!(cardNumField.getText().isEmpty()) && !(nameField.getText().isEmpty()) && !(zipCodeField.getText().isEmpty())
-			&& !(addressField.getText().isEmpty()) && !(cityField.getText().isEmpty()) && !(stateBox.getSelectionModel().isEmpty())) {
+			&& !(addressField.getText().isEmpty()) && !(cityField.getText().isEmpty()) && !(CCVNumField.getText().isEmpty()) 
+			&& !(stateBox.getSelectionModel().isEmpty()) && !(monthBox.getSelectionModel().isEmpty()) 
+			&& !(yearBox.getSelectionModel().isEmpty()) ) {
 			if(!(IsInteger.isInteger(cardNumField.getText())))
 				MessageBox.message(AlertType.ERROR, "Invalid Data Entry", "You must enter an integer for a card number");
 			else if(!(IsInteger.isInteger(zipCodeField.getText())))
@@ -94,6 +124,10 @@ public class PaymentInformationWindow {
 				MessageBox.message(AlertType.ERROR, "Invalid Data Entry", "You must enter a 16 digit card number");
 			else if(zipCodeField.getText().length() != 5)
 				MessageBox.message(AlertType.ERROR, "Invalid Data Entry", "You must enter a 5 digit zip code");
+			else if(!(IsInteger.isInteger(CCVNumField.getText())))
+				MessageBox.message(AlertType.ERROR, "Invalid Data Entry", "You must enter an integer for a CCV Number");
+			else if(CCVNumField.getText().length() != 3)
+				MessageBox.message(AlertType.ERROR, "Invalid Data Entry", "You must enter a 3 digit CCV Number");
 			else {
 				String name = nameField.getText();
 				String street = addressField.getText();
@@ -101,7 +135,9 @@ public class PaymentInformationWindow {
 				String state = stateBox.getSelectionModel().getSelectedItem();
 				int zip = Integer.valueOf(zipCodeField.getText());
 				long cardNum = Long.valueOf(cardNumField.getText());
-				user.addPayment(new Payment(name, street, city, state, zip, cardNum));
+				String expirationDate = monthBox.getSelectionModel().getSelectedItem() + "/" + yearBox.getSelectionModel().getSelectedItem();
+				int CCV = Integer.valueOf(CCVNumField.getText());
+				user.addPayment(new Payment(name, street, city, state, zip, cardNum, expirationDate, CCV));
 				APZState.saveInformation();
 				System.out.println(user.getPaymentInformation());
 			}
@@ -161,5 +197,18 @@ public class PaymentInformationWindow {
 		stateBox.getItems().add("WI");
 		stateBox.getItems().add("WV");
 		stateBox.getItems().add("WY");
+	}
+	
+	private void populateExpirationFields() {
+		for(int i = 1; i < 13; i ++) {
+			
+			if(i < 10)
+				monthBox.getItems().add("0" + i);
+			else 
+				monthBox.getItems().add("" + i);
+		}
+		
+		for(int i = 2018; i < 2026; i ++) 
+			yearBox.getItems().add("" + i);	
 	}
 }

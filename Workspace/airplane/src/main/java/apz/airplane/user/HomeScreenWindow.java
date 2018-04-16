@@ -107,7 +107,6 @@ public class HomeScreenWindow {
 			if (cal.get(Calendar.AM_PM) == Calendar.PM) {
 				timeOfDay = "PM";
 			}
-
 			if (timeHour >= 12) {
 				timeHour -= 12;
 			} else if (timeHour == 0) {
@@ -125,16 +124,10 @@ public class HomeScreenWindow {
 				for (FlightInformation flight : flightsToday) {
 					if (flight != null) {
 						double departureTime = flight.getTime();
-						int departureHour = (int) departureTime;
 						int departureMinute = 0;
 
 						if (departureTime % 1 == 0) {
 							departureMinute = 30;
-						}
-
-						if (departureHour == timeHour && departureMinute == timeMinute) {
-							System.out.println("Time To Run");
-							flightTable.getItems().remove(flight);
 						}
 
 					}
@@ -145,6 +138,7 @@ public class HomeScreenWindow {
 		}));
 		realTimeClock.setCycleCount(Animation.INDEFINITE);
 		realTimeClock.play();
+
 	}
 
 	private ArrayList<FlightInformation> getFlightsToday() {
@@ -162,8 +156,7 @@ public class HomeScreenWindow {
 	}
 
 	private void orderFlightsByTime() {
-		FlightInformation temp;
-		FlightInformation previous;
+		FlightInformation temp, previous;
 
 		for (int i = 0; i < flightsToday.size(); i++) {
 			previous = flightsToday.get(i);
@@ -177,10 +170,6 @@ public class HomeScreenWindow {
 					flightsToday.set(j, temp);
 				}
 			}
-
 		}
-
-		System.out.println(flightsToday.get(0));
 	}
-
 }

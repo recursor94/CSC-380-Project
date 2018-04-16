@@ -14,11 +14,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
 public class BookFlightByDestinationWindow {
 	
 	private VBox mainPane;
+	private GridPane rootPane;
 	private ListView<Flight> flightView;
 	private ArrayList <Flight> flightList;
 	private Button findFlightButton, bookFlightButton;
@@ -32,6 +34,7 @@ public class BookFlightByDestinationWindow {
 	}
 	
 	private void initialize() {
+		rootPane = new GridPane();
 		mainPane = new VBox(10);
 		flightView = new ListView <>();
 	    flightList = new ArrayList<>();
@@ -42,11 +45,22 @@ public class BookFlightByDestinationWindow {
 	
 	private void content() {
 		populateProvince();
+		rootPane.setHgap(10);
+		rootPane.setVgap(10);
+		
+		rootPane.add(new Label("Select your desired destination"), 0, 0);
+		rootPane.add(destinationBox, 1, 0);
+		
+		rootPane.add(findFlightButton, 0, 1);
+		rootPane.add(flightView, 0, 2);
+		rootPane.add(bookFlightButton, 0, 3);
 		mainPane.getChildren().addAll(new Label("Select your desired destination"), destinationBox, findFlightButton, flightView, bookFlightButton);
 	}
 	
 	private void properties() {
 		APZLauncher.getBorderPane().setCenter(mainPane);
+		APZLauncher.getStage().setHeight(425);
+		APZLauncher.getStage().setWidth(500);
 	}
 	private void actionEvents() {
 		findFlightButton.setOnAction(event -> {

@@ -18,7 +18,6 @@ public class InformationWindow {
 		initialize();
 		content();
 		properties();
-		
 	}
 	
 	private void initialize() {

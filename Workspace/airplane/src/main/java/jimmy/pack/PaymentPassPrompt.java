@@ -11,6 +11,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class PaymentPassPrompt implements WindowInterface {
 
@@ -19,11 +20,13 @@ public class PaymentPassPrompt implements WindowInterface {
 	private GridPane gridPane;
 	private PasswordField passwordTf;
 	private Button confirmButton;
+	private Stage stage;
 
 	public PaymentPassPrompt() {
 		APZLauncher.getStage().getScene().getRoot().setEffect(new GaussianBlur());	// will disable if exit or password right
 		initialize();
 		content();
+		actionEvents();
 		properties();
 	}
 
@@ -36,10 +39,7 @@ public class PaymentPassPrompt implements WindowInterface {
 	}
 
 	public void content() {
-		
-//		gridPane.add(passwordTf, 1, 2);
 		mainPane.getChildren().addAll(header, passwordTf, confirmButton);
-		
 		
 		gridPane.setHgap(15);
 		gridPane.setVgap(15);
@@ -48,13 +48,19 @@ public class PaymentPassPrompt implements WindowInterface {
 	}
 
 	public void actionEvents() {
-		
+		confirmButton.setOnAction(event -> {
+			if (	APZLauncher.getCurrentUser().validatePassword(passwordTf.getText())) {
+				APZLauncher.getStage().getScene().getRoot().setEffect(null);
+				stage.close();
+			}
+		});
 	}
 
 	public void properties() {
-		Stage stage = new Stage();
+		stage = new Stage();
 		stage.initModality(Modality.APPLICATION_MODAL);
 		stage.setScene(new Scene(mainPane, 250, 100));
+		stage.initStyle(StageStyle.UNDECORATED);
 		stage.show();
 		
 		stage.setOnCloseRequest(event -> {
