@@ -37,18 +37,17 @@ public class HomeScreenWindow {
 	private ComboBox cityComboBox;
 	private Text timeLabel;
 	private Timeline realTimeClock;
-	private TableView<Flight> flightTable;
+	private TableView<FlightInformation> flightTable;
 	TableColumn flightNumber; 
 	//TableColumn departingAirport = new TableColumn("Departing Airpot");
 	TableColumn departingCity;
 	//TableColumn destinationAirport = new TableColumn("Destination Airport");
 	TableColumn destinationCity;
 	TableColumn departingTime;
-	ArrayList<Flight> flightsToday;
+	ArrayList<FlightInformation> flightsToday;
 	
 	private int timeHour;
 	private int timeMinute;
-	private int timeSecond;
 
 	public HomeScreenWindow() {
 		initialize();
@@ -95,20 +94,20 @@ public class HomeScreenWindow {
 		
 		 	
 	private void setupTableContents() {
-		ObservableList<Flight> flightData = FXCollections.observableArrayList(flightsToday);
+		ObservableList<FlightInformation> flightData = FXCollections.observableArrayList(flightsToday);
 		flightTable.setItems(flightData);
 		flightTable.getColumns().addAll(flightNumber, departingCity, destinationCity, departingTime);
-		flightNumber.setCellValueFactory(new PropertyValueFactory<Flight, Integer>("flightNum"));
-		departingCity.setCellValueFactory(new PropertyValueFactory<Flight, Airport>("departureAirport"));
-		destinationCity.setCellValueFactory(new PropertyValueFactory<Flight, Airport>("destinationAirport"));
-		//departingTime.setCellFactory(new PropertyValueFactory<Flight, Time>("departureTime"));
+		flightNumber.setCellValueFactory(new PropertyValueFactory<FlightInformation, Integer>("flightNumber"));
+		departingCity.setCellValueFactory(new PropertyValueFactory<FlightInformation, String>("departureAirport"));
+		destinationCity.setCellValueFactory(new PropertyValueFactory<FlightInformation, String>("destinationAirport"));
+		departingTime.setCellValueFactory(new PropertyValueFactory<FlightInformation, String>("departureTimeString"));
 	}	
 	private void setupClock() {
-		 realTimeClock = new Timeline(new KeyFrame(Duration.ZERO, e -> {            
+		realTimeClock = new Timeline(new KeyFrame(Duration.ZERO, e -> {            
 		        Calendar cal = Calendar.getInstance();
-		        timeSecond = cal.get(Calendar.SECOND);
-		        timeMinute = cal.get(Calendar.MINUTE);
 		        timeHour = cal.get(Calendar.HOUR);
+		        timeMinute = cal.get(Calendar.MINUTE);
+		        //timeHour++;
 		        String minuteString = timeMinute + "";
 		        
 		        if(timeHour >= 12) {
@@ -120,15 +119,16 @@ public class HomeScreenWindow {
 		        if(timeMinute < 10) {
 		        	minuteString = "0" + timeMinute;
 		        }
-		        timeLabel.setText(timeHour + ":" + (minuteString) + ":" + timeSecond);
+		        timeLabel.setText(timeHour + ":" + (minuteString));
 		    }),
-		         new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent> (){
+		         new KeyFrame(Duration.minutes(1), new EventHandler<ActionEvent> (){
 
 					@Override
 					public void handle(ActionEvent event) {
-						for(Flight flight : flightsToday) {
+						System.out.println("handling");
+						for(FlightInformation flight : flightsToday) {
 							if(flight != null) {
-								double departureTime = flight.getDepartureTime().getTimeDouble();
+								double departureTime = flight.getTime();
 								int departureHour = (int) departureTime; 
 								int departureMinute = 0;
 								
@@ -148,39 +148,30 @@ public class HomeScreenWindow {
 		        	 
 		         })
 		    );
-//		 KeyFrame updateTable = new KeyFrame(Duration.seconds(50), new EventHandler<ActionEvent>() {
-//
-//			@Override
-//			public void handle(ActionEvent arg0) {
-//				System.out.println("Hey");
-//			}
-//			 
-//		 });
-		 //realTimeClock.getKeyFrames().add(updateTable);
-		 realTimeClock.setCycleCount(Animation.INDEFINITE);
+	 realTimeClock.setCycleCount(Animation.INDEFINITE);
 		 realTimeClock.play();
 		    }
-	private ArrayList<Flight> getFlightsToday() {
+	private ArrayList<FlightInformation> getFlightsToday() {
 		ArrayList<Flight> allFlights = APZState.loadFlights();
-		ArrayList<Flight> flightsToday  = new ArrayList<Flight>(); //has to be new arraylist
+		ArrayList<FlightInformation> flightsToday  = new ArrayList<>(); //has to be new arraylist
 		for(Flight flight : allFlights) {
 			if(flight.getArriveDate().isEqual(LocalDate.now())) {
-				flightsToday.add(flight);
+				flightsToday.add(new FlightInformation(flight.getFlightNum(), flight.getDepartureAirport().toString(), flight.getDestinationAirport().toString(), flight.getDepartureTime().getTimeDouble(), flight.getDepartureTime().getTimeString()));
 			}
 		}
 		System.out.println(flightsToday.size());
 		return flightsToday;
 	}
 	private void orderFlightsByTime() {
-		Flight temp;
-		Flight previous;
+		FlightInformation temp;
+		FlightInformation previous;
 
 		for(int i = 0; i < flightsToday.size(); i++) {
 			 previous = flightsToday.get(i);
 			
 			for(int j = 0; j < flightsToday.size(); j++) {
-				double previousTime = previous.getDepartureTime().getTimeDouble();
-				double comparisonTime = flightsToday.get(j).getArrivalTime().getTimeDouble();
+				double previousTime = previous.getTime();
+				double comparisonTime = flightsToday.get(j).getTime();
 				if(comparisonTime < previousTime) {
 					temp = flightsToday.get(i);
 					flightsToday.set(i, flightsToday.get(j));
@@ -190,6 +181,7 @@ public class HomeScreenWindow {
 			
 		} 
 			
+		System.out.println(flightsToday.get(0));
 		} 
 		
 	}
