@@ -11,16 +11,18 @@ public class Payment implements Serializable {
 	private String state;
 	private int zipcode;
 	private long cardNum;
+	private String expirationDate;
+	private int CCVNum;
 	
-	// needs expiration date, CCV
-	
-	public Payment(String name, String street, String city, String state, int zipcode, long cardNum) {
+	public Payment(String name, String street, String city, String state, int zipcode, long cardNum, String expirationDate, int CCVNum) {
 		this.name = name;
 		this.street = street;
 		this.city = city;
 		this.state = state;
 		this.zipcode = zipcode;
 		this.cardNum = cardNum;
+		this.expirationDate = expirationDate;
+		this.CCVNum = CCVNum;
 	}
 	public String getName() {
 		return name;
@@ -57,6 +59,19 @@ public class Payment implements Serializable {
 	}
 	public void setCardNum(long cardNum) {
 		this.cardNum = cardNum;
+	}
+	
+	public String getExpirationDate() {
+		return expirationDate;
+	}
+	public void setExpirationDate(String expirationDate) {
+		this.expirationDate = expirationDate;
+	}
+	public int getCCVNum() {
+		return CCVNum;
+	}
+	public void setCCVNum(int cCVNum) {
+		CCVNum = cCVNum;
 	}
 	@Override
 	public String toString() {

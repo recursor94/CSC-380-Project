@@ -180,8 +180,6 @@ public class HomeScreenWindow {
 			}
 			
 		} 
-			
-		System.out.println(flightsToday.get(0));
 		} 
 		
 	}
