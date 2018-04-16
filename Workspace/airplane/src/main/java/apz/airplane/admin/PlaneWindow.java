@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import apz.airplane.model.Airplane;
 import apz.airplane.util.IsInteger;
 import apz.airplane.util.MessageBox;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -12,15 +13,22 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class PlaneWindow {
 	
-	private VBox mainPane = new VBox(10);
+	private VBox mainPane;
+	private GridPane gridPane;
+	private HBox buttonBox;
 	private ArrayList<Airplane> planeList;
 	private ListView<Airplane> planeView;
+	private Text header;
 	private TextField planeNumField, airlineField;
 	private ComboBox<Integer> seatField;
 	private Button createButton, removeButton;
@@ -33,11 +41,15 @@ public class PlaneWindow {
 	}
 
 	private void initialize() {
+		mainPane = new VBox(10);
+		gridPane = new GridPane();
+		buttonBox = new HBox(10);
 		planeList = new ArrayList<>();
 		planeView = new ListView<>();
 		planeNumField = new TextField();
 		airlineField = new TextField();
 		seatField = new ComboBox<>();
+		header = new Text("Create Airports");
 		createButton = new Button("Create");
 		removeButton = new Button("Remove");
 		loadFile(); // need to load initial values.
@@ -48,8 +60,27 @@ public class PlaneWindow {
 			seatField.getItems().add(i);
 		seatField.setValue(1);
 
-		mainPane.getChildren().addAll(new Label("Plane Number"), planeNumField, new Label("Airline Name"), airlineField,
-				new Label("Seat Capacity"), seatField, createButton, planeView, removeButton);
+		header.setFont(new Font(32));
+		
+		buttonBox.getChildren().addAll(createButton, removeButton);
+		buttonBox.setAlignment(Pos.CENTER);
+		
+		gridPane.setAlignment(Pos.CENTER);
+		
+		gridPane.setVgap(10);
+		gridPane.setHgap(10);
+		
+		gridPane.add(new Label("Plane Number"), 0, 0);
+		gridPane.add(planeNumField, 1, 0);
+		
+		gridPane.add(new Label("Airline Name"), 0, 1);
+		gridPane.add(airlineField, 1, 1);
+		
+		gridPane.add(new Label("Seat Capacity"), 0, 2);
+		gridPane.add(seatField, 1, 2);
+		
+		mainPane.getChildren().addAll(header, gridPane, planeView, buttonBox);
+		mainPane.setAlignment(Pos.CENTER);
 	}
 
 	private void actionEvents() {

@@ -178,14 +178,6 @@ public class HomeScreenWindow {
 					flightsToday.set(j, temp);
 				}
 			}
-<<<<<<< HEAD
-			
-		} 
-		} 
-		
-	}
-=======
->>>>>>> 739e661cb74d0e44d016f12950d3d586edfdb5df
 
 		}
 	}
