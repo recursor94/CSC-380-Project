@@ -23,22 +23,16 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class HomeScreenWindow {
 	private VBox rootPane;
-	private Stage primaryStage;
 	private Text timeLabel;
 	private Timeline realTimeClock;
 	private TableView<FlightInformation> flightTable;
-	TableColumn flightNumber;
-	// TableColumn departingAirport = new TableColumn("Departing Airpot");
-	TableColumn departingCity;
-	// TableColumn destinationAirport = new TableColumn("Destination Airport");
-	TableColumn destinationCity;
-	TableColumn departingTime;
-	ArrayList<FlightInformation> flightsToday;
+	private TableColumn<FlightInformation, Integer> flightNumber;
+	private TableColumn <FlightInformation, String>departingCity,destinationCity, departingTime;
+	private ArrayList<FlightInformation> flightsToday;
 
 	private int timeHour;
 	private int timeMinute;
@@ -56,8 +50,6 @@ private void content() {
 
 		flightsToday = getFlightsToday();
 		orderFlightsByTime();
-		// ObservableList<Flight> flights =
-		// FXCollections.observableArrayList(orderedFlights);
 		timeLabel.setText(LocalDateTime.now().toString());
 		timeLabel.setStyle("-fx-font: 24 arial;");
 		timeLabel.setFill(Color.BLACK);
