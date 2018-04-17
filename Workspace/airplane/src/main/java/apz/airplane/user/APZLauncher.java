@@ -16,7 +16,6 @@ public class APZLauncher extends Application {
 	private static UserController uc;
 	private static BorderPane root;
 	private static Stage stage;
-	private Timer timer;
 	
 	public static void main(String[] args) {
 		launch(args);
