@@ -5,6 +5,8 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
@@ -51,6 +53,7 @@ public class PaymentPassPrompt implements WindowInterface {
 		confirmButton.setOnAction(event -> {
 			if (	APZLauncher.getCurrentUser().validatePassword(passwordTf.getText())) {
 				APZLauncher.getStage().getScene().getRoot().setEffect(null);
+				new PaymentWindow();
 				stage.close();
 			}
 		});

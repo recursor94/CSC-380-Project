@@ -18,7 +18,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
-public class PaymentInformationWindow {
+public class PaymentAddWindow {
 	
 	private Text header;
 	private VBox mainPane;
@@ -29,7 +29,7 @@ public class PaymentInformationWindow {
 	private Button submitButton;
 	private User user;
 
-	public PaymentInformationWindow() {
+	public PaymentAddWindow() {
 		initialize();
 		content();
 		properties();

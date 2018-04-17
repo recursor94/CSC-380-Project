@@ -78,7 +78,7 @@ public class APZMenuBar {
 		
 		managePaymentItem.setOnAction(event -> {
 			new PaymentPassPrompt();
-			new PaymentInformationWindow();
+			new PaymentAddWindow();
 		});
 		
 		manageBookingItem.setOnAction(event -> {
