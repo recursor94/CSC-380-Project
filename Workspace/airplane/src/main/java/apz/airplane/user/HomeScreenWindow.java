@@ -21,6 +21,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -58,6 +59,8 @@ private void content() {
 		// ObservableList<Flight> flights =
 		// FXCollections.observableArrayList(orderedFlights);
 		timeLabel.setText(LocalDateTime.now().toString());
+		timeLabel.setStyle("-fx-font: 24 arial;");
+		timeLabel.setFill(Color.BLACK);
 		setupTableContents();
 		rootPane.getChildren().addAll(timeLabel, flightTable);
 		APZLauncher.getBorderPane().setCenter(rootPane);
