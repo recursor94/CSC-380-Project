@@ -10,6 +10,8 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -53,7 +55,6 @@ public class PaymentPassPrompt implements WindowInterface {
 		confirmButton.setOnAction(event -> {
 			if (	APZLauncher.getCurrentUser().validatePassword(passwordTf.getText())) {
 				APZLauncher.getStage().getScene().getRoot().setEffect(null);
-				new PaymentWindow();
 				stage.close();
 			}
 		});
@@ -64,6 +65,7 @@ public class PaymentPassPrompt implements WindowInterface {
 		stage.initModality(Modality.APPLICATION_MODAL);
 		stage.setScene(new Scene(mainPane, 250, 100));
 		stage.initStyle(StageStyle.UNDECORATED);
+		stage.getScene().setFill(Color.BLACK);
 		stage.show();
 		
 		stage.setOnCloseRequest(event -> {

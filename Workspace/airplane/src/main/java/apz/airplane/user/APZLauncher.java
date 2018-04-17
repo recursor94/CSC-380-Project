@@ -1,7 +1,5 @@
 package apz.airplane.user;
 
-import java.util.Timer;
-
 import apz.airplane.model.User;
 import apz.airplane.model.UserController;
 import apz.airplane.util.APZState;
@@ -16,8 +14,7 @@ public class APZLauncher extends Application {
 	private static UserController uc;
 	private static BorderPane root;
 	private static Stage stage;
-	private Timer timer;
-	
+
 	public static void main(String[] args) {
 		launch(args);
 	}
@@ -27,7 +24,7 @@ public class APZLauncher extends Application {
 		stage = primaryStage;
 		uc = APZState.loadInformation();
 		root = new BorderPane();
-		primaryStage.setScene(new Scene(root, 500, 600));
+		primaryStage.setScene(new Scene(root, 0, 0));
 		primaryStage.setTitle("APZ Airplane Application");
 		primaryStage.setResizable(false);
 		primaryStage.show();

@@ -75,6 +75,6 @@ public class Payment implements Serializable {
 	}
 	@Override
 	public String toString() {
-		return "Card ending in number " + ((Long)cardNum).toString().substring(11);
+		return "Card ending in number " + ((Long)cardNum).toString().substring(12);
 	}
 }

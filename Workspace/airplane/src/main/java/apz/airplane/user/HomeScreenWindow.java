@@ -181,5 +181,7 @@ public class HomeScreenWindow {
 
 		}
 	}
+	
+	//500, 600 size
 
 }
