@@ -50,6 +50,7 @@ public class FlightWindow {
 	private void initialize() {
 		gridPane = new GridPane();
 		mainPane = new VBox(10);
+		buttonBox = new HBox(10);
 		flightList = new ArrayList<>();
 		flightView = new ListView<>();
 		flightNumField = new TextField();
@@ -122,55 +123,7 @@ public class FlightWindow {
 		});
 
 		createFlightButton.setOnAction(event -> {
-			
-			// Put message box first then have all others. Always == and !=
-			if (!planeBox.getSelectionModel().isEmpty() && !departTimeBox.getSelectionModel().isEmpty()
-					&& !arriveTimeBox.getSelectionModel().isEmpty() && !arriveAirportBox.getSelectionModel().isEmpty()
-					&& !departAirportBox.getSelectionModel().isEmpty() && departDatePicker != null
-					&& arriveDatePicker != null && !flightNumField.getText().isEmpty()) {
-				
-				//Check to make sure the depart date is before (or the same as) the arrive date
-				if(departDatePicker.getValue().isAfter(arriveDatePicker.getValue())) 
-					MessageBox.message(AlertType.ERROR, "Invalid Data Entry", "Your departure date can not be after your arrival date");
-				//Check to make sure you are not creating a flight in the past
-				else if(departDatePicker.getValue().isBefore(LocalDate.now()))
-					MessageBox.message(AlertType.ERROR, "Invalid Data Entry", "Your flight cannot depart on a date that has already past");
-				//Check to make sure the airports for departure and arrival are different
-				else if(departAirportBox.getSelectionModel().getSelectedItem().equals(arriveAirportBox.getSelectionModel().getSelectedItem()))
-						MessageBox.message(AlertType.ERROR, "Invalid Data Entry", "Your departure airport cannot be the same as your arrival airport");
-				//Check if the flight number is an integer
-				else if(!(IsInteger.isInteger(flightNumField.getText()))) {
-					MessageBox.message(AlertType.ERROR, "Invalid Data Entry", "The flight number must be an integer");
-				}
-				else {
-					Airplane plane = planeBox.getSelectionModel().getSelectedItem();
-					Time departure = new Time(departTimeBox.getSelectionModel().getSelectedItem());
-					Time arrival = new Time(arriveTimeBox.getSelectionModel().getSelectedItem());
-					
-					// Lets name outgoing and incoming self-explanatory variables
-					String outgoing = departAirportBox.getSelectionModel().getSelectedItem();
-					String incoming = arriveAirportBox.getSelectionModel().getSelectedItem();
-					String[] partitionOutgoing = outgoing.split(", ");
-					String[] partitionIncoming = incoming.split(", ");
-					Airport outgoingAirport = new Airport(partitionOutgoing[0], partitionOutgoing[1]);
-					Airport incomingAirport = new Airport(partitionIncoming[0], partitionIncoming[1]);
-					LocalDate leaving = departDatePicker.getValue();
-					LocalDate arriving = arriveDatePicker.getValue();
-					int flightNum = Integer.valueOf(flightNumField.getText());
-					
-					//If the dates are the same, check to see if the depart time is before the arrive time
-					if((departure.getTimeDouble() >= arrival.getTimeDouble()) && leaving.equals(arriving)) {
-						MessageBox.message(AlertType.ERROR, "Invalid Data Entry", "Your arrival time must be after your departure time");
-					}
-					else {
-						flightList.add(new Flight(plane, outgoingAirport, incomingAirport, arriving, leaving, arrival,
-								departure, flightNum));
-						AdminState.saveFlight(flightList);
-						loadFlights();
-					}
-				}
-			} else 
-				MessageBox.message(AlertType.ERROR, "Invalid Data Entry", "You must enter data into all fields");
+			verifyInput();
 		});
 
 		removeFlightButton.setOnAction(event -> {
@@ -234,8 +187,57 @@ public class FlightWindow {
 			arriveAirportBox.setDisable(false);
 		}
 	} 
+	
+	private void verifyInput() {
+	
+		if (!planeBox.getSelectionModel().isEmpty() && !departTimeBox.getSelectionModel().isEmpty()
+				&& !arriveTimeBox.getSelectionModel().isEmpty() && !arriveAirportBox.getSelectionModel().isEmpty()
+				&& !departAirportBox.getSelectionModel().isEmpty() && departDatePicker != null
+				&& arriveDatePicker != null && !flightNumField.getText().isEmpty()) {
+			
+			//Check to make sure the depart date is before (or the same as) the arrive date
+			if(departDatePicker.getValue().isAfter(arriveDatePicker.getValue())) 
+				MessageBox.message(AlertType.ERROR, "Invalid Data Entry", "Your departure date can not be after your arrival date");
+			//Check to make sure you are not creating a flight in the past
+			else if(departDatePicker.getValue().isBefore(LocalDate.now()))
+				MessageBox.message(AlertType.ERROR, "Invalid Data Entry", "Your flight cannot depart on a date that has already past");
+			//Check to make sure the airports for departure and arrival are different
+			else if(departAirportBox.getSelectionModel().getSelectedItem().equals(arriveAirportBox.getSelectionModel().getSelectedItem()))
+					MessageBox.message(AlertType.ERROR, "Invalid Data Entry", "Your departure airport cannot be the same as your arrival airport");
+			//Check if the flight number is an integer
+			else if(!(IsInteger.isInteger(flightNumField.getText()))) {
+				MessageBox.message(AlertType.ERROR, "Invalid Data Entry", "The flight number must be an integer");
+			}
+			else {
+				Airplane plane = planeBox.getSelectionModel().getSelectedItem();
+				Time departure = new Time(departTimeBox.getSelectionModel().getSelectedItem());
+				Time arrival = new Time(arriveTimeBox.getSelectionModel().getSelectedItem());
+				String outgoing = departAirportBox.getSelectionModel().getSelectedItem();
+				String incoming = arriveAirportBox.getSelectionModel().getSelectedItem();
+				String[] partitionOutgoing = outgoing.split(", ");
+				String[] partitionIncoming = incoming.split(", ");
+				Airport outgoingAirport = new Airport(partitionOutgoing[0], partitionOutgoing[1]);
+				Airport incomingAirport = new Airport(partitionIncoming[0], partitionIncoming[1]);
+				LocalDate leaving = departDatePicker.getValue();
+				LocalDate arriving = arriveDatePicker.getValue();
+				int flightNum = Integer.valueOf(flightNumField.getText());
+				
+				//If the dates are the same, check to see if the depart time is before the arrive time
+				if((departure.getTimeDouble() >= arrival.getTimeDouble()) && leaving.equals(arriving)) {
+					MessageBox.message(AlertType.ERROR, "Invalid Data Entry", "Your arrival time must be after your departure time");
+				}
+				else {
+					flightList.add(new Flight(plane, outgoingAirport, incomingAirport, arriving, leaving, arrival,
+							departure, flightNum));
+					AdminState.saveFlight(flightList);
+					loadFlights();
+				}
+			}
+		} else 
+			MessageBox.message(AlertType.ERROR, "Invalid Data Entry", "You must enter data into all fields");
+	}
 
-	public void loadFlights() {
+	private void loadFlights() {
 		flightList = AdminState.loadFlights();
 		if (!flightView.getItems().isEmpty())
 			flightView.getItems().clear();
