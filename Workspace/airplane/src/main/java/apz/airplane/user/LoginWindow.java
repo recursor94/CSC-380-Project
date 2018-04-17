@@ -71,6 +71,8 @@ public class LoginWindow {
 	
 	private void properties() {
 		APZLauncher.getBorderPane().setCenter(rootPane);
+		APZLauncher.getStage().setWidth(300);
+		APZLauncher.getStage().setHeight(380);
 	}
 	
 	private void actionEvents() {

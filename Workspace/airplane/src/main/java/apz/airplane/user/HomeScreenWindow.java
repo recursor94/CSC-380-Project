@@ -46,12 +46,19 @@ public class HomeScreenWindow {
 		initialize();
 		content();
 		actionEvents();
+		properties();
 	}
 
 	private void actionEvents() {
 
 	}
-private void content() {
+
+	private void properties() {
+		APZLauncher.getStage().setWidth(500);
+		APZLauncher.getStage().setHeight(650);
+	}
+
+	private void content() {
 
 		flightsToday = getFlightsToday();
 		orderFlightsByTime();
@@ -169,10 +176,5 @@ private void content() {
 			}
 		}
 	}
-<<<<<<< HEAD
-	
-	//500, 600 size
-
-=======
->>>>>>> 09b111f555d54888b41cbac5496a3f512286327d
+	// 500, 600 size
 }

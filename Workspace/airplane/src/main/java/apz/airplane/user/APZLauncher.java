@@ -1,9 +1,5 @@
 package apz.airplane.user;
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 09b111f555d54888b41cbac5496a3f512286327d
 import apz.airplane.model.User;
 import apz.airplane.model.UserController;
 import apz.airplane.util.APZState;
@@ -18,11 +14,7 @@ public class APZLauncher extends Application {
 	private static UserController uc;
 	private static BorderPane root;
 	private static Stage stage;
-<<<<<<< HEAD
 
-=======
-	
->>>>>>> 09b111f555d54888b41cbac5496a3f512286327d
 	public static void main(String[] args) {
 		launch(args);
 	}
@@ -32,7 +24,7 @@ public class APZLauncher extends Application {
 		stage = primaryStage;
 		uc = APZState.loadInformation();
 		root = new BorderPane();
-		primaryStage.setScene(new Scene(root, 0, 0));
+		primaryStage.setScene(new Scene(root, 300, 300));
 		primaryStage.setTitle("APZ Airplane Application");
 		primaryStage.setResizable(false);
 		primaryStage.show();
