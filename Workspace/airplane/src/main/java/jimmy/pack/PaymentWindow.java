@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import apz.airplane.model.Payment;
 import apz.airplane.user.APZLauncher;
 import apz.airplane.user.PaymentAddWindow;
+import apz.airplane.util.APZState;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -79,7 +80,10 @@ public class PaymentWindow {
 		});
 		
 		removeButton.setOnAction(event -> {
-			//if select model is null
+			Payment payment = paymentBox.getSelectionModel().getSelectedItem();
+			APZLauncher.getCurrentUser().getPaymentInformation().remove(payment);
+			APZState.saveInformation();
+			populateComboBox();
 		});
 	}
 
@@ -88,6 +92,7 @@ public class PaymentWindow {
 	}
 	
 	private void populateComboBox() {
+		paymentBox.getItems().clear();
 		ArrayList<Payment> payList = APZLauncher.getCurrentUser().getPaymentInformation();
 		for (int i = 0; i < payList.size(); i++) 
 			paymentBox.getItems().add(payList.get(i));
