@@ -85,20 +85,7 @@ public class PlaneWindow {
 
 	private void actionEvents() {
 		createButton.setOnAction(event -> {
-
-			if (planeNumField.getText().isEmpty() && airlineField.getText().isEmpty() || planeNumField.getText().isEmpty() || airlineField.getText().isEmpty())
-				MessageBox.message(AlertType.ERROR, "Invalid Data", "You must enter all of the necessary data");
-			else if(!(IsInteger.isInteger(planeNumField.getText()))) {
-				MessageBox.message(AlertType.ERROR, "Invalid Data", "The plane number must be an integer");
-			}
-			else {
-				planeList.add(new Airplane(Integer.valueOf(planeNumField.getText()), airlineField.getText(), Integer.valueOf(seatField.getSelectionModel().getSelectedItem())));
-				AdminState.savePlane(planeList);
-				System.out.println(planeList);
-				loadFile();
-				System.out.println(planeList);
-			}
-
+			verifyInput();
 		});
 
 		removeButton.setOnAction(event -> {
@@ -121,7 +108,22 @@ public class PlaneWindow {
 		stage.show();
 	}
 
-	public void loadFile() {
+	public void verifyInput() {
+		if (planeNumField.getText().isEmpty() && airlineField.getText().isEmpty() || planeNumField.getText().isEmpty() || airlineField.getText().isEmpty())
+			MessageBox.message(AlertType.ERROR, "Invalid Data", "You must enter all of the necessary data");
+		else if(!(IsInteger.isInteger(planeNumField.getText()))) {
+			MessageBox.message(AlertType.ERROR, "Invalid Data", "The plane number must be an integer");
+		}
+		else {
+			planeList.add(new Airplane(Integer.valueOf(planeNumField.getText()), airlineField.getText(), Integer.valueOf(seatField.getSelectionModel().getSelectedItem())));
+			AdminState.savePlane(planeList);
+			System.out.println(planeList);
+			loadFile();
+			System.out.println(planeList);
+		}
+	}
+	
+	private void loadFile() {
 		planeList = AdminState.loadPlanes();
 		System.out.println(planeList);
 

@@ -31,7 +31,7 @@ public class HomeScreenWindow {
 	private Timeline realTimeClock;
 	private TableView<FlightInformation> flightTable;
 	private TableColumn<FlightInformation, Integer> flightNumber;
-	private TableColumn <FlightInformation, String>departingCity,destinationCity, departingTime;
+	private TableColumn<FlightInformation, String> departingCity, destinationCity, departingTime;
 	private ArrayList<FlightInformation> flightsToday;
 
 	private int timeHour;
@@ -46,7 +46,8 @@ public class HomeScreenWindow {
 	private void actionEvents() {
 
 	}
-private void content() {
+
+	private void content() {
 
 		flightsToday = getFlightsToday();
 		orderFlightsByTime();
@@ -164,10 +165,6 @@ private void content() {
 			}
 		}
 	}
-<<<<<<< HEAD
-	
-	//500, 600 size
 
-=======
->>>>>>> 09b111f555d54888b41cbac5496a3f512286327d
+	// 500, 600 size
 }
