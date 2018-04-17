@@ -103,8 +103,6 @@ public class BookingPaymentWindow {
 
 	private void properties() {
 		APZLauncher.getBorderPane().setCenter(mainPane);
-		APZLauncher.getStage().setWidth(500);
-		APZLauncher.getStage().setHeight(550);
 	}
 
 }

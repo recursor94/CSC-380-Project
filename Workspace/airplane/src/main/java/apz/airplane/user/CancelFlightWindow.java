@@ -43,9 +43,6 @@ public class CancelFlightWindow {
 	}
 
 	private void content() {
-//		createdStuff();
-//		ObservableList<String> items = FXCollections.observableArrayList("Delta 03/12/2018", "Jet Blue 04/06/2017");
-//
 		user = APZLauncher.getCurrentUser();
 		ObservableList<Booking> displayList = FXCollections.observableArrayList(user.getTripList());
 		list.setItems(displayList);
@@ -56,8 +53,6 @@ public class CancelFlightWindow {
 	}
 	private void properties() {
 		APZLauncher.getBorderPane().setCenter(mainPane);
-		APZLauncher.getStage().setHeight(400);
-		APZLauncher.getStage().setWidth(350);
 	}
 
 	private void actionEvents() {
@@ -71,8 +66,8 @@ public class CancelFlightWindow {
 						"Are you okay with removing the selected flight?");
 				if (result.get() == ButtonType.OK) {
 					user.removeTrip(foundBooking.getFlight());
-					ObservableList<Booking> asd = FXCollections.observableArrayList(user.getTripList());
-					list.setItems(asd);
+					ObservableList<Booking> tripList = FXCollections.observableArrayList(user.getTripList());
+					list.setItems(tripList);
 					APZState.saveInformation();
 
 				} else {
@@ -86,19 +81,19 @@ public class CancelFlightWindow {
 		});
 	}
 
-	public void createdStuff() {
-		Airplane airplane = new Airplane(1, "American Airline", 5);
-		LocalDate bookDate = LocalDate.now();
-		LocalDate departure = LocalDate.of(2018, 3, 12);
-		LocalDate arrival = LocalDate.of(2018, 3, 12);
-		Time departTime = new Time("12:00 PM");
-		Time arriveTime = new Time("7:00 PM");
-		Airport departureAirport = new Airport("JFK", "New York");
-		Airport destinationAirport = new Airport("Syracuse Hancock International", "Syracuse");
-		Flight flight = new Flight(airplane, departureAirport, destinationAirport, arrival, departure, departTime, arriveTime, 40908);
-		Booking trip = new Booking(flight, bookDate, user);
-		user.addTrip(trip);
-
-	}
+//	public void createdStuff() {
+//		Airplane airplane = new Airplane(1, "American Airline", 5);
+//		LocalDate bookDate = LocalDate.now();
+//		LocalDate departure = LocalDate.of(2018, 3, 12);
+//		LocalDate arrival = LocalDate.of(2018, 3, 12);
+//		Time departTime = new Time("12:00 PM");
+//		Time arriveTime = new Time("7:00 PM");
+//		Airport departureAirport = new Airport("JFK", "New York");
+//		Airport destinationAirport = new Airport("Syracuse Hancock International", "Syracuse");
+//		Flight flight = new Flight(airplane, departureAirport, destinationAirport, arrival, departure, departTime, arriveTime, 40908);
+//		Booking trip = new Booking(flight, bookDate, user);
+//		user.addTrip(trip);
+//
+//	}
 
 }

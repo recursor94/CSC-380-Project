@@ -10,6 +10,7 @@ import apz.airplane.model.Airplane;
 import apz.airplane.model.Airport;
 import apz.airplane.model.Booking;
 import apz.airplane.model.Flight;
+import apz.airplane.model.Payment;
 import apz.airplane.model.Time;
 import apz.airplane.model.User;
 import apz.airplane.model.UserController;
@@ -122,5 +123,40 @@ public class UserCaseTest {
 		//flight2 has not been added to the booking list, so no trip should be removed
 		assertEquals(false, user.removeTrip(flight2));
 	}
-
+	
+	@Test public void testRemovePayment() {
+		User user = new User("zeg", "125");
+		String name = "Zak";
+		String street = "123 Java Avenue";
+		String city = "Eclipse City";
+		String state = "New York";
+		int zip = 14893;
+		long cardNum = 1234133333;
+		String expirationDate = "01/2021";
+		int CCV = 922;
+		Payment payment = new Payment(name, street, city, state, zip, cardNum, expirationDate, CCV);
+		user.addPayment(payment);
+		
+		assertEquals(true, user.removePayment(payment));
+	}
+	
+	@Test
+	public void removePaymentFail () {
+		
+		User user = new User("zeg", "125");
+		String name = "Zak";
+		String street = "123 Java Avenue";
+		String city = "Eclipse City";
+		String state = "New York";
+		int zip = 14893;
+		long cardNum = 1234133333;
+		long cardNum2 = 879341323;
+		String expirationDate = "01/2021";
+		int CCV = 922;
+		Payment payment = new Payment(name, street, city, state, zip, cardNum, expirationDate, CCV);
+		Payment payment2 = new Payment(name, street, city, state, zip, cardNum2, expirationDate, CCV);
+		user.addPayment(payment);
+		
+		assertEquals(false, user.removePayment(payment2));
+	}
 }

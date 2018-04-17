@@ -14,8 +14,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
@@ -28,12 +26,8 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class HomeScreenWindow {
-	private Button logoutButton;
-
 	private VBox rootPane;
 	private Stage primaryStage;
-	private ListView activeFlightView;
-	private ComboBox cityComboBox;
 	private Text timeLabel;
 	private Timeline realTimeClock;
 	private TableView<FlightInformation> flightTable;
@@ -52,14 +46,12 @@ public class HomeScreenWindow {
 		initialize();
 		content();
 		actionEvents();
-		System.out.println("Created");
 	}
 
 	private void actionEvents() {
 
 	}
-
-	private void content() {
+private void content() {
 
 		flightsToday = getFlightsToday();
 		orderFlightsByTime();
@@ -82,7 +74,6 @@ public class HomeScreenWindow {
 	private void initialize() {
 		flightsToday = new ArrayList<>();
 		rootPane = new VBox(10);
-		activeFlightView = new ListView<String>();
 		flightTable = new TableView<>();
 		flightNumber = new TableColumn("Flight Number");
 		departingCity = new TableColumn("Arriving From");
@@ -109,7 +100,11 @@ public class HomeScreenWindow {
 			timeMinute = cal.get(Calendar.MINUTE);
 			// timeHour++;
 			String minuteString = timeMinute + "";
+			String timeOfDay = "AM";
 
+			if (cal.get(Calendar.AM_PM) == Calendar.PM) {
+				timeOfDay = "PM";
+			}
 			if (timeHour >= 12) {
 				timeHour -= 12;
 			} else if (timeHour == 0) {
@@ -118,25 +113,18 @@ public class HomeScreenWindow {
 			if (timeMinute < 10) {
 				minuteString = "0" + timeMinute;
 			}
-			timeLabel.setText(timeHour + ":" + (minuteString));
+			timeLabel.setText(timeHour + ":" + (minuteString) + " " + timeOfDay);
 		}), new KeyFrame(Duration.minutes(1), new EventHandler<ActionEvent>() {
 
 			@Override
 			public void handle(ActionEvent event) {
-//				System.out.println("handling");
 				for (FlightInformation flight : flightsToday) {
 					if (flight != null) {
 						double departureTime = flight.getTime();
-						int departureHour = (int) departureTime;
 						int departureMinute = 0;
 
 						if (departureTime % 1 == 0) {
 							departureMinute = 30;
-						}
-
-						if (departureHour == timeHour && departureMinute == timeMinute) {
-							System.out.println("Time To Run");
-							flightTable.getItems().remove(flight);
 						}
 
 					}
@@ -147,6 +135,7 @@ public class HomeScreenWindow {
 		}));
 		realTimeClock.setCycleCount(Animation.INDEFINITE);
 		realTimeClock.play();
+
 	}
 
 	private ArrayList<FlightInformation> getFlightsToday() {
@@ -178,10 +167,12 @@ public class HomeScreenWindow {
 					flightsToday.set(j, temp);
 				}
 			}
-
 		}
 	}
+<<<<<<< HEAD
 	
 	//500, 600 size
 
+=======
+>>>>>>> 09b111f555d54888b41cbac5496a3f512286327d
 }
