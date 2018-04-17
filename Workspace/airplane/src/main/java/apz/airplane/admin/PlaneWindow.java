@@ -49,7 +49,7 @@ public class PlaneWindow {
 		planeNumField = new TextField();
 		airlineField = new TextField();
 		seatField = new ComboBox<>();
-		header = new Text("Create Airports");
+		header = new Text("Create Planes");
 		createButton = new Button("Create");
 		removeButton = new Button("Remove");
 		loadFile(); // need to load initial values.
