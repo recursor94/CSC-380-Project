@@ -1,6 +1,5 @@
 package apz.airplane.user;
 
-import java.util.Timer;
 
 import apz.airplane.model.User;
 import apz.airplane.model.UserController;
