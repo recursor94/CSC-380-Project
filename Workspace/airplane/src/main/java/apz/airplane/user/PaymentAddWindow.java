@@ -13,7 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 
-public class PaymentInformationWindow {
+public class PaymentAddWindow {
 	
 	private GridPane rootPane;
 	private TextField cardNumField, nameField, addressField, cityField, zipCodeField;
@@ -21,7 +21,7 @@ public class PaymentInformationWindow {
 	private Button submitButton;
 	private User user;
 
-	public PaymentInformationWindow() {
+	public PaymentAddWindow() {
 		initialize();
 		content();
 		properties();

@@ -123,7 +123,7 @@ public class HomeScreenWindow {
 
 			@Override
 			public void handle(ActionEvent event) {
-				System.out.println("handling");
+//				System.out.println("handling");
 				for (FlightInformation flight : flightsToday) {
 					if (flight != null) {
 						double departureTime = flight.getTime();

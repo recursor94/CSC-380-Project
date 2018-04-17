@@ -60,7 +60,6 @@ public class Payment implements Serializable {
 	}
 	@Override
 	public String toString() {
-		return "Payment [name=" + name + ", street=" + street + ", city=" + city + ", state=" + state + ", zipcode="
-				+ zipcode + ", cardNum=" + cardNum + "]";
+		return "Card ending in number " + ((Long)cardNum).toString().substring(11);
 	}
 }
