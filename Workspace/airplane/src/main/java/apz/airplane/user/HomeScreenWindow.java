@@ -46,14 +46,12 @@ public class HomeScreenWindow {
 		initialize();
 		content();
 		actionEvents();
-		System.out.println("Created");
 	}
 
 	private void actionEvents() {
 
 	}
-
-	private void content() {
+private void content() {
 
 		flightsToday = getFlightsToday();
 		orderFlightsByTime();
@@ -120,7 +118,6 @@ public class HomeScreenWindow {
 
 			@Override
 			public void handle(ActionEvent event) {
-				System.out.println("handling");
 				for (FlightInformation flight : flightsToday) {
 					if (flight != null) {
 						double departureTime = flight.getTime();
