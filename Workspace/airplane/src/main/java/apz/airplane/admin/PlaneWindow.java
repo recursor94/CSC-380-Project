@@ -22,7 +22,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class PlaneWindow {
-	
+
 	private VBox mainPane;
 	private GridPane gridPane;
 	private HBox buttonBox;
@@ -58,27 +58,28 @@ public class PlaneWindow {
 	private void content() {
 		for (int i = 1; i <= 200; i++)
 			seatField.getItems().add(i);
+
 		seatField.setValue(1);
 
 		header.setFont(new Font(32));
-		
+
 		buttonBox.getChildren().addAll(createButton, removeButton);
 		buttonBox.setAlignment(Pos.CENTER);
-		
+
 		gridPane.setAlignment(Pos.CENTER);
-		
+
 		gridPane.setVgap(10);
 		gridPane.setHgap(10);
-		
+
 		gridPane.add(new Label("Plane Number"), 0, 0);
 		gridPane.add(planeNumField, 1, 0);
-		
+
 		gridPane.add(new Label("Airline Name"), 0, 1);
 		gridPane.add(airlineField, 1, 1);
-		
+
 		gridPane.add(new Label("Seat Capacity"), 0, 2);
 		gridPane.add(seatField, 1, 2);
-		
+
 		mainPane.getChildren().addAll(header, gridPane, planeView, buttonBox);
 		mainPane.setAlignment(Pos.CENTER);
 	}
@@ -94,8 +95,7 @@ public class PlaneWindow {
 				planeList.remove(plane);
 				AdminState.savePlane(planeList);
 				loadFile();
-			}
-			else 
+			} else
 				MessageBox.message(AlertType.ERROR, "ERROR: No Plane Selected", "You must select a plane to remove");
 		});
 	}
@@ -109,20 +109,21 @@ public class PlaneWindow {
 	}
 
 	public void verifyInput() {
-		if (planeNumField.getText().isEmpty() && airlineField.getText().isEmpty() || planeNumField.getText().isEmpty() || airlineField.getText().isEmpty())
+		if (planeNumField.getText().isEmpty() && airlineField.getText().isEmpty() || planeNumField.getText().isEmpty()
+				|| airlineField.getText().isEmpty())
 			MessageBox.message(AlertType.ERROR, "Invalid Data", "You must enter all of the necessary data");
-		else if(!(IsInteger.isInteger(planeNumField.getText()))) {
+		else if (!(IsInteger.isInteger(planeNumField.getText()))) {
 			MessageBox.message(AlertType.ERROR, "Invalid Data", "The plane number must be an integer");
-		}
-		else {
-			planeList.add(new Airplane(Integer.valueOf(planeNumField.getText()), airlineField.getText(), Integer.valueOf(seatField.getSelectionModel().getSelectedItem())));
+		} else {
+			planeList.add(new Airplane(Integer.valueOf(planeNumField.getText()), airlineField.getText(),
+					Integer.valueOf(seatField.getSelectionModel().getSelectedItem())));
 			AdminState.savePlane(planeList);
 			System.out.println(planeList);
 			loadFile();
 			System.out.println(planeList);
 		}
 	}
-	
+
 	private void loadFile() {
 		planeList = AdminState.loadPlanes();
 		System.out.println(planeList);
