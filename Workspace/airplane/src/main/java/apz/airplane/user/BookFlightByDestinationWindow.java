@@ -57,7 +57,6 @@ public class BookFlightByDestinationWindow {
 		
 		header.setFont(new Font(28));
 		
-		//populateProvince();
 		populateComboBox();
 		
 		buttonBox.getChildren().addAll(findFlightButton, bookFlightButton);
@@ -98,27 +97,17 @@ public class BookFlightByDestinationWindow {
 		});
 	}
 	
-	private void populateProvince() {
-		ArrayList<Province> pList = Province.getProvinces();
-
-		destinationBox.setValue(Province.getCityName(pList.get(0)));
-
-		for (int i = 0; i < pList.size(); i++)
-			destinationBox.getItems().add(Province.getCityName(pList.get(i)));
-	}
-	
 	private void populateComboBox() {
-		
-		// check if > 2 else disable and make so can't select same airport
 		ArrayList<Airport> aList = APZState.loadAirports();
 
-		for (int i = 0; i < aList.size(); i++) 
-			destinationBox.getItems().add(aList.get(i).toString());
-		
-		
+		if(!aList.isEmpty()) {
+			
+			destinationBox.setValue(aList.get(0).toString());
+			for (int i = 0; i < aList.size(); i++) 
+				destinationBox.getItems().add(aList.get(i).toString());	
+		}
 	}
 
-	
 	private ArrayList<Flight> findFlights() {
 		ArrayList<Flight> searchFlights = AdminState.loadFlights();
 		ArrayList<Flight> flightsFound = new ArrayList<>();

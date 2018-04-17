@@ -62,8 +62,6 @@ public class RegisterWindow {
 	
 	private void properties() {
 		APZLauncher.getBorderPane().setCenter(rootPane);
-		APZLauncher.getStage().setHeight(400);
-		APZLauncher.getStage().setWidth(300);
 	}
 	
 	private void actionEvents() {

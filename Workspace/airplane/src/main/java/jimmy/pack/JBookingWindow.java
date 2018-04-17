@@ -88,8 +88,6 @@ public class JBookingWindow {
 	
 	private void properties() {
 		APZLauncher.getBorderPane().setCenter(mainPane);
-		APZLauncher.getStage().setWidth(400);
-		APZLauncher.getStage().setHeight(300);
 	}
 	
 	private void populateComboBox() {
