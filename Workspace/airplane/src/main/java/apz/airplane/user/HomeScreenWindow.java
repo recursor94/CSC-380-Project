@@ -14,7 +14,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.control.TableColumn;
@@ -77,10 +76,10 @@ public class HomeScreenWindow {
 		flightsToday = new ArrayList<>();
 		rootPane = new VBox(10);
 		flightTable = new TableView<>();
-		flightNumber = new TableColumn("Flight Number");
-		departingCity = new TableColumn("Arriving From");
-		destinationCity = new TableColumn("Departing To");
-		departingTime = new TableColumn("Scheduled");
+		flightNumber = new TableColumn<>("Flight Number");
+		departingCity = new TableColumn<>("Arriving From");
+		destinationCity = new TableColumn<>("Departing To");
+		departingTime = new TableColumn<>("Scheduled");
 		timeLabel = new Text("00:00");
 		setupClock();
 	}
@@ -116,22 +115,24 @@ public class HomeScreenWindow {
 				minuteString = "0" + timeMinute;
 			}
 			timeLabel.setText(timeHour + ":" + (minuteString) + " " + timeOfDay);
-		}), new KeyFrame(Duration.minutes(1), new EventHandler<ActionEvent>() {
+		}), new KeyFrame(Duration.minutes(1), e -> {
+			for (FlightInformation flight : flightsToday) {
+				if (flight != null) {
+					double departureTime = flight.getTime();
+					int departureMinute = 0;
+					int departureHour = (int) departureTime;
 
-			@Override
-			public void handle(ActionEvent event) {
-				for (FlightInformation flight : flightsToday) {
-					if (flight != null) {
-						double departureTime = flight.getTime();
-						int departureMinute = 0;
-
-						if (departureTime % 1 == 0) {
-							departureMinute = 30;
-						}
-
+					if (departureTime % 1 == 0) {
+						departureMinute = 30;
+					}
+					
+					if(departureHour == timeHour && departureMinute == timeMinute) {
+						flightsToday.remove(flight);
 					}
 
+
 				}
+
 			}
 
 		}));
