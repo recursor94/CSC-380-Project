@@ -117,7 +117,7 @@ public class BookFlightByDestinationWindow {
 		else {	
 			String destination = destinationBox.getSelectionModel().getSelectedItem();
 			for (int i = 0; i < searchFlights.size(); i ++) {
-				if (destination.equals(searchFlights.get(i).getDestinationAirport().getCity())) {
+				if (destination.equals(searchFlights.get(i).getDestinationAirport().toString())) {
 					flightList.add(searchFlights.get(i));
 				}
 			}
