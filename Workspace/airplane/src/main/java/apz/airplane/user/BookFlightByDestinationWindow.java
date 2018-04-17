@@ -4,23 +4,31 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 import apz.airplane.admin.AdminState;
+import apz.airplane.model.Airport;
 import apz.airplane.model.Booking;
 import apz.airplane.model.Flight;
 import apz.airplane.model.Province;
 import apz.airplane.model.User;
+import apz.airplane.util.APZState;
 import apz.airplane.util.MessageBox;
 import javafx.scene.control.Alert.AlertType;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 
 public class BookFlightByDestinationWindow {
 	
 	private VBox mainPane;
-	private GridPane rootPane;
+	private GridPane gridPane;
+	private HBox buttonBox;
+	private Text header;
 	private ListView<Flight> flightView;
 	private ArrayList <Flight> flightList;
 	private Button findFlightButton, bookFlightButton;
@@ -34,8 +42,10 @@ public class BookFlightByDestinationWindow {
 	}
 	
 	private void initialize() {
-		rootPane = new GridPane();
+		gridPane = new GridPane();
 		mainPane = new VBox(10);
+		buttonBox = new HBox(10);
+		header = new Text("Find and Book Flights by Destination");
 		flightView = new ListView <>();
 	    flightList = new ArrayList<>();
 		findFlightButton = new Button("Find Flights");
@@ -44,23 +54,29 @@ public class BookFlightByDestinationWindow {
 	}
 	
 	private void content() {
-		populateProvince();
-		rootPane.setHgap(10);
-		rootPane.setVgap(10);
 		
-		rootPane.add(new Label("Select your desired destination"), 0, 0);
-		rootPane.add(destinationBox, 1, 0);
+		header.setFont(new Font(28));
 		
-		rootPane.add(findFlightButton, 0, 1);
-		rootPane.add(flightView, 0, 2);
-		rootPane.add(bookFlightButton, 0, 3);
-		mainPane.getChildren().addAll(new Label("Select your desired destination"), destinationBox, findFlightButton, flightView, bookFlightButton);
+		populateComboBox();
+		
+		buttonBox.getChildren().addAll(findFlightButton, bookFlightButton);
+		buttonBox.setAlignment(Pos.CENTER);
+		
+		gridPane.setHgap(10);
+		gridPane.setVgap(10);
+		
+		gridPane.add(new Label("Select your desired destination"), 0, 0);
+		gridPane.add(destinationBox, 1, 0);
+		
+		gridPane.setAlignment(Pos.CENTER);
+		
+		mainPane.getChildren().addAll(header, gridPane, flightView, buttonBox);
+		
+		mainPane.setAlignment(Pos.CENTER);
 	}
 	
 	private void properties() {
 		APZLauncher.getBorderPane().setCenter(mainPane);
-		APZLauncher.getStage().setHeight(425);
-		APZLauncher.getStage().setWidth(500);
 	}
 	private void actionEvents() {
 		findFlightButton.setOnAction(event -> {
@@ -81,15 +97,17 @@ public class BookFlightByDestinationWindow {
 		});
 	}
 	
-	private void populateProvince() {
-		ArrayList<Province> pList = Province.getProvinces();
+	private void populateComboBox() {
+		ArrayList<Airport> aList = APZState.loadAirports();
 
-		destinationBox.setValue(Province.getCityName(pList.get(0)));
-
-		for (int i = 0; i < pList.size(); i++)
-			destinationBox.getItems().add(Province.getCityName(pList.get(i)));
+		if(!aList.isEmpty()) {
+			
+			destinationBox.setValue(aList.get(0).toString());
+			for (int i = 0; i < aList.size(); i++) 
+				destinationBox.getItems().add(aList.get(i).toString());	
+		}
 	}
-	
+
 	private ArrayList<Flight> findFlights() {
 		ArrayList<Flight> searchFlights = AdminState.loadFlights();
 		ArrayList<Flight> flightsFound = new ArrayList<>();

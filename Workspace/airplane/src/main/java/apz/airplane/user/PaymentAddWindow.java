@@ -100,8 +100,6 @@ public class PaymentAddWindow {
 	}
 	private void properties() {
 		APZLauncher.getBorderPane().setCenter(mainPane);
-		APZLauncher.getStage().setHeight(500);
-		APZLauncher.getStage().setWidth(500);
 	}
 	
 	private void actionEvents() {
