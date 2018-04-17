@@ -14,11 +14,7 @@ public class APZLauncher extends Application {
 	private static UserController uc;
 	private static BorderPane root;
 	private static Stage stage;
-<<<<<<< HEAD
 	
-=======
-
->>>>>>> 12d9bf39c4ef9b35e9ac71cf35f91c2a616347f0
 	public static void main(String[] args) {
 		launch(args);
 	}
