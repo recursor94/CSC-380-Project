@@ -80,7 +80,7 @@ public class BookFlightByDateWindow {
 		findFlightButton.setOnAction(event -> {
 			if (calendar.getValue() != null) {
 				flightList = findFlights(calendar.getValue());
-
+				
 				if (!flightView.getItems().isEmpty())
 					flightView.getItems().clear();
 				for (int i = 0; i < flightList.size(); i++)
@@ -88,18 +88,15 @@ public class BookFlightByDateWindow {
 
 				if (flightView.getItems().isEmpty())
 					MessageBox.message(AlertType.INFORMATION, "No Flights Found", "There are no flights scheduled for " + calendar.getValue());
-
-			} else 
+		   
+			}
+			else 
 				MessageBox.message(AlertType.ERROR, "ERROR", "You must select a date");
 		});
 
 		bookFlightButton.setOnAction(event -> {
 			if (!flightView.getSelectionModel().isEmpty()) {
-				User user = APZLauncher.getCurrentUser();
-				user.addTrip(new Booking(flightView.getSelectionModel().getSelectedItem(), LocalDate.now(), user));
-				MessageBox.message(AlertType.INFORMATION, "Successful Booking", "Your flight has been booked!");
-				apz.airplane.util.APZState.saveInformation();
-				System.out.println(user.getTripList());
+				new CheckBaggageWindow(flightView.getSelectionModel().getSelectedItem());
 			} else {
 				MessageBox.message(AlertType.INFORMATION, "No Flight Selected", "You must select a flight to book");
 			}
@@ -112,10 +109,13 @@ public class BookFlightByDateWindow {
 		ArrayList<Flight> flightsFound = new ArrayList<>();
 
 		for (int i = 0; i < searchFlights.size(); i++) {
-			if (departure.equals(searchFlights.get(i).getDepartureDate())) {
-				flightsFound.add(searchFlights.get(i));
+			if(!(searchFlights.get(i).getPlane().getSeats().isFull())) {
+				if (departure.equals(searchFlights.get(i).getDepartureDate())) {
+					flightsFound.add(searchFlights.get(i));
+				}
 			}
 		}
+		
 		return flightsFound;
 	}
 }

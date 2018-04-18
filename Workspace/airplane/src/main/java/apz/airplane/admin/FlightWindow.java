@@ -68,7 +68,6 @@ public class FlightWindow {
 	}
 
 	private void content() {
-		
 		addTimeToBox();
 		loadPlanes();
 		loadFlights();
@@ -95,18 +94,25 @@ public class FlightWindow {
 		
 		gridPane.add(new Label("Plane Selection"), 0, 0);
 		gridPane.add(planeBox, 1, 0);
+		
 		gridPane.add(new Label("Flight Number"), 0, 1);
 		gridPane.add(flightNumField, 1, 1);
+		
 		gridPane.add(new Label("Departure Airport"), 0, 2);
 		gridPane.add(new Label("Arrival Airport"), 1, 2);
+		
 		gridPane.add(departAirportBox, 0, 3);
 		gridPane.add(arriveAirportBox, 1, 3);
+		
 		gridPane.add(new Label("Departure Time"), 0, 4);
 		gridPane.add(new Label("Arrival Time"), 1, 4);
+		
 		gridPane.add(departTimeBox, 0, 5);
 		gridPane.add(arriveTimeBox, 1, 5);
+		
 		gridPane.add(new Label("Departure Date"), 0, 6);
 		gridPane.add(new Label("Arrival Date"), 1, 6);
+		
 		gridPane.add(departDatePicker, 0, 7);
 		gridPane.add(arriveDatePicker, 1, 7);
 		
@@ -189,7 +195,6 @@ public class FlightWindow {
 	} 
 	
 	private void verifyInput() {
-	
 		if (!planeBox.getSelectionModel().isEmpty() && !departTimeBox.getSelectionModel().isEmpty()
 				&& !arriveTimeBox.getSelectionModel().isEmpty() && !arriveAirportBox.getSelectionModel().isEmpty()
 				&& !departAirportBox.getSelectionModel().isEmpty() && departDatePicker != null

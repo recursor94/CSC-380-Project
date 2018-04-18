@@ -85,11 +85,7 @@ public class BookFlightByDestinationWindow {
 		
 		bookFlightButton.setOnAction(event -> {
 			if (!flightView.getSelectionModel().isEmpty()) {
-				User user = APZLauncher.getCurrentUser();
-				user.addTrip(new Booking(flightView.getSelectionModel().getSelectedItem(), LocalDate.now(), user));
-				MessageBox.message(AlertType.INFORMATION, "Successful Booking", "Your flight has been booked!");
-				apz.airplane.util.APZState.saveInformation();
-				System.out.println(user.getTripList());
+				new CheckBaggageWindow(flightView.getSelectionModel().getSelectedItem());
 			}
 			else {
 				MessageBox.message(AlertType.INFORMATION, "No Flight Selected", "You must select a flight to book");

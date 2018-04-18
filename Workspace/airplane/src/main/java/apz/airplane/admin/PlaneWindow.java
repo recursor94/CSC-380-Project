@@ -52,7 +52,7 @@ public class PlaneWindow {
 		header = new Text("Create Planes");
 		createButton = new Button("Create");
 		removeButton = new Button("Remove");
-		loadFile(); // need to load initial values.
+		loadFile(); 
 	}
 
 	private void content() {
@@ -133,5 +133,4 @@ public class PlaneWindow {
 		for (int i = 0; i < planeList.size(); i++)
 			planeView.getItems().add(planeList.get(i));
 	}
-
 }
