@@ -4,7 +4,7 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>126</x>
+      <x>9</x>
       <y>27</y>
       <w>189</w>
       <h>171</h>
@@ -28,17 +28,18 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>351</x>
+      <x>252</x>
       <y>27</y>
-      <w>234</w>
-      <h>270</h>
+      <w>315</w>
+      <h>342</h>
     </coordinates>
     <panel_attributes>User
 --
 -serialVersionUID: long
 -username: String
 -password: String
--tripList: ArayList&lt;Booking&gt;
+-tripList: ArrayList&lt;Booking&gt;
+-paymentInformation: ArrayList&lt;Payment&gt;
 --
 +User(String, String)
 +getUsername(): String
@@ -46,9 +47,13 @@
 +getPassword(): String
 +setPassword(String): void
 -generatePasswordHash(String): String
++getPaymentInformation(): ArrayList&lt;Payment&gt;
++set PaymentInformation(ArrayList&lt;Payment&gt;): void
 +validatePassword(String): boolean
 +addTrip(Booking): void
 +removeTrip(Flight): boolean
++addPayment(Payment): void
++removePayment(Payment): boolean
 +findTrip(Flight): Booking
 +getTripList(): ArrayList&lt;Booking&gt;
 +toString(): String</panel_attributes>
@@ -57,19 +62,19 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>306</x>
+      <x>189</x>
       <y>126</y>
-      <w>63</w>
+      <w>81</w>
       <h>27</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;50.0;10.0</additional_attributes>
+    <additional_attributes>10.0;10.0;70.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>630</x>
-      <y>738</y>
+      <x>711</x>
+      <y>765</y>
       <w>189</w>
       <h>171</h>
     </coordinates>
@@ -79,11 +84,11 @@
 -timeDouble: double
 -timeString: String
 --
-+Time(String) &lt;br/&gt;
-+setTimeDouble(String): void &lt;br/&gt;
-+getTimeDouble(): double &lt;br/&gt;
-+setTimeString(String): void &lt;br/&gt;
-+getTimeString(): String &lt;br/&gt;
++Time(String)
++setTimeDouble(String): void
++getTimeDouble(): double
++setTimeString(String): void
++getTimeString(): String
 -parseTime(String): double 
 +toString(): String</panel_attributes>
     <additional_attributes/>
@@ -91,8 +96,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>162</x>
-      <y>387</y>
+      <x>243</x>
+      <y>396</y>
       <w>189</w>
       <h>198</h>
     </coordinates>
@@ -115,8 +120,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>612</x>
-      <y>243</y>
+      <x>693</x>
+      <y>279</y>
       <w>225</w>
       <h>459</h>
     </coordinates>
@@ -160,10 +165,10 @@ LocalDate, Time, Time, int)
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>621</x>
+      <x>603</x>
       <y>27</y>
       <w>198</w>
-      <h>180</h>
+      <h>225</h>
     </coordinates>
     <panel_attributes>Booking
 --
@@ -171,12 +176,15 @@ LocalDate, Time, Time, int)
 -flight: Flight
 -bookDate: LocalDate
 -plane: Airplane
+-tripCost: double
 --
 +Booking(Flight, LocalDate, User)
 +getFlight(): Flight
 +setFlight(Flight): void
 +getBookDate(): LocalDate
 +setBookDate(LocalDate): void
++getTripCost(): double
++setTripCost(double): void
 +toString(): String
 </panel_attributes>
     <additional_attributes/>
@@ -184,8 +192,8 @@ LocalDate, Time, Time, int)
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>387</x>
-      <y>621</y>
+      <x>459</x>
+      <y>702</y>
       <w>189</w>
       <h>171</h>
     </coordinates>
@@ -206,8 +214,8 @@ LocalDate, Time, Time, int)
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>387</x>
-      <y>387</y>
+      <x>468</x>
+      <y>396</y>
       <w>189</w>
       <h>207</h>
     </coordinates>
@@ -232,7 +240,7 @@ LocalDate, Time, Time, int)
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>576</x>
+      <x>558</x>
       <y>126</y>
       <w>63</w>
       <h>27</h>
@@ -243,8 +251,8 @@ LocalDate, Time, Time, int)
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>117</x>
-      <y>621</y>
+      <x>180</x>
+      <y>684</y>
       <w>234</w>
       <h>252</h>
     </coordinates>
@@ -271,19 +279,41 @@ TX
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>711</x>
-      <y>693</y>
+      <x>792</x>
+      <y>729</y>
       <w>27</w>
-      <h>63</h>
+      <h>54</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;40.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>567</x>
-      <y>639</y>
+      <x>639</x>
+      <y>711</y>
+      <w>72</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>60.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>405</x>
+      <y>711</y>
+      <w>72</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>60.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>648</x>
+      <y>477</y>
       <w>63</w>
       <h>27</h>
     </coordinates>
@@ -293,8 +323,8 @@ TX
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>342</x>
-      <y>684</y>
+      <x>423</x>
+      <y>477</y>
       <w>63</w>
       <h>27</h>
     </coordinates>
@@ -304,34 +334,66 @@ TX
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>567</x>
-      <y>468</y>
-      <w>63</w>
-      <h>27</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>50.0;10.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>342</x>
-      <y>468</y>
-      <w>63</w>
-      <h>27</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>50.0;10.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>693</x>
-      <y>198</y>
+      <x>738</x>
+      <y>243</y>
       <w>27</w>
-      <h>63</h>
+      <h>54</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;40.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>9</x>
+      <y>216</y>
+      <w>198</w>
+      <h>441</h>
+    </coordinates>
+    <panel_attributes>Payment
+--
+-serialVersionUID: long
+-name: String
+-street: String
+-city: String
+-state: String
+-zipcode: int
+-cardNum: long
+-expirationDate: String
+-CCVNum: int
+--
++Payment(String, String, String,
+String, int, long, String, int)
++getName(): String
++setName(String): void
++getStreet(): String
++setStreet(String): void
++getCity(): String
++setCity(String): void
++getState(): String
++setState(String): void
++getZipcode(): int
++setZipcode(int): void
++getCardNum(): long
++setCardNum(long): void
++getExpirationDate(): String
++setExpirationDate(String): void
++getCCVNum(): int
++setCCVNum(int): void
++toString(): String
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>198</x>
+      <y>270</y>
+      <w>72</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>60.0;10.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>
