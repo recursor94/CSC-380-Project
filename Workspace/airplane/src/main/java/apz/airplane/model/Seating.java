@@ -80,13 +80,8 @@ public class Seating implements Serializable {
 			return true;
 		return false;
 	}
-<<<<<<< HEAD
-
-	public int getCapacity() {
-=======
 	
 public int getCapacity() {
->>>>>>> 7310e6098a24512b53851ad76e47f854891f4ab4
 		return capacity;
 	}
 
