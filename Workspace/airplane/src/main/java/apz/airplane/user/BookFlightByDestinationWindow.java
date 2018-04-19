@@ -22,8 +22,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import jimmy.pack.WindowInterface;
 
-public class BookFlightByDestinationWindow {
+public class BookFlightByDestinationWindow implements WindowInterface {
 	
 	private VBox mainPane;
 	private GridPane gridPane;
@@ -41,7 +42,7 @@ public class BookFlightByDestinationWindow {
 		properties();
 	}
 	
-	private void initialize() {
+	public void initialize() {
 		gridPane = new GridPane();
 		mainPane = new VBox(10);
 		buttonBox = new HBox(10);
@@ -53,7 +54,7 @@ public class BookFlightByDestinationWindow {
 		destinationBox = new ComboBox<>();
 	}
 	
-	private void content() {
+	public void content() {
 		
 		header.setFont(new Font(28));
 		
@@ -75,10 +76,10 @@ public class BookFlightByDestinationWindow {
 		mainPane.setAlignment(Pos.CENTER);
 	}
 	
-	private void properties() {
+	public void properties() {
 		APZLauncher.getBorderPane().setCenter(mainPane);
 	}
-	private void actionEvents() {
+	public void actionEvents() {
 		findFlightButton.setOnAction(event -> {
 			flightList = findFlights();
 		});
@@ -105,7 +106,7 @@ public class BookFlightByDestinationWindow {
 	}
 
 	private ArrayList<Flight> findFlights() {
-		ArrayList<Flight> searchFlights = AdminState.loadFlights();
+		ArrayList<Flight> searchFlights = APZState.loadFlights();
 		ArrayList<Flight> flightsFound = new ArrayList<>();
 		if(destinationBox.getSelectionModel().getSelectedItem().equals(null)) {
 			MessageBox.message(AlertType.ERROR, "ERROR: Invalid Data Entry", "You must enter a destination");

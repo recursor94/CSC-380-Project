@@ -51,6 +51,8 @@ public class APZState {
 		UserController uc = new UserController();
 		FileInputStream fileIn;
 		try {
+			if(!new File(ucFilePath).exists())
+				saveInformation();
 			fileIn = new FileInputStream(ucFilePath);
 			ObjectInputStream objectIn = new ObjectInputStream(fileIn);
 
@@ -60,7 +62,7 @@ public class APZState {
 			uc = (UserController) obj;
 
 		} catch (IOException | ClassNotFoundException e) {
-			e.printStackTrace();
+//			e.printStackTrace();
 		}
 		return uc;
 	}
@@ -84,6 +86,20 @@ public class APZState {
 			return airportList;
 		}
 		return new ArrayList<Airport>();
+	}
+	
+	public static void saveFlight(ArrayList<Flight> flight) {
+		FileOutputStream fileOut;
+		ObjectOutputStream objectOut;
+		try {
+			fileOut = new FileOutputStream(flightObject);
+			objectOut = new ObjectOutputStream(fileOut);
+			objectOut.writeObject(flight);
+			objectOut.close();
+			System.out.println("The Object was successfully written to a file");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public static ArrayList<Flight> loadFlights() {

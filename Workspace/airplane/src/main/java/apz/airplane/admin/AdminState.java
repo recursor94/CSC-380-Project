@@ -40,6 +40,8 @@ public class AdminState {
 		UserController uc = new UserController();
 		FileInputStream fileIn;
 		try {
+			if(!new File(ucFilePath).exists())
+				saveInformation(uc);
 			fileIn = new FileInputStream(ucFilePath);
 			ObjectInputStream objectIn = new ObjectInputStream(fileIn);
 
@@ -49,7 +51,7 @@ public class AdminState {
 			uc = (UserController) obj;
 
 		} catch (IOException | ClassNotFoundException e) {
-			e.printStackTrace();
+//			e.printStackTrace();
 		}
 		return uc;
 	}
