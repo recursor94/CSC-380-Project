@@ -19,6 +19,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import jimmy.pack.BookingPaymentWindow;
 import jimmy.pack.WindowInterface;
 
 public class PaymentAddWindow implements WindowInterface {
@@ -147,11 +148,9 @@ public class PaymentAddWindow implements WindowInterface {
 			else if(CCVNumField.getText().length() != 3)
 				MessageBox.message(AlertType.ERROR, "Invalid Data Entry", "You must enter a 3 digit CCV Number");
 			else {
-				
-				
-				/* If stage is not null, then update combobox in BookingPaymentWindow*/
-				
-				
+				if (stage != null) {
+					BookingPaymentWindow.updateComboBox();
+				}
 				String name = nameField.getText();
 				String street = addressField.getText();
 				String city = cityField.getText();

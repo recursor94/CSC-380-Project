@@ -26,9 +26,9 @@ public class BookingPaymentWindow implements WindowInterface {
 	
 	private User user;
 	private VBox mainPane;
-	private GridPane paymentPane; 
+	private static GridPane paymentPane; 
 	private Text header;
-	private ComboBox<String> paymentBox;
+	private static ComboBox<String> paymentBox;
 	private Button confirmButton;
 	
 	private Flight flight;
@@ -58,10 +58,7 @@ public class BookingPaymentWindow implements WindowInterface {
 	public void content() {
 		header.setFont(new Font(32));
 		
-		for (int i = 0; i < user.getPaymentInformation().size(); i++) {
-			Long ccNum = user.getPaymentInformation().get(i).getCardNum();
-			paymentBox.getItems().add("Card number ending in " + ccNum.toString().substring(11, 15));
-		}
+		loadComboBoxInformation();
 		
 		paymentPane.add(new Label("Flight Date: "), 0, 2);
 		paymentPane.add(new Label(flight.getDepartureDate().toString()), 1, 2);
@@ -107,5 +104,19 @@ public class BookingPaymentWindow implements WindowInterface {
 		paymentPane.setAlignment(Pos.TOP_CENTER);
 		APZLauncher.getBorderPane().setCenter(mainPane);
 	}
+	
+	private void loadComboBoxInformation() {
+		for (int i = 0; i < user.getPaymentInformation().size(); i++) {
+			Long ccNum = user.getPaymentInformation().get(i).getCardNum();
+			paymentBox.getItems().add("Card number ending in " + ccNum.toString().substring(11, 15));
+		}
+	}
+	
+	public static void updateComboBox() {
+		paymentPane.add(paymentBox, 1, 8);
+		paymentPane.getChildren()
+	}
+	
+	// is full for airport
 
 }

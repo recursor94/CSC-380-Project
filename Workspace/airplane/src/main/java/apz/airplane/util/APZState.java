@@ -73,8 +73,8 @@ public class APZState {
 	}
 	
 	public static ArrayList<Flight> loadFlights() {
+		ArrayList<Flight> flightList = new ArrayList<>();
 		if (new File(flightObject).exists()) {
-			ArrayList<Flight> flightList = new ArrayList<>();
 			FileInputStream fileIn;
 			try {
 				fileIn = new FileInputStream(flightObject);
@@ -87,9 +87,15 @@ public class APZState {
 			} catch (IOException | ClassNotFoundException e) {
 				e.printStackTrace();
 			}
-			return flightList;
 		}
-		return new ArrayList<Flight>();
+		
+		ArrayList<Flight> freeFlightList = new ArrayList<>();
+		for (int i = 0; i < flightList.size(); i++) {
+			if (!flightList.get(i).getPlane().getSeats().isFull()) 
+				freeFlightList.add(flightList.get(i));
+		}
+		
+		return freeFlightList;
 	}
 
 }
