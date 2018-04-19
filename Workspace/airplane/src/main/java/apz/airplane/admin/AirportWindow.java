@@ -53,7 +53,7 @@ public class AirportWindow {
 	public void initialize() {
 		airportList = new ArrayList<>();
 		mainPane = new VBox(10);
-		buttonBox = new HBox(10);
+		//buttonBox = new HBox(10);
 		removeButtonBox = new HBox(10);
 		createButtonBox = new HBox(10);
 		gridPane = new GridPane();
@@ -73,13 +73,13 @@ public class AirportWindow {
 		populateProvince();
 		removeButton.setMaxWidth(Double.MAX_VALUE);
 		createButton.setMaxWidth(Double.MAX_VALUE);
-		buttonBox.getChildren().addAll(createButton, removeButton);
+		//buttonBox.getChildren().addAll(createButton, removeButton);
 		//mainPane.getChildren().addAll(new HBox(windowHeader), new Label("Airport Name"), airportNameField, new Label("City"),
 		//		airportProvinceBox, buttonBox, airportView);
 		HBox.setHgrow(createButton, Priority.ALWAYS);
 		HBox.setHgrow(removeButton, Priority.ALWAYS);
-		//createButtonBox.getChildren().add(createButton);
-		//removeButtonBox.getChildren().add(removeButton);
+		createButtonBox.getChildren().add(createButton);
+		removeButtonBox.getChildren().add(removeButton);
 		formatHeader();
 		gridPane.setVgap(5);
 		gridPane.setHgap(5);
@@ -89,11 +89,11 @@ public class AirportWindow {
 		gridPane.add(airportNameField, 1, 0);
 		gridPane.add(city, 0, 1);
 		gridPane.add(airportProvinceBox, 1, 1);
-		gridPane.add(removeButton, 1, 2);
-		gridPane.add(createButton, 1, 3);
-		gridPane.add(airportView, 0, 4);
+		//gridPane.add(removeButton, 1, 2);
+		//gridPane.add(createButton, 1, 3);
+		//gridPane.add(airportView, 0, 4);
 		
-		mainPane.getChildren().addAll(windowHeader, gridPane, airportView);
+		mainPane.getChildren().addAll(windowHeader, gridPane, removeButtonBox, createButtonBox, airportView);
 		mainPane.setAlignment(Pos.CENTER);
 	}
 	
