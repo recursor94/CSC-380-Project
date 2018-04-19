@@ -114,7 +114,7 @@ public class BookingPaymentWindow implements WindowInterface {
 	
 	public static void updateComboBox() {
 		paymentPane.add(paymentBox, 1, 8);
-		paymentPane.getChildren()
+		paymentPane.getChildren().remove(pAddButton);
 	}
 	
 	// is full for airport
