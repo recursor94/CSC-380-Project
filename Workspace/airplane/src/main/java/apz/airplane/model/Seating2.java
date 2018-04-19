@@ -3,13 +3,13 @@ package apz.airplane.model;
 import java.io.Serializable;
 import java.util.Arrays;
 
-public class Seating implements Serializable {
+public class Seating2 implements Serializable {
 	
 	//average plane has 200
 	private static final long serialVersionUID = 1L;
 	private User[] seating;	// must limit on if more users are trying to be added. maybe boolean return method isFull();
 	
-	public Seating(int capacity) {
+	public Seating2(int capacity) {
 		seating = new User[capacity];
 	}
 	
