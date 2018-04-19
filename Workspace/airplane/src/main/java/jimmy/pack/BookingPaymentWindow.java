@@ -35,6 +35,8 @@ public class BookingPaymentWindow implements WindowInterface {
 	private Flight flight;
 	private double cost;
 
+	private Label costLabel;
+	
 	public BookingPaymentWindow(Flight flight) {
 		this.flight = flight;
 		initialize();
@@ -55,6 +57,8 @@ public class BookingPaymentWindow implements WindowInterface {
 		paymentBox = new ComboBox<>();
 		baggageBox = new ComboBox<>();
 		confirmButton = new Button("Confirm Booking");
+		
+		costLabel = new Label("");
 	}
 
 	public void content() {
@@ -71,12 +75,13 @@ public class BookingPaymentWindow implements WindowInterface {
 		paymentPane.add(new Label("Destination Airport: "), 0, 5);
 		paymentPane.add(new Label(flight.getDestinationAirport().toString()), 1, 5);
 		
-		paymentPane.add(new Label("Extra Baggage: "), 0, 5);
-		paymentPane.add(baggageBox, 1, 5);
+		paymentPane.add(new Label("Extra Baggage: "), 0, 6);
+		paymentPane.add(baggageBox, 1, 6);
 		
 		paymentPane.add(new Label("Cost for Flight: "), 0, 7);
-		paymentPane.add(new Label("$" + cost), 1, 7);
+		paymentPane.add(costLabel, 1, 7);
 		
+		costLabel.setText("$" + cost);
 		
 		paymentPane.add(new Label("Payment Method: "), 0, 9);
 		if (paymentBox.getItems().isEmpty()) {
@@ -104,8 +109,9 @@ public class BookingPaymentWindow implements WindowInterface {
 		
 		baggageBox.setOnAction(event -> {			//
 			double baggagePrice = 30.35 * baggageBox.getValue();
-			paymentPane.getChildren().remove(1,  7);
-			paymentPane.add(new Label("$" + (cost + baggagePrice)), 1, 7);
+			costLabel.setText("$" + (cost + baggagePrice));
+//			paymentPane.getChildren().remove(1,  7);
+//			paymentPane.add(new Label("$" + (cost + baggagePrice)), 1, 7);
 		});
 	}
 
@@ -119,7 +125,7 @@ public class BookingPaymentWindow implements WindowInterface {
 	
 	
 	private void loadComboBoxInformation() {
-		for (int i = 0; i < 3; i++) 
+		for (int i = 0; i < 4; i++) 
 			baggageBox.getItems().add(i);
 		
 		baggageBox.setValue(0);
