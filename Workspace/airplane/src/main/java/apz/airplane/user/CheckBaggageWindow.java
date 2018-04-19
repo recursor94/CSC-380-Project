@@ -87,6 +87,8 @@ public class CheckBaggageWindow implements WindowInterface {
 				System.out.println("Booked Trips\n" + user.getTripList());
 				System.out.println("Trip Cost: $" + trip.getTripCost());
 				ArrayList<Flight> fList = APZState.loadFlights();
+				
+				//Need this for BookingPaymentWindow
 				for (int i = 0; i < fList.size(); i++) {
 					if (fList.get(i).getFlightNum() == trip.getFlight().getFlightNum()) {
 						fList.get(i).setPlane(trip.getFlight().getPlane());
