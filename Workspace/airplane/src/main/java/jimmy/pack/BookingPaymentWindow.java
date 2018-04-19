@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 import apz.airplane.model.Booking;
 import apz.airplane.model.Flight;
+import apz.airplane.model.Payment;
 import apz.airplane.model.User;
 import apz.airplane.user.APZLauncher;
 import apz.airplane.user.PaymentAddWindow;
@@ -28,7 +29,8 @@ public class BookingPaymentWindow implements WindowInterface {
 	private VBox mainPane;
 	private static GridPane paymentPane; 
 	private Text header;
-	private static ComboBox<String> paymentBox;
+	//private static ComboBox<String> paymentBox;
+	private static ComboBox<Payment> paymentBox;
 	private static ComboBox<Integer> baggageBox;
 	private Button confirmButton;
 	
@@ -102,9 +104,15 @@ public class BookingPaymentWindow implements WindowInterface {
 
 	public void actionEvents() {
 		confirmButton.setOnAction(event -> {
-			user.getTripList().add(new Booking(flight, LocalDate.now(), user, cost));
-			MessageBox.message(AlertType.INFORMATION, null, "Trip has been booked! Receipt number: ");
-			APZState.saveInformation();
+			if(paymentBox.getSelectionModel().isEmpty())
+				MessageBox.message(AlertType.ERROR, "ERROR", "You must select a payment method");
+			else if(isCardExpired(paymentBox.getSelectionModel().getSelectedItem()))
+				MessageBox.message(AlertType.ERROR, "Invalid Payment", "The card you have selected has expired. Please select another payment method");
+			else {
+					user.getTripList().add(new Booking(flight, LocalDate.now(), user, cost));
+					MessageBox.message(AlertType.INFORMATION, null, "Trip has been booked! Receipt number: ");
+					APZState.saveInformation();
+			}
 		});
 		
 		baggageBox.setOnAction(event -> {			//
@@ -131,9 +139,36 @@ public class BookingPaymentWindow implements WindowInterface {
 		baggageBox.setValue(0);
 		
 		for (int i = 0; i < user.getPaymentInformation().size(); i++) {
-			Long ccNum = user.getPaymentInformation().get(i).getCardNum();
-			paymentBox.getItems().add("Card number ending in " + ccNum.toString().substring(12, 16));
+			paymentBox.getItems().add(user.getPaymentInformation().get(i));
+			//Long ccNum = user.getPaymentInformation().get(i).getCardNum();
+			//paymentBox.getItems().add("Card number ending in " + ccNum.toString().substring(12, 16));
 		}
+	}
+	
+	private boolean isCardExpired(Payment payment) {
+		
+		boolean result = false;
+		String expDate = payment.getExpirationDate();
+		String month;
+		String year;
+		String currentMonth = LocalDate.now().getMonthValue() + "";
+		String currentYear = LocalDate.now().getYear() + "";
+		
+		if(expDate.charAt(0) == '0') {
+			month = expDate.substring(1, 2);
+			year = expDate.substring(3);
+		}
+		else {
+			month = expDate.substring(0, 2);
+			year = expDate.substring(3);
+		}
+		
+		if(Integer.valueOf(year) < Integer.valueOf(currentYear)) 
+			result = true;
+		else if(Integer.valueOf(year).equals(Integer.valueOf(currentYear)) && (Integer.valueOf(month) < Integer.valueOf(currentMonth)))
+			result = true;
+	
+		return result;
 	}
 	
 	// is full for airport
