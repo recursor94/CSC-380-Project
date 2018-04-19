@@ -4,9 +4,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 import apz.airplane.admin.AdminState;
-import apz.airplane.model.Booking;
 import apz.airplane.model.Flight;
-import apz.airplane.model.User;
+import apz.airplane.util.APZState;
 import apz.airplane.util.MessageBox;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert.AlertType;
@@ -19,8 +18,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import jimmy.pack.WindowInterface;
 
-public class BookFlightByDateWindow {
+public class BookFlightByDateWindow implements WindowInterface {
 	private GridPane gridPane;
 	private HBox buttonBox;
 	private Text header, listText;
@@ -37,7 +37,7 @@ public class BookFlightByDateWindow {
 		properties();
 	}
 
-	private void initialize() {
+	public void initialize() {
 		mainPane = new VBox(10);
 		buttonBox = new HBox(10);
 		gridPane = new GridPane();
@@ -50,7 +50,7 @@ public class BookFlightByDateWindow {
 		calendar = new DatePicker();
 	}
 
-	private void content() {
+	public void content() {
 		header.setFont(new Font(28));
 		listText.setFont(new Font(20));
 		
@@ -73,10 +73,10 @@ public class BookFlightByDateWindow {
 		mainPane.setAlignment(Pos.CENTER);
 	}
 	
-	private void properties() {
+	public void properties() {
 		APZLauncher.getBorderPane().setCenter(mainPane);
 	}
-	private void actionEvents() {
+	public void actionEvents() {
 		findFlightButton.setOnAction(event -> {
 			if (calendar.getValue() != null) {
 				flightList = findFlights(calendar.getValue());
@@ -105,15 +105,12 @@ public class BookFlightByDateWindow {
 
 	private ArrayList<Flight> findFlights(LocalDate departure) {
 
-		ArrayList<Flight> searchFlights = AdminState.loadFlights();
+		ArrayList<Flight> searchFlights = APZState.loadFlights();
 		ArrayList<Flight> flightsFound = new ArrayList<>();
 
 		for (int i = 0; i < searchFlights.size(); i++) {
-			if(!(searchFlights.get(i).getPlane().getSeats().isFull())) {
-				if (departure.equals(searchFlights.get(i).getDepartureDate())) {
-					flightsFound.add(searchFlights.get(i));
-				}
-			}
+			if (departure.equals(searchFlights.get(i).getDepartureDate()) && !searchFlights.get(i).getPlane().getSeats().isFull()) 
+				flightsFound.add(searchFlights.get(i));
 		}
 		
 		return flightsFound;
