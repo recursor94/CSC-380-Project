@@ -6,6 +6,7 @@ import apz.airplane.util.APZState;
 import apz.airplane.util.IsInteger;
 import apz.airplane.util.MessageBox;
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -17,8 +18,10 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
+import jimmy.pack.WindowInterface;
 
-public class PaymentAddWindow {
+public class PaymentAddWindow implements WindowInterface {
 	
 	private Text header;
 	private VBox mainPane;
@@ -36,7 +39,17 @@ public class PaymentAddWindow {
 		actionEvents();
 	}
 	
-	private void initialize() {
+	private Stage stage = null;
+	
+	public PaymentAddWindow(Stage stage) {
+		this.stage = stage;
+		initialize();
+		content();
+		properties();
+		actionEvents();
+	}
+	
+	public void initialize() {
 		header = new Text("Enter Payment Information");
 		mainPane = new VBox(10);
 		infoPane = new HBox(10);
@@ -54,7 +67,7 @@ public class PaymentAddWindow {
 		submitButton = new Button("Submit");
 	}
 	
-	private void content() {
+	public void content() {
 		
 		header.setFont(new Font(32));
 		
@@ -98,11 +111,18 @@ public class PaymentAddWindow {
 		mainPane.getChildren().addAll(header, gridPane, submitButton);
 		mainPane.setAlignment(Pos.CENTER);
 	}
-	private void properties() {
-		APZLauncher.getBorderPane().setCenter(mainPane);
+	
+	public void properties() {
+		if (stage == null) 
+			APZLauncher.getBorderPane().setCenter(mainPane);
+		else {
+			stage.setScene(new Scene(mainPane, 500, 500));
+			stage.setTitle("HERRO MISTA");
+			stage.show();
+		}
 	}
 	
-	private void actionEvents() {
+	public void actionEvents() {
 		submitButton.setOnAction(event -> {
 			verifyInput();
 		});
@@ -127,6 +147,11 @@ public class PaymentAddWindow {
 			else if(CCVNumField.getText().length() != 3)
 				MessageBox.message(AlertType.ERROR, "Invalid Data Entry", "You must enter a 3 digit CCV Number");
 			else {
+				
+				
+				/* If stage is not null, then update combobox in BookingPaymentWindow*/
+				
+				
 				String name = nameField.getText();
 				String street = addressField.getText();
 				String city = cityField.getText();

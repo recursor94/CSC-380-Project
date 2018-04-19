@@ -6,6 +6,7 @@ import apz.airplane.model.Booking;
 import apz.airplane.model.Flight;
 import apz.airplane.model.User;
 import apz.airplane.user.APZLauncher;
+import apz.airplane.user.PaymentAddWindow;
 import apz.airplane.util.APZMath;
 import apz.airplane.util.APZState;
 import apz.airplane.util.MessageBox;
@@ -19,6 +20,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 public class BookingPaymentWindow implements WindowInterface {
 	
@@ -74,19 +76,20 @@ public class BookingPaymentWindow implements WindowInterface {
 		
 		
 		paymentPane.add(new Label("Payment Method: "), 0, 8);
-		if (paymentBox.getItems().isEmpty()) 
-			paymentPane.add(new Button("Click here to setup a payment method"), 1, 8);
-		else 
+		if (paymentBox.getItems().isEmpty()) {
+			Button pAddButton = new Button("Click here to setup a payment method");
+			paymentPane.add(pAddButton, 1, 8);
+			
+			pAddButton.setOnAction(event -> {
+				new PaymentAddWindow(new Stage());
+			});
+			
+		} else 
 			paymentPane.add(paymentBox, 1, 8);
 		
 		
 		mainPane.getChildren().addAll(header, paymentPane, new Separator(), confirmButton);
 		mainPane.setAlignment(Pos.TOP_CENTER);
-		
-		// disable box
-		if (user.getPaymentInformation().isEmpty()) {
-			
-		}
 	}
 
 	public void actionEvents() {
