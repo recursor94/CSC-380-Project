@@ -1,5 +1,6 @@
 package apz.airplane.user;
 
+import apz.airplane.model.Flight;
 import apz.airplane.model.Payment;
 import apz.airplane.model.User;
 import apz.airplane.util.APZState;
@@ -41,9 +42,11 @@ public class PaymentAddWindow implements WindowInterface {
 	}
 	
 	private Stage stage = null;
+	private Flight flight = null;
 	
-	public PaymentAddWindow(Stage stage) {
+	public PaymentAddWindow(Stage stage, Flight flight) {
 		this.stage = stage;
+		this.flight = flight;
 		initialize();
 		content();
 		properties();
@@ -148,9 +151,6 @@ public class PaymentAddWindow implements WindowInterface {
 			else if(CCVNumField.getText().length() != 3)
 				MessageBox.message(AlertType.ERROR, "Invalid Data Entry", "You must enter a 3 digit CCV Number");
 			else {
-				if (stage != null) {
-					BookingPaymentWindow.updateComboBox();
-				}
 				String name = nameField.getText();
 				String street = addressField.getText();
 				String city = cityField.getText();
@@ -162,6 +162,9 @@ public class PaymentAddWindow implements WindowInterface {
 				user.addPayment(new Payment(name, street, city, state, zip, cardNum, expirationDate, CCV));
 				APZState.saveInformation();
 				System.out.println(user.getPaymentInformation());
+				stage.close();
+				if (stage != null)
+					new BookingPaymentWindow(flight);
 			}
 		}
 		else 

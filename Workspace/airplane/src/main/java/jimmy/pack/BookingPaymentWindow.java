@@ -78,7 +78,7 @@ public class BookingPaymentWindow implements WindowInterface {
 			paymentPane.add(pAddButton, 1, 8);
 			
 			pAddButton.setOnAction(event -> {
-				new PaymentAddWindow(new Stage());
+				new PaymentAddWindow(new Stage(), flight);
 			});
 			
 		} else 
@@ -108,13 +108,8 @@ public class BookingPaymentWindow implements WindowInterface {
 	private void loadComboBoxInformation() {
 		for (int i = 0; i < user.getPaymentInformation().size(); i++) {
 			Long ccNum = user.getPaymentInformation().get(i).getCardNum();
-			paymentBox.getItems().add("Card number ending in " + ccNum.toString().substring(11, 15));
+			paymentBox.getItems().add("Card number ending in " + ccNum.toString().substring(12, 16));
 		}
-	}
-	
-	public static void updateComboBox() {
-		paymentPane.add(paymentBox, 1, 8);
-		paymentPane.getChildren().remove(pAddButton);
 	}
 	
 	// is full for airport
