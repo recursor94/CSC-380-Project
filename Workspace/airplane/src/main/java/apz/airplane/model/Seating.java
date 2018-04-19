@@ -74,7 +74,11 @@ public class Seating implements Serializable {
 //		}
 //		return true;
 //	}
-	
+	public boolean isFull() {
+		if (capacity == seating.size())
+			return true;
+		return false;
+	}
 //	public int getCapacity() {
 //		return seating.length;
 //	}
