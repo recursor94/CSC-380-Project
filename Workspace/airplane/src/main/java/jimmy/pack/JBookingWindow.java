@@ -7,7 +7,9 @@ import apz.airplane.model.Airport;
 import apz.airplane.model.Flight;
 import apz.airplane.user.APZLauncher;
 import apz.airplane.util.APZState;
+import apz.airplane.util.MessageBox;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -15,83 +17,80 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.util.Callback;
 
-public class JBookingWindow {
+public class JBookingWindow implements WindowInterface {
 
 	private Text headerText;
 	private GridPane mainPane;
 	private DatePicker datePicker;
 	private ComboBox<String> cityDepartBox, cityArrivalBox;
 	private Button searchButton;
-	
+
 	public JBookingWindow() {
 		initialize();
 		content();
 		actionEvents();
 		properties();
 	}
-	
-	private void initialize() {
+
+	public void initialize() {
 		headerText = new Text("Book a trip");
 		mainPane = new GridPane();
 		datePicker = new DatePicker();
 		cityDepartBox = new ComboBox<>();
 		cityArrivalBox = new ComboBox<>();
-		
+
 		searchButton = new Button("Search");
 	}
-	
-	private void content() {
-		headerText.setFont(new Font(32));
-		
+
+	public void content() {
 		populateComboBox();
 
-		// X		-	Y
 		mainPane.add(headerText, 0, 0);
-		
 		mainPane.add(new Label("Trip date: "), 0, 2);
 		mainPane.add(datePicker, 1, 2);
-		
 		mainPane.add(new Label("Departing Airport: "), 0, 3);
 		mainPane.add(cityDepartBox, 1, 3);
-		
 		mainPane.add(new Label("Destination Airport: "), 0, 4);
 		mainPane.add(cityArrivalBox, 1, 4);
-		
 		mainPane.add(searchButton, 1, 6);
-		
-		mainPane.setVgap(15);
-		mainPane.setHgap(15);
-		
-		mainPane.setAlignment(Pos.CENTER);
-		
-		datePicker.setMaxWidth(200);
 	}
-	
-	private void actionEvents() {
+
+	public void actionEvents() {
 		searchButton.setOnAction(event -> {
-			ArrayList<Flight> bookList = APZState.loadFlights();
-			ArrayList<Flight> bookFoundList = new ArrayList<>();
-			
-			for (int i = 0; i < bookList.size(); i++) {
-				LocalDate date = bookList.get(i).getDepartureDate();
-				String departAirport = bookList.get(i).getDepartureAirport().toString();
-				String arriveAirport = bookList.get(i).getDestinationAirport().toString();
-				
-				if (departAirport.equals(cityDepartBox.getValue()) && arriveAirport.equals(cityArrivalBox.getValue()) && date.equals(datePicker.getValue()))
-					bookFoundList.add(bookList.get(i));
-			}
-			
-			new BookingResultWindow(bookFoundList);
+			if (datePicker.getValue() == null)
+				MessageBox.message(AlertType.ERROR, null, "Date field is blank!");
+			else if (datePicker.getValue().isBefore(LocalDate.now()))
+				MessageBox.message(AlertType.ERROR, null, "Enter a valid date (not one beyond today)");
+			else if (cityDepartBox.getValue().equals(cityArrivalBox.getValue()))
+				MessageBox.message(AlertType.ERROR, null,
+						"Departing airport cannot be the same as destination airport!");
+			else
+				findAirportWindow();
+		});
+
+		cityDepartBox.setOnAction(event -> {
+			comboBoxEvents(cityArrivalBox);
+		});
+
+		cityArrivalBox.setOnAction(event -> {
+			comboBoxEvents(cityDepartBox);
 		});
 	}
-	
-	private void properties() {
+
+	public void properties() {
+		headerText.setFont(new Font(32));
+		datePicker.setMaxWidth(200);
+
+		mainPane.setVgap(15);
+		mainPane.setHgap(15);
+		mainPane.setAlignment(Pos.CENTER);
+
 		APZLauncher.getBorderPane().setCenter(mainPane);
 	}
-	
+
 	private void populateComboBox() {
-		
 		// check if > 2 else disable and make so can't select same airport
 		ArrayList<Airport> aList = APZState.loadAirports();
 
@@ -102,7 +101,44 @@ public class JBookingWindow {
 			cityDepartBox.getItems().add(aList.get(i).toString());
 			cityArrivalBox.getItems().add(aList.get(i).toString());
 		}
-		
+	}
+
+	private void comboBoxEvents(ComboBox<String> box) {
+		String depart = "1", arrive = "2";
+
+		if (cityArrivalBox.getSelectionModel().getSelectedItem() != null
+				&& !cityArrivalBox.getSelectionModel().getSelectedItem().isEmpty())
+			arrive = cityArrivalBox.getSelectionModel().getSelectedItem();
+
+		if (cityDepartBox.getSelectionModel().getSelectedItem() != null
+				&& !cityDepartBox.getSelectionModel().getSelectedItem().isEmpty())
+			depart = cityDepartBox.getSelectionModel().getSelectedItem();
+
+		System.out.println(depart + "_" + arrive);
+
+		if (depart.equals(arrive))
+			box.setValue(null);
+	}
+
+	private void findAirportWindow() {
+		ArrayList<Flight> bookList = APZState.loadFlights();
+		ArrayList<Flight> bookFoundList = new ArrayList<>();
+
+		for (int i = 0; i < bookList.size(); i++) {
+			LocalDate date = bookList.get(i).getDepartureDate();
+			String departAirport = bookList.get(i).getDepartureAirport().toString();
+			String arriveAirport = bookList.get(i).getDestinationAirport().toString();
+
+			if (departAirport.equals(cityDepartBox.getValue()) && arriveAirport.equals(cityArrivalBox.getValue())
+					&& date.equals(datePicker.getValue()))
+				bookFoundList.add(bookList.get(i));
+		}
+
+		if (bookFoundList.isEmpty())
+			MessageBox.message(AlertType.INFORMATION, null, "No flights found for " + cityDepartBox.getValue() + " to "
+					+ cityArrivalBox.getValue() + " on " + datePicker.getValue());
+		else
+			new BookingResultWindow(bookFoundList);
 	}
 
 }

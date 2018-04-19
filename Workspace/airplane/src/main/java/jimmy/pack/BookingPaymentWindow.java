@@ -20,7 +20,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
-public class BookingPaymentWindow {
+public class BookingPaymentWindow implements WindowInterface {
 	
 	private User user;
 	private VBox mainPane;
@@ -34,13 +34,13 @@ public class BookingPaymentWindow {
 
 	public BookingPaymentWindow(Flight flight) {
 		this.flight = flight;
-		intialize();
+		initialize();
 		content();
 		actionEvents();
 		properties();
 	}
 
-	private void intialize() {
+	public void initialize() {
 		user = APZLauncher.getCurrentUser();
 		
 		cost = APZMath.getPrice(flight.getDepartureAirport().getCity(), flight.getDestinationAirport().getCity());
@@ -53,7 +53,7 @@ public class BookingPaymentWindow {
 		confirmButton = new Button("Confirm Booking");
 	}
 
-	private void content() {
+	public void content() {
 		header.setFont(new Font(32));
 		
 		for (int i = 0; i < user.getPaymentInformation().size(); i++) {
@@ -79,11 +79,7 @@ public class BookingPaymentWindow {
 		else 
 			paymentPane.add(paymentBox, 1, 8);
 		
-		paymentPane.setHgap(15);
-		paymentPane.setVgap(15);
-		paymentPane.setAlignment(Pos.TOP_CENTER);
 		
-		confirmButton.setMinWidth(250);
 		mainPane.getChildren().addAll(header, paymentPane, new Separator(), confirmButton);
 		mainPane.setAlignment(Pos.TOP_CENTER);
 		
@@ -93,7 +89,7 @@ public class BookingPaymentWindow {
 		}
 	}
 
-	private void actionEvents() {
+	public void actionEvents() {
 		confirmButton.setOnAction(event -> {
 			user.getTripList().add(new Booking(flight, LocalDate.now(), user, cost));
 			MessageBox.message(AlertType.INFORMATION, null, "Trip has been booked! Receipt number: ");
@@ -101,7 +97,11 @@ public class BookingPaymentWindow {
 		});
 	}
 
-	private void properties() {
+	public void properties() {
+		confirmButton.setMinWidth(250);
+		paymentPane.setHgap(15);
+		paymentPane.setVgap(15);
+		paymentPane.setAlignment(Pos.TOP_CENTER);
 		APZLauncher.getBorderPane().setCenter(mainPane);
 	}
 

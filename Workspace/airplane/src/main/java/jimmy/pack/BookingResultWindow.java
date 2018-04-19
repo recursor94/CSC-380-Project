@@ -12,7 +12,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
-public class BookingResultWindow {
+public class BookingResultWindow implements WindowInterface {
 	
 	private ScrollPane mainPane;
 	private VBox tripBox;
@@ -26,13 +26,13 @@ public class BookingResultWindow {
 		properties();
 	}
 	
-	private void initialize() {
+	public void initialize() {
 		mainPane = new ScrollPane();
 		tripBox = new VBox(10);
 		header = new Text("Trips Found");
 	}
 	
-	private void content() {
+	public void content() {
 		header.setFont(new Font(32));
 		
 		mainPane.setContent(tripBox);
@@ -50,8 +50,12 @@ public class BookingResultWindow {
 		
 		tripBox.setAlignment(Pos.CENTER);
 	}
+	
+	public void actionEvents() {
+		// empty 
+	}
 
-	private void properties() {
+	public void properties() {
 		APZLauncher.getBorderPane().setCenter(mainPane);
 	}
 	

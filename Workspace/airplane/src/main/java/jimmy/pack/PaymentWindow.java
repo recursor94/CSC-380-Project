@@ -15,7 +15,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
-public class PaymentWindow {
+public class PaymentWindow implements WindowInterface {
 	
 	private Text header;
 	private VBox mainPane;
@@ -23,8 +23,6 @@ public class PaymentWindow {
 	private ComboBox<Payment> paymentBox;
 	private Button createButton, removeButton;
 
-	
-	// please enter password first
 	public PaymentWindow() {
 		initialize();
 		content();
@@ -32,7 +30,7 @@ public class PaymentWindow {
 		properties();
 	}
 	
-	private void initialize() {
+	public void initialize() {
 		header = new Text("Payment Information");
 		mainPane = new VBox(10);
 		gridPane = new GridPane();
@@ -41,7 +39,7 @@ public class PaymentWindow {
 		removeButton = new Button("Remove selected payment");
 	}
 
-	private void content() {
+	public void content() {
 		header.setFont(new Font(32));
 		populateComboBox();
 		
@@ -74,7 +72,7 @@ public class PaymentWindow {
 		
 	}
 
-	private void actionEvents() {
+	public void actionEvents() {
 		createButton.setOnAction(event -> {
 			new PaymentAddWindow();
 		});
@@ -87,7 +85,7 @@ public class PaymentWindow {
 		});
 	}
 
-	private void properties() {
+	public void properties() {
 		APZLauncher.getBorderPane().setCenter(mainPane);
 	}
 	
