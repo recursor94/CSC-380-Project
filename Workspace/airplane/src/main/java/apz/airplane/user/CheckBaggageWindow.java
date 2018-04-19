@@ -1,6 +1,7 @@
 package apz.airplane.user;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Optional;
 
 import apz.airplane.model.Booking;
@@ -85,6 +86,14 @@ public class CheckBaggageWindow implements WindowInterface {
 				APZState.saveInformation();
 				System.out.println("Booked Trips\n" + user.getTripList());
 				System.out.println("Trip Cost: $" + trip.getTripCost());
+				ArrayList<Flight> fList = APZState.loadFlights();
+				for (int i = 0; i < fList.size(); i++) {
+					if (fList.get(i).getFlightNum() == trip.getFlight().getFlightNum()) {
+						fList.get(i).setPlane(trip.getFlight().getPlane());
+						break;
+					}
+				}
+				APZState.saveFlight(fList);
 				stage.close();
 			}
 		});

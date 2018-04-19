@@ -33,10 +33,26 @@ public class APZState {
 		}
 	}
 	
+	public static void saveInformation(UserController uc) {
+		FileOutputStream fileOut;
+		ObjectOutputStream objectOut;
+		try {
+			fileOut = new FileOutputStream(ucFilePath);
+			objectOut = new ObjectOutputStream(fileOut);
+			objectOut.writeObject(uc);
+			objectOut.close();
+			System.out.println("The Object was successfully written to a file");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public static UserController loadInformation() {
 		UserController uc = new UserController();
 		FileInputStream fileIn;
 		try {
+			if(!new File(ucFilePath).exists())
+				saveInformation();
 			fileIn = new FileInputStream(ucFilePath);
 			ObjectInputStream objectIn = new ObjectInputStream(fileIn);
 
@@ -46,7 +62,7 @@ public class APZState {
 			uc = (UserController) obj;
 
 		} catch (IOException | ClassNotFoundException e) {
-			e.printStackTrace();
+//			e.printStackTrace();
 		}
 		return uc;
 	}
@@ -72,9 +88,23 @@ public class APZState {
 		return new ArrayList<Airport>();
 	}
 	
+	public static void saveFlight(ArrayList<Flight> flight) {
+		FileOutputStream fileOut;
+		ObjectOutputStream objectOut;
+		try {
+			fileOut = new FileOutputStream(flightObject);
+			objectOut = new ObjectOutputStream(fileOut);
+			objectOut.writeObject(flight);
+			objectOut.close();
+			System.out.println("The Object was successfully written to a file");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public static ArrayList<Flight> loadFlights() {
+		ArrayList<Flight> flightList = new ArrayList<>();
 		if (new File(flightObject).exists()) {
-			ArrayList<Flight> flightList = new ArrayList<>();
 			FileInputStream fileIn;
 			try {
 				fileIn = new FileInputStream(flightObject);
@@ -87,9 +117,16 @@ public class APZState {
 			} catch (IOException | ClassNotFoundException e) {
 				e.printStackTrace();
 			}
-			return flightList;
 		}
-		return new ArrayList<Flight>();
+		
+		ArrayList<Flight> freeFlightList = new ArrayList<>();
+		for (int i = 0; i < flightList.size(); i++) {
+			if (!flightList.get(i).getPlane().getSeats().isFull()) {
+				freeFlightList.add(flightList.get(i));
+			}
+		}
+		
+		return freeFlightList;
 	}
 
 }

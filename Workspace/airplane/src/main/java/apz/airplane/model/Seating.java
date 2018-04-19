@@ -1,93 +1,98 @@
 package apz.airplane.model;
 
 import java.io.Serializable;
-import java.util.Arrays;
+import java.util.ArrayList;
 
 public class Seating implements Serializable {
 	
 	//average plane has 200
 	private static final long serialVersionUID = 1L;
-	private User[] seating;	// must limit on if more users are trying to be added. maybe boolean return method isFull();
+	private ArrayList<User> seating;
+	private int capacity;
 	
 	public Seating(int capacity) {
-		seating = new User[capacity];
+		this.capacity = capacity;
+		seating = new ArrayList<>(capacity);
 	}
 	
 	public void addTo(User user) {
-		if (isFull()) {
+		if (seating.size() == capacity) {
 			System.out.println("FULL LIST");
 			return;
 		}
 		
-		for (int i = 0; i < seating.length; i++) {
-			if (seating[i] == null) {
-				seating[i] = user;
-				return;
-			}
-		}
+		seating.add(user);
 	}
 	
 	public void remove(User user) {
-		if (isFull()) {
-			System.out.println("NO ONE IN LIST TO REMOVE");
-			return;
-		}
+//		if (isFull()) {
+//			System.out.println("NO ONE IN LIST TO REMOVE");
+//			return;
+//		}
 		
-		for (int i = 0; i < seating.length; i++) {
-			if (seating[i] != null) 
-				if (seating[i] == user) {
-					seating[i] = null;
-					return;
-				}
+		for (int i = 0; i < seating.size(); i++) {
+			if (seating.get(i) == user)
+				seating.remove(user);
 		}
 		System.out.println("USER NOT EXISTS");
 	}
 	
-	public boolean isOnBoard(User user) {
-		for (int i = 0; i < seating.length; i++) {
-			if (seating[i] != null) 
-				if (seating[i] == user) {
-					return true;
-				}
-		}
-		return false;
-	}
-	
-	public String getSeatName(User user) {
-		for (int i = 0; i < seating.length; i++) {
-			String letter = setSeatNaming(i);
-			
-			if (seating[i] != null) 
-				if (seating[i] == user) {
-					return (i + 1) + "-" + letter;
-				}
-		}
-		return null;
-	}
+//	public boolean isOnBoard(User user) {
+//		for (int i = 0; i < seating.length; i++) {
+//			if (seating[i] != null) 
+//				if (seating[i] == user) {
+//					return true;
+//				}
+//		}
+//		return false;
+//	}
+//	
+//	public String getSeatName(User user) {
+//		for (int i = 0; i < seating.length; i++) {
+//			String letter = setSeatNaming(i);
+//			
+//			if (seating[i] != null) 
+//				if (seating[i] == user) {
+//					return (i + 1) + "-" + letter;
+//				}
+//		}
+//		return null;
+//	}
 	
 	public String setSeatNaming(int index) {
-		if (index < (seating.length / 2)) 
+		if (index < (seating.size() / 2)) 
 			return "a";
 		else
 			return "b";
 	}
 	
+//	public boolean isFull() {
+//		for (int i = 0; i < seating.length; i++) {
+//			if (seating[i] == null) {
+//				return false;
+//			}
+//		}
+//		return true;
+//	}
 	public boolean isFull() {
-		for (int i = 0; i < seating.length; i++) {
-			if (seating[i] == null) {
-				return false;
-			}
-		}
-		return true;
+		if (capacity == seating.size())
+			
+			return true;
+		return false;
 	}
+<<<<<<< HEAD
 	
 	public int getCapacity() {
-		return seating.length;
+		return seating.size();
+=======
+	public int getCapacity() {
+		return capacity;
+>>>>>>> d4330392e24e45fbbee62aa6adab996666ff2fde
 	}
 
 	@Override
 	public String toString() {
-		return "Seating: " + Arrays.toString(seating);
+		return "Seating: " + seating;
 	}
 	
 }

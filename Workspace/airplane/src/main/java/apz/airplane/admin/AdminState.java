@@ -11,12 +11,50 @@ import java.util.ArrayList;
 import apz.airplane.model.Airplane;
 import apz.airplane.model.Airport;
 import apz.airplane.model.Flight;
+import apz.airplane.model.UserController;
+import apz.airplane.user.APZLauncher;
 
 public class AdminState {
 
+	private static String ucFilePath = "userList.apz";
 	private static String planeObject = "planeList.apz";
 	private static String airportObject = "airportList.apz";
 	private static String flightObject = "flightList.apz";
+	
+	
+	public static void saveInformation(UserController uc) {
+		FileOutputStream fileOut;
+		ObjectOutputStream objectOut;
+		try {
+			fileOut = new FileOutputStream(ucFilePath);
+			objectOut = new ObjectOutputStream(fileOut);
+			objectOut.writeObject(uc);
+			objectOut.close();
+			System.out.println("The Object was successfully written to a file");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static UserController loadInformation() {
+		UserController uc = new UserController();
+		FileInputStream fileIn;
+		try {
+			if(!new File(ucFilePath).exists())
+				saveInformation(uc);
+			fileIn = new FileInputStream(ucFilePath);
+			ObjectInputStream objectIn = new ObjectInputStream(fileIn);
+
+			Object obj = objectIn.readObject();
+			System.out.println("The Object has been read from the file");
+			objectIn.close();
+			uc = (UserController) obj;
+
+		} catch (IOException | ClassNotFoundException e) {
+//			e.printStackTrace();
+		}
+		return uc;
+	}
 
 	public static void savePlane(ArrayList<Airplane> plane) {
 		FileOutputStream fileOut;

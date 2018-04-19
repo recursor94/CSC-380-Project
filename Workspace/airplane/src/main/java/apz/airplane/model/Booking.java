@@ -21,13 +21,13 @@ public class Booking implements Serializable {
 		this.tripCost = tripCost;
 	}	
 	
-	public Booking(Flight flight, LocalDate bookDate, User user) {
-		this.flight = flight;
-		this.bookDate = bookDate;
-		plane = flight.getPlane();
-		plane.getSeats().addTo(user);
-		tripCost = Province.getRate(flight.getDepartureAirport().getCity()) + Province.getRate(flight.getDestinationAirport().getCity());
-	}	
+//	public Booking(Flight flight, LocalDate bookDate, User user) {
+//		this.flight = flight;
+//		this.bookDate = bookDate;
+//		plane = flight.getPlane();
+//		plane.getSeats().addTo(user);
+//		tripCost = Province.getRate(flight.getDepartureAirport().getCity()) + Province.getRate(flight.getDestinationAirport().getCity());
+//	}	
 	
 	public Flight getFlight() {
 		return flight;

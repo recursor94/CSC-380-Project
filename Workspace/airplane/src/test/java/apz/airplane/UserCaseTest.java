@@ -52,7 +52,7 @@ public class UserCaseTest {
 		Airport departingAirport = new Airport("Syracuse Hancock International", "Syracuse, New York");
 		Airport destinationAirport = new Airport("Batman Airport", "Batman, Turkey"); //Yes, this is a real city and airport. 
 		Flight flight = new Flight(plane,departingAirport, destinationAirport, arrival, departure, departTime, arriveTime, 62918);
-		Booking trip = new Booking(flight, bookDate, user);
+		Booking trip = new Booking(flight, bookDate, user, 30.0);
 		user.addTrip(trip);
 		assertEquals(trip, user.findTrip(flight));
 	}
@@ -74,7 +74,7 @@ public class UserCaseTest {
 		Airport destinationAirport2 = new Airport("Batman Airport", "Batman, Turkey"); //Yes, this is a real city and airport. 
 		Flight flight = new Flight(plane, departingAirport1, destinationAirport1, arrival, departure, departTime, arriveTime, 62918);
 		Flight flight2 = new Flight(plane,departingAirport2, destinationAirport2, arrival, departure, departTime, arriveTime, 62919);
-		Booking trip = new Booking(flight, bookDate, user);
+		Booking trip = new Booking(flight, bookDate, user, 30.0);
 		user.addTrip(trip);
 		
 		//flight2 has not been added to the booking list, so it should not be found
@@ -95,7 +95,7 @@ public class UserCaseTest {
 		Airport departingAirport = new Airport("Syracuse Hancock International", "Syracuse, New York");
 		Airport destinationAirport = new Airport("Batman Airport", "Batman, Turkey"); //Yes, this is a real city and airport. 
 		Flight flight = new Flight(airplane, departingAirport, destinationAirport, arrival, departure, departTime, arriveTime, 40908 );
-		Booking trip = new Booking(flight, bookDate, user);
+		Booking trip = new Booking(flight, bookDate, user, 30.0);
 		user.addTrip(trip);
 		assertEquals(true, user.removeTrip(flight));
 	}
@@ -117,7 +117,7 @@ public class UserCaseTest {
 		Airport destinationAirport2 = new Airport("San Francisco International Airport", "San Francisco, California");
 		Flight flight = new Flight(plane,departingAirport, destinationAirport, arrival, departure, departTime, arriveTime, 62918);
 		Flight flight2 = new Flight(plane,departingAirport2, destinationAirport2, arrival, departure, departTime, arriveTime, 62919);
-		Booking trip = new Booking(flight, bookDate, user);
+		Booking trip = new Booking(flight, bookDate, user, 30.0);
 		user.addTrip(trip);
 		
 		//flight2 has not been added to the booking list, so no trip should be removed
