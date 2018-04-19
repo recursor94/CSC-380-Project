@@ -80,9 +80,10 @@ public class Seating implements Serializable {
 			return true;
 		return false;
 	}
-//	public int getCapacity() {
-//		return seating.length;
-//	}
+	
+	public int getCapacity() {
+		return seating.size();
+	}
 
 	@Override
 	public String toString() {

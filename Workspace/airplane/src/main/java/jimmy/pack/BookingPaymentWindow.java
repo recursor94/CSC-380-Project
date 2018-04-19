@@ -29,6 +29,7 @@ public class BookingPaymentWindow implements WindowInterface {
 	private static GridPane paymentPane; 
 	private Text header;
 	private static ComboBox<String> paymentBox;
+	private static ComboBox<Integer> baggageBox;
 	private Button confirmButton;
 	
 	private Flight flight;
@@ -52,6 +53,7 @@ public class BookingPaymentWindow implements WindowInterface {
 		header = new Text("\nProcess Booking");
 		
 		paymentBox = new ComboBox<>();
+		baggageBox = new ComboBox<>();
 		confirmButton = new Button("Confirm Booking");
 	}
 
@@ -68,21 +70,25 @@ public class BookingPaymentWindow implements WindowInterface {
 		paymentPane.add(new Label(flight.getDepartureAirport().toString()), 1, 4);
 		paymentPane.add(new Label("Destination Airport: "), 0, 5);
 		paymentPane.add(new Label(flight.getDestinationAirport().toString()), 1, 5);
-		paymentPane.add(new Label("Cost for Flight: "), 0, 6);
-		paymentPane.add(new Label("$" + cost), 1, 6);
+		
+		paymentPane.add(new Label("Extra Baggage: "), 0, 5);
+		paymentPane.add(baggageBox, 1, 5);
+		
+		paymentPane.add(new Label("Cost for Flight: "), 0, 7);
+		paymentPane.add(new Label("$" + cost), 1, 7);
 		
 		
-		paymentPane.add(new Label("Payment Method: "), 0, 8);
+		paymentPane.add(new Label("Payment Method: "), 0, 9);
 		if (paymentBox.getItems().isEmpty()) {
 			Button pAddButton = new Button("Click here to setup a payment method");
-			paymentPane.add(pAddButton, 1, 8);
+			paymentPane.add(pAddButton, 1, 9);
 			
 			pAddButton.setOnAction(event -> {
 				new PaymentAddWindow(new Stage(), flight);
 			});
 			
 		} else 
-			paymentPane.add(paymentBox, 1, 8);
+			paymentPane.add(paymentBox, 1, 9);
 		
 		
 		mainPane.getChildren().addAll(header, paymentPane, new Separator(), confirmButton);
@@ -95,6 +101,12 @@ public class BookingPaymentWindow implements WindowInterface {
 			MessageBox.message(AlertType.INFORMATION, null, "Trip has been booked! Receipt number: ");
 			APZState.saveInformation();
 		});
+		
+		baggageBox.setOnAction(event -> {			//
+			double baggagePrice = 30.35 * baggageBox.getValue();
+			paymentPane.getChildren().remove(1,  7);
+			paymentPane.add(new Label("$" + (cost + baggagePrice)), 1, 7);
+		});
 	}
 
 	public void properties() {
@@ -105,7 +117,13 @@ public class BookingPaymentWindow implements WindowInterface {
 		APZLauncher.getBorderPane().setCenter(mainPane);
 	}
 	
+	
 	private void loadComboBoxInformation() {
+		for (int i = 0; i < 3; i++) 
+			baggageBox.getItems().add(i);
+		
+		baggageBox.setValue(0);
+		
 		for (int i = 0; i < user.getPaymentInformation().size(); i++) {
 			Long ccNum = user.getPaymentInformation().get(i).getCardNum();
 			paymentBox.getItems().add("Card number ending in " + ccNum.toString().substring(12, 16));
