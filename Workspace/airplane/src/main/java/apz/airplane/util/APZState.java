@@ -33,6 +33,20 @@ public class APZState {
 		}
 	}
 	
+	public static void saveInformation(UserController uc) {
+		FileOutputStream fileOut;
+		ObjectOutputStream objectOut;
+		try {
+			fileOut = new FileOutputStream(ucFilePath);
+			objectOut = new ObjectOutputStream(fileOut);
+			objectOut.writeObject(uc);
+			objectOut.close();
+			System.out.println("The Object was successfully written to a file");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public static UserController loadInformation() {
 		UserController uc = new UserController();
 		FileInputStream fileIn;
@@ -91,8 +105,9 @@ public class APZState {
 		
 		ArrayList<Flight> freeFlightList = new ArrayList<>();
 		for (int i = 0; i < flightList.size(); i++) {
-			if (!flightList.get(i).getPlane().getSeats().isFull()) 
+			if (!flightList.get(i).getPlane().getSeats().isFull()) {
 				freeFlightList.add(flightList.get(i));
+			}
 		}
 		
 		return freeFlightList;
