@@ -7,6 +7,7 @@ import com.sun.xml.internal.ws.dump.LoggingDumpTube.Position;
 import apz.airplane.model.Airport;
 import apz.airplane.model.Province;
 import apz.airplane.util.MessageBox;
+import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;
@@ -14,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.Separator;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
@@ -41,6 +43,7 @@ public class AirportWindow {
 	private Text city;
 	private HBox removeButtonBox;
 	private HBox createButtonBox;
+	private Separator fieldButtonSeparator;
 
 
 	public AirportWindow() {
@@ -65,6 +68,7 @@ public class AirportWindow {
 		windowHeader = new Text("Make Airport");
 		airportName = new Text("Airport Name: ");
 		city = new Text("City Name: ");
+		fieldButtonSeparator = new Separator(Orientation.HORIZONTAL);
 
 	}
 
@@ -79,6 +83,7 @@ public class AirportWindow {
 		HBox.setHgrow(createButton, Priority.ALWAYS);
 		HBox.setHgrow(removeButton, Priority.ALWAYS);
 		createButtonBox.getChildren().add(createButton);
+		createButtonBox.setAlignment(Pos.CENTER_LEFT);
 		removeButtonBox.getChildren().add(removeButton);
 		formatHeader();
 		gridPane.setVgap(5);
@@ -93,7 +98,7 @@ public class AirportWindow {
 		//gridPane.add(createButton, 1, 3);
 		//gridPane.add(airportView, 0, 4);
 		
-		mainPane.getChildren().addAll(windowHeader, gridPane, removeButtonBox, createButtonBox, airportView);
+		mainPane.getChildren().addAll(windowHeader, gridPane, fieldButtonSeparator, createButtonBox, removeButtonBox, airportView);
 		mainPane.setAlignment(Pos.CENTER);
 	}
 	
