@@ -25,6 +25,7 @@ import javafx.util.Callback;
 
 public class JBookingWindow implements WindowInterface {
 
+	private ImageView img;
 	private Text headerText;
 	private VBox mainPane;
 	private GridPane gridPane;
@@ -40,6 +41,7 @@ public class JBookingWindow implements WindowInterface {
 	}
 
 	public void initialize() {
+		img = new ImageView(new Image(FilePath.LOGIN_IMAGE));
 		headerText = new Text("Book a trip");
 		mainPane = new VBox(10);
 		gridPane = new GridPane();
@@ -53,10 +55,6 @@ public class JBookingWindow implements WindowInterface {
 	public void content() {
 		populateComboBox();
 		
-		ImageView img = new ImageView(new Image(FilePath.LOGIN_IMAGE));
-		img.setFitWidth(150);
-		img.setFitHeight(150);
-
 		mainPane.getChildren().addAll(img, gridPane);
 		
 		gridPane.add(headerText, 0, 0);
@@ -92,6 +90,9 @@ public class JBookingWindow implements WindowInterface {
 	}
 
 	public void properties() {
+		img.setFitWidth(150);
+		img.setFitHeight(150);
+		
 		headerText.setFont(new Font(32));
 		datePicker.setMaxWidth(200);
 		datePicker.setEditable(false);

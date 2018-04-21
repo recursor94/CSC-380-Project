@@ -19,6 +19,7 @@ import javafx.scene.text.Text;
 
 public class BookingResultWindow implements WindowInterface {
 	
+	private ImageView img;
 	private VBox mainPane;
 	private ScrollPane scrollPane;
 	private ArrayList<Flight> tripList;
@@ -32,6 +33,7 @@ public class BookingResultWindow implements WindowInterface {
 	}
 	
 	public void initialize() {
+		img = new ImageView(new Image(FilePath.LOGIN_IMAGE));
 		mainPane = new VBox(10);
 		scrollPane = new ScrollPane();
 		header = new Text("Trips Found");
@@ -39,10 +41,6 @@ public class BookingResultWindow implements WindowInterface {
 	
 	public void content() {
 		header.setFont(new Font(32));
-		
-		ImageView img = new ImageView(new Image(FilePath.LOGIN_IMAGE));
-		img.setFitWidth(150);
-		img.setFitHeight(150);
 		
 		mainPane.getChildren().addAll(img, header, scrollPane);
 		
@@ -63,8 +61,7 @@ public class BookingResultWindow implements WindowInterface {
 				new BookingPaymentWindow(trip);
 			});
 			
-			textBox.getChildren().addAll(img2, new Text(tripList.get(i).toString()), bookButton);
-			
+			textBox.getChildren().addAll(new Label(), img2, new Text(tripList.get(i).toString()), bookButton);
 			showBox.getChildren().addAll(new Separator(), textBox, new Label());
 			
 			
@@ -76,7 +73,8 @@ public class BookingResultWindow implements WindowInterface {
 	public void actionEvents() {}
 
 	public void properties() {
-		
+		img.setFitWidth(150);
+		img.setFitHeight(150);
 		mainPane.setAlignment(Pos.TOP_CENTER);
 		APZLauncher.getBorderPane().setCenter(mainPane);
 	}
