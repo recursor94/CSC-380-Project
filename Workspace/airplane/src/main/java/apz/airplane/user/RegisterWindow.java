@@ -1,22 +1,26 @@
 package apz.airplane.user;
 
 import apz.airplane.model.User;
-import apz.airplane.util.MessageBox;
 import apz.airplane.util.APZState;
+import apz.airplane.util.MessageBox;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
+import jimmy.pack.WindowInterface;
 
-public class RegisterWindow {
+public class RegisterWindow implements WindowInterface {
 
 	private TextField userField;
+	private Text header;
 	private PasswordField passField;
 	private Button registerButton;
 	private Button backButton;
@@ -31,7 +35,8 @@ public class RegisterWindow {
 		properties();
 	}
 	
-	private void initialize() {
+	public void initialize() {
+		header = new Text("User Registration");
 		rootPane = new VBox(10);
 		userBox = new HBox(10);
 		passBox = new HBox(10);
@@ -42,7 +47,9 @@ public class RegisterWindow {
 		backButton = new Button("Back");
 	}
 	
-	private void content() {
+	public void content() {
+		header.setFont(new Font(20));
+		
 		userBox.setAlignment(Pos.CENTER);
 		passBox.setAlignment(Pos.CENTER);
 		rootPane.setAlignment(Pos.CENTER);
@@ -56,15 +63,15 @@ public class RegisterWindow {
 		img.setFitWidth(150);
 		img.setFitHeight(150);
 		
-		rootPane.getChildren().addAll(img, userBox, passBox, buttonBox);
+		rootPane.getChildren().addAll(header, img, userBox, passBox, buttonBox);
 		
 	}
 	
-	private void properties() {
+	public void properties() {
 		APZLauncher.getBorderPane().setCenter(rootPane);
 	}
 	
-	private void actionEvents() {
+	public void actionEvents() {
 		registerButton.setOnAction((event) -> {
 			if ((userField.getText().isEmpty()) || (passField.getText().isEmpty()))
 				MessageBox.message(AlertType.ERROR, "ERROR: You must enter a user name and password", "Please enter a user name and password");

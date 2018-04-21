@@ -13,8 +13,5 @@ public class AdminLauncher extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		new HomeWindow(primaryStage);
 	}
-	
-	
-	// MUST REMOVE FLIGHT IF PLANE IS REMOVED.
 
 }

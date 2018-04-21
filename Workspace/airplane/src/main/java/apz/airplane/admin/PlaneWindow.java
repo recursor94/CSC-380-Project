@@ -61,6 +61,8 @@ public class PlaneWindow {
 
 		seatField.setValue(1);
 
+		removeButton.setDisable(true);
+		
 		header.setFont(new Font(32));
 
 		buttonBox.getChildren().addAll(createButton, removeButton);
@@ -87,16 +89,20 @@ public class PlaneWindow {
 	private void actionEvents() {
 		createButton.setOnAction(event -> {
 			verifyInput();
+			
+			if(planeView.getSelectionModel().isEmpty())
+				removeButton.setDisable(true);
 		});
 
+		planeView.getSelectionModel().selectedItemProperty().addListener(event -> {
+			removeButton.setDisable(false);
+		});
 		removeButton.setOnAction(event -> {
-			if (planeView.getSelectionModel().getSelectedItem() != null) {
 				Airplane plane = planeView.getSelectionModel().getSelectedItem();
 				planeList.remove(plane);
 				AdminState.savePlane(planeList);
 				loadFile();
-			} else
-				MessageBox.message(AlertType.ERROR, "ERROR: No Plane Selected", "You must select a plane to remove");
+				removeButton.setDisable(true);
 		});
 	}
 
@@ -121,7 +127,14 @@ public class PlaneWindow {
 			System.out.println(planeList);
 			loadFile();
 			System.out.println(planeList);
+			resetFields();
 		}
+	}
+	
+	private void resetFields() {
+		planeNumField.setText("");
+		airlineField.setText("");
+		seatField.setValue(1);
 	}
 
 	private void loadFile() {

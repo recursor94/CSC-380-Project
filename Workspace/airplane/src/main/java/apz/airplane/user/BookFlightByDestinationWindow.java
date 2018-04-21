@@ -1,18 +1,13 @@
 package apz.airplane.user;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 
-import apz.airplane.admin.AdminState;
 import apz.airplane.model.Airport;
-import apz.airplane.model.Booking;
 import apz.airplane.model.Flight;
-import apz.airplane.model.Province;
-import apz.airplane.model.User;
 import apz.airplane.util.APZState;
 import apz.airplane.util.MessageBox;
-import javafx.scene.control.Alert.AlertType;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -22,6 +17,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import jimmy.pack.BookingPaymentWindow;
 import jimmy.pack.WindowInterface;
 
 public class BookFlightByDestinationWindow implements WindowInterface {
@@ -58,6 +54,8 @@ public class BookFlightByDestinationWindow implements WindowInterface {
 		
 		header.setFont(new Font(28));
 		
+		bookFlightButton.setDisable(true);
+		
 		populateComboBox();
 		
 		buttonBox.getChildren().addAll(findFlightButton, bookFlightButton);
@@ -82,15 +80,16 @@ public class BookFlightByDestinationWindow implements WindowInterface {
 	public void actionEvents() {
 		findFlightButton.setOnAction(event -> {
 			flightList = findFlights();
+			bookFlightButton.setDisable(true);
+		});
+		
+		flightView.getSelectionModel().selectedItemProperty().addListener(event -> {
+			bookFlightButton.setDisable(false);
 		});
 		
 		bookFlightButton.setOnAction(event -> {
-			if (!flightView.getSelectionModel().isEmpty()) {
-				new CheckBaggageWindow(flightView.getSelectionModel().getSelectedItem());
-			}
-			else {
-				MessageBox.message(AlertType.INFORMATION, "No Flight Selected", "You must select a flight to book");
-			}
+				//new CheckBaggageWindow(flightView.getSelectionModel().getSelectedItem());
+				new BookingPaymentWindow(flightView.getSelectionModel().getSelectedItem());
 		});
 	}
 	

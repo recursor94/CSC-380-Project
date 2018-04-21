@@ -21,7 +21,6 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import jimmy.pack.BookingPaymentWindow;
-import jimmy.pack.PaymentWindow;
 import jimmy.pack.WindowInterface;
 
 public class PaymentAddWindow implements WindowInterface {
@@ -163,9 +162,8 @@ public class PaymentAddWindow implements WindowInterface {
 				user.addPayment(new Payment(name, street, city, state, zip, cardNum, expirationDate, CCV));
 				APZState.saveInformation();
 				System.out.println(user.getPaymentInformation());
-				//if (stage != null)
-					//new BookingPaymentWindow(flight);
-				new PaymentWindow();
+				if (stage != null)
+					new BookingPaymentWindow(flight);
 			}
 		}
 		else 

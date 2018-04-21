@@ -18,6 +18,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import jimmy.pack.BookingPaymentWindow;
 import jimmy.pack.WindowInterface;
 
 public class BookFlightByDateWindow implements WindowInterface {
@@ -54,6 +55,8 @@ public class BookFlightByDateWindow implements WindowInterface {
 		header.setFont(new Font(28));
 		listText.setFont(new Font(20));
 		
+		bookFlightButton.setDisable(true);
+		
 		calendar.setEditable(false);
 		calendar.setMaxWidth(200);
 		
@@ -78,6 +81,7 @@ public class BookFlightByDateWindow implements WindowInterface {
 	}
 	public void actionEvents() {
 		findFlightButton.setOnAction(event -> {
+			bookFlightButton.setDisable(true);
 			if (calendar.getValue() != null) {
 				flightList = findFlights(calendar.getValue());
 				
@@ -94,12 +98,13 @@ public class BookFlightByDateWindow implements WindowInterface {
 				MessageBox.message(AlertType.ERROR, "ERROR", "You must select a date");
 		});
 
+		flightView.getSelectionModel().selectedItemProperty().addListener(event -> {
+			bookFlightButton.setDisable(false);
+		});
+		
 		bookFlightButton.setOnAction(event -> {
-			if (!flightView.getSelectionModel().isEmpty()) {
-				new CheckBaggageWindow(flightView.getSelectionModel().getSelectedItem());
-			} else {
-				MessageBox.message(AlertType.INFORMATION, "No Flight Selected", "You must select a flight to book");
-			}
+				//new CheckBaggageWindow(flightView.getSelectionModel().getSelectedItem());
+				new BookingPaymentWindow(flightView.getSelectionModel().getSelectedItem());
 		});
 	}
 

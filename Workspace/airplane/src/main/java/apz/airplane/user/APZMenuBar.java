@@ -37,7 +37,7 @@ public class APZMenuBar {
 		
 		exitItem = new MenuItem("Exit");
 		logoutItem = new MenuItem("Logout");
-		viewFlightItem = new MenuItem("View my upcoming trips");
+		viewFlightItem = new MenuItem("View/Manage my upcoming trips");
 		scheduleFlightItem = new MenuItem("Current Schedules");
 		
 		manageAccountItem = new MenuItem("Information");
@@ -83,7 +83,7 @@ public class APZMenuBar {
 		});
 		
 		manageBookingItem.setOnAction(event -> {
-			new BookingWindow();
+			new BookingViewWindow();
 		});
 		
 		bookByDestinationItem.setOnAction(event -> {

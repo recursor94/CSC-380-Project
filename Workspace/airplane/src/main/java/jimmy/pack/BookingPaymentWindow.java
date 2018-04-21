@@ -1,15 +1,18 @@
 package jimmy.pack;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 import apz.airplane.model.Booking;
 import apz.airplane.model.Flight;
 import apz.airplane.model.Payment;
 import apz.airplane.model.User;
 import apz.airplane.user.APZLauncher;
+import apz.airplane.user.HomeScreenWindow;
 import apz.airplane.user.PaymentAddWindow;
 import apz.airplane.util.APZMath;
 import apz.airplane.util.APZState;
+import apz.airplane.util.FilePath;
 import apz.airplane.util.MessageBox;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert.AlertType;
@@ -17,6 +20,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -25,18 +30,17 @@ import javafx.stage.Stage;
 
 public class BookingPaymentWindow implements WindowInterface {
 	
+	private ImageView img;
 	private User user;
 	private VBox mainPane;
 	private static GridPane paymentPane; 
 	private Text header;
-	//private static ComboBox<String> paymentBox;
 	private static ComboBox<Payment> paymentBox;
 	private static ComboBox<Integer> baggageBox;
 	private Button confirmButton;
 	
 	private Flight flight;
 	private double cost;
-
 	private Label costLabel;
 	
 	public BookingPaymentWindow(Flight flight) {
@@ -48,17 +52,18 @@ public class BookingPaymentWindow implements WindowInterface {
 	}
 
 	public void initialize() {
+		img = new ImageView(new Image(FilePath.LOGIN_IMAGE));
 		user = APZLauncher.getCurrentUser();
 		
 		cost = APZMath.getPrice(flight.getDepartureAirport().getCity(), flight.getDestinationAirport().getCity());
 		
 		mainPane = new VBox(10);
 		paymentPane = new GridPane();
-		header = new Text("\nProcess Booking");
+		header = new Text("\nPayment");
 		
 		paymentBox = new ComboBox<>();
 		baggageBox = new ComboBox<>();
-		confirmButton = new Button("Confirm Booking");
+		confirmButton = new Button("Confirm Payment");
 		
 		costLabel = new Label("");
 	}
@@ -98,7 +103,7 @@ public class BookingPaymentWindow implements WindowInterface {
 			paymentPane.add(paymentBox, 1, 9);
 		
 		
-		mainPane.getChildren().addAll(header, paymentPane, new Separator(), confirmButton);
+		mainPane.getChildren().addAll(header, img, paymentPane, new Separator(), confirmButton);
 		mainPane.setAlignment(Pos.TOP_CENTER);
 	}
 
@@ -109,21 +114,33 @@ public class BookingPaymentWindow implements WindowInterface {
 			else if(isCardExpired(paymentBox.getSelectionModel().getSelectedItem()))
 				MessageBox.message(AlertType.ERROR, "Invalid Payment", "The card you have selected has expired. Please select another payment method");
 			else {
-					user.getTripList().add(new Booking(flight, LocalDate.now(), user, cost));
-					MessageBox.message(AlertType.INFORMATION, null, "Trip has been booked! Receipt number: ");
+					Booking trip = new Booking(flight, LocalDate.now(), user, cost);
+					user.getTripList().add(trip);
+					MessageBox.message(AlertType.INFORMATION, null, "Trip has been booked!");
 					APZState.saveInformation();
+					ArrayList<Flight> fList = APZState.loadFlights();
+					
+					//This was in CheckBaggageWindow for saving an updated flight with a new passenger on board
+					for (int i = 0; i < fList.size(); i++) {
+						if (fList.get(i).getFlightNum() == trip.getFlight().getFlightNum()) {
+							fList.get(i).setPlane(trip.getFlight().getPlane());
+							break;
+						}
+					}
+					APZState.saveFlight(fList);
+					new HomeScreenWindow();
 			}
 		});
 		
-		baggageBox.setOnAction(event -> {			//
+		baggageBox.setOnAction(event -> {
 			double baggagePrice = 30.35 * baggageBox.getValue();
 			costLabel.setText("$" + (cost + baggagePrice));
-//			paymentPane.getChildren().remove(1,  7);
-//			paymentPane.add(new Label("$" + (cost + baggagePrice)), 1, 7);
 		});
 	}
 
 	public void properties() {
+		img.setFitWidth(150);
+		img.setFitHeight(150);
 		confirmButton.setMinWidth(250);
 		paymentPane.setHgap(15);
 		paymentPane.setVgap(15);
@@ -140,8 +157,6 @@ public class BookingPaymentWindow implements WindowInterface {
 		
 		for (int i = 0; i < user.getPaymentInformation().size(); i++) {
 			paymentBox.getItems().add(user.getPaymentInformation().get(i));
-			//Long ccNum = user.getPaymentInformation().get(i).getCardNum();
-			//paymentBox.getItems().add("Card number ending in " + ccNum.toString().substring(12, 16));
 		}
 	}
 	

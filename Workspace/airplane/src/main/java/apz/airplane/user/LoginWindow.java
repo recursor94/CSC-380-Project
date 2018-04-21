@@ -1,6 +1,7 @@
 package apz.airplane.user;
 
 import apz.airplane.model.User;
+import apz.airplane.util.FilePath;
 import apz.airplane.util.MessageBox;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
@@ -15,9 +16,11 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import jimmy.pack.WindowInterface;
 
-public class LoginWindow {
+public class LoginWindow implements WindowInterface {
 	
 	private int loginAttempt = 0;
 
@@ -27,7 +30,7 @@ public class LoginWindow {
 	
 	private VBox rootPane;
 	private HBox userBox, passBox, buttonBox;
-	private Text status;
+	private Text status, header;
 	
 	public LoginWindow() {
 		initialize();
@@ -36,7 +39,8 @@ public class LoginWindow {
 		properties();
 	}
 	
-	private void initialize() {
+	public void initialize() {
+		
 		rootPane = new VBox(10);
 		userBox = new HBox(10);
 		passBox = new HBox(10);
@@ -48,11 +52,15 @@ public class LoginWindow {
 		status = new Text("");
 		status.setFill(Color.RED);
 		
+		header = new Text("APZ Application");
+		
 		loginButton = new Button("Login");
 		registerButton = new Button("Register");
 	}
 	
-	private void content() {
+	public void content() {
+		
+		header.setFont(new Font(20));
 		userBox.setAlignment(Pos.CENTER);
 		passBox.setAlignment(Pos.CENTER);
 		rootPane.setAlignment(Pos.CENTER);
@@ -62,20 +70,20 @@ public class LoginWindow {
 		passBox.getChildren().addAll(new Label("Password: "), passField);
 		buttonBox.getChildren().addAll(loginButton, registerButton);
 		
-		ImageView img = new ImageView(new Image("file:img.png"));
+		ImageView img = new ImageView(new Image(FilePath.LOGIN_IMAGE));
 		img.setFitWidth(150);
 		img.setFitHeight(150);
 		
-		rootPane.getChildren().addAll(img, status, userBox, passBox, buttonBox);
+		rootPane.getChildren().addAll(header, img, status, userBox, passBox, buttonBox);
 	}
 	
-	private void properties() {
+	public void properties() {
 		APZLauncher.getBorderPane().setCenter(rootPane);
 		APZLauncher.getStage().setWidth(300);
-		APZLauncher.getStage().setHeight(380);
+		APZLauncher.getStage().setHeight(410);
 	}
 	
-	private void actionEvents() {
+	public void actionEvents() {
 		rootPane.setOnKeyPressed(event -> {
 			if (event.getCode() == KeyCode.ENTER)
 				tryLogin();

@@ -8,7 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 
-public class BookingWindow {
+public class BookingViewWindow {
 	
 	// have email as part of registration?
 	
@@ -17,7 +17,7 @@ public class BookingWindow {
 		
 		private User uc;
 		
-		public BookingWindow() {
+		public BookingViewWindow() {
 			initialize();
 			content();
 			properties();
