@@ -7,12 +7,12 @@ public class Airplane implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private int planeNum;
 	private String airline;
-	private Seating2 seats;
+	private Seating seats;
 	
 	public Airplane(int planeNum, String airline, int capacity) {
 		this.planeNum = planeNum;
 		this.airline = airline;
-		seats = new Seating2(capacity);
+		seats = new Seating(capacity);
 	}
 
 	public int getPlaneNum() {
@@ -31,11 +31,11 @@ public class Airplane implements Serializable {
 		this.airline = airline;
 	}
 
-	public Seating2 getSeats() {
+	public Seating getSeats() {
 		return seats;
 	}
 
-	public void setSeats(Seating2 seatArray) {
+	public void setSeats(Seating seatArray) {
 		this.seats = seatArray;
 	}
 

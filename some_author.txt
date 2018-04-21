@@ -1,0 +1,277 @@
+77f99b8 test commit again
+ 1 file changed, 1 insertion(+)
+fc9a656 Testing text.txt
+ 1 file changed, 2 insertions(+)
+ff1779c testing commit again
+ 1 file changed, 2 deletions(-)
+f69c0cc removed fake files
+ 2 files changed, 2 deletions(-)
+166d08e added driver.java
+ 1 file changed, 3 insertions(+)
+cd34601 moved file in proper directory
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+3b3e297 remove folder
+ 1 file changed, 3 deletions(-)
+1a445b1 created project folder -Jimmy
+ 6 files changed, 44 insertions(+)
+8d7f6f7 created project folder -Jimmy
+5e805db Edited driver. We should only put comments that are not self-explanatory for us as a team. Also my last name was spelled wrong
+ 1 file changed, 1 insertion(+), 7 deletions(-)
+0229b80 added the Airline class
+ 1 file changed, 27 insertions(+)
+356f597 fixing airline class
+ 1 file changed, 27 deletions(-)
+0d6694f created proper Airline.java class
+ 1 file changed, 17 insertions(+)
+0e087ae created constructor for Hotel and added comment for data structure
+ 2 files changed, 12 insertions(+)
+a724c97 appended Cars.java to have proper data type and added constructor
+ 1 file changed, 6 insertions(+), 1 deletion(-)
+8091daf formatted our .txt file
+ 1 file changed, 23 insertions(+), 23 deletions(-)
+a9d9535 testing projectiondescription formatting
+ 1 file changed, 41 insertions(+), 23 deletions(-)
+06efa99 Adding System Requirements
+ 1 file changed, 36 insertions(+), 38 deletions(-)
+d399a13 Adding System Requirements 2
+ 1 file changed, 26 insertions(+), 20 deletions(-)
+1ed762f fixed formatting issue
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+db59ee6 fixed formatting issue 2
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+1128aaf Removed last sentence of PD. Manage means to add, change, cancel, view/find, etc. A bit redundant to say you can manage and change/cancel
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+bfd7bde removed deprecated txt file (groupprojectbyzak) and added Airplane.java
+ 2 files changed, 7 insertions(+), 42 deletions(-)
+2877965 Finished System Requirements
+ 1 file changed, 16 insertions(+), 9 deletions(-)
+c1dff04 added user stories
+ 1 file changed, 19 insertions(+)
+61cca4d fixed description
+ 1 file changed, 9 insertions(+), 27 deletions(-)
+33993d4 fixed formatting
+ 1 file changed, 16 insertions(+), 16 deletions(-)
+1972a8e Added priorities and size on requirements/stories
+ 1 file changed, 36 insertions(+), 32 deletions(-)
+916dde7 Added priorities and size on requirements/stories
+ 1 file changed, 8 insertions(+)
+88fc5aa changed ascii
+ 1 file changed, 36 insertions(+), 5 deletions(-)
+20d898c changed ascii2
+ 1 file changed, 36 deletions(-)
+5ab6fae fixed system requirement ordering
+ 1 file changed, 9 insertions(+), 9 deletions(-)
+e4c683c created test mvn build
+ 3 files changed, 69 insertions(+)
+3d5b486 created test maven build and tested running file
+ 7 files changed, 81 insertions(+)
+1ad7ec5 created delegation list for Feb21,2018
+ 1 file changed, 28 insertions(+)
+4cf326b created delegation list
+070792d moved dir for andrew
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+8aeab62 created dir
+76c16da moved to test package
+ 6 files changed, 0 insertions(+), 0 deletions(-)
+e44bd29 user management class
+ 7 files changed, 15 insertions(+), 5 deletions(-)
+1a50120 configured project folder
+ 4 files changed, 45 insertions(+), 40 deletions(-)
+8f38156 fixed more structures
+ 3 files changed, 37 insertions(+), 6 deletions(-)
+4799dbb fixed file structure more
+5c55b96 test
+7571933 naming var change
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+cee7d2a changed var names
+ 3 files changed, 14 insertions(+), 15 deletions(-)
+423db10 changed var name
+16f7c68 airplane class
+ 3 files changed, 14 insertions(+), 3 deletions(-)
+8ff2105 added a bit to seating
+ 4 files changed, 42 insertions(+), 22 deletions(-)
+21b8007 create test jfx as reference
+ 5 files changed, 83 insertions(+), 77 deletions(-)
+fa4323d reference jfx test folder
+9e18751 reference jfx test folder
+bb166ce added full structure of what we need
+ 16 files changed, 337 insertions(+), 19 deletions(-)
+13cb346 rename folder
+8c497a1 fixed seating method
+ 2 files changed, 3 insertions(+), 2 deletions(-)
+63748a1 fixed seating method
+cfd592b fixed seating method2
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+5c948ea removed some unnecessary structures
+ 5 files changed, 29 deletions(-)
+e79dde5 moved folders to proper place for now.
+ 29 files changed, 11 deletions(-)
+b4ca59b Fixed class logic, renamed some classes for self-expanatory reasons, added some methods, and created project implementation document. It will explain the hierarchy of our files. Please check it out before you work on the next few classes.
+ 9 files changed, 176 insertions(+), 82 deletions(-)
+2b9a978 fixed folder structure and removed unnecessary files. We will have a schedule up for what we will do each week almost like an assignment sheet but i'm too lazy to create it now.
+ 34 files changed, 28 deletions(-)
+90ec1fd testing branch feature
+ 1 file changed, 1 insertion(+)
+9f812b0 created a test file
+ 4 files changed, 25 insertions(+), 23 deletions(-)
+c5e83e0 removed test files for demo
+ 2 files changed, 2 deletions(-)
+e4f21cd for HW3
+ 4 files changed, 124 insertions(+)
+b32b049 fixed gui layout. Will meet monday to discuss all work. Lets work on it then
+ 5 files changed, 128 insertions(+), 2 deletions(-)
+f311e5c little changes to class, setup session with gui display
+ 9 files changed, 96 insertions(+), 31 deletions(-)
+bd83d92 merge
+c976f25 fixed tests and user class functions. be careful for consutrctor vs method based declaration.
+ 8 files changed, 26 insertions(+), 33 deletions(-)
+a5aa742 created tests and fixed user class
+4022abb readded user class properly for tests
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+3cd465b added some new tests and fixed more classes
+ 4 files changed, 37 insertions(+), 27 deletions(-)
+38d0522 changed remove trip to boolean for tests
+ 6 files changed, 18 insertions(+), 17 deletions(-)
+43efb4b Fixed the junit errors. Just added a plugin to our pom.xml and remember, if you are testing or experimenting, do not push onto the repository. Clone it or moveit locally so we are not all effected by it.
+ 2 files changed, 20 insertions(+)
+a8cbb98 fixed the junit test. We're using ver 4 now. Make sure your imports are proper
+ 10 files changed, 244 insertions(+), 34 deletions(-)
+a3f32d9 removed stuff folder which had old test cases not to be confused with our current
+ 4 files changed, 216 deletions(-)
+1b6f3cb edit user cases.md
+ 2 files changed, 19 insertions(+)
+c4d96d5 push md to see
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+1c1fecc md edit
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+42d65c2 md edit to be able to format
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+3b8cd8d md edit to be able to format2
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+a19c68c continuation of use cases
+ 1 file changed, 66 insertions(+), 10 deletions(-)
+73fb33c use case updated more
+ 1 file changed, 100 insertions(+), 4 deletions(-)
+9ddfbde fixed uc md
+ 1 file changed, 1 insertion(+), 23 deletions(-)
+58b0148 fixed uc md spacing
+ 1 file changed, 8 insertions(+), 8 deletions(-)
+ffcd3d8 fixed uc md spacing
+ 1 file changed, 8 insertions(+), 8 deletions(-)
+320dde2 fixed uc with breaks
+ 1 file changed, 7 insertions(+), 5 deletions(-)
+3d63874 completed use cases
+ 2 files changed, 37 insertions(+), 15 deletions(-)
+002e5ff created mockup for delegation
+ 3 files changed, 33 insertions(+), 1 deletion(-)
+98e4b8f delegations added
+ 1 file changed, 13 insertions(+), 16 deletions(-)
+74e38a6 gui example
+ 7 files changed, 118 insertions(+), 71 deletions(-)
+b1106ba created savestate and admin ctrls
+ 14 files changed, 277 insertions(+), 33 deletions(-)
+ead217a More progress on admin windows, create own package for working classes. READ COMMENTS BEFORE MODIFICATION
+ 19 files changed, 575 insertions(+), 33 deletions(-)
+c7d2cce removed some more useless classes. Lets implement working stuff on our GUI. Remember top down level
+ 5 files changed, 90 deletions(-)
+e73abf8 finalized demo packages. We have 2. Admin and the .gui class is our standard. .gui.test package was our old stuff
+ 22 files changed, 218 insertions(+), 109 deletions(-)
+56ce9f2 categorized our folders to organize
+ 6 files changed, 28 deletions(-)
+b51e05f some small updates
+ 2 files changed, 13 insertions(+), 1 deletion(-)
+b46ec9d serializable needs serialVersionUID or every version change will cause data loss. Added necessary var
+ 8 files changed, 17 insertions(+), 16 deletions(-)
+94d798c changed State. Use a variable for file path rather than have it nested in FileInputStream from now on. Also if file exists, we load otherwise create new arraylist
+ 2 files changed, 66 insertions(+), 65 deletions(-)
+60529f7 Fixed State and AdminLauncher -> AddPlane
+ 4 files changed, 52 insertions(+), 62 deletions(-)
+34fefc1 Fixed and Updated AddFlight window. Lets keep code tidy so we don't have to keep going back to sort things out
+ 2 files changed, 123 insertions(+), 109 deletions(-)
+9eaf77a AddAirports is all done. Refactored from CreateAirport. Needs change for all 3 of views we have right now.
+ 3 files changed, 105 insertions(+), 100 deletions(-)
+25b3761 fixed util package and changed that user management class. also refactoring is needed
+ 3 files changed, 32 insertions(+), 67 deletions(-)
+e0cbd0c refactored class names
+ 7 files changed, 30 insertions(+), 30 deletions(-)
+212dfa0 create menu bar system for navigation
+ 4 files changed, 58 insertions(+), 22 deletions(-)
+ddfd82b finishing up this session
+ 1 file changed, 4 insertions(+), 6 deletions(-)
+730c710 city enum
+ 3 files changed, 32 insertions(+), 1 deletion(-)
+073169a sequence diagrams
+ 2 files changed, 82 insertions(+)
+ec3438f slight changes. Airport admin window needs changes. No scene is needed for keystroke listener. Changed textfield to combobox for enum of provinces
+ 3 files changed, 289 insertions(+), 254 deletions(-)
+fc49d4d Fixed AirportWindow. There were a lot of logic problems and it did not have the Province implementation.
+ 2 files changed, 85 insertions(+), 92 deletions(-)
+d09eee4 Started fixing FlightWindow. Please message me after you're done with code so we can go over it together. There are lots of errors and logical mistakes
+ 2 files changed, 24 insertions(+), 23 deletions(-)
+c5f4220 Fixing UserWindow in admin package. Using GridPane. Changed textfield for password to PasswordField. Several logical errors fixed. WIP
+ 3 files changed, 60 insertions(+), 39 deletions(-)
+15f2d2e login window additions for attempts
+ 4 files changed, 98 insertions(+), 80 deletions(-)
+f6be3b8 login window additions for attempts
+97328ec subtle fixes
+ 5 files changed, 42 insertions(+), 11 deletions(-)
+eaa7c50 read comments and changes
+ 5 files changed, 14 insertions(+), 18 deletions(-)
+4092e69 rearrangement of files in documentation
+ 27 files changed, 52 insertions(+), 22 deletions(-)
+f0395b8 Small fixes
+ 4 files changed, 31 insertions(+), 39 deletions(-)
+99ce955 login img header
+ 2 files changed, 8 insertions(+), 2 deletions(-)
+f1dc559 refactored some things and created Information Window as well as Booking Window. Creates dynamic nodes based on amonut of bookings.
+ 40 files changed, 182 insertions(+), 758 deletions(-)
+1a8b080 refactored some things and created Information Window as well as Booking Window. Creates dynamic nodes based on amonut of bookings.
+6ea27c9 merge conflict broke menubar. Fixed mb
+ 3 files changed, 3 insertions(+), 11 deletions(-)
+2c85567 changes done
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+bc70a25 changes done
+ 11 files changed, 182 insertions(+), 18 deletions(-)
+3653a04 changes done
+32e638e some comments. Adding new spreadsheet
+ 6 files changed, 27 insertions(+), 11 deletions(-)
+4360e49 I see a lot of bad practices and hard coding. Lets meet monday and discuss this.
+ 10 files changed, 227 insertions(+), 84 deletions(-)
+562625a More booking completed. Lets have fixed window size for ALL windows instead of individual
+ 5 files changed, 72 insertions(+), 9 deletions(-)
+85e615e saveInformation() in APZState is now void and does not take APZLauncher.getUserController() as a param anymore. It's hard-coded in since there can only be 1 UC
+ 8 files changed, 15 insertions(+), 20 deletions(-)
+12f462e working on Payment Window
+ 4 files changed, 117 insertions(+)
+739e661 confirm button and stage style on payment
+ 5 files changed, 87 insertions(+), 89 deletions(-)
+46fd6d6 payment window
+ 6 files changed, 72 insertions(+), 9 deletions(-)
+df44240 removed some methods not needed
+943c9af payment window staging
+ 6 files changed, 16 insertions(+), 9 deletions(-)
+9a0af1e payment window localization
+18a6d3e properties for home screen
+ 3 files changed, 12 insertions(+), 16 deletions(-)
+12d9bf3 properties for home screen
+31f46b2 index on master: 12d9bf3 properties for home screen
+16cfd9c WIP on master: 12d9bf3 properties for home screen
+34625c3 Completed JBookingWindow
+ 5 files changed, 101 insertions(+), 63 deletions(-)
+9cc9d46 Working on Payment to BookingPaymentWindow integration
+ 2 files changed, 42 insertions(+), 14 deletions(-)
+c7f1971 APZState changes
+ 4 files changed, 39 insertions(+), 22 deletions(-)
+a91bf47 Fixed user management window
+ 3 files changed, 72 insertions(+), 31 deletions(-)
+641ec2c fixed seating
+ 5 files changed, 181 insertions(+), 65 deletions(-)
+3ac58ed isFull method seating
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+89445fe fixed showing flight
+ 3 files changed, 40 insertions(+), 9 deletions(-)
+6552eb7 test
+ 2 files changed, 27 insertions(+), 8 deletions(-)
+174c925 test
+5d061c4 finish
+ 2 files changed, 60 insertions(+), 58 deletions(-)
