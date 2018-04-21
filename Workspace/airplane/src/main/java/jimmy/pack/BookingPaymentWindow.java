@@ -146,7 +146,6 @@ public class BookingPaymentWindow implements WindowInterface {
 	}
 	
 	private boolean isCardExpired(Payment payment) {
-		
 		boolean result = false;
 		String expDate = payment.getExpirationDate();
 		String month;
