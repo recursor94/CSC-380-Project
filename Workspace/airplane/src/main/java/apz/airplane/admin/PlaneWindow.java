@@ -8,6 +8,7 @@ import apz.airplane.util.MessageBox;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.input.KeyCode;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -82,7 +83,7 @@ public class PlaneWindow {
 		gridPane.add(new Label("Seat Capacity"), 0, 2);
 		gridPane.add(seatField, 1, 2);
 
-		mainPane.getChildren().addAll(header, gridPane, planeView, buttonBox);
+		mainPane.getChildren().addAll(header, gridPane, createButton, planeView, removeButton);
 		mainPane.setAlignment(Pos.CENTER);
 	}
 
@@ -103,6 +104,11 @@ public class PlaneWindow {
 				AdminState.savePlane(planeList);
 				loadFile();
 				removeButton.setDisable(true);
+		});
+		
+		planeView.setOnKeyPressed(event -> {
+			if (event.getCode() == KeyCode.ESCAPE)
+				resetFields();
 		});
 	}
 
@@ -135,6 +141,8 @@ public class PlaneWindow {
 		planeNumField.setText("");
 		airlineField.setText("");
 		seatField.setValue(1);
+		planeView.getSelectionModel().clearSelection();
+		removeButton.setDisable(true);
 	}
 
 	private void loadFile() {
