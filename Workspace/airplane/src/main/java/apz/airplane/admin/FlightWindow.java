@@ -22,7 +22,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -32,8 +31,7 @@ import javafx.stage.Stage;
 public class FlightWindow {
 	
 	private GridPane gridPane;
-	private VBox mainPane;
-	private HBox buttonBox; 
+	private VBox mainPane; 
 	private ArrayList<Flight> flightList;
 	private ListView<Flight> flightView;
 	private TextField flightNumField;
@@ -53,7 +51,6 @@ public class FlightWindow {
 	private void initialize() {
 		gridPane = new GridPane();
 		mainPane = new VBox(10);
-		buttonBox = new HBox(10);
 		flightList = new ArrayList<>();
 		flightView = new ListView<>();
 		flightNumField = new TextField();
@@ -90,9 +87,6 @@ public class FlightWindow {
 		
 		arriveDatePicker.setEditable(false);
 		departDatePicker.setEditable(false);
-
-		buttonBox.getChildren().addAll(createAirportButton, createFlightButton, removeFlightButton);
-		buttonBox.setAlignment(Pos.CENTER);
 		
 		gridPane.setHgap(10);
 		gridPane.setVgap(10);
@@ -109,6 +103,8 @@ public class FlightWindow {
 		gridPane.add(departAirportBox, 0, 3);
 		gridPane.add(arriveAirportBox, 1, 3);
 		
+		gridPane.add(createAirportButton, 2, 3);
+		
 		gridPane.add(new Label("Departure Time"), 0, 4);
 		gridPane.add(new Label("Arrival Time"), 1, 4);
 		
@@ -123,7 +119,7 @@ public class FlightWindow {
 		
 		gridPane.setAlignment(Pos.CENTER);
 		
-		mainPane.getChildren().addAll(header, gridPane, flightView, buttonBox);
+		mainPane.getChildren().addAll(header, gridPane, createFlightButton, flightView, removeFlightButton);
 		
 		mainPane.setAlignment(Pos.CENTER);
 	}

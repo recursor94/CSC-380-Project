@@ -20,27 +20,27 @@ public class UserCaseTest {
 	@Test
 	public void testLogin() {
 		UserController uc = new UserController();
-		User testUser = new User("user", "pass");
+		User testUser = new User("asd@asd.org", "Pooper", "Scooper");
 		uc.addUser(testUser);
 		
-		assertEquals(testUser, uc.login("user", "pass"));
+		assertEquals(testUser, uc.login("Pooper", "Scooper"));
 	}
 	
 	@Test
 	public void testValidPassword() {
-		User testUser = new User("user", "password");	
-		assertEquals(true, testUser.validatePassword("password"));
+		User testUser = new User("asd@asd.org", "Pooper", "Scooper");	
+		assertEquals(true, testUser.validatePassword("Scooper"));
 	}
 	
 	@Test
 	public void testInvalidPassword() {
-		User testUser = new User("test", "password123");
+		User testUser = new User("asd@asd.org", "Pooper", "Scooper");
 		assertEquals(false, testUser.validatePassword("wordpass"));
 	}
 	
 	@Test
 	public void testFindAndAddTrip() {
-		User user = new User ("apz", "zpa12");
+		User user = new User("asd@asd.org", "Pooper", "Scooper");
 		UserController ctrl = new UserController();
 		ctrl.addUser(user);
 		Airplane plane = new Airplane(1, "American Airline", 5);
@@ -59,7 +59,7 @@ public class UserCaseTest {
 	
 	@Test
 	public void findTripFail() {
-		User user = new User ("apz", "zpa12");
+		User user = new User("asd@asd.org", "Pooper", "Scooper");
 		UserController ctrl = new UserController();
 		ctrl.addUser(user);
 		Airplane plane = new Airplane(1, "American Airline", 5);
@@ -83,7 +83,7 @@ public class UserCaseTest {
 	
 	@Test
 	public void testRemoveTrip() {
-		User user = new User ("apz", "zpa12");
+		User user = new User("asd@asd.org", "Pooper", "Scooper");
 		UserController ctrl = new UserController();
 		ctrl.addUser(user);
 		Airplane airplane = new Airplane(1, "American Airline", 5);
@@ -102,7 +102,7 @@ public class UserCaseTest {
 	
 	@Test
 	public void removeTripFail() {
-		User user = new User ("apz", "zpa12");
+		User user = new User("asd@asd.org", "Pooper", "Scooper");
 		UserController ctrl = new UserController();
 		ctrl.addUser(user);
 		Airplane plane = new Airplane(1, "American Airline", 5);
@@ -125,7 +125,7 @@ public class UserCaseTest {
 	}
 	
 	@Test public void testRemovePayment() {
-		User user = new User("zeg", "125");
+		User user = new User("asd@asd.org", "Pooper", "Scooper");
 		String name = "Zak";
 		String street = "123 Java Avenue";
 		String city = "Eclipse City";
@@ -143,7 +143,7 @@ public class UserCaseTest {
 	@Test
 	public void removePaymentFail () {
 		
-		User user = new User("zeg", "125");
+		User user = new User("asd@asd.org", "Pooper", "Scooper");
 		String name = "Zak";
 		String street = "123 Java Avenue";
 		String city = "Eclipse City";
