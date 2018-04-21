@@ -29,7 +29,6 @@ public class BookingPaymentWindow implements WindowInterface {
 	private VBox mainPane;
 	private static GridPane paymentPane; 
 	private Text header;
-	//private static ComboBox<String> paymentBox;
 	private static ComboBox<Payment> paymentBox;
 	private static ComboBox<Integer> baggageBox;
 	private Button confirmButton;

@@ -4,18 +4,23 @@ import java.util.ArrayList;
 
 import apz.airplane.model.Flight;
 import apz.airplane.user.APZLauncher;
+import apz.airplane.util.FilePath;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Separator;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 public class BookingResultWindow implements WindowInterface {
 	
-	private ScrollPane mainPane;
-	private VBox tripBox;
+	private VBox mainPane;
+	private ScrollPane scrollPane;
 	private ArrayList<Flight> tripList;
 	private Text header;
 	
@@ -27,35 +32,52 @@ public class BookingResultWindow implements WindowInterface {
 	}
 	
 	public void initialize() {
-		mainPane = new ScrollPane();
-		tripBox = new VBox(10);
+		mainPane = new VBox(10);
+		scrollPane = new ScrollPane();
 		header = new Text("Trips Found");
 	}
 	
 	public void content() {
 		header.setFont(new Font(32));
 		
-		mainPane.setContent(tripBox);
-		tripBox.getChildren().add(header);
+		ImageView img = new ImageView(new Image(FilePath.LOGIN_IMAGE));
+		img.setFitWidth(150);
+		img.setFitHeight(150);
+		
+		mainPane.getChildren().addAll(img, header, scrollPane);
 		
 		for (int i = 0; i < tripList.size(); i++) {
+			VBox showBox = new VBox(10);
 			Flight trip = tripList.get(i);
+			
+			ImageView img2 = new ImageView(new Image(FilePath.LOGIN_IMAGE));
+			img2.setFitWidth(20);
+			img2.setFitHeight(20);
+			
+			HBox textBox = new HBox(10);
+			textBox.setAlignment(Pos.CENTER);
+			
 			Button bookButton = new Button("Book this Flight");
-			tripBox.getChildren().addAll(new Separator(), new Text(tripList.get(i).toString()), bookButton);
 			
 			bookButton.setOnAction(event -> {
 				new BookingPaymentWindow(trip);
 			});
+			
+			textBox.getChildren().addAll(img2, new Text(tripList.get(i).toString()), bookButton);
+			
+			showBox.getChildren().addAll(new Separator(), textBox, new Label());
+			
+			
+			scrollPane.setContent(showBox);
 		}
 		
-		tripBox.setAlignment(Pos.CENTER);
 	}
 	
-	public void actionEvents() {
-		// empty 
-	}
+	public void actionEvents() {}
 
 	public void properties() {
+		
+		mainPane.setAlignment(Pos.TOP_CENTER);
 		APZLauncher.getBorderPane().setCenter(mainPane);
 	}
 	

@@ -1,6 +1,7 @@
 package apz.airplane.user;
 
 import apz.airplane.model.User;
+import apz.airplane.util.FilePath;
 import apz.airplane.util.MessageBox;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
@@ -62,7 +63,7 @@ public class LoginWindow {
 		passBox.getChildren().addAll(new Label("Password: "), passField);
 		buttonBox.getChildren().addAll(loginButton, registerButton);
 		
-		ImageView img = new ImageView(new Image("file:img.png"));
+		ImageView img = new ImageView(new Image(FilePath.LOGIN_IMAGE));
 		img.setFitWidth(150);
 		img.setFitHeight(150);
 		
