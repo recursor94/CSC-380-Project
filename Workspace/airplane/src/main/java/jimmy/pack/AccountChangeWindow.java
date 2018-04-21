@@ -1,6 +1,7 @@
 package jimmy.pack;
 
 import apz.airplane.user.APZLauncher;
+import apz.airplane.util.APZState;
 import apz.airplane.util.FilePath;
 import apz.airplane.util.MessageBox;
 import javafx.geometry.Pos;
@@ -11,6 +12,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -85,15 +87,17 @@ public class AccountChangeWindow implements WindowInterface {
 		
 		changeButton.setOnAction(event -> {
 			if (checkEmail() && checkPassword()) {
-				APZLauncher.getCurrentUser().setPassword(newPassField.getText());
-				APZLauncher.getCurrentUser().setEmail(emailField.getText());
-				MessageBox.message(AlertType.INFORMATION, null, "Account details changed!");
-				new AccountInfoWindow();
+				attemptChange();
 			}
 		}); 
 		
 		backButton.setOnAction(event -> {
 			new AccountInfoWindow();
+		});
+		
+		mainPane.setOnKeyPressed(event -> {
+			if (event.getCode() == KeyCode.ENTER) 
+				attemptChange();
 		});
 	}
 
@@ -119,6 +123,14 @@ public class AccountChangeWindow implements WindowInterface {
 			return true;
 		MessageBox.message(AlertType.ERROR, null, "Password input is invalid");
 		return false;
+	}
+	
+	private void attemptChange() {
+		APZLauncher.getCurrentUser().setPassword(newPassField.getText());
+		APZLauncher.getCurrentUser().setEmail(emailField.getText());
+		APZState.saveInformation();
+		MessageBox.message(AlertType.INFORMATION, null, "Account details changed!");
+		new AccountInfoWindow();
 	}
 
 }

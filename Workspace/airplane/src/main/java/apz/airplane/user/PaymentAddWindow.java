@@ -130,6 +130,10 @@ public class PaymentAddWindow implements WindowInterface {
 		submitButton.setOnAction(event -> {
 			verifyInput();
 		});
+		
+		mainPane.setOnKeyPressed(event -> {
+			verifyInput();
+		});
 	}
 	
 	private void verifyInput () {
@@ -162,8 +166,11 @@ public class PaymentAddWindow implements WindowInterface {
 				user.addPayment(new Payment(name, street, city, state, zip, cardNum, expirationDate, CCV));
 				APZState.saveInformation();
 				System.out.println(user.getPaymentInformation());
-				if (stage != null)
+				if (stage != null) {
 					new BookingPaymentWindow(flight);
+					stage.close();
+				}
+				
 			}
 		}
 		else 

@@ -1,5 +1,7 @@
 package apz.airplane.admin;
 
+import apz.airplane.user.APZLauncher;
+import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
@@ -8,7 +10,7 @@ import javafx.stage.Stage;
 public class HomeWindow {
 
 	private VBox mainPane;
-	private Button addPlaneButton, addFlightButton, userManageButton;
+	private Button addPlaneButton, addFlightButton, userManageButton, launchButton;
 
 	public HomeWindow(Stage primaryStage) {
 		initialize();
@@ -22,10 +24,11 @@ public class HomeWindow {
 		addPlaneButton = new Button("Add a Plane");
 		addFlightButton = new Button("Add a Flight");
 		userManageButton = new Button("User Management");
+		launchButton = new Button("Launch APZ Application");
 	}
 	
 	private void content() {
-		mainPane.getChildren().addAll(addPlaneButton, addFlightButton, userManageButton);
+		mainPane.getChildren().addAll(addPlaneButton, addFlightButton, userManageButton, launchButton);
 	}
 	
 	private void actionEvents(Stage primaryStage) {
@@ -39,6 +42,16 @@ public class HomeWindow {
 
 		userManageButton.setOnAction(event -> {
 			new UserWindow();
+		});
+		
+		launchButton.setOnAction(event -> {
+			Platform.runLater(() -> {
+				try {
+					new APZLauncher().start(new Stage());
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			});
 		});
 	}
 	

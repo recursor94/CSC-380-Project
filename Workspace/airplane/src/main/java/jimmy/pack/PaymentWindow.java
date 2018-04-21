@@ -6,10 +6,14 @@ import apz.airplane.model.Payment;
 import apz.airplane.user.APZLauncher;
 import apz.airplane.user.PaymentAddWindow;
 import apz.airplane.util.APZState;
+import apz.airplane.util.FilePath;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.Separator;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -17,7 +21,8 @@ import javafx.scene.text.Text;
 
 public class PaymentWindow implements WindowInterface {
 	
-	private Text header;
+	private ImageView img;
+	private Text headerText;
 	private VBox mainPane;
 	private GridPane gridPane; 
 	private ComboBox<Payment> paymentBox;
@@ -31,7 +36,8 @@ public class PaymentWindow implements WindowInterface {
 	}
 	
 	public void initialize() {
-		header = new Text("Payment Information");
+		img = new ImageView(new Image(FilePath.LOGIN_IMAGE));
+		headerText = new Text("Payment Information");
 		mainPane = new VBox(10);
 		gridPane = new GridPane();
 		paymentBox = new ComboBox<>();
@@ -40,36 +46,13 @@ public class PaymentWindow implements WindowInterface {
 	}
 
 	public void content() {
-		header.setFont(new Font(32));
 		populateComboBox();
-		
-		
-		gridPane.setVgap(15);
-		gridPane.setHgap(15);
-		
 		
 		gridPane.add(new Label("Payment Method: "), 0, 0);
 		gridPane.add(paymentBox, 1, 0);
 		gridPane.add(createButton, 0, 1);
 		gridPane.add(removeButton, 1, 1);
-		mainPane.getChildren().addAll(header, gridPane);
-		mainPane.setAlignment(Pos.TOP_CENTER);
-		gridPane.setAlignment(Pos.TOP_CENTER);
-		
-		
-		paymentBox.setOnAction(event -> {
-			if (paymentBox.getSelectionModel().getSelectedItem() == null) {
-				removeButton.setDisable(true);
-			} else {
-				removeButton.setDisable(false);
-			}
-		});
-		
-		
-		if (paymentBox.getSelectionModel().getSelectedItem() == null) {
-			removeButton.setDisable(true);
-		}
-		
+		mainPane.getChildren().addAll(new Label(), img, headerText, new Separator(), gridPane, new Separator());
 	}
 
 	public void actionEvents() {
@@ -83,9 +66,30 @@ public class PaymentWindow implements WindowInterface {
 			APZState.saveInformation();
 			populateComboBox();
 		});
+		
+		paymentBox.setOnAction(event -> {
+			if (paymentBox.getSelectionModel().getSelectedItem() == null)
+				removeButton.setDisable(true);
+			else 
+				removeButton.setDisable(false);
+		});
+		
+		if (paymentBox.getSelectionModel().getSelectedItem() == null)
+			removeButton.setDisable(true);
 	}
 
 	public void properties() {
+		headerText.setFont(new Font(32));
+		
+		img.setFitWidth(150);
+		img.setFitHeight(150);
+		
+		gridPane.setVgap(15);
+		gridPane.setHgap(15);
+		
+		mainPane.setAlignment(Pos.TOP_CENTER);
+		gridPane.setAlignment(Pos.TOP_CENTER);
+		
 		APZLauncher.getBorderPane().setCenter(mainPane);
 	}
 	

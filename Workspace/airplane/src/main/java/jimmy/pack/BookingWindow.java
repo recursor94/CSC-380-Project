@@ -127,8 +127,6 @@ public class BookingWindow implements WindowInterface {
 				&& !cityDepartBox.getSelectionModel().getSelectedItem().isEmpty())
 			depart = cityDepartBox.getSelectionModel().getSelectedItem();
 
-		System.out.println(depart + "_" + arrive);
-
 		if (depart.equals(arrive))
 			box.setValue(null);
 	}
