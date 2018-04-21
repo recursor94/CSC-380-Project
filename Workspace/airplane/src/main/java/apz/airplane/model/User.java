@@ -6,12 +6,14 @@ import java.util.ArrayList;
 public class User implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
+	private String email;
 	private String username;
 	private String password;
 	private ArrayList<Booking> tripList;
 	private ArrayList<Payment> paymentInformation;
 
-	public User(String username, String password) {
+	public User(String email, String username, String password) {
+		this.email = email;
 		this.username = username;
 		this.password = generatePasswordHash(password);
 		tripList = new ArrayList<>();
@@ -96,9 +98,18 @@ public class User implements Serializable {
 		return tripList;
 	}
 
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	@Override
 	public String toString() {
-		return "Username: " + username + "\tPassword: " + password;
+		return "User [email=" + email + ", username=" + username + ", password=" + password + ", tripList=" + tripList
+				+ ", paymentInformation=" + paymentInformation + "]";
 	}
 
 }

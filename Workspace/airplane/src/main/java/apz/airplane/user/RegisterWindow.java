@@ -19,14 +19,14 @@ import jimmy.pack.WindowInterface;
 
 public class RegisterWindow implements WindowInterface {
 
-	private TextField userField;
+	private TextField userField, emailField;
 	private Text header;
 	private PasswordField passField;
 	private Button registerButton;
 	private Button backButton;
 	
 	private VBox rootPane;
-	private HBox userBox, passBox, buttonBox;
+	private HBox userBox, emailBox, passBox, buttonBox;
 	
 	public RegisterWindow() {
 		initialize();
@@ -40,8 +40,10 @@ public class RegisterWindow implements WindowInterface {
 		rootPane = new VBox(10);
 		userBox = new HBox(10);
 		passBox = new HBox(10);
+		emailBox = new HBox(10);
 		buttonBox = new HBox(10);
 		userField = new TextField();
+		emailField = new TextField();
 		passField = new PasswordField();
 		registerButton = new Button("Register");
 		backButton = new Button("Back");
@@ -51,19 +53,21 @@ public class RegisterWindow implements WindowInterface {
 		header.setFont(new Font(20));
 		
 		userBox.setAlignment(Pos.CENTER);
+		emailBox.setAlignment(Pos.CENTER);
 		passBox.setAlignment(Pos.CENTER);
-		rootPane.setAlignment(Pos.CENTER);
 		buttonBox.setAlignment(Pos.CENTER);
+		rootPane.setAlignment(Pos.CENTER);
 		
-		userBox.getChildren().addAll(new Label("Username: "), userField);
-		passBox.getChildren().addAll(new Label("Password: "), passField);
+		userBox.getChildren().addAll(new Label("      Username: "), userField);
+		emailBox.getChildren().addAll(new Label("Email Address: "), emailField);
+		passBox.getChildren().addAll(new Label("       Password: "), passField);
 		buttonBox.getChildren().addAll(registerButton, backButton);
 		
 		ImageView img = new ImageView(new Image("file:img.png"));
 		img.setFitWidth(150);
 		img.setFitHeight(150);
 		
-		rootPane.getChildren().addAll(header, img, userBox, passBox, buttonBox);
+		rootPane.getChildren().addAll(header, img, userBox, emailBox, passBox, buttonBox);
 		
 	}
 	
@@ -73,8 +77,8 @@ public class RegisterWindow implements WindowInterface {
 	
 	public void actionEvents() {
 		registerButton.setOnAction((event) -> {
-			if ((userField.getText().isEmpty()) || (passField.getText().isEmpty()))
-				MessageBox.message(AlertType.ERROR, "ERROR: You must enter a user name and password", "Please enter a user name and password");
+			if ((userField.getText().isEmpty()) || (passField.getText().isEmpty()) || emailField.getText().isEmpty())
+				MessageBox.message(AlertType.ERROR, null, "Please enter a user name, email, and password");
 			else
 				verifyInput();
 		});
@@ -106,7 +110,7 @@ public class RegisterWindow implements WindowInterface {
 //						}
 			//Create a user if there are not errors in the input
 			else {
-				User user = new User (userField.getText(), passField.getText());
+				User user = new User (emailField.getText(), userField.getText(), passField.getText());
 				APZLauncher.getUserController().addUser(user);
 				APZState.saveInformation();
 				System.out.println("User successfully created!");

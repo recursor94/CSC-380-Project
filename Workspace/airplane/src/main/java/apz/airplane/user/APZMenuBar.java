@@ -74,7 +74,7 @@ public class APZMenuBar {
 		});
 		
 		manageAccountItem.setOnAction(event -> {
-			new InformationWindow();
+			new AccountInfoWindow();
 		});
 		
 		managePaymentItem.setOnAction(event -> {
