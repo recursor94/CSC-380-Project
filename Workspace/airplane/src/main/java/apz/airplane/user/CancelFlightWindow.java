@@ -4,28 +4,25 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Optional;
 
-import apz.airplane.model.Airplane;
 import apz.airplane.model.Airport;
 import apz.airplane.model.Booking;
-import apz.airplane.model.Flight;
-import apz.airplane.model.Time;
 import apz.airplane.model.User;
 import apz.airplane.util.MessageBox;
 import apz.airplane.util.APZState;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
+import javafx.scene.control.Separator;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
 
 public class CancelFlightWindow {
 
@@ -36,6 +33,9 @@ public class CancelFlightWindow {
 	private TableColumn<BookingInformation, Airport> departureAirportColumn, destinationAirportColumn;
 	private TableColumn<BookingInformation, LocalDate> departureDateColumn, bookDateColumn;
 	private TableColumn<BookingInformation, Double> tripCostColumn;
+	private Separator headerHorizontalSeparator;
+	private VBox headerBox;
+	private VBox bottomContentBox;
 	private static VBox mainPane;
 	private Button confirmButton;
 	private User user;
@@ -48,8 +48,8 @@ public class CancelFlightWindow {
 	}
 
 	private void initialize() {
-		mainPane = new VBox(10);
 
+		windowHeader = new Text("Manage Trips");
 		tripTable = new TableView<>();
 		confirmButton = new Button("Cancel Flight");
 		windowHeader = new Text("Manage Trips");
@@ -62,14 +62,22 @@ public class CancelFlightWindow {
 		departureDateColumn = new TableColumn<>("Date");
 		bookDateColumn = new TableColumn<>("Booked On");
 		tripCostColumn = new TableColumn<>("Subtotal");
+		headerHorizontalSeparator = new Separator(Orientation.HORIZONTAL);
+		headerBox = new VBox(5);
+		bottomContentBox = new VBox(5);
+		mainPane = new VBox(20);
 	}
 
 	private void content() {
 		user = APZLauncher.getCurrentUser();
 		resetTableData();
 		setupTableContents();
-		mainPane.setAlignment(Pos.CENTER);
-		mainPane.getChildren().addAll(new Label("List of Flights you made"), tripTable, confirmButton);
+		confirmButton.setMaxWidth(Double.MAX_VALUE);
+		HBox.setHgrow(confirmButton, Priority.ALWAYS);
+		headerBox.getChildren().addAll(windowHeader, headerHorizontalSeparator);
+		bottomContentBox.getChildren().addAll(tripTable, new HBox(confirmButton));
+		//mainPane.setAlignment(Pos.CENTER);
+		mainPane.getChildren().addAll(headerBox, bottomContentBox);
 
 	}
 
@@ -80,7 +88,7 @@ public class CancelFlightWindow {
 
 	private void formatHeader() {
 		windowHeader.setStyle("-fx-font: 24 arial;");
-		windowHeader.setTextAlignment(TextAlignment.CENTER);
+		headerBox.setAlignment(Pos.CENTER);
 	}
 
 	private void actionEvents() {
@@ -93,12 +101,7 @@ public class CancelFlightWindow {
 				Optional<ButtonType> result = MessageBox.message(AlertType.CONFIRMATION, "APZ Confirmation Dialog",
 						"Are you okay with removing the selected flight?");
 				if (result.get() == ButtonType.OK) {
-					user.removeTrip(foundBooking.getFlight()); // Andrew's Note: If each trip is represented by a
-																// booking, why does
-					// removeTrip take Flight?
-
-					// ObservableList<Booking> tripList =
-					// FXCollections.observableArrayList(user.getTripList());
+					user.removeTrip(foundBooking.getFlight());
 					resetTableData();
 					APZState.saveInformation();
 
@@ -125,6 +128,7 @@ public class CancelFlightWindow {
 		tripCostColumn.setCellValueFactory(new PropertyValueFactory<>("tripCost"));
 		tripTable.getColumns().addAll(flightNumberColumn, airlineColumn, departureDateColumn, arriveTimeColumn,
 				departureTimeColumn, departureAirportColumn, destinationAirportColumn, bookDateColumn, tripCostColumn);
+		tripTable.setPrefHeight(APZLauncher.getBorderPane().getHeight() -10);
 	}
 
 	private void resetTableData() {
