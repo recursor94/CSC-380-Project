@@ -50,7 +50,7 @@ public class AirportWindow {
 	private Text city;
 	private HBox removeButtonBox;
 	private HBox createButtonBox;
-	private Separator fieldButtonSeparator;
+	private Separator headerSeparator;
 
 
 	public AirportWindow() {
@@ -76,7 +76,7 @@ public class AirportWindow {
 		windowHeader = new Text("Manage Airports");
 		airportName = new Text("Airport Name: ");
 		city = new Text("City Name: ");
-		fieldButtonSeparator = new Separator(Orientation.HORIZONTAL);
+		headerSeparator = new Separator(Orientation.HORIZONTAL);
 		nameColumn = new TableColumn<>("Airport Name");
 		provinceColumn = new TableColumn<>("City");
 
@@ -86,7 +86,7 @@ public class AirportWindow {
 		loadFile();
 		populateProvince();
 		formatHeader();
-		headerBox.getChildren().add(fieldButtonSeparator);
+		headerBox.getChildren().add(headerSeparator);
 		removeButton.setMaxWidth(Double.MAX_VALUE);
 		createButton.setMaxWidth(Double.MAX_VALUE);
 		HBox.setHgrow(createButton, Priority.ALWAYS);
