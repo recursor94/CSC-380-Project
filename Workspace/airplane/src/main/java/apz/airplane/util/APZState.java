@@ -1,6 +1,5 @@
 package apz.airplane.util;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -49,8 +48,6 @@ public class APZState {
 		UserController uc = new UserController();
 		FileInputStream fileIn;
 		try {
-			if(!new File(ucFilePath).exists())
-				saveInformation();
 			fileIn = new FileInputStream(ucFilePath);
 			ObjectInputStream objectIn = new ObjectInputStream(fileIn);
 
@@ -65,7 +62,6 @@ public class APZState {
 	}
 	
 	public static ArrayList<Airport> loadAirports() {
-		if (new File(airportObject).exists()) {
 			ArrayList<Airport> airportList = new ArrayList<>();
 			FileInputStream fileIn;
 			try {
@@ -80,8 +76,6 @@ public class APZState {
 				e.printStackTrace();
 			}
 			return airportList;
-		}
-		return new ArrayList<Airport>();
 	}
 	
 	public static void saveFlight(ArrayList<Flight> flight) {
@@ -99,7 +93,6 @@ public class APZState {
 	
 	public static ArrayList<Flight> loadFlights() {
 		ArrayList<Flight> flightList = new ArrayList<>();
-		if (new File(flightObject).exists()) {
 			FileInputStream fileIn;
 			try {
 				fileIn = new FileInputStream(flightObject);
@@ -111,7 +104,6 @@ public class APZState {
 			} catch (IOException | ClassNotFoundException e) {
 				e.printStackTrace();
 			}
-		}
 		
 		ArrayList<Flight> freeFlightList = new ArrayList<>();
 		for (int i = 0; i < flightList.size(); i++) {

@@ -20,7 +20,7 @@ public class UserCaseTest {
 	@Test
 	public void testLogin() {
 		UserController uc = new UserController();
-		User testUser = new User("user", "pass");
+		User testUser = new User("asd", "user", "pass");
 		uc.addUser(testUser);
 		
 		assertEquals(testUser, uc.login("user", "pass"));
@@ -28,19 +28,19 @@ public class UserCaseTest {
 	
 	@Test
 	public void testValidPassword() {
-		User testUser = new User("user", "password");	
+		User testUser = new User("asd", "user", "password");	
 		assertEquals(true, testUser.validatePassword("password"));
 	}
 	
 	@Test
 	public void testInvalidPassword() {
-		User testUser = new User("test", "password123");
+		User testUser = new User("asd", "test", "password123");
 		assertEquals(false, testUser.validatePassword("wordpass"));
 	}
 	
 	@Test
 	public void testFindAndAddTrip() {
-		User user = new User ("apz", "zpa12");
+		User user = new User ("asd", "apz", "zpa12");
 		UserController ctrl = new UserController();
 		ctrl.addUser(user);
 		Airplane plane = new Airplane(1, "American Airline", 5);
@@ -59,7 +59,7 @@ public class UserCaseTest {
 	
 	@Test
 	public void findTripFail() {
-		User user = new User ("apz", "zpa12");
+		User user = new User ("asd", "apz", "zpa12");
 		UserController ctrl = new UserController();
 		ctrl.addUser(user);
 		Airplane plane = new Airplane(1, "American Airline", 5);
@@ -83,7 +83,7 @@ public class UserCaseTest {
 	
 	@Test
 	public void testRemoveTrip() {
-		User user = new User ("apz", "zpa12");
+		User user = new User ("asd", "apz", "zpa12");
 		UserController ctrl = new UserController();
 		ctrl.addUser(user);
 		Airplane airplane = new Airplane(1, "American Airline", 5);
@@ -102,7 +102,7 @@ public class UserCaseTest {
 	
 	@Test
 	public void removeTripFail() {
-		User user = new User ("apz", "zpa12");
+		User user = new User ("asd", "apz", "zpa12");
 		UserController ctrl = new UserController();
 		ctrl.addUser(user);
 		Airplane plane = new Airplane(1, "American Airline", 5);
@@ -125,7 +125,7 @@ public class UserCaseTest {
 	}
 	
 	@Test public void testRemovePayment() {
-		User user = new User("zeg", "125");
+		User user = new User("asd", "zeg", "125");
 		String name = "Zak";
 		String street = "123 Java Avenue";
 		String city = "Eclipse City";
@@ -143,7 +143,7 @@ public class UserCaseTest {
 	@Test
 	public void removePaymentFail () {
 		
-		User user = new User("zeg", "125");
+		User user = new User("asd", "zeg", "125");
 		String name = "Zak";
 		String street = "123 Java Avenue";
 		String city = "Eclipse City";

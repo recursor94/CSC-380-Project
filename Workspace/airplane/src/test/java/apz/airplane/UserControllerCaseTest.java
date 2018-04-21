@@ -11,7 +11,7 @@ public class UserControllerCaseTest {
 
 	@Test
 	public void testFindAndAddUser() {
-		User user = new User("zeg", "password");
+		User user = new User("asd", "zeg", "password");
 		UserController ctrl = new UserController();
 		ctrl.addUser(user);
 		assertEquals(user, ctrl.findUser("zeg"));
@@ -19,7 +19,7 @@ public class UserControllerCaseTest {
 	
 	@Test
 	public void findUserFail() {
-		User user = new User("zeg", "password");
+		User user = new User("asd", "zeg", "password");
 		UserController ctrl = new UserController();
 		ctrl.addUser(user);
 		assertEquals(null, ctrl.findUser("zerg"));
@@ -27,7 +27,7 @@ public class UserControllerCaseTest {
 	
 	@Test
 	public void testRemoveUser() {
-		User user = new User("zeg", "password");
+		User user = new User("asd", "zeg", "password");
 		UserController ctrl = new UserController();
 		ctrl.addUser(user);
 		assertEquals(true, ctrl.removeUser("zeg"));
@@ -35,7 +35,7 @@ public class UserControllerCaseTest {
 	
 	@Test
 	public void removeUserFail() {
-		User user = new User("zeg", "password");
+		User user = new User("asd", "zeg", "password");
 		UserController ctrl = new UserController();
 		ctrl.addUser(user);
 		assertEquals(false, ctrl.removeUser("zerg"));
@@ -43,7 +43,7 @@ public class UserControllerCaseTest {
 	
 	@Test
 	public void userExistsTest() {
-		User user = new User("zeg", "pass");
+		User user = new User("asd", "zeg", "pass");
 		UserController ctrl = new UserController();
 		ctrl.addUser(user);
 		assertEquals(true, ctrl.userExists("zeg"));
@@ -51,7 +51,7 @@ public class UserControllerCaseTest {
 	}
 	@Test
 	public void userNonExistsTest() {
-		User user = new User("zeg", "pass");
+		User user = new User("asd", "zeg", "pass");
 		UserController ctrl = new UserController();
 		ctrl.addUser(user);
 		assertEquals(false, ctrl.userExists("zerg"));
