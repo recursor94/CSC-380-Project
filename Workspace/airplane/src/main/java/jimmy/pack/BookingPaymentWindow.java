@@ -59,11 +59,11 @@ public class BookingPaymentWindow implements WindowInterface {
 		
 		mainPane = new VBox(10);
 		paymentPane = new GridPane();
-		header = new Text("\nProcess Booking");
+		header = new Text("\nPayment");
 		
 		paymentBox = new ComboBox<>();
 		baggageBox = new ComboBox<>();
-		confirmButton = new Button("Confirm Booking");
+		confirmButton = new Button("Confirm Payment");
 		
 		costLabel = new Label("");
 	}

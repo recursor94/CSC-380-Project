@@ -61,7 +61,7 @@ public class BookingResultWindow implements WindowInterface {
 				new BookingPaymentWindow(trip);
 			});
 			
-			textBox.getChildren().addAll(new Label(), img2, new Text(tripList.get(i).toString()), bookButton);
+			textBox.getChildren().addAll(new Label(), img2, new Text(tripList.get(i).toString()), new Label(), bookButton);
 			showBox.getChildren().addAll(new Separator(), textBox, new Label());
 			
 			

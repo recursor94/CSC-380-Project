@@ -55,9 +55,8 @@ public class JBookingWindow implements WindowInterface {
 	public void content() {
 		populateComboBox();
 		
-		mainPane.getChildren().addAll(img, gridPane);
+		mainPane.getChildren().addAll(img, headerText, gridPane);
 		
-		gridPane.add(headerText, 0, 0);
 		gridPane.add(new Label("Trip date: "), 0, 2);
 		gridPane.add(datePicker, 1, 2);
 		gridPane.add(new Label("Departing Airport: "), 0, 3);

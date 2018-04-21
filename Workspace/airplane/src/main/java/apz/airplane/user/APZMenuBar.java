@@ -83,7 +83,7 @@ public class APZMenuBar {
 		});
 		
 		manageBookingItem.setOnAction(event -> {
-			new BookingWindow();
+			new BookingViewWindow();
 		});
 		
 		bookByDestinationItem.setOnAction(event -> {

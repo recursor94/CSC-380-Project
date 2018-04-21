@@ -52,7 +52,7 @@ public class LoginWindow implements WindowInterface {
 		status = new Text("");
 		status.setFill(Color.RED);
 		
-		header = new Text("Login to the APZ Application");
+		header = new Text("APZ Application");
 		
 		loginButton = new Button("Login");
 		registerButton = new Button("Register");
