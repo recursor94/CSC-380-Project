@@ -50,7 +50,7 @@ public class AirportWindow {
 	private Text city;
 	private HBox removeButtonBox;
 	private HBox createButtonBox;
-	private Separator headerSeparator;
+	private Separator headerSeperator;
 
 
 	public AirportWindow() {
@@ -76,7 +76,7 @@ public class AirportWindow {
 		windowHeader = new Text("Manage Airports");
 		airportName = new Text("Airport Name: ");
 		city = new Text("City Name: ");
-		headerSeparator = new Separator(Orientation.HORIZONTAL);
+		headerSeperator = new Separator(Orientation.HORIZONTAL);
 		nameColumn = new TableColumn<>("Airport Name");
 		provinceColumn = new TableColumn<>("City");
 
@@ -86,7 +86,7 @@ public class AirportWindow {
 		loadFile();
 		populateProvince();
 		formatHeader();
-		headerBox.getChildren().add(headerSeparator);
+		headerBox.getChildren().add(headerSeperator);
 		removeButton.setMaxWidth(Double.MAX_VALUE);
 		createButton.setMaxWidth(Double.MAX_VALUE);
 		HBox.setHgrow(createButton, Priority.ALWAYS);
@@ -118,7 +118,6 @@ public class AirportWindow {
 		provinceColumn.prefWidthProperty().bind(airportView.widthProperty().multiply(0.5));
 		nameColumn.setResizable(false);
 		provinceColumn.setResizable(false);
-		airportView.setMinHeight(150);
 	}
 	public void formatHeader() {
 		windowHeader.setStyle("-fx-font: 24 arial;");
@@ -177,6 +176,7 @@ public class AirportWindow {
 	}
 
 	public void properties() {
+		airportView.setMinHeight(150);
 		Stage stage = new Stage();
 		stage.initModality(Modality.APPLICATION_MODAL);
 		stage.setScene(new Scene(mainPane, 400, 500));

@@ -50,6 +50,11 @@ public class HomeScreenWindow {
 	private void properties() {
 		APZLauncher.getStage().setWidth(500);
 		APZLauncher.getStage().setHeight(725);
+		flightTable.setMinHeight(APZLauncher.getStage().getHeight() - 10);
+		flightNumber.prefWidthProperty().bind(flightTable.widthProperty().multiply(0.25));
+		departingCity.prefWidthProperty().bind(flightTable.widthProperty().multiply(0.25));
+		destinationCity.prefWidthProperty().bind(flightTable.widthProperty().multiply(0.25));
+		departingTime.prefWidthProperty().bind(flightTable.widthProperty().multiply(0.25));
 	}
 
 	private void content() {
@@ -125,12 +130,11 @@ public class HomeScreenWindow {
 					if (departureTime % 1 == 0) {
 						departureMinute = 30;
 					}
-					
-					if(departureHour == timeHour && departureMinute == timeMinute) {
+
+					if (departureHour == timeHour && departureMinute == timeMinute) {
 						flightsToday.remove(flight);
 						flightTable.getItems().remove(flightTable.getSelectionModel().getSelectedItem());
 					}
-
 
 				}
 

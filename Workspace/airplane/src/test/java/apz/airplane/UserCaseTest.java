@@ -20,27 +20,44 @@ public class UserCaseTest {
 	@Test
 	public void testLogin() {
 		UserController uc = new UserController();
+<<<<<<< HEAD
 		User testUser = new User("asd", "user", "pass");
+=======
+		User testUser = new User("asd@asd.org", "Pooper", "Scooper");
+>>>>>>> fb83fb270f069c1be37ab3040f1f7e26d58a73fd
 		uc.addUser(testUser);
 		
-		assertEquals(testUser, uc.login("user", "pass"));
+		assertEquals(testUser, uc.login("Pooper", "Scooper"));
 	}
 	
 	@Test
 	public void testValidPassword() {
+<<<<<<< HEAD
 		User testUser = new User("asd", "user", "password");	
 		assertEquals(true, testUser.validatePassword("password"));
+=======
+		User testUser = new User("asd@asd.org", "Pooper", "Scooper");	
+		assertEquals(true, testUser.validatePassword("Scooper"));
+>>>>>>> fb83fb270f069c1be37ab3040f1f7e26d58a73fd
 	}
 	
 	@Test
 	public void testInvalidPassword() {
+<<<<<<< HEAD
 		User testUser = new User("asd", "test", "password123");
+=======
+		User testUser = new User("asd@asd.org", "Pooper", "Scooper");
+>>>>>>> fb83fb270f069c1be37ab3040f1f7e26d58a73fd
 		assertEquals(false, testUser.validatePassword("wordpass"));
 	}
 	
 	@Test
 	public void testFindAndAddTrip() {
+<<<<<<< HEAD
 		User user = new User ("asd", "apz", "zpa12");
+=======
+		User user = new User("asd@asd.org", "Pooper", "Scooper");
+>>>>>>> fb83fb270f069c1be37ab3040f1f7e26d58a73fd
 		UserController ctrl = new UserController();
 		ctrl.addUser(user);
 		Airplane plane = new Airplane(1, "American Airline", 5);
@@ -59,7 +76,11 @@ public class UserCaseTest {
 	
 	@Test
 	public void findTripFail() {
+<<<<<<< HEAD
 		User user = new User ("asd", "apz", "zpa12");
+=======
+		User user = new User("asd@asd.org", "Pooper", "Scooper");
+>>>>>>> fb83fb270f069c1be37ab3040f1f7e26d58a73fd
 		UserController ctrl = new UserController();
 		ctrl.addUser(user);
 		Airplane plane = new Airplane(1, "American Airline", 5);
@@ -83,7 +104,11 @@ public class UserCaseTest {
 	
 	@Test
 	public void testRemoveTrip() {
+<<<<<<< HEAD
 		User user = new User ("asd", "apz", "zpa12");
+=======
+		User user = new User("asd@asd.org", "Pooper", "Scooper");
+>>>>>>> fb83fb270f069c1be37ab3040f1f7e26d58a73fd
 		UserController ctrl = new UserController();
 		ctrl.addUser(user);
 		Airplane airplane = new Airplane(1, "American Airline", 5);
@@ -102,7 +127,11 @@ public class UserCaseTest {
 	
 	@Test
 	public void removeTripFail() {
+<<<<<<< HEAD
 		User user = new User ("asd", "apz", "zpa12");
+=======
+		User user = new User("asd@asd.org", "Pooper", "Scooper");
+>>>>>>> fb83fb270f069c1be37ab3040f1f7e26d58a73fd
 		UserController ctrl = new UserController();
 		ctrl.addUser(user);
 		Airplane plane = new Airplane(1, "American Airline", 5);
@@ -125,7 +154,11 @@ public class UserCaseTest {
 	}
 	
 	@Test public void testRemovePayment() {
+<<<<<<< HEAD
 		User user = new User("asd", "zeg", "125");
+=======
+		User user = new User("asd@asd.org", "Pooper", "Scooper");
+>>>>>>> fb83fb270f069c1be37ab3040f1f7e26d58a73fd
 		String name = "Zak";
 		String street = "123 Java Avenue";
 		String city = "Eclipse City";
@@ -143,7 +176,11 @@ public class UserCaseTest {
 	@Test
 	public void removePaymentFail () {
 		
+<<<<<<< HEAD
 		User user = new User("asd", "zeg", "125");
+=======
+		User user = new User("asd@asd.org", "Pooper", "Scooper");
+>>>>>>> fb83fb270f069c1be37ab3040f1f7e26d58a73fd
 		String name = "Zak";
 		String street = "123 Java Avenue";
 		String city = "Eclipse City";
