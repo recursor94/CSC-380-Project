@@ -7,6 +7,7 @@ import com.sun.xml.internal.ws.dump.LoggingDumpTube.Position;
 import apz.airplane.model.Airport;
 import apz.airplane.model.Province;
 import apz.airplane.util.MessageBox;
+import javafx.collections.FXCollections;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -16,7 +17,10 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Separator;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -33,7 +37,9 @@ public class AirportWindow {
 	private Text windowHeader;
 	private HBox buttonBox;
 	private ArrayList<Airport> airportList;
-	private ListView<String> airportView;
+	private TableView<Airport> airportView;
+	private TableColumn<Airport, String> nameColumn;
+	private TableColumn<Airport, String> provinceColumn;
 	private TextField airportNameField;
 	private ComboBox<String> airportProvinceBox;
 	private Button createButton, removeButton;
@@ -55,12 +61,12 @@ public class AirportWindow {
 
 	public void initialize() {
 		airportList = new ArrayList<>();
-		mainPane = new VBox(10);
+		mainPane = new VBox(5);
 		//buttonBox = new HBox(10);
 		removeButtonBox = new HBox(10);
 		createButtonBox = new HBox(10);
 		gridPane = new GridPane();
-		airportView = new ListView<>();
+		airportView = new TableView<>();
 		airportNameField = new TextField();
 		airportProvinceBox = new ComboBox<>();
 		createButton = new Button("Create Airport");
@@ -69,6 +75,8 @@ public class AirportWindow {
 		airportName = new Text("Airport Name: ");
 		city = new Text("City Name: ");
 		fieldButtonSeparator = new Separator(Orientation.HORIZONTAL);
+		nameColumn = new TableColumn<>("Airport Name");
+		provinceColumn = new TableColumn<>("City");
 
 	}
 
@@ -98,10 +106,20 @@ public class AirportWindow {
 		//gridPane.add(createButton, 1, 3);
 		//gridPane.add(airportView, 0, 4);
 		
-		mainPane.getChildren().addAll(windowHeader, gridPane, fieldButtonSeparator, createButtonBox, removeButtonBox, airportView);
+		mainPane.getChildren().addAll(windowHeader, gridPane, fieldButtonSeparator, airportView, createButtonBox, removeButtonBox);
 		mainPane.setAlignment(Pos.CENTER);
+		setupTableContent();
 	}
 	
+	public void setupTableContent() {	
+		airportView.setItems(FXCollections.observableArrayList(airportList));
+		airportView.getColumns().addAll(nameColumn, provinceColumn);
+		nameColumn.setCellValueFactory(new PropertyValueFactory<Airport, String>("name"));
+		provinceColumn.setCellValueFactory(new PropertyValueFactory<Airport, String>("city"));
+
+		nameColumn.prefWidthProperty().bind(airportView.widthProperty().multiply(0.5));
+		provinceColumn.prefWidthProperty().bind(airportView.widthProperty().multiply(0.5));
+	}
 	public void formatHeader() {
 		windowHeader.setStyle("-fx-font: 24 arial;");
 		windowHeader.setTextAlignment(TextAlignment.CENTER);
@@ -142,7 +160,7 @@ public class AirportWindow {
 		});
 
 		airportView.getSelectionModel().selectedItemProperty().addListener(event -> {
-			String item = airportView.getSelectionModel().getSelectedItem();
+			String item = airportView.getSelectionModel().getSelectedItem().toString();
 			if (item != null) {
 				createButton.setText("Change Airport");
 				String[] airport = item.split(", ");
@@ -169,7 +187,7 @@ public class AirportWindow {
 
 	private void createAirport(Airport airport) {
 		airportList.add(airport);
-		airportView.getItems().add(airport.toString());
+		airportView.getItems().add(airport);
 		AdminState.saveAirports(airportList);
 		FlightWindow.populateComboBoxes();
 		resetFields();
@@ -198,7 +216,7 @@ public class AirportWindow {
 	}
 
 	private Airport findAirport() {
-		String sAirport = airportView.getSelectionModel().getSelectedItem();
+		String sAirport = airportView.getSelectionModel().getSelectedItem().toString();
 		for (Airport airport : airportList) {
 			if (airport.toString().equals(sAirport)) {
 				return airport;
@@ -212,7 +230,6 @@ public class AirportWindow {
 		if (!airportView.getItems().isEmpty())
 			airportView.getItems().clear();
 		for (int i = 0; i < airportList.size(); i++)
-			airportView.getItems().add(airportList.get(i).toString());
+			airportView.getItems().add(airportList.get(i));
 	}
-
 }
