@@ -49,7 +49,7 @@ public class HomeScreenWindow {
 
 	private void properties() {
 		APZLauncher.getStage().setWidth(500);
-		APZLauncher.getStage().setHeight(650);
+		APZLauncher.getStage().setHeight(725);
 	}
 
 	private void content() {

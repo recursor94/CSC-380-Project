@@ -7,6 +7,9 @@ import apz.airplane.model.Airplane;
 import apz.airplane.model.Airport;
 import apz.airplane.model.Flight;
 import apz.airplane.model.Time;
+import apz.airplane.model.User;
+import apz.airplane.model.UserController;
+import apz.airplane.util.APZState;
 import apz.airplane.util.IsInteger;
 import apz.airplane.util.MessageBox;
 import javafx.geometry.Pos;
@@ -83,10 +86,12 @@ public class FlightWindow {
 		departTimeBox.setMaxWidth(200);
 		planeBox.setMaxWidth(200);
 		
+		removeFlightButton.setDisable(true);
+		
 		arriveDatePicker.setEditable(false);
 		departDatePicker.setEditable(false);
 
-		buttonBox.getChildren().addAll(createAirportButton, createFlightButton);
+		buttonBox.getChildren().addAll(createAirportButton, createFlightButton, removeFlightButton);
 		buttonBox.setAlignment(Pos.CENTER);
 		
 		gridPane.setHgap(10);
@@ -126,17 +131,29 @@ public class FlightWindow {
 	private void actionEvents() {
 		createAirportButton.setOnAction(event -> {
 			new AirportWindow();
+			removeFlightButton.setDisable(true);
 		});
 
 		createFlightButton.setOnAction(event -> {
 			verifyInput();
+			
+			if(flightView.getSelectionModel().isEmpty())
+				removeFlightButton.setDisable(true);
+		});
+		
+		flightView.getSelectionModel().selectedItemProperty().addListener(event -> {
+			removeFlightButton.setDisable(false);
 		});
 
 		removeFlightButton.setOnAction(event -> {
-			Flight flight = flightView.getSelectionModel().getSelectedItem();
-			flightList.remove(flight);
-			AdminState.saveFlight(flightList);
-			loadFlights();
+//			Flight flight = flightView.getSelectionModel().getSelectedItem();
+//			flightList.remove(flight);
+//			AdminState.saveFlight(flightList);
+//			loadFlights();
+			
+			//This is not doing exactly what I want yet
+			removeFlights();
+			removeFlightButton.setDisable(true);
 		});
 	}
 
@@ -236,10 +253,21 @@ public class FlightWindow {
 							departure, flightNum));
 					AdminState.saveFlight(flightList);
 					loadFlights();
+					resetFields();
 				}
 			}
 		} else 
 			MessageBox.message(AlertType.ERROR, "Invalid Data Entry", "You must enter data into all fields");
+	}
+	
+	private void resetFields() {
+		flightNumField.setText("");
+		departAirportBox.setValue("Select an Airport");
+		arriveAirportBox.setValue("Select an Airport");
+		arriveDatePicker.setValue(null);
+		departDatePicker.setValue(null);
+		arriveTimeBox.setValue(null);
+		departTimeBox.setValue(null);
 	}
 
 	private void loadFlights() {
@@ -256,6 +284,21 @@ public class FlightWindow {
 			planeBox.getItems().add(planeList.get(i));
 		if (!planeList.isEmpty())
 			planeBox.setValue(planeList.get(0));
+	}
+	
+	//I Tried to get this to remove a flight from the user list, but it did not work
+	private void removeFlights() {
+		UserController uc = APZState.loadInformation();
+		Flight flight = flightView.getSelectionModel().getSelectedItem();
+		
+		for(User user : uc.getUserList()) {
+			user.removeTrip(flightView.getSelectionModel().getSelectedItem());
+		}
+		flightList.remove(flight);
+		AdminState.saveFlight(flightList);
+		AdminState.saveInformation(uc);
+		APZState.saveInformation(uc);
+		loadFlights();
 	}
 
 }

@@ -165,7 +165,6 @@ public class PaymentAddWindow implements WindowInterface {
 				System.out.println(user.getPaymentInformation());
 				//if (stage != null)
 					//new BookingPaymentWindow(flight);
-				new PaymentWindow();
 			}
 		}
 		else 

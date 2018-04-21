@@ -1,6 +1,7 @@
 package jimmy.pack;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 import apz.airplane.model.Booking;
 import apz.airplane.model.Flight;
@@ -113,9 +114,20 @@ public class BookingPaymentWindow implements WindowInterface {
 			else if(isCardExpired(paymentBox.getSelectionModel().getSelectedItem()))
 				MessageBox.message(AlertType.ERROR, "Invalid Payment", "The card you have selected has expired. Please select another payment method");
 			else {
-					user.getTripList().add(new Booking(flight, LocalDate.now(), user, cost));
+					Booking trip = new Booking(flight, LocalDate.now(), user, cost);
+					user.getTripList().add(trip);
 					MessageBox.message(AlertType.INFORMATION, null, "Trip has been booked!");
 					APZState.saveInformation();
+					ArrayList<Flight> fList = APZState.loadFlights();
+					
+					//This was in CheckBaggageWindow for saving an updated flight with a new passenger on board
+					for (int i = 0; i < fList.size(); i++) {
+						if (fList.get(i).getFlightNum() == trip.getFlight().getFlightNum()) {
+							fList.get(i).setPlane(trip.getFlight().getPlane());
+							break;
+						}
+					}
+					APZState.saveFlight(fList);
 					new HomeScreenWindow();
 			}
 		});
