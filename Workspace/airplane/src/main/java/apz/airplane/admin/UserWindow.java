@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import apz.airplane.model.User;
 import apz.airplane.model.UserController;
 import apz.airplane.util.MessageBox;
-import apz.airplane.util.APZState;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;
@@ -25,7 +24,7 @@ public class UserWindow {
 	private GridPane gridPane;
 	private ArrayList<User> userList;
 	private UserController uc;
-	private TextField userField;
+	private TextField userField, emailField;
 	private PasswordField passField;
 	private Button createButton, removeButton;
 	private ListView<User> userView;
@@ -42,6 +41,7 @@ public class UserWindow {
 		gridPane = new GridPane();
 		userList = new ArrayList<>();
 		userField = new TextField();
+		emailField = new TextField();
 		passField = new PasswordField();
 		createButton = new Button("Create");
 		removeButton = new Button("Remove");
@@ -53,11 +53,14 @@ public class UserWindow {
 	private void content() { // col row
 		gridPane.add(new Label("Username"), 0, 0);
 		gridPane.add(userField, 1, 0);
+		
+		gridPane.add(new Label("Email"), 0, 1);
+		gridPane.add(emailField, 1, 1);
 
-		gridPane.add(new Label("Password"), 0, 1);
-		gridPane.add(passField, 1, 1);
+		gridPane.add(new Label("Password"), 0, 2);
+		gridPane.add(passField, 1, 2);
 
-		gridPane.add(createButton, 0, 2);
+		gridPane.add(createButton, 0, 3);
 
 		gridPane.setVgap(10);
 		gridPane.setHgap(10);
@@ -79,7 +82,7 @@ public class UserWindow {
 
 	private void actionEvents() {
 		createButton.setOnAction(event -> {
-			verifyInput(userField.getText(), passField.getText());
+			verifyInput(userField.getText(), emailField.getText(), passField.getText());
 		});
 		removeButton.setOnAction(event -> {
 			if (userView.getSelectionModel().getSelectedItem() != null) {
@@ -92,7 +95,7 @@ public class UserWindow {
 		});
 	}
 
-	private void verifyInput(String username, String password) {
+	private void verifyInput(String username, String email, String password) {
 		if (uc.userExists(username)) {
 			System.out.println("The username you chose already exists");
 			MessageBox.message(AlertType.ERROR, "ERROR: The User Name Already Exists",
@@ -106,7 +109,7 @@ public class UserWindow {
 					MessageBox.message(AlertType.ERROR, "Invalid Password",
 							"Your password cannot contain the empty space character");
 				else {
-					uc.addUser(new User(username, password));
+					uc.addUser(new User(email, username, password));
 					AdminState.saveInformation(uc);
 					System.out.println("User successfully created!");
 					MessageBox.message(AlertType.INFORMATION, "Successful User Creation",
