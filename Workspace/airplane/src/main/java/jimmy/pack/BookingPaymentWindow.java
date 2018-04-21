@@ -7,6 +7,7 @@ import apz.airplane.model.Flight;
 import apz.airplane.model.Payment;
 import apz.airplane.model.User;
 import apz.airplane.user.APZLauncher;
+import apz.airplane.user.HomeScreenWindow;
 import apz.airplane.user.PaymentAddWindow;
 import apz.airplane.util.APZMath;
 import apz.airplane.util.APZState;
@@ -14,12 +15,12 @@ import apz.airplane.util.FilePath;
 import apz.airplane.util.MessageBox;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -28,6 +29,7 @@ import javafx.stage.Stage;
 
 public class BookingPaymentWindow implements WindowInterface {
 	
+	private ImageView img;
 	private User user;
 	private VBox mainPane;
 	private static GridPane paymentPane; 
@@ -38,7 +40,6 @@ public class BookingPaymentWindow implements WindowInterface {
 	
 	private Flight flight;
 	private double cost;
-
 	private Label costLabel;
 	
 	public BookingPaymentWindow(Flight flight) {
@@ -50,6 +51,7 @@ public class BookingPaymentWindow implements WindowInterface {
 	}
 
 	public void initialize() {
+		img = new ImageView(new Image(FilePath.LOGIN_IMAGE));
 		user = APZLauncher.getCurrentUser();
 		
 		cost = APZMath.getPrice(flight.getDepartureAirport().getCity(), flight.getDestinationAirport().getCity());
@@ -69,10 +71,6 @@ public class BookingPaymentWindow implements WindowInterface {
 		header.setFont(new Font(32));
 		
 		loadComboBoxInformation();
-		
-		ImageView img = new ImageView(new Image(FilePath.LOGIN_IMAGE));
-		img.setFitWidth(150);
-		img.setFitHeight(150);
 		
 		paymentPane.add(new Label("Flight Date: "), 0, 2);
 		paymentPane.add(new Label(flight.getDepartureDate().toString()), 1, 2);
@@ -118,20 +116,19 @@ public class BookingPaymentWindow implements WindowInterface {
 					user.getTripList().add(new Booking(flight, LocalDate.now(), user, cost));
 					MessageBox.message(AlertType.INFORMATION, null, "Trip has been booked!");
 					APZState.saveInformation();
-					
-					// Splash page thanks for using APZ
+					new HomeScreenWindow();
 			}
 		});
 		
-		baggageBox.setOnAction(event -> {			//
+		baggageBox.setOnAction(event -> {
 			double baggagePrice = 30.35 * baggageBox.getValue();
 			costLabel.setText("$" + (cost + baggagePrice));
-//			paymentPane.getChildren().remove(1,  7);
-//			paymentPane.add(new Label("$" + (cost + baggagePrice)), 1, 7);
 		});
 	}
 
 	public void properties() {
+		img.setFitWidth(150);
+		img.setFitHeight(150);
 		confirmButton.setMinWidth(250);
 		paymentPane.setHgap(15);
 		paymentPane.setVgap(15);
@@ -148,8 +145,6 @@ public class BookingPaymentWindow implements WindowInterface {
 		
 		for (int i = 0; i < user.getPaymentInformation().size(); i++) {
 			paymentBox.getItems().add(user.getPaymentInformation().get(i));
-			//Long ccNum = user.getPaymentInformation().get(i).getCardNum();
-			//paymentBox.getItems().add("Card number ending in " + ccNum.toString().substring(12, 16));
 		}
 	}
 	
