@@ -11,19 +11,18 @@ import apz.airplane.util.FilePath;
 import apz.airplane.util.MessageBox;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import javafx.util.Callback;
 
-public class JBookingWindow implements WindowInterface {
+public class BookingWindow implements WindowInterface {
 
 	private ImageView img;
 	private Text headerText;
@@ -33,7 +32,7 @@ public class JBookingWindow implements WindowInterface {
 	private ComboBox<String> cityDepartBox, cityArrivalBox;
 	private Button searchButton;
 
-	public JBookingWindow() {
+	public BookingWindow() {
 		initialize();
 		content();
 		actionEvents();

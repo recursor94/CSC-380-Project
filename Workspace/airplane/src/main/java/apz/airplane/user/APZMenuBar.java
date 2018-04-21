@@ -5,8 +5,9 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SeparatorMenuItem;
-import jimmy.pack.JBookingWindow;
-import jimmy.pack.PaymentPassPrompt;
+import jimmy.pack.AccountInfoWindow;
+import jimmy.pack.BookingWindow;
+import jimmy.pack.PasswordPromptWindow;
 import jimmy.pack.PaymentWindow;
 
 public class APZMenuBar {
@@ -78,7 +79,7 @@ public class APZMenuBar {
 		});
 		
 		managePaymentItem.setOnAction(event -> {
-			new PaymentPassPrompt();
+			new PasswordPromptWindow(0);
 			new PaymentWindow();
 		});
 		
@@ -91,7 +92,7 @@ public class APZMenuBar {
 		});
 		
 		bookATripItem.setOnAction(event -> {
-			new JBookingWindow();
+			new BookingWindow();
 		});
 	}
 

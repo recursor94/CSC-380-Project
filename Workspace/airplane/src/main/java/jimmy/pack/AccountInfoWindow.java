@@ -1,9 +1,16 @@
-package apz.airplane.user;
+package jimmy.pack;
+
+import java.util.Optional;
 
 import apz.airplane.model.User;
+import apz.airplane.user.APZLauncher;
 import apz.airplane.util.FilePath;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar.ButtonData;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
 import javafx.scene.image.Image;
@@ -12,7 +19,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import jimmy.pack.WindowInterface;
 
 public class AccountInfoWindow implements WindowInterface {
 
@@ -44,7 +50,6 @@ public class AccountInfoWindow implements WindowInterface {
 
 	public void content() {
 		uc = APZLauncher.getCurrentUser();
-
 		
 		gridPane.add(new ImageView(new Image(FilePath.LOGIN_IMAGE)), 1, 2);
 		gridPane.add(new Label("Email: "), 2, 2);
@@ -72,12 +77,11 @@ public class AccountInfoWindow implements WindowInterface {
 		}
 		
 		changeButton.setOnAction(event -> {
-			
+			new AccountChangeWindow();
 		});
 		
 		deleteButton.setOnAction(event -> {
-			// are you sure?
-			// if confirm, delete, go back to login screen
+			new AccountDeleteWindow();
 		});
 	}
 

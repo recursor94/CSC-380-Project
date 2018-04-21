@@ -12,8 +12,6 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.control.TableColumn;
@@ -23,8 +21,9 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
+import jimmy.pack.WindowInterface;
 
-public class HomeScreenWindow {
+public class HomeScreenWindow implements WindowInterface {
 	private VBox rootPane;
 	private Text timeLabel;
 	private Timeline realTimeClock;
@@ -43,11 +42,11 @@ public class HomeScreenWindow {
 		properties();
 	}
 
-	private void actionEvents() {
+	public void actionEvents() {
 
 	}
 
-	private void properties() {
+	public void properties() {
 		APZLauncher.getStage().setWidth(500);
 		APZLauncher.getStage().setHeight(725);
 		flightTable.setMinHeight(APZLauncher.getStage().getHeight() - 10);
@@ -57,7 +56,7 @@ public class HomeScreenWindow {
 		departingTime.prefWidthProperty().bind(flightTable.widthProperty().multiply(0.25));
 	}
 
-	private void content() {
+	public void content() {
 
 		flightsToday = getFlightsToday();
 		orderFlightsByTime();
@@ -77,7 +76,7 @@ public class HomeScreenWindow {
 
 	}
 
-	private void initialize() {
+	public void initialize() {
 		flightsToday = new ArrayList<>();
 		rootPane = new VBox(10);
 		flightTable = new TableView<>();

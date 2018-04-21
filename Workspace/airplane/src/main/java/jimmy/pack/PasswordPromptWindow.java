@@ -11,23 +11,26 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-public class PaymentPassPrompt implements WindowInterface {
+public class PasswordPromptWindow implements WindowInterface {
 
+	private int index;
+	
 	private Text header;
 	private VBox mainPane;
 	private GridPane gridPane;
 	private PasswordField passwordTf;
-	private Button confirmButton;
+	private Button confirmButton, cancelButton;
 	private Stage stage;
-
-	public PaymentPassPrompt() {
+	
+	public PasswordPromptWindow(int index) {
+		this.index = index;
 		APZLauncher.getStage().getScene().getRoot().setEffect(new GaussianBlur());	// will disable if exit or password right
 		initialize();
 		content();
@@ -37,17 +40,22 @@ public class PaymentPassPrompt implements WindowInterface {
 
 	public void initialize() {
 		stage = new Stage();
-		header = new Text("Enter your Password");
+		header = new Text("Enter your password to continue.");
 		mainPane = new VBox(10);
 		gridPane = new GridPane();
 		passwordTf = new PasswordField();
 		confirmButton = new Button("Confirm");
+		cancelButton = new Button("Cancel");
 	}
 
 	public void content() {
 		stage.setScene(new Scene(mainPane, 250, 100));
-		mainPane.getChildren().addAll(header, passwordTf, confirmButton);
 		
+		HBox buttonBox = new HBox(10);
+		
+		buttonBox.getChildren().addAll(confirmButton, cancelButton);
+		buttonBox.setAlignment(Pos.CENTER);
+		mainPane.getChildren().addAll(header, passwordTf, buttonBox);
 	}
 
 	public void actionEvents() {
@@ -55,15 +63,17 @@ public class PaymentPassPrompt implements WindowInterface {
 			attemptLogin();
 		});
 		
+		cancelButton.setOnAction(event -> {
+			exit();
+		});
+		
 		stage.getScene().setOnKeyPressed(event -> {
 			if (event.getCode() == KeyCode.ESCAPE) {
-				new HomeScreenWindow();
-				MessageBox.message(AlertType.INFORMATION, null, "Error, could not validate account.");
-				APZLauncher.getStage().getScene().getRoot().setEffect(null);
-				stage.close();
+				exit();
 			} else if (event.getCode() == KeyCode.ENTER)
 				attemptLogin();
 		});
+		
 	}
 	
 	public void properties() {
@@ -74,7 +84,6 @@ public class PaymentPassPrompt implements WindowInterface {
 		
 		stage.initModality(Modality.APPLICATION_MODAL);
 		stage.initStyle(StageStyle.UNDECORATED);
-		stage.getScene().setFill(Color.BLACK);
 		stage.show();
 		
 		stage.setOnCloseRequest(event -> {
@@ -86,8 +95,24 @@ public class PaymentPassPrompt implements WindowInterface {
 		if (	APZLauncher.getCurrentUser().validatePassword(passwordTf.getText())) {
 			APZLauncher.getStage().getScene().getRoot().setEffect(null);
 			stage.close();
+			if (index == 1) 
+				AccountDeleteWindow.deleteScreen();
 		} else
 			MessageBox.message(AlertType.INFORMATION, null, "Incorrect password! Try Again!");
+	}
+	
+	private void redirect() {
+		if (index == 0)
+			new HomeScreenWindow();
+		else if (index == 1) 
+			System.out.println("Invalid pass");
+	}
+	
+	private void exit() {
+		redirect();
+		MessageBox.message(AlertType.INFORMATION, null, "Error, could not validate account.");
+		APZLauncher.getStage().getScene().getRoot().setEffect(null);
+		stage.close();
 	}
 
 }
