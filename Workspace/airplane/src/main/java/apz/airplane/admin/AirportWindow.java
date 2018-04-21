@@ -44,6 +44,7 @@ public class AirportWindow {
 	private ComboBox<String> airportProvinceBox;
 	private Button createButton, removeButton;
 	private VBox mainPane;
+	private VBox headerBox;
 	private GridPane gridPane;
 	private Text airportName;
 	private Text city;
@@ -61,8 +62,9 @@ public class AirportWindow {
 
 	public void initialize() {
 		airportList = new ArrayList<>();
-		mainPane = new VBox(10);
+		mainPane = new VBox(20);
 		buttonBox = new VBox(2);
+		headerBox = new VBox(0);
 		removeButtonBox = new HBox(20);
 		createButtonBox = new HBox(20);
 		gridPane = new GridPane();
@@ -83,18 +85,16 @@ public class AirportWindow {
 	public void content() {
 		loadFile();
 		populateProvince();
+		formatHeader();
+		headerBox.getChildren().add(fieldButtonSeparator);
 		removeButton.setMaxWidth(Double.MAX_VALUE);
 		createButton.setMaxWidth(Double.MAX_VALUE);
-		//buttonBox.getChildren().addAll(createButton, removeButton);
-		//mainPane.getChildren().addAll(new HBox(windowHeader), new Label("Airport Name"), airportNameField, new Label("City"),
-		//		airportProvinceBox, buttonBox, airportView);
 		HBox.setHgrow(createButton, Priority.ALWAYS);
 		HBox.setHgrow(removeButton, Priority.ALWAYS);
 		createButtonBox.getChildren().add(createButton);
 		createButtonBox.setAlignment(Pos.CENTER_LEFT);
 		removeButtonBox.getChildren().add(removeButton);
 		buttonBox.getChildren().addAll(airportView, removeButtonBox, createButtonBox);
-		formatHeader();
 		gridPane.setVgap(5);
 		gridPane.setHgap(5);
 		System.out.println(gridPane);
@@ -103,11 +103,7 @@ public class AirportWindow {
 		gridPane.add(airportNameField, 1, 0);
 		gridPane.add(city, 0, 1);
 		gridPane.add(airportProvinceBox, 1, 1);
-		//gridPane.add(removeButton, 1, 2);
-		//gridPane.add(createButton, 1, 3);
-		//gridPane.add(airportView, 0, 4);
-		
-		mainPane.getChildren().addAll(windowHeader, gridPane, fieldButtonSeparator, buttonBox);
+		mainPane.getChildren().addAll(windowHeader,headerBox,gridPane,buttonBox);
 		mainPane.setAlignment(Pos.CENTER);
 		setupTableContent();
 	}
@@ -183,7 +179,7 @@ public class AirportWindow {
 	public void properties() {
 		Stage stage = new Stage();
 		stage.initModality(Modality.APPLICATION_MODAL);
-		stage.setScene(new Scene(mainPane, 400, 350));
+		stage.setScene(new Scene(mainPane, 400, 500));
 		stage.setTitle("Create Airport");
 		stage.show();
 	}
