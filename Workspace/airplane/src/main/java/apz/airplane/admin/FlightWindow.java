@@ -15,6 +15,7 @@ import apz.airplane.util.MessageBox;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.input.KeyCode;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -151,6 +152,11 @@ public class FlightWindow {
 			removeFlights();
 			removeFlightButton.setDisable(true);
 		});
+		
+		flightView.setOnKeyPressed(event -> {
+			if (event.getCode() == KeyCode.ESCAPE)
+				resetFields();
+		});
 	}
 
 	private void properties(Stage mainStage) {
@@ -257,6 +263,7 @@ public class FlightWindow {
 	}
 	
 	private void resetFields() {
+		removeFlightButton.setDisable(true);
 		flightNumField.setText("");
 		departAirportBox.setValue("Select an Airport");
 		arriveAirportBox.setValue("Select an Airport");
@@ -264,6 +271,7 @@ public class FlightWindow {
 		departDatePicker.setValue(null);
 		arriveTimeBox.setValue(null);
 		departTimeBox.setValue(null);
+		flightView.getSelectionModel().clearSelection();
 	}
 
 	private void loadFlights() {
