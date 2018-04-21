@@ -10,9 +10,12 @@ import apz.airplane.user.APZLauncher;
 import apz.airplane.user.PaymentAddWindow;
 import apz.airplane.util.APZMath;
 import apz.airplane.util.APZState;
+import apz.airplane.util.FilePath;
 import apz.airplane.util.MessageBox;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -67,6 +70,10 @@ public class BookingPaymentWindow implements WindowInterface {
 		
 		loadComboBoxInformation();
 		
+		ImageView img = new ImageView(new Image(FilePath.LOGIN_IMAGE));
+		img.setFitWidth(150);
+		img.setFitHeight(150);
+		
 		paymentPane.add(new Label("Flight Date: "), 0, 2);
 		paymentPane.add(new Label(flight.getDepartureDate().toString()), 1, 2);
 		paymentPane.add(new Label("Airline: "), 0, 3);
@@ -97,7 +104,7 @@ public class BookingPaymentWindow implements WindowInterface {
 			paymentPane.add(paymentBox, 1, 9);
 		
 		
-		mainPane.getChildren().addAll(header, paymentPane, new Separator(), confirmButton);
+		mainPane.getChildren().addAll(header, img, paymentPane, new Separator(), confirmButton);
 		mainPane.setAlignment(Pos.TOP_CENTER);
 	}
 
@@ -109,8 +116,10 @@ public class BookingPaymentWindow implements WindowInterface {
 				MessageBox.message(AlertType.ERROR, "Invalid Payment", "The card you have selected has expired. Please select another payment method");
 			else {
 					user.getTripList().add(new Booking(flight, LocalDate.now(), user, cost));
-					MessageBox.message(AlertType.INFORMATION, null, "Trip has been booked! Receipt number: ");
+					MessageBox.message(AlertType.INFORMATION, null, "Trip has been booked!");
 					APZState.saveInformation();
+					
+					// Splash page thanks for using APZ
 			}
 		});
 		
