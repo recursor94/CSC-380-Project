@@ -128,6 +128,7 @@ public class HomeScreenWindow {
 					
 					if(departureHour == timeHour && departureMinute == timeMinute) {
 						flightsToday.remove(flight);
+						flightTable.getItems().remove(flightTable.getSelectionModel().getSelectedItem());
 					}
 
 

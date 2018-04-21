@@ -35,7 +35,7 @@ import javafx.stage.Stage;
 public class AirportWindow {
 
 	private Text windowHeader;
-	private HBox buttonBox;
+	private VBox buttonBox;
 	private ArrayList<Airport> airportList;
 	private TableView<Airport> airportView;
 	private TableColumn<Airport, String> nameColumn;
@@ -61,17 +61,17 @@ public class AirportWindow {
 
 	public void initialize() {
 		airportList = new ArrayList<>();
-		mainPane = new VBox(5);
-		//buttonBox = new HBox(10);
-		removeButtonBox = new HBox(10);
-		createButtonBox = new HBox(10);
+		mainPane = new VBox(10);
+		buttonBox = new VBox(2);
+		removeButtonBox = new HBox(20);
+		createButtonBox = new HBox(20);
 		gridPane = new GridPane();
 		airportView = new TableView<>();
 		airportNameField = new TextField();
 		airportProvinceBox = new ComboBox<>();
 		createButton = new Button("Create Airport");
 		removeButton = new Button("Remove");
-		windowHeader = new Text("Make Airport");
+		windowHeader = new Text("Manage Airports");
 		airportName = new Text("Airport Name: ");
 		city = new Text("City Name: ");
 		fieldButtonSeparator = new Separator(Orientation.HORIZONTAL);
@@ -93,6 +93,7 @@ public class AirportWindow {
 		createButtonBox.getChildren().add(createButton);
 		createButtonBox.setAlignment(Pos.CENTER_LEFT);
 		removeButtonBox.getChildren().add(removeButton);
+		buttonBox.getChildren().addAll(airportView, removeButtonBox, createButtonBox);
 		formatHeader();
 		gridPane.setVgap(5);
 		gridPane.setHgap(5);
@@ -106,7 +107,7 @@ public class AirportWindow {
 		//gridPane.add(createButton, 1, 3);
 		//gridPane.add(airportView, 0, 4);
 		
-		mainPane.getChildren().addAll(windowHeader, gridPane, fieldButtonSeparator, airportView, createButtonBox, removeButtonBox);
+		mainPane.getChildren().addAll(windowHeader, gridPane, fieldButtonSeparator, buttonBox);
 		mainPane.setAlignment(Pos.CENTER);
 		setupTableContent();
 	}
@@ -119,6 +120,9 @@ public class AirportWindow {
 
 		nameColumn.prefWidthProperty().bind(airportView.widthProperty().multiply(0.5));
 		provinceColumn.prefWidthProperty().bind(airportView.widthProperty().multiply(0.5));
+		nameColumn.setResizable(false);
+		provinceColumn.setResizable(false);
+		airportView.setMinHeight(150);
 	}
 	public void formatHeader() {
 		windowHeader.setStyle("-fx-font: 24 arial;");
@@ -160,12 +164,11 @@ public class AirportWindow {
 		});
 
 		airportView.getSelectionModel().selectedItemProperty().addListener(event -> {
-			String item = airportView.getSelectionModel().getSelectedItem().toString();
-			if (item != null) {
+			Airport airport = airportView.getSelectionModel().getSelectedItem();
+			if (airport != null) {
 				createButton.setText("Change Airport");
-				String[] airport = item.split(", ");
-				airportNameField.setText(airport[0]);
-				airportProvinceBox.setValue(airport[1]);
+				airportNameField.setText(airport.getName());
+				airportProvinceBox.setValue(airport.getCity());
 			}
 			else 
 				createButton.setText("Create Airport");
