@@ -8,6 +8,7 @@ import apz.airplane.util.MessageBox;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.input.KeyCode;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -51,6 +52,8 @@ public class UserWindow {
 	}
 
 	private void content() { // col row
+		removeButton.setDisable(true);
+		
 		gridPane.add(new Label("Username"), 0, 0);
 		gridPane.add(userField, 1, 0);
 		
@@ -76,7 +79,7 @@ public class UserWindow {
 	private void properties() {
 		Stage stage = new Stage();
 		stage.setTitle("Create Users");
-		stage.setScene(new Scene(mainPane, 650, 150));
+		stage.setScene(new Scene(mainPane, 750, 175));
 		stage.show();
 	}
 
@@ -93,6 +96,17 @@ public class UserWindow {
 			} else
 				MessageBox.message(AlertType.ERROR, "ERROR: No User Selected", "You must select a user to remove");
 		});
+		
+		userView.getSelectionModel().selectedItemProperty().addListener(event -> {
+			removeButton.setDisable(false);
+		});
+		
+		userView.setOnKeyPressed(event -> {
+			if (event.getCode() == KeyCode.ESCAPE) {
+				userView.getSelectionModel().clearSelection();
+				removeButton.setDisable(true);
+			}
+		});
 	}
 
 	private void verifyInput(String username, String email, String password) {
@@ -101,7 +115,7 @@ public class UserWindow {
 			MessageBox.message(AlertType.ERROR, "ERROR: The User Name Already Exists",
 					"Please choose a different user name");
 		} else {
-			if (!(username.isEmpty()) && !(password.isEmpty())) {
+			if (!(username.isEmpty()) && !(password.isEmpty()) && !(email.isEmpty())) {
 				if (username.contains(" "))
 					MessageBox.message(AlertType.ERROR, "Invalid User Name",
 							"Your user name cannot contain the empty space character");
@@ -118,8 +132,8 @@ public class UserWindow {
 					loadFile();
 				}
 			} else
-				MessageBox.message(AlertType.ERROR, "ERROR: You must enter a user name and password",
-						"Please enter a user name and password");
+				MessageBox.message(AlertType.ERROR, "ERROR: You must enter a user name. email and password",
+						"Please enter a user name, email and password");
 		}
 	}
 

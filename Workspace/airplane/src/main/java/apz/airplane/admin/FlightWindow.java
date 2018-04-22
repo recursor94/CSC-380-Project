@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import apz.airplane.model.Airplane;
 import apz.airplane.model.Airport;
+import apz.airplane.model.Booking;
 import apz.airplane.model.Flight;
 import apz.airplane.model.Time;
 import apz.airplane.model.User;
@@ -15,13 +16,13 @@ import apz.airplane.util.MessageBox;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.input.KeyCode;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -138,9 +139,6 @@ public class FlightWindow {
 				removeFlightButton.setDisable(true);
 		});
 		
-		flightView.getSelectionModel().selectedItemProperty().addListener(event -> {
-			removeFlightButton.setDisable(false);
-		});
 
 		removeFlightButton.setOnAction(event -> {
 //			Flight flight = flightView.getSelectionModel().getSelectedItem();
@@ -151,11 +149,30 @@ public class FlightWindow {
 			//This is not doing exactly what I want yet
 			removeFlights();
 			removeFlightButton.setDisable(true);
+			resetFields();
 		});
 		
 		flightView.setOnKeyPressed(event -> {
 			if (event.getCode() == KeyCode.ESCAPE)
 				resetFields();
+		});
+		
+		flightView.getSelectionModel().selectedItemProperty().addListener(event -> {
+			removeFlightButton.setDisable(false);
+			Flight flight = flightView.getSelectionModel().getSelectedItem();
+			if(flight != null) {
+				createFlightButton.setText("Change Flight");
+				planeBox.setValue(flight.getPlane());
+				flightNumField.setText(flight.getFlightNum() + "");
+				departAirportBox.setValue(flight.getDepartureAirport().toString());
+				arriveAirportBox.setValue(flight.getDestinationAirport().toString());
+				departDatePicker.setValue(flight.getDepartureDate());
+				arriveDatePicker.setValue(flight.getArriveDate());
+				departTimeBox.setValue(flight.getDepartureTime().getTimeString());
+				arriveTimeBox.setValue(flight.getArrivalTime().getTimeString());			
+			}
+			else
+				createFlightButton.setText("Create Flight");
 		});
 	}
 
@@ -251,19 +268,49 @@ public class FlightWindow {
 					MessageBox.message(AlertType.ERROR, "Invalid Data Entry", "Your arrival time must be after your departure time");
 				}
 				else {
-					flightList.add(new Flight(plane, outgoingAirport, incomingAirport, arriving, leaving, arrival,
-							departure, flightNum));
-					AdminState.saveFlight(flightList);
-					loadFlights();
-					resetFields();
+					
+					if(createFlightButton.getText().equals("Create Flight")) {
+						flightList.add(new Flight(plane, outgoingAirport, incomingAirport, arriving, leaving, arrival,
+								departure, flightNum));
+						AdminState.saveFlight(flightList);
+						loadFlights();
+						resetFields();
+					}
+					else {
+						for (int i = 0; i < flightList.size(); i++) {
+							if (flightList.get(i) == flightView.getSelectionModel().getSelectedItem()) {
+								flightList.get(i).setPlane(plane);
+								flightList.get(i).setFlightNum(flightNum);
+								flightList.get(i).setArrivalTime(arrival);
+								flightList.get(i).setDepartureTime(departure);
+								flightList.get(i).setArriveDate(arriving);
+								flightList.get(i).setDepartureDate(leaving);
+								flightList.get(i).setDepartureAirport(outgoingAirport);
+								flightList.get(i).setDestinationAirport(incomingAirport);
+								System.out.println("Found and changed!");
+								AdminState.saveFlight(flightList);
+								loadFlights();
+								return;
+							}
+						}
+					}
 				}
 			}
 		} else 
 			MessageBox.message(AlertType.ERROR, "Invalid Data Entry", "You must enter data into all fields");
 	}
 	
+//	private Flight findFlight() {
+//		Flight flight = flightView.getSelectionModel().getSelectedItem();
+//		for ( : flightList) {
+//			if (flight.toString().equals(sAirport)) {
+//				return airport;
+//			}
+//		}
+//		return null;
+//	}
+	
 	private void resetFields() {
-		removeFlightButton.setDisable(true);
 		flightNumField.setText("");
 		departAirportBox.setValue("Select an Airport");
 		arriveAirportBox.setValue("Select an Airport");
@@ -272,6 +319,7 @@ public class FlightWindow {
 		arriveTimeBox.setValue(null);
 		departTimeBox.setValue(null);
 		flightView.getSelectionModel().clearSelection();
+		removeFlightButton.setDisable(true);
 	}
 
 	private void loadFlights() {
@@ -296,10 +344,11 @@ public class FlightWindow {
 		Flight flight = flightView.getSelectionModel().getSelectedItem();
 		
 		for(User user : uc.getUserList()) {
-			user.removeTrip(flightView.getSelectionModel().getSelectedItem());
+			user.removeTrip(flight);
 		}
 		flightList.remove(flight);
 		AdminState.saveFlight(flightList);
+		APZState.saveFlight(flightList);
 		AdminState.saveInformation(uc);
 		APZState.saveInformation(uc);
 		loadFlights();

@@ -81,7 +81,6 @@ public class BookFlightByDateWindow implements WindowInterface {
 	}
 	public void actionEvents() {
 		findFlightButton.setOnAction(event -> {
-			bookFlightButton.setDisable(true);
 			if (calendar.getValue() != null) {
 				flightList = findFlights(calendar.getValue());
 				
@@ -96,6 +95,8 @@ public class BookFlightByDateWindow implements WindowInterface {
 			}
 			else 
 				MessageBox.message(AlertType.ERROR, "ERROR", "You must select a date");
+			
+			bookFlightButton.setDisable(true);
 		});
 
 		flightView.getSelectionModel().selectedItemProperty().addListener(event -> {
