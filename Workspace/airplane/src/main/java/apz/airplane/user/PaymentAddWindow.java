@@ -14,6 +14,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -21,6 +22,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import jimmy.pack.BookingPaymentWindow;
+import jimmy.pack.PaymentWindow;
 import jimmy.pack.WindowInterface;
 
 public class PaymentAddWindow implements WindowInterface {
@@ -132,7 +134,8 @@ public class PaymentAddWindow implements WindowInterface {
 		});
 		
 		mainPane.setOnKeyPressed(event -> {
-			verifyInput();
+			if(event.getCode() == KeyCode.ENTER)
+				verifyInput();
 		});
 	}
 	
@@ -170,6 +173,8 @@ public class PaymentAddWindow implements WindowInterface {
 					new BookingPaymentWindow(flight);
 					stage.close();
 				}
+				else
+					new PaymentWindow();
 				
 			}
 		}

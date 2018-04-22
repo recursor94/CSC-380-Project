@@ -79,7 +79,7 @@ public class LoginWindow implements WindowInterface {
 	
 	public void properties() {
 		APZLauncher.getBorderPane().setCenter(rootPane);
-		APZLauncher.getStage().setWidth(300);
+		APZLauncher.getStage().setWidth(320);
 		APZLauncher.getStage().setHeight(410);
 	}
 	

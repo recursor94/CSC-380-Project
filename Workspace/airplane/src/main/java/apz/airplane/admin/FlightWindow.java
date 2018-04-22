@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import apz.airplane.model.Airplane;
 import apz.airplane.model.Airport;
+import apz.airplane.model.Booking;
 import apz.airplane.model.Flight;
 import apz.airplane.model.Time;
 import apz.airplane.model.User;
@@ -15,13 +16,13 @@ import apz.airplane.util.MessageBox;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.input.KeyCode;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -296,10 +297,11 @@ public class FlightWindow {
 		Flight flight = flightView.getSelectionModel().getSelectedItem();
 		
 		for(User user : uc.getUserList()) {
-			user.removeTrip(flightView.getSelectionModel().getSelectedItem());
+			user.removeTrip(flight);
 		}
 		flightList.remove(flight);
 		AdminState.saveFlight(flightList);
+		APZState.saveFlight(flightList);
 		AdminState.saveInformation(uc);
 		APZState.saveInformation(uc);
 		loadFlights();
