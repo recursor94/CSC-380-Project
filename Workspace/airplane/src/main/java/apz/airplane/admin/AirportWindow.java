@@ -183,8 +183,8 @@ public class AirportWindow {
 		stage.setScene(new Scene(mainPane, 400, 500));
 		stage.setTitle("Create Airport");
 		stage.show();
-	}
-
+		stage.setResizable(false);
+	} 
 	private void createAirport(Airport airport) {
 		airportList.add(airport);
 		airportView.getItems().add(airport);
