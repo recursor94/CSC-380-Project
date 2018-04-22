@@ -1,10 +1,15 @@
 package apz.airplane.user;
 
+import java.util.Optional;
+
+import apz.airplane.util.MessageBox;
 import javafx.application.Platform;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SeparatorMenuItem;
+import javafx.scene.control.Alert.AlertType;
 import jimmy.pack.AccountInfoWindow;
 import jimmy.pack.BookingWindow;
 import jimmy.pack.PasswordPromptWindow;
@@ -62,8 +67,11 @@ public class APZMenuBar {
 		});
 		
 		logoutItem.setOnAction(event -> {
-			new LogoutWindow();
-			//APZLauncher.getBorderPane().setTop(null);
+			Optional<ButtonType> result = MessageBox.message(AlertType.CONFIRMATION, "APZ Application - Logout", "Are you sure you want to logout?");
+			if (result.get() == ButtonType.OK) {
+				new LoginWindow();
+				APZLauncher.getBorderPane().setTop(null);
+			}
 		});
 		
 		viewFlightItem.setOnAction(event -> {

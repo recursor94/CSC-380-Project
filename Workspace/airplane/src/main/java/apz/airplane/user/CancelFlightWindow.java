@@ -27,12 +27,12 @@ import javafx.scene.text.Text;
 public class CancelFlightWindow {
 
 	private Text windowHeader;
-	private TableView<BookingInformation> tripTable;
-	private TableColumn<BookingInformation, Integer> flightNumberColumn;
-	private TableColumn<BookingInformation, String> arriveTimeColumn, departureTimeColumn, airlineColumn;
-	private TableColumn<BookingInformation, Airport> departureAirportColumn, destinationAirportColumn;
-	private TableColumn<BookingInformation, LocalDate> departureDateColumn, bookDateColumn;
-	private TableColumn<BookingInformation, Double> tripCostColumn;
+	private TableView<BookingTableData> tripTable;
+	private TableColumn<BookingTableData, Integer> flightNumberColumn;
+	private TableColumn<BookingTableData, String> arriveTimeColumn, departureTimeColumn, airlineColumn;
+	private TableColumn<BookingTableData, Airport> departureAirportColumn, destinationAirportColumn;
+	private TableColumn<BookingTableData, LocalDate> departureDateColumn, bookDateColumn;
+	private TableColumn<BookingTableData, Double> tripCostColumn;
 	private Separator headerHorizontalSeparator;
 	private VBox headerBox;
 	private VBox bottomContentBox;
@@ -133,9 +133,9 @@ public class CancelFlightWindow {
 
 	private void resetTableData() {
 		ArrayList<Booking> tripList = user.getTripList();
-		ArrayList<BookingInformation> informationList = new ArrayList<>();
+		ArrayList<BookingTableData> informationList = new ArrayList<>();
 		for (Booking trip : tripList) {
-			informationList.add(new BookingInformation(trip));
+			informationList.add(new BookingTableData(trip));
 		}
 		tripTable.setItems(FXCollections.observableArrayList(informationList));
 
