@@ -11,6 +11,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -73,19 +74,29 @@ public class RegisterWindow implements WindowInterface {
 	
 	public void properties() {
 		APZLauncher.getBorderPane().setCenter(rootPane);
+		APZLauncher.getStage().setTitle("APZ Application - Register Account");
 	}
 	
 	public void actionEvents() {
 		registerButton.setOnAction((event) -> {
-			if ((userField.getText().isEmpty()) || (passField.getText().isEmpty()) || emailField.getText().isEmpty())
-				MessageBox.message(AlertType.ERROR, null, "Please enter a user name, email, and password");
-			else
-				verifyInput();
+			tryRegister();
 		});
 		
 		backButton.setOnAction(event -> {
 			new LoginWindow();
 		});
+		
+		rootPane.setOnKeyPressed(event -> {
+			if (event.getCode() == KeyCode.ENTER)
+				tryRegister();
+		});
+	}
+	
+	private void tryRegister() {
+		if ((userField.getText().isEmpty()) || (passField.getText().isEmpty()) || emailField.getText().isEmpty())
+			MessageBox.message(AlertType.ERROR, null, "Please enter a user name, email, and password");
+		else
+			verifyInput();
 	}
 	
 	private void verifyInput() {

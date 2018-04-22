@@ -93,6 +93,7 @@ public class AccountInfoWindow implements WindowInterface {
 		img.setFitWidth(150);
 		img.setFitHeight(150);
 		APZLauncher.getBorderPane().setCenter(mainPane);
+		APZLauncher.getStage().setTitle("APZ Application - Account Information");
 	}
 
 }

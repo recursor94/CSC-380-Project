@@ -101,6 +101,7 @@ public class BookingWindow implements WindowInterface {
 		mainPane.setAlignment(Pos.TOP_CENTER);
 
 		APZLauncher.getBorderPane().setCenter(mainPane);
+		APZLauncher.getStage().setTitle(("APZ Application - Search for Flight Bookings"));
 	}
 
 	private void populateComboBox() {

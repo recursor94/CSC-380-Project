@@ -109,6 +109,7 @@ public class AccountChangeWindow implements WindowInterface {
 		img.setFitWidth(150);
 		img.setFitHeight(150);
 		APZLauncher.getBorderPane().setCenter(mainPane);
+		APZLauncher.getStage().setTitle("APZ Application - Update Account Information");
 	}
 	
 	private boolean checkEmail() {

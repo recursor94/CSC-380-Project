@@ -146,6 +146,7 @@ public class BookingPaymentWindow implements WindowInterface {
 		paymentPane.setVgap(15);
 		paymentPane.setAlignment(Pos.TOP_CENTER);
 		APZLauncher.getBorderPane().setCenter(mainPane);
+		APZLauncher.getStage().setTitle("APZ Application - Pay for Booking");
 	}
 	
 	

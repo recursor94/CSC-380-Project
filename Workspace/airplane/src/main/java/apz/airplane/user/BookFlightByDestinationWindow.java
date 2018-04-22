@@ -76,6 +76,7 @@ public class BookFlightByDestinationWindow implements WindowInterface {
 	
 	public void properties() {
 		APZLauncher.getBorderPane().setCenter(mainPane);
+		APZLauncher.getStage().setTitle("APZ Application - Book Flight By Destination");
 	}
 	public void actionEvents() {
 		findFlightButton.setOnAction(event -> {

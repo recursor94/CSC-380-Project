@@ -66,6 +66,7 @@ public class HomeScreenWindow implements WindowInterface {
 		setupTableContents();
 		rootPane.getChildren().addAll(timeLabel, flightTable);
 		APZLauncher.getBorderPane().setCenter(rootPane);
+		APZLauncher.getStage().setTitle("APZ Application - Home Screen");
 		ScrollPane scrollPane = new ScrollPane();
 		scrollPane.setPrefSize(120, 120);
 		scrollPane.setContent(flightTable);
