@@ -18,11 +18,7 @@ import jimmy.pack.PaymentWindow;
 public class APZMenuBar {
 	
 	private MenuBar menuBar;
-<<<<<<< HEAD
-	private Menu fileMenu, flightMenu, accountMenu, tripHistoryMenu;
-=======
-	private Menu fileMenu, flightMenu, accountMenu, bookMenu, homeMenu;
->>>>>>> 38c7d8f958b59b51f932293da016c4277329aeb2
+	private Menu fileMenu, flightMenu, accountMenu, tripHistoryMenu, homeMenu;
 	private MenuItem exitItem, logoutItem;
 	private MenuItem bookATripItem, bookByDateItem, bookByDestinationItem;
 	private MenuItem viewFlightItem, scheduleFlightItem;
@@ -40,12 +36,9 @@ public class APZMenuBar {
 		fileMenu = new Menu("File");
 		flightMenu = new Menu("Flights");
 		accountMenu = new Menu("My Account");
-<<<<<<< HEAD
 		tripHistoryMenu = new Menu("Trip history");
-=======
-		bookMenu = new Menu("Book a trip");
+
 		homeMenu = new Menu("Home");
->>>>>>> 38c7d8f958b59b51f932293da016c4277329aeb2
 		
 		bookATripItem = new MenuItem("Book a trip");
 		bookByDateItem = new MenuItem("Book flight by date");
