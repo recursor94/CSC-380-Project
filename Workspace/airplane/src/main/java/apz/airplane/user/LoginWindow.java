@@ -81,6 +81,7 @@ public class LoginWindow implements WindowInterface {
 		APZLauncher.getBorderPane().setCenter(rootPane);
 		APZLauncher.getStage().setWidth(320);
 		APZLauncher.getStage().setHeight(410);
+		APZLauncher.getStage().setTitle("APZ Application - User Login");
 	}
 	
 	public void actionEvents() {

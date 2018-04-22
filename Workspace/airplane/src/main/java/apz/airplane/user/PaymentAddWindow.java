@@ -119,11 +119,13 @@ public class PaymentAddWindow implements WindowInterface {
 	}
 	
 	public void properties() {
-		if (stage == null) 
+		if (stage == null) {
 			APZLauncher.getBorderPane().setCenter(mainPane);
+			APZLauncher.getStage().setTitle("APZ Application - Add Payment Method");
+		}
 		else {
 			stage.setScene(new Scene(mainPane, 500, 500));
-			stage.setTitle("HERRO MISTA");
+			stage.setTitle("APZ Application - Add Payment Method");
 			stage.show();
 		}
 	}

@@ -77,6 +77,7 @@ public class BookingResultWindow implements WindowInterface {
 		img.setFitHeight(150);
 		mainPane.setAlignment(Pos.TOP_CENTER);
 		APZLauncher.getBorderPane().setCenter(mainPane);
+		APZLauncher.getStage().setTitle(("APZ Application - Booking Results"));
 	}
 	
 }

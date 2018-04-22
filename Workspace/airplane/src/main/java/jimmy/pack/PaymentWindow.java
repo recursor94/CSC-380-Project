@@ -91,6 +91,7 @@ public class PaymentWindow implements WindowInterface {
 		gridPane.setAlignment(Pos.TOP_CENTER);
 		
 		APZLauncher.getBorderPane().setCenter(mainPane);
+		APZLauncher.getStage().setTitle("APZ Application - Payment Methods");
 	}
 	
 	private void populateComboBox() {

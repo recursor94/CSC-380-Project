@@ -73,6 +73,7 @@ public class RegisterWindow implements WindowInterface {
 	
 	public void properties() {
 		APZLauncher.getBorderPane().setCenter(rootPane);
+		APZLauncher.getStage().setTitle("APZ Application - Register Account");
 	}
 	
 	public void actionEvents() {
