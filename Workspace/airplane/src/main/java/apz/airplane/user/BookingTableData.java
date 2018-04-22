@@ -8,7 +8,7 @@ import apz.airplane.model.Booking;
 import apz.airplane.model.Flight;
 import apz.airplane.model.Time;
 
-public class BookingInformation {
+public class BookingTableData {
 
 	private Airport departureAirport, destinationAirport;
 	private LocalDate arriveDate, departureDate;
@@ -21,7 +21,7 @@ public class BookingInformation {
 	private Flight flight;
 	private double tripCost;
 	
-	public BookingInformation(Booking booking) {
+	public BookingTableData(Booking booking) {
 		setFlight(booking.getFlight());
 		setDepartureAirport(getFlight().getDepartureAirport());
 		setDestinationAirport(getFlight().getDestinationAirport());
