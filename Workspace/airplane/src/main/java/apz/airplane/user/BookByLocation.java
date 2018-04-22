@@ -9,14 +9,13 @@ import apz.airplane.util.FilePath;
 import apz.airplane.util.MessageBox;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -28,7 +27,6 @@ public class BookByLocation implements WindowInterface {
 	private ImageView img;
 	private VBox mainPane;
 	private GridPane gridPane;
-	private HBox buttonBox;
 	private Text header;
 	private ListView<Flight> flightView;
 	private ArrayList <Flight> flightList;
@@ -46,7 +44,6 @@ public class BookByLocation implements WindowInterface {
 		img = new ImageView(new Image(FilePath.LOGIN_IMAGE));
 		gridPane = new GridPane();
 		mainPane = new VBox(10);
-		buttonBox = new HBox(10);
 		header = new Text("Find and Book Flights by Location");
 		flightView = new ListView <>();
 	    flightList = new ArrayList<>();
@@ -60,15 +57,11 @@ public class BookByLocation implements WindowInterface {
 		img.setFitWidth(150);
 		img.setFitHeight(150);
 		
-		
 		header.setFont(new Font(28));
 		
 		bookFlightButton.setDisable(true);
 		
 		populateComboBox();
-		
-		buttonBox.getChildren().addAll(findFlightButton, bookFlightButton);
-		buttonBox.setAlignment(Pos.CENTER);
 		
 		gridPane.setHgap(10);
 		gridPane.setVgap(10);
@@ -80,7 +73,7 @@ public class BookByLocation implements WindowInterface {
 		
 		gridPane.setAlignment(Pos.CENTER);
 		
-		mainPane.getChildren().addAll(img, header, gridPane, flightView, findFlightButton, bookFlightButton);
+		mainPane.getChildren().addAll(img, header, gridPane,findFlightButton, flightView, bookFlightButton);
 		
 		mainPane.setAlignment(Pos.CENTER);
 	}
@@ -103,6 +96,14 @@ public class BookByLocation implements WindowInterface {
 				//new CheckBaggageWindow(flightView.getSelectionModel().getSelectedItem());
 				new BookingPaymentWindow(flightView.getSelectionModel().getSelectedItem());
 		});
+		
+		destinationBox.setOnAction(event -> {
+			comboBoxEvents(departureBox);
+		});
+		
+		departureBox.setOnAction(event -> {
+			comboBoxEvents(destinationBox);
+		});
 	}
 	
 	private void populateComboBox() {
@@ -123,11 +124,26 @@ public class BookByLocation implements WindowInterface {
 			}
 		}
 	}
+	
+	private void comboBoxEvents(ComboBox<String> box) {
+		String depart = "1", arrive = "2";
+
+		if (destinationBox.getSelectionModel().getSelectedItem() != null
+				&& !destinationBox.getSelectionModel().getSelectedItem().isEmpty())
+			arrive = destinationBox.getSelectionModel().getSelectedItem();
+
+		if (departureBox.getSelectionModel().getSelectedItem() != null
+				&& !departureBox.getSelectionModel().getSelectedItem().isEmpty())
+			depart = departureBox.getSelectionModel().getSelectedItem();
+
+		if (depart.equals(arrive))
+			box.setValue(null);
+	}
 
 	private ArrayList<Flight> findFlights() {
 		ArrayList<Flight> searchFlights = APZState.loadFlights();
 		ArrayList<Flight> flightsFound = new ArrayList<>();
-		if(destinationBox.getSelectionModel().getSelectedItem().equals(null) || departureBox.getSelectionModel().getSelectedItem().equals(null)) {
+		if(destinationBox.getSelectionModel().getSelectedItem() == null || departureBox.getSelectionModel().getSelectedItem() == null) {
 			MessageBox.message(AlertType.ERROR, "ERROR: Invalid Data Entry", "You must enter a current location and desired destination");
 		}
 		else {	
@@ -144,7 +160,8 @@ public class BookByLocation implements WindowInterface {
 			for (int i = 0; i < flightList.size(); i++)
 				flightView.getItems().add(flightList.get(i));
 			if (flightView.getItems().isEmpty()) {
-				MessageBox.message(AlertType.INFORMATION, "No Flights Found", "There are no flights going to " + destination);
+				MessageBox.message(AlertType.INFORMATION, "No Flights Found", "There are no flights going from " + departure +
+						" to " + destination);
 			}
 		}
 		return flightsFound;
