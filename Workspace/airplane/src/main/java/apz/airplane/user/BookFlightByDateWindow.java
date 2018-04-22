@@ -3,9 +3,9 @@ package apz.airplane.user;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-import apz.airplane.admin.AdminState;
 import apz.airplane.model.Flight;
 import apz.airplane.util.APZState;
+import apz.airplane.util.FilePath;
 import apz.airplane.util.MessageBox;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert.AlertType;
@@ -13,8 +13,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -22,8 +23,8 @@ import jimmy.pack.BookingPaymentWindow;
 import jimmy.pack.WindowInterface;
 
 public class BookFlightByDateWindow implements WindowInterface {
+	private ImageView img;
 	private GridPane gridPane;
-	private HBox buttonBox;
 	private Text header, listText;
 	private VBox mainPane;
 	private ListView<Flight> flightView;
@@ -39,8 +40,8 @@ public class BookFlightByDateWindow implements WindowInterface {
 	}
 
 	public void initialize() {
+		img = new ImageView(new Image(FilePath.LOGIN_IMAGE));
 		mainPane = new VBox(10);
-		buttonBox = new HBox(10);
 		gridPane = new GridPane();
 		header = new Text("Find and Book Flights by Date");
 		listText = new Text("List of flights on selected date");
@@ -52,6 +53,9 @@ public class BookFlightByDateWindow implements WindowInterface {
 	}
 
 	public void content() {
+		img.setFitWidth(150);
+		img.setFitHeight(150);
+		
 		header.setFont(new Font(28));
 		listText.setFont(new Font(20));
 		
@@ -59,9 +63,6 @@ public class BookFlightByDateWindow implements WindowInterface {
 		
 		calendar.setEditable(false);
 		calendar.setMaxWidth(200);
-		
-		buttonBox.getChildren().addAll(findFlightButton, bookFlightButton);
-		buttonBox.setAlignment(Pos.CENTER);
 		
 		gridPane.setHgap(10);
 		gridPane.setVgap(10);
@@ -71,7 +72,7 @@ public class BookFlightByDateWindow implements WindowInterface {
 		
 		gridPane.setAlignment(Pos.CENTER);
 		
-		mainPane.getChildren().addAll(header, gridPane, listText, flightView, buttonBox);
+		mainPane.getChildren().addAll(img, header, gridPane, findFlightButton, listText, flightView, bookFlightButton);
 
 		mainPane.setAlignment(Pos.CENTER);
 	}

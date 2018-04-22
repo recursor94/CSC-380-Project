@@ -18,11 +18,16 @@ import jimmy.pack.PaymentWindow;
 public class APZMenuBar {
 	
 	private MenuBar menuBar;
+<<<<<<< HEAD
 	private Menu fileMenu, flightMenu, accountMenu, tripHistoryMenu;
+=======
+	private Menu fileMenu, flightMenu, accountMenu, bookMenu, homeMenu;
+>>>>>>> 38c7d8f958b59b51f932293da016c4277329aeb2
 	private MenuItem exitItem, logoutItem;
 	private MenuItem bookATripItem, bookByDateItem, bookByDestinationItem;
 	private MenuItem viewFlightItem, scheduleFlightItem;
 	private MenuItem manageAccountItem, managePaymentItem, manageBookingItem;
+	private MenuItem returnHomeMenuItem;
 	
 	
 	public APZMenuBar() {
@@ -35,7 +40,12 @@ public class APZMenuBar {
 		fileMenu = new Menu("File");
 		flightMenu = new Menu("Flights");
 		accountMenu = new Menu("My Account");
+<<<<<<< HEAD
 		tripHistoryMenu = new Menu("Trip history");
+=======
+		bookMenu = new Menu("Book a trip");
+		homeMenu = new Menu("Home");
+>>>>>>> 38c7d8f958b59b51f932293da016c4277329aeb2
 		
 		bookATripItem = new MenuItem("Book a trip");
 		bookByDateItem = new MenuItem("Book flight by date");
@@ -49,6 +59,8 @@ public class APZMenuBar {
 		manageAccountItem = new MenuItem("Information");
 		managePaymentItem = new MenuItem("Payment");
 		manageBookingItem = new MenuItem("Booking");
+		
+		returnHomeMenuItem = new MenuItem("Return to Homescreen");
 	}
 	
 	private void content() {
@@ -56,7 +68,8 @@ public class APZMenuBar {
 		fileMenu.getItems().addAll(exitItem, new SeparatorMenuItem(), logoutItem);
 		flightMenu.getItems().addAll(tripHistoryMenu, viewFlightItem, scheduleFlightItem);
 		accountMenu.getItems().addAll(manageAccountItem, managePaymentItem, manageBookingItem);
-		menuBar.getMenus().addAll(fileMenu, flightMenu, accountMenu);
+		homeMenu.getItems().add(returnHomeMenuItem);
+		menuBar.getMenus().addAll(fileMenu, flightMenu, accountMenu, homeMenu);
 		
 		APZLauncher.getBorderPane().setTop(menuBar);
 	}
@@ -96,11 +109,15 @@ public class APZMenuBar {
 		});
 		
 		bookByDestinationItem.setOnAction(event -> {
-			new BookFlightByDestinationWindow();
+			new BookByLocation();
 		});
 		
 		bookATripItem.setOnAction(event -> {
 			new BookingWindow();
+		});
+		
+		returnHomeMenuItem.setOnAction(event -> {
+			new HomeScreenWindow();
 		});
 	}
 

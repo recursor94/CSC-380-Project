@@ -1,6 +1,8 @@
 package apz.airplane.user;
 
+import java.text.NumberFormat;
 import java.time.LocalDate;
+import java.util.Locale;
 
 import apz.airplane.model.Airplane;
 import apz.airplane.model.Airport;
@@ -19,7 +21,7 @@ public class BookingTableData {
 	private String airline;
 	private LocalDate bookDate;
 	private Flight flight;
-	private double tripCost;
+	private String tripCost;
 	
 	public BookingTableData(Booking booking) {
 		setFlight(booking.getFlight());
@@ -116,12 +118,13 @@ public class BookingTableData {
 		this.bookDate = bookDate;
 	}
 
-	public double getTripCost() {
+	public String getTripCost() {
 		return tripCost;
 	}
 
 	public void setTripCost(double tripCost) {
-		this.tripCost = tripCost;
+		NumberFormat formatter = NumberFormat.getCurrencyInstance(Locale.US);
+		this.tripCost = formatter.format(tripCost);
 	}
 
 	public Flight getFlight() {
