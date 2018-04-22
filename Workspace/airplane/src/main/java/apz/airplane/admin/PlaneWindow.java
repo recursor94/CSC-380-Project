@@ -116,7 +116,8 @@ public class PlaneWindow {
 		Stage stage = new Stage();
 		stage.initModality(Modality.APPLICATION_MODAL);
 		stage.setTitle("Create Planes");
-		stage.setScene(new Scene(mainPane, 300, 500));
+		stage.setScene(new Scene(mainPane, 325, 500));
+		stage.setResizable(false);
 		stage.show();
 	}
 

@@ -182,6 +182,7 @@ public class FlightWindow {
 		stage.setTitle("Create Flights");
 		stage.initModality(Modality.APPLICATION_MODAL);
 		stage.setScene(new Scene(mainPane, 600, 600));
+		stage.setResizable(false);
 		stage.show();
 	}
 
