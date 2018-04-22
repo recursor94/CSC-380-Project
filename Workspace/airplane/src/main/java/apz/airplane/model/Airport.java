@@ -32,4 +32,18 @@ public class Airport implements Serializable{
 	public String toString() {
 		return name + ", " + city;
 	}
+	@Override
+	public boolean equals(Object o) {
+		if(o == null) {
+			return false;
+		}
+		if(!(o instanceof Airport)) {
+			return false;
+		}
+		Airport a = (Airport) o;
+		if(a.getName().equals(this.getName()) && a.getCity().equals(this.getCity())) {
+			return true;
+		}
+		return false;
+	}
 }

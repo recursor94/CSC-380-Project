@@ -52,7 +52,6 @@ public class AirportWindow {
 	private HBox createButtonBox;
 	private Separator headerSeperator;
 
-
 	public AirportWindow() {
 		initialize();
 		content();
@@ -89,12 +88,12 @@ public class AirportWindow {
 		headerBox.getChildren().add(headerSeperator);
 		removeButton.setMaxWidth(Double.MAX_VALUE);
 		createButton.setMaxWidth(Double.MAX_VALUE);
-		HBox.setHgrow(createButton, Priority.ALWAYS);
+		// HBox.setHgrow(createButton, Priority.ALWAYS);
 		HBox.setHgrow(removeButton, Priority.ALWAYS);
 		createButtonBox.getChildren().add(createButton);
-		createButtonBox.setAlignment(Pos.CENTER_LEFT);
+		createButtonBox.setAlignment(Pos.BASELINE_CENTER);
 		removeButtonBox.getChildren().add(removeButton);
-		buttonBox.getChildren().addAll(airportView, removeButtonBox, createButtonBox);
+		buttonBox.getChildren().addAll(airportView, removeButtonBox);
 		gridPane.setVgap(5);
 		gridPane.setHgap(5);
 		System.out.println(gridPane);
@@ -103,12 +102,13 @@ public class AirportWindow {
 		gridPane.add(airportNameField, 1, 0);
 		gridPane.add(city, 0, 1);
 		gridPane.add(airportProvinceBox, 1, 1);
-		mainPane.getChildren().addAll(windowHeader,headerBox,gridPane,buttonBox);
+		// gridPane.add(createButton, 0, 2);
+		mainPane.getChildren().addAll(windowHeader, headerBox, gridPane, createButtonBox, buttonBox);
 		mainPane.setAlignment(Pos.CENTER);
 		setupTableContent();
 	}
-	
-	public void setupTableContent() {	
+
+	public void setupTableContent() {
 		airportView.setItems(FXCollections.observableArrayList(airportList));
 		airportView.getColumns().addAll(nameColumn, provinceColumn);
 		nameColumn.setCellValueFactory(new PropertyValueFactory<Airport, String>("name"));
@@ -119,6 +119,7 @@ public class AirportWindow {
 		nameColumn.setResizable(false);
 		provinceColumn.setResizable(false);
 	}
+
 	public void formatHeader() {
 		windowHeader.setStyle("-fx-font: 24 arial;");
 		windowHeader.setTextAlignment(TextAlignment.CENTER);
@@ -137,7 +138,7 @@ public class AirportWindow {
 
 		createButton.setOnAction(event -> {
 			if (airportNameField.getText().isEmpty() || airportNameField.getText().isEmpty())
-				MessageBox.message(AlertType.ERROR, "No Data Entered", "You must enter an aiport name");
+				MessageBox.message(AlertType.ERROR, "No Data Entered", "You must enter an airport name");
 			else if (createButton.getText().equals("Create Airport"))
 				createAirport(new Airport(airportNameField.getText(), airportProvinceBox.getValue()));
 			else if (createButton.getText().equals("Change Airport"))
@@ -150,7 +151,8 @@ public class AirportWindow {
 				if (airport != null)
 					airportList.remove(airport);
 				AdminState.saveAirports(airportList);
-				FlightWindow.populateComboBoxes(); // NEED TO CHANGE BUT THIS UPDATES COMBOBOX. NEED TO HAVE STATIC BOXES WITH THESE DATA INSIDE?
+				FlightWindow.populateComboBoxes(); // NEED TO CHANGE BUT THIS UPDATES COMBOBOX. NEED TO HAVE STATIC
+													// BOXES WITH THESE DATA INSIDE?
 				loadFile();
 			} else {
 				MessageBox.message(AlertType.ERROR, "ERROR: No Airport Selected",
@@ -164,8 +166,7 @@ public class AirportWindow {
 				createButton.setText("Change Airport");
 				airportNameField.setText(airport.getName());
 				airportProvinceBox.setValue(airport.getCity());
-			}
-			else 
+			} else
 				createButton.setText("Create Airport");
 		});
 
@@ -192,20 +193,33 @@ public class AirportWindow {
 		resetFields();
 		loadFile();
 	}
-	
+
 	private void changeAirport() {
+		// for (int i = 0; i < airportList.size(); i++) {
+		// if (airportList.get(i) == findAirport()) {
+		// System.out.println("Airport list size: " + airportList.size());
+		// airportList.get(i).setName(airportNameField.getText());
+		// airportList.get(i).setCity(airportProvinceBox.getValue());
+		// System.out.println("Found and changed!");
+		// AdminState.saveAirports(airportList);
+		// FlightWindow.populateComboBoxes();
+		// resetFields();
+		// loadFile();
+		// return;
+		// }
 		for (int i = 0; i < airportList.size(); i++) {
-			if (airportList.get(i) == findAirport()) {
+				System.out.println("SIZE: " + airportList.size());
+			if (airportList.get(i).equals(findAirport())) {
+				System.out.println("FOUND");
 				airportList.get(i).setName(airportNameField.getText());
 				airportList.get(i).setCity(airportProvinceBox.getValue());
-				System.out.println("Found and changed!");
-				AdminState.saveAirports(airportList);
-				FlightWindow.populateComboBoxes();
-				resetFields();
-				loadFile();
-				return;
 			}
+			break;
 		}
+		AdminState.saveAirports(airportList);
+		FlightWindow.populateComboBoxes();
+		resetFields();
+		loadFile();
 	}
 
 	private void resetFields() {
@@ -216,11 +230,14 @@ public class AirportWindow {
 
 	private Airport findAirport() {
 		String sAirport = airportView.getSelectionModel().getSelectedItem().toString();
+		System.out.println(sAirport);
 		for (Airport airport : airportList) {
 			if (airport.toString().equals(sAirport)) {
+				System.out.println("find airport found it");
 				return airport;
 			}
 		}
+		System.out.println("Null");
 		return null;
 	}
 
