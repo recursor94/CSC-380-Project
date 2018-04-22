@@ -32,7 +32,7 @@ public class CancelFlightWindow {
 	private TableColumn<BookingTableData, String> arriveTimeColumn, departureTimeColumn, airlineColumn;
 	private TableColumn<BookingTableData, Airport> departureAirportColumn, destinationAirportColumn;
 	private TableColumn<BookingTableData, LocalDate> departureDateColumn, bookDateColumn;
-	private TableColumn<BookingTableData, Double> tripCostColumn;
+	private TableColumn<BookingTableData, String> tripCostColumn;
 	private Separator headerHorizontalSeparator;
 	private VBox headerBox;
 	private VBox bottomContentBox;
