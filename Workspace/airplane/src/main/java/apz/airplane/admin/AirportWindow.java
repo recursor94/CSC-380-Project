@@ -207,14 +207,13 @@ public class AirportWindow {
 		// loadFile();
 		// return;
 		// }
-		for (int i = 0; i < airportList.size(); i++) {
-				System.out.println("SIZE: " + airportList.size());
-			if (airportList.get(i).equals(findAirport())) {
-				System.out.println("FOUND");
-				airportList.get(i).setName(airportNameField.getText());
-				airportList.get(i).setCity(airportProvinceBox.getValue());
+		for (Airport airport : airportList) {
+			if (airport.equals(findAirport())) {
+				//System.out.println("FOUND");
+				airport.setName(airportNameField.getText());
+				airport.setCity(airportProvinceBox.getValue());
+				break;
 			}
-			break;
 		}
 		AdminState.saveAirports(airportList);
 		FlightWindow.populateComboBoxes();
