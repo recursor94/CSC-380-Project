@@ -101,7 +101,7 @@ public class APZMenuBar {
 		});
 		
 		bookByDestinationItem.setOnAction(event -> {
-			new BookFlightByDestinationWindow();
+			new BookByLocation();
 		});
 		
 		bookATripItem.setOnAction(event -> {
