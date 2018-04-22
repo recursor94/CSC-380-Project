@@ -62,8 +62,8 @@ public class APZMenuBar {
 		});
 		
 		logoutItem.setOnAction(event -> {
-			new LoginWindow();
-			APZLauncher.getBorderPane().setTop(null);
+			new LogoutWindow();
+			//APZLauncher.getBorderPane().setTop(null);
 		});
 		
 		viewFlightItem.setOnAction(event -> {

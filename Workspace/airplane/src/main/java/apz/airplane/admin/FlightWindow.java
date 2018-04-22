@@ -141,13 +141,13 @@ public class FlightWindow {
 		
 
 		removeFlightButton.setOnAction(event -> {
-//			Flight flight = flightView.getSelectionModel().getSelectedItem();
-//			flightList.remove(flight);
-//			AdminState.saveFlight(flightList);
-//			loadFlights();
+			Flight flight = flightView.getSelectionModel().getSelectedItem();
+			flightList.remove(flight);
+			AdminState.saveFlight(flightList);
+			loadFlights();
 			
 			//This is not doing exactly what I want yet
-			removeFlights();
+			//removeFlights();
 			removeFlightButton.setDisable(true);
 			resetFields();
 		});
@@ -299,16 +299,6 @@ public class FlightWindow {
 		} else 
 			MessageBox.message(AlertType.ERROR, "Invalid Data Entry", "You must enter data into all fields");
 	}
-	
-//	private Flight findFlight() {
-//		Flight flight = flightView.getSelectionModel().getSelectedItem();
-//		for ( : flightList) {
-//			if (flight.toString().equals(sAirport)) {
-//				return airport;
-//			}
-//		}
-//		return null;
-//	}
 	
 	private void resetFields() {
 		flightNumField.setText("");
