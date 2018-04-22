@@ -76,7 +76,7 @@ public class UserWindow {
 	private void properties() {
 		Stage stage = new Stage();
 		stage.setTitle("Create Users");
-		stage.setScene(new Scene(mainPane, 650, 150));
+		stage.setScene(new Scene(mainPane, 750, 175));
 		stage.show();
 	}
 
@@ -101,7 +101,7 @@ public class UserWindow {
 			MessageBox.message(AlertType.ERROR, "ERROR: The User Name Already Exists",
 					"Please choose a different user name");
 		} else {
-			if (!(username.isEmpty()) && !(password.isEmpty())) {
+			if (!(username.isEmpty()) && !(password.isEmpty()) && !(email.isEmpty())) {
 				if (username.contains(" "))
 					MessageBox.message(AlertType.ERROR, "Invalid User Name",
 							"Your user name cannot contain the empty space character");
@@ -118,8 +118,8 @@ public class UserWindow {
 					loadFile();
 				}
 			} else
-				MessageBox.message(AlertType.ERROR, "ERROR: You must enter a user name and password",
-						"Please enter a user name and password");
+				MessageBox.message(AlertType.ERROR, "ERROR: You must enter a user name. email and password",
+						"Please enter a user name, email and password");
 		}
 	}
 
