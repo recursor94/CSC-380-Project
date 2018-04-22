@@ -139,23 +139,6 @@ public class FlightWindow {
 				removeFlightButton.setDisable(true);
 		});
 		
-		flightView.getSelectionModel().selectedItemProperty().addListener(event -> {
-			removeFlightButton.setDisable(false);
-			Flight flight = flightView.getSelectionModel().getSelectedItem();
-			if(flight != null) {
-				createFlightButton.setText("Change Flight");
-				planeBox.setValue(flight.getPlane());
-				flightNumField.setText(flight.getFlightNum() + "");
-				departAirportBox.setValue(flight.getDepartureAirport().toString());
-				arriveAirportBox.setValue(flight.getDestinationAirport().toString());
-				departDatePicker.setValue(flight.getDepartureDate());
-				arriveDatePicker.setValue(flight.getArriveDate());
-				departTimeBox.setValue(flight.getDepartureTime().getTimeString());
-				arriveTimeBox.setValue(flight.getArrivalTime().getTimeString());			
-			}
-			else
-				createFlightButton.setText("Create Flight");
-		});
 
 		removeFlightButton.setOnAction(event -> {
 //			Flight flight = flightView.getSelectionModel().getSelectedItem();
@@ -172,6 +155,24 @@ public class FlightWindow {
 		flightView.setOnKeyPressed(event -> {
 			if (event.getCode() == KeyCode.ESCAPE)
 				resetFields();
+		});
+		
+		flightView.getSelectionModel().selectedItemProperty().addListener(event -> {
+			removeFlightButton.setDisable(false);
+			Flight flight = flightView.getSelectionModel().getSelectedItem();
+			if(flight != null) {
+				createFlightButton.setText("Change Flight");
+				planeBox.setValue(flight.getPlane());
+				flightNumField.setText(flight.getFlightNum() + "");
+				departAirportBox.setValue(flight.getDepartureAirport().toString());
+				arriveAirportBox.setValue(flight.getDestinationAirport().toString());
+				departDatePicker.setValue(flight.getDepartureDate());
+				arriveDatePicker.setValue(flight.getArriveDate());
+				departTimeBox.setValue(flight.getDepartureTime().getTimeString());
+				arriveTimeBox.setValue(flight.getArrivalTime().getTimeString());			
+			}
+			else
+				createFlightButton.setText("Create Flight");
 		});
 	}
 
@@ -277,7 +278,7 @@ public class FlightWindow {
 					}
 					else {
 						for (int i = 0; i < flightList.size(); i++) {
-							if (flightList.get(i) == flightView.getSelectionModel().getSelectedItem()){
+							if (flightList.get(i) == flightView.getSelectionModel().getSelectedItem()) {
 								flightList.get(i).setPlane(plane);
 								flightList.get(i).setFlightNum(flightNum);
 								flightList.get(i).setArrivalTime(arrival);

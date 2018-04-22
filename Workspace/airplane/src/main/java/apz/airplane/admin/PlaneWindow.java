@@ -51,8 +51,8 @@ public class PlaneWindow {
 		airlineField = new TextField();
 		seatField = new ComboBox<>();
 		header = new Text("Create Planes");
-		createButton = new Button("Create");
-		removeButton = new Button("Remove");
+		createButton = new Button("Create Plane");
+		removeButton = new Button("Remove Plane");
 		loadFile(); 
 	}
 
@@ -127,13 +127,16 @@ public class PlaneWindow {
 		else if (!(IsInteger.isInteger(planeNumField.getText()))) {
 			MessageBox.message(AlertType.ERROR, "Invalid Data", "The plane number must be an integer");
 		} else {
-			planeList.add(new Airplane(Integer.valueOf(planeNumField.getText()), airlineField.getText(),
-					Integer.valueOf(seatField.getSelectionModel().getSelectedItem())));
-			AdminState.savePlane(planeList);
-			System.out.println(planeList);
-			loadFile();
-			System.out.println(planeList);
-			resetFields();
+				int planeNum = Integer.valueOf(planeNumField.getText());
+				String airline = airlineField.getText();
+				int capacity = seatField.getSelectionModel().getSelectedItem();
+				
+				planeList.add(new Airplane(planeNum, airline, capacity));
+				AdminState.savePlane(planeList);
+				System.out.println(planeList);
+				loadFile();
+				System.out.println(planeList);
+				resetFields();
 		}
 	}
 	
