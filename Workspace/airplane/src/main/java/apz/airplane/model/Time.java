@@ -51,7 +51,7 @@ public class Time implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Time [time = " + timeString + "]";
+		return timeString;
 	}
 
 }

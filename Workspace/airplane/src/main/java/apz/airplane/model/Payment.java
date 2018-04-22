@@ -14,6 +14,8 @@ public class Payment implements Serializable {
 	private String expirationDate;
 	private int CCVNum;
 	
+	// each payment should have a trip linked to it.
+	
 	public Payment(String name, String street, String city, String state, int zipcode, long cardNum, String expirationDate, int CCVNum) {
 		this.name = name;
 		this.street = street;

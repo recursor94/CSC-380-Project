@@ -112,7 +112,7 @@ public class BookingPaymentWindow implements WindowInterface {
 			if(paymentBox.getSelectionModel().isEmpty())
 				MessageBox.message(AlertType.ERROR, "ERROR", "You must select a payment method");
 			else if(isCardExpired(paymentBox.getSelectionModel().getSelectedItem()))
-				MessageBox.message(AlertType.ERROR, "Invalid Payment", "The card you have selected has expired. Please select another payment method");
+				MessageBox.message(AlertType.ERROR, "Invalid Payment", "The card you have selected has expired. Please select another payment method");	// this should not be here. Should make card not visible if expired.
 			else {
 					Booking trip = new Booking(flight, LocalDate.now(), user, cost);
 					user.getTripList().add(trip);
