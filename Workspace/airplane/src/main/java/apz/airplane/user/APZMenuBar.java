@@ -112,6 +112,9 @@ public class APZMenuBar {
 		returnHomeMenuItem.setOnAction(event -> {
 			new HomeScreenWindow();
 		});
+		scheduleFlightItem.setOnAction(event -> {
+			new BrowseScheduleWindow();
+		});
 	}
 
 }
