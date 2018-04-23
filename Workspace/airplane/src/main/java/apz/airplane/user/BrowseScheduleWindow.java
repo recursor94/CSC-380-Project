@@ -67,7 +67,7 @@ public class BrowseScheduleWindow implements WindowInterface {
 		dateBox.setAlignment(Pos.BASELINE_CENTER);
 		mainPane.getChildren().addAll(windowHeaderBox, dateBox, flightTable);
 		APZLauncher.getBorderPane().setCenter(mainPane);
-		APZLauncher.getStage().setTitle("Scheduled Flights");
+		APZLauncher.getStage().setTitle("APZ Application - Scheduled Flights");
 		ScrollPane scrollPane = new ScrollPane();
 		scrollPane.setPrefSize(120, 120);
 		scrollPane.setContent(flightTable);

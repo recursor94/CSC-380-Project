@@ -2,8 +2,6 @@ package apz.airplane.admin;
 
 import java.util.ArrayList;
 
-import com.sun.xml.internal.ws.dump.LoggingDumpTube.Position;
-
 import apz.airplane.model.Airport;
 import apz.airplane.model.Province;
 import apz.airplane.util.MessageBox;
@@ -14,8 +12,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.control.Separator;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -26,7 +22,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Modality;
