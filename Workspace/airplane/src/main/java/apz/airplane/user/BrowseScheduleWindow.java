@@ -83,6 +83,7 @@ public class BrowseScheduleWindow implements WindowInterface {
 	public void properties() {
 		APZLauncher.getStage().setWidth(500);
 		APZLauncher.getStage().setHeight(725);
+		APZLauncher.getStage().setTitle("APZ Application - Browse Schedules");
 		flightTable.setMinHeight(APZLauncher.getStage().getHeight() - 10);
 		flightNumber.prefWidthProperty().bind(flightTable.widthProperty().multiply(0.25));
 		departingCity.prefWidthProperty().bind(flightTable.widthProperty().multiply(0.25));
