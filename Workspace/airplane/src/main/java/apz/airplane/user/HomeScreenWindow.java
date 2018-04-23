@@ -7,25 +7,31 @@ import java.util.Calendar;
 
 import apz.airplane.model.Flight;
 import apz.airplane.util.APZState;
+import apz.airplane.util.FilePath;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.geometry.Pos;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 import jimmy.pack.WindowInterface;
 
 public class HomeScreenWindow implements WindowInterface {
+	private ImageView img;
 	private VBox rootPane;
-	private Text timeLabel;
+	private Text timeLabel, header;
 	private Timeline realTimeClock;
 	private TableView<FlightInformation> flightTable;
 	private TableColumn<FlightInformation, Integer> flightNumber;
@@ -58,13 +64,17 @@ public class HomeScreenWindow implements WindowInterface {
 
 	public void content() {
 
+		img.setFitWidth(150);
+		img.setFitHeight(150);
 		flightsToday = getFlightsToday();
 		orderFlightsByTime();
 		timeLabel.setText(LocalDateTime.now().toString());
 		timeLabel.setStyle("-fx-font: 24 arial;");
 		timeLabel.setFill(Color.BLACK);
+		header.setFont(new Font(28));
 		setupTableContents();
-		rootPane.getChildren().addAll(timeLabel, flightTable);
+		rootPane.getChildren().addAll(header, img, timeLabel, flightTable);
+		rootPane.setAlignment(Pos.CENTER);
 		APZLauncher.getBorderPane().setCenter(rootPane);
 		APZLauncher.getStage().setTitle("APZ Application - Home Screen");
 		ScrollPane scrollPane = new ScrollPane();
@@ -78,6 +88,7 @@ public class HomeScreenWindow implements WindowInterface {
 	}
 
 	public void initialize() {
+		img = new ImageView(new Image(FilePath.LOGIN_IMAGE));
 		flightsToday = new ArrayList<>();
 		rootPane = new VBox(10);
 		flightTable = new TableView<>();
@@ -86,6 +97,7 @@ public class HomeScreenWindow implements WindowInterface {
 		destinationCity = new TableColumn<>("Departing To");
 		departingTime = new TableColumn<>("Scheduled");
 		timeLabel = new Text("00:00");
+		header = new Text("Welcome to APZ Booking!");
 		setupClock();
 	}
 

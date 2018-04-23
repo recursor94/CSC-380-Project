@@ -161,7 +161,7 @@ public class FlightWindow {
 			removeFlightButton.setDisable(false);
 			Flight flight = flightView.getSelectionModel().getSelectedItem();
 			if(flight != null) {
-				createFlightButton.setText("Change Flight");
+				//createFlightButton.setText("Change Flight");
 				planeBox.setValue(flight.getPlane());
 				flightNumField.setText(flight.getFlightNum() + "");
 				departAirportBox.setValue(flight.getDepartureAirport().toString());
@@ -171,8 +171,8 @@ public class FlightWindow {
 				departTimeBox.setValue(flight.getDepartureTime().getTimeString());
 				arriveTimeBox.setValue(flight.getArrivalTime().getTimeString());			
 			}
-			else
-				createFlightButton.setText("Create Flight");
+//			else
+//				createFlightButton.setText("Create Flight");
 		});
 	}
 
