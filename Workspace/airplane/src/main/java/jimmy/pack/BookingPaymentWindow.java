@@ -40,7 +40,7 @@ public class BookingPaymentWindow implements WindowInterface {
 	private Button confirmButton;
 	
 	private Flight flight;
-	private double cost;
+	private double cost, baggagePrice;
 	private Label costLabel;
 	
 	public BookingPaymentWindow(Flight flight) {
@@ -114,7 +114,7 @@ public class BookingPaymentWindow implements WindowInterface {
 			else if(isCardExpired(paymentBox.getSelectionModel().getSelectedItem()))
 				MessageBox.message(AlertType.ERROR, "Invalid Payment", "The card you have selected has expired. Please select another payment method");	// this should not be here. Should make card not visible if expired.
 			else {
-					Booking trip = new Booking(flight, LocalDate.now(), user, cost);
+					Booking trip = new Booking(flight, LocalDate.now(), user, (cost + baggagePrice));
 					user.getTripList().add(trip);
 					MessageBox.message(AlertType.INFORMATION, null, "Trip has been booked!");
 					APZState.saveInformation();
@@ -133,7 +133,7 @@ public class BookingPaymentWindow implements WindowInterface {
 		});
 		
 		baggageBox.setOnAction(event -> {
-			double baggagePrice = 30.35 * baggageBox.getValue();
+			baggagePrice = 30.35 * baggageBox.getValue();
 			costLabel.setText("$" + (cost + baggagePrice));
 		});
 	}
