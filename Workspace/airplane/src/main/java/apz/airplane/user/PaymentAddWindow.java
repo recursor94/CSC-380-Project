@@ -4,11 +4,14 @@ import apz.airplane.model.Flight;
 import apz.airplane.model.Payment;
 import apz.airplane.model.User;
 import apz.airplane.util.APZState;
+import apz.airplane.util.FilePath;
 import apz.airplane.util.IsInteger;
 import apz.airplane.util.MessageBox;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -26,7 +29,7 @@ import jimmy.pack.PaymentWindow;
 import jimmy.pack.WindowInterface;
 
 public class PaymentAddWindow implements WindowInterface {
-	
+	private ImageView img;
 	private Text header;
 	private VBox mainPane;
 	private HBox expirationPane, infoPane;
@@ -56,6 +59,7 @@ public class PaymentAddWindow implements WindowInterface {
 	}
 	
 	public void initialize() {
+		img = new ImageView(new Image(FilePath.LOGIN_IMAGE));
 		header = new Text("Enter Payment Information");
 		mainPane = new VBox(10);
 		infoPane = new HBox(10);
@@ -74,6 +78,8 @@ public class PaymentAddWindow implements WindowInterface {
 	}
 	
 	public void content() {
+		img.setFitWidth(150);
+		img.setFitHeight(150);
 		
 		header.setFont(new Font(32));
 		
@@ -114,7 +120,7 @@ public class PaymentAddWindow implements WindowInterface {
 		
 		gridPane.setAlignment(Pos.CENTER);
 		
-		mainPane.getChildren().addAll(header, gridPane, submitButton);
+		mainPane.getChildren().addAll(img, header, gridPane, submitButton);
 		mainPane.setAlignment(Pos.CENTER);
 	}
 	
