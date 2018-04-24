@@ -17,6 +17,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Separator;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
@@ -113,6 +114,16 @@ public class CancelFlightWindow {
 			}
 
 		});
+		tripTable.setRowFactory(tableView -> {
+			TableRow<BookingTableData> row = new TableRow<>();
+			row.setOnMouseClicked(event -> {
+				if(event.getClickCount() >= 2 &&!row.isEmpty()) {
+					BookingTableData rowData = row.getItem();
+					new TripResultWindow(rowData.getBookingRef());
+				}
+			});
+			return row;
+		});
 	}
 
 	private void setupTableContents() {
@@ -127,7 +138,7 @@ public class CancelFlightWindow {
 		bookDateColumn.setCellValueFactory(new PropertyValueFactory<>("bookDate"));
 		tripCostColumn.setCellValueFactory(new PropertyValueFactory<>("tripCost"));
 		tripTable.getColumns().addAll(flightNumberColumn, airlineColumn, departureDateColumn, arriveTimeColumn,
-				departureTimeColumn, departureAirportColumn, destinationAirportColumn, bookDateColumn, tripCostColumn);
+				departureTimeColumn, departureAirportColumn, destinationAirportColumn, bookDateColumn);
 		tripTable.setPrefHeight(APZLauncher.getBorderPane().getHeight() -10);
 	}
 

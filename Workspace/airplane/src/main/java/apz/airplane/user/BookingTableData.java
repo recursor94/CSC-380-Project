@@ -22,6 +22,7 @@ public class BookingTableData {
 	private LocalDate bookDate;
 	private Flight flight;
 	private String tripCost;
+	private Booking bookingRef;
 	
 	public BookingTableData(Booking booking) {
 		setFlight(booking.getFlight());
@@ -36,6 +37,7 @@ public class BookingTableData {
 		setAirline(getFlight().getPlane().getAirline());	
 		setBookDate(booking.getBookDate());
 		setTripCost(booking.getTripCost());
+		setBookingRef(booking);
 	}
 
 	public Airport getDepartureAirport() {
@@ -133,5 +135,13 @@ public class BookingTableData {
 
 	public void setFlight(Flight flight) {
 		this.flight = flight;
+	}
+
+	public Booking getBookingRef() {
+		return bookingRef;
+	}
+
+	public void setBookingRef(Booking bookingRef) {
+		this.bookingRef = bookingRef;
 	}
 }
