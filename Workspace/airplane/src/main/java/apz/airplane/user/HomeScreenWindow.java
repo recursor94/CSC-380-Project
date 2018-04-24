@@ -1,5 +1,7 @@
 package apz.airplane.user;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -31,7 +33,7 @@ import jimmy.pack.WindowInterface;
 public class HomeScreenWindow implements WindowInterface {
 	private ImageView img;
 	private VBox rootPane;
-	private Text timeLabel, header;
+	private Text timeLabel, dateLabel, header;
 	private Timeline realTimeClock;
 	private TableView<FlightInformation> flightTable;
 	private TableColumn<FlightInformation, Integer> flightNumber;
@@ -71,9 +73,13 @@ public class HomeScreenWindow implements WindowInterface {
 		timeLabel.setText(LocalDateTime.now().toString());
 		timeLabel.setStyle("-fx-font: 24 arial;");
 		timeLabel.setFill(Color.BLACK);
+		dateLabel.setText(LocalDateTime.now().toString());
+		dateLabel.setStyle("-fx-font: 24 arial;");
+		dateLabel.setFill(Color.BLACK);
+
 		header.setFont(new Font(28));
 		setupTableContents();
-		rootPane.getChildren().addAll(header, img, timeLabel, flightTable);
+		rootPane.getChildren().addAll(header, img, dateLabel, timeLabel, flightTable);
 		rootPane.setAlignment(Pos.CENTER);
 		APZLauncher.getBorderPane().setCenter(rootPane);
 		APZLauncher.getStage().setTitle("APZ Application - Home Screen");
@@ -96,6 +102,7 @@ public class HomeScreenWindow implements WindowInterface {
 		departingCity = new TableColumn<>("Arriving From");
 		destinationCity = new TableColumn<>("Departing To");
 		departingTime = new TableColumn<>("Scheduled");
+		dateLabel = new Text("");
 		timeLabel = new Text("00:00");
 		header = new Text("Welcome to APZ Booking!");
 		setupClock();
@@ -117,21 +124,18 @@ public class HomeScreenWindow implements WindowInterface {
 			timeHour = cal.get(Calendar.HOUR);
 			timeMinute = cal.get(Calendar.MINUTE);
 			// timeHour++;
-			String minuteString = timeMinute + "";
 			String timeOfDay = "AM";
 
 			if (cal.get(Calendar.AM_PM) == Calendar.PM) {
 				timeOfDay = "PM";
 			}
-			if (timeHour >= 12) {
-				timeHour -= 12;
-			} else if (timeHour == 0) {
-				timeHour = 12;
-			}
-			if (timeMinute < 10) {
-				minuteString = "0" + timeMinute;
-			}
-			timeLabel.setText(timeHour + ":" + (minuteString) + " " + timeOfDay);
+			DateFormat dateFormat = new SimpleDateFormat("MMMMM dd");
+			DateFormat timeFormat = new SimpleDateFormat("hh:mm");
+			String sDate = dateFormat.format(cal.getTime());
+			String sTime = timeFormat.format(cal.getTime());
+			//timeLabel.setText(timeHour + ":" + (minuteString) + " " + timeOfDay);
+			timeLabel.setText(sTime + " " + timeOfDay);
+			dateLabel.setText(sDate);
 		}), new KeyFrame(Duration.minutes(1), e -> {
 			for (FlightInformation flight : flightsToday) {
 				if (flight != null) {
