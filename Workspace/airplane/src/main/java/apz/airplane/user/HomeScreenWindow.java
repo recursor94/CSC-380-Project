@@ -129,7 +129,7 @@ public class HomeScreenWindow implements WindowInterface {
 			if (cal.get(Calendar.AM_PM) == Calendar.PM) {
 				timeOfDay = "PM";
 			}
-			DateFormat dateFormat = new SimpleDateFormat("MMMMM dd");
+			DateFormat dateFormat = new SimpleDateFormat("EEEE, MMMMM dd");
 			DateFormat timeFormat = new SimpleDateFormat("hh:mm");
 			String sDate = dateFormat.format(cal.getTime());
 			String sTime = timeFormat.format(cal.getTime());
