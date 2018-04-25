@@ -8,12 +8,13 @@ import apz.airplane.util.MessageBox;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.input.KeyCode;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.Separator;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -29,7 +30,7 @@ public class PlaneWindow {
 	private HBox buttonBox;
 	private ArrayList<Airplane> planeList;
 	private ListView<Airplane> planeView;
-	private Text header;
+	private Text header, planeText;
 	private TextField planeNumField, airlineField;
 	private ComboBox<Integer> seatField;
 	private Button createButton, removeButton;
@@ -51,6 +52,7 @@ public class PlaneWindow {
 		airlineField = new TextField();
 		seatField = new ComboBox<>();
 		header = new Text("Create Planes");
+		planeText = new Text("List of Created Planes");
 		createButton = new Button("Create Plane");
 		removeButton = new Button("Remove Plane");
 		loadFile(); 
@@ -65,6 +67,7 @@ public class PlaneWindow {
 		removeButton.setDisable(true);
 		
 		header.setFont(new Font(32));
+		planeText.setFont(new Font(18));
 
 		buttonBox.getChildren().addAll(createButton, removeButton);
 		buttonBox.setAlignment(Pos.CENTER);
@@ -83,7 +86,7 @@ public class PlaneWindow {
 		gridPane.add(new Label("Seat Capacity"), 0, 2);
 		gridPane.add(seatField, 1, 2);
 
-		mainPane.getChildren().addAll(header, gridPane, createButton, planeView, removeButton);
+		mainPane.getChildren().addAll(header, new Separator(), gridPane, createButton, new Separator(), planeText, planeView, removeButton);
 		mainPane.setAlignment(Pos.CENTER);
 	}
 

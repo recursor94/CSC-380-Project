@@ -6,6 +6,7 @@ import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Separator;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -53,7 +54,7 @@ public class HomeWindow {
 		gridPane.add(launchButton, 1, 1);
 		header.setFont(new Font(30));
 		mainPane.setAlignment(Pos.TOP_CENTER);
-		mainPane.getChildren().addAll(header, img, gridPane);
+		mainPane.getChildren().addAll(header, img, new Separator(), gridPane);
 	}
 	
 	private void actionEvents(Stage primaryStage) {

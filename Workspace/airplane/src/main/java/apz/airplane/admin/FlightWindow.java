@@ -5,7 +5,6 @@ import java.util.ArrayList;
 
 import apz.airplane.model.Airplane;
 import apz.airplane.model.Airport;
-import apz.airplane.model.Booking;
 import apz.airplane.model.Flight;
 import apz.airplane.model.Time;
 import apz.airplane.model.User;
@@ -21,6 +20,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.Separator;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
@@ -41,7 +41,7 @@ public class FlightWindow {
 	private static ComboBox<Airplane> planeBox;
 	private static ComboBox<String> departAirportBox, arriveAirportBox, arriveTimeBox, departTimeBox;
 	private Button createFlightButton, createAirportButton, removeFlightButton;
-	private Text header;
+	private Text header, flightText;
 
 	public FlightWindow(Stage mainStage) {
 		initialize();
@@ -67,6 +67,7 @@ public class FlightWindow {
 		createAirportButton = new Button("Create Airport");
 		removeFlightButton = new Button("Remove Flight");
 		header = new Text("Create Flights");
+		flightText = new Text("List of Created Flights");
 	}
 
 	private void content() {
@@ -76,6 +77,7 @@ public class FlightWindow {
 		populateComboBoxes();
 		
 		header.setFont(new Font(32));
+		flightText.setFont(new Font(18));
 		
 		arriveDatePicker.setMaxWidth(200);
 		departDatePicker.setMaxWidth(200);
@@ -121,7 +123,7 @@ public class FlightWindow {
 		
 		gridPane.setAlignment(Pos.CENTER);
 		
-		mainPane.getChildren().addAll(header, gridPane, createFlightButton, flightView, removeFlightButton);
+		mainPane.getChildren().addAll(header, new Separator(), gridPane, createFlightButton, new Separator(), flightText, flightView, removeFlightButton);
 		
 		mainPane.setAlignment(Pos.CENTER);
 	}
@@ -181,7 +183,7 @@ public class FlightWindow {
 		stage.initOwner(mainStage);
 		stage.setTitle("Create Flights");
 		stage.initModality(Modality.APPLICATION_MODAL);
-		stage.setScene(new Scene(mainPane, 600, 600));
+		stage.setScene(new Scene(mainPane, 600, 700));
 		stage.setResizable(false);
 		stage.show();
 	}

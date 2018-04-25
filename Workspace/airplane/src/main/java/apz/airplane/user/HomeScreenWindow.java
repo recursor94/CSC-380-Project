@@ -18,6 +18,7 @@ import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
+import javafx.scene.control.Separator;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -79,7 +80,7 @@ public class HomeScreenWindow implements WindowInterface {
 
 		header.setFont(new Font(28));
 		setupTableContents();
-		rootPane.getChildren().addAll(header, img, dateLabel, timeLabel, flightTable);
+		rootPane.getChildren().addAll(header, img, new Separator(), dateLabel, timeLabel, flightTable);
 		rootPane.setAlignment(Pos.CENTER);
 		APZLauncher.getBorderPane().setCenter(rootPane);
 		APZLauncher.getStage().setTitle("APZ Application - Home Screen");
