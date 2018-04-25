@@ -173,7 +173,7 @@ public class HomeScreenWindow implements WindowInterface {
 						flight.getDepartureTime().getTimeString()));
 			}
 		}
-		System.out.println(flightsToday.size());
+	//	System.out.println(flightsToday.size());
 		return flightsToday;
 	}
 

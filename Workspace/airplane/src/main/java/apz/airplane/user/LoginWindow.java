@@ -103,15 +103,12 @@ public class LoginWindow implements WindowInterface {
 		++loginAttempt;
 		User user = APZLauncher.getUserController().login(userField.getText(), passField.getText());
 		if (user != null) {
-			System.out.println("Username: " + userField.getText());
-			System.out.println("Password: " + passField.getText());
+//			System.out.println("Username: " + userField.getText());
+//			System.out.println("Password: " + passField.getText());
 			MessageBox.message(AlertType.INFORMATION, "APZ Airplane Application", "Welcome " + userField.getText() + " to the APZ Application!");
 			APZLauncher.setCurrentUser(user);
 			new APZMenuBar();
-			//new BookFlightByDestinationWindow();
-//			new APZMenuBar();
 			new HomeScreenWindow();
-//			new BookFlightByDestinationWindow();
 		} else {
 			if (loginAttempt < 5) 
 				status.setText("Login Attempt " + loginAttempt + "\nIncorrect user or password combination!");

@@ -30,7 +30,6 @@ public class AdminState {
 			objectOut = new ObjectOutputStream(fileOut);
 			objectOut.writeObject(uc);
 			objectOut.close();
-			System.out.println("The Object was successfully written to a file");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -46,7 +45,6 @@ public class AdminState {
 			ObjectInputStream objectIn = new ObjectInputStream(fileIn);
 
 			Object obj = objectIn.readObject();
-			System.out.println("The Object has been read from the file");
 			objectIn.close();
 			uc = (UserController) obj;
 
@@ -64,7 +62,6 @@ public class AdminState {
 			objectOut = new ObjectOutputStream(fileOut);
 			objectOut.writeObject(plane);
 			objectOut.close();
-			System.out.println("The Object was successfully written to a file");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -78,7 +75,6 @@ public class AdminState {
 			objectOut = new ObjectOutputStream(fileOut);
 			objectOut.writeObject(airports);
 			objectOut.close();
-			System.out.println("The Object was successfully written to a file");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -92,7 +88,6 @@ public class AdminState {
 			objectOut = new ObjectOutputStream(fileOut);
 			objectOut.writeObject(flight);
 			objectOut.close();
-			System.out.println("The Object was successfully written to a file");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -100,15 +95,12 @@ public class AdminState {
 
 	public static ArrayList<Airplane> loadPlanes() {
 		if (new File(planeObject).exists()) {
-			System.out.println("YES");
 			ArrayList<Airplane> planeList = new ArrayList<>();
 			FileInputStream fileIn;
 			try {
 				fileIn = new FileInputStream(planeObject);
 				ObjectInputStream objectIn = new ObjectInputStream(fileIn);
-
 				Object obj = objectIn.readObject();
-				System.out.println("The Object has been read from the file");
 				objectIn.close();
 				planeList = (ArrayList<Airplane>) obj;
 			} catch (IOException | ClassNotFoundException e) {
@@ -126,9 +118,7 @@ public class AdminState {
 			try {
 				fileIn = new FileInputStream(airportObject);
 				ObjectInputStream objectIn = new ObjectInputStream(fileIn);
-
 				Object obj = objectIn.readObject();
-				System.out.println("The Object has been read from the file");
 				objectIn.close();
 				airportList = (ArrayList<Airport>) obj;
 
@@ -147,9 +137,7 @@ public class AdminState {
 			try {
 				fileIn = new FileInputStream(flightObject);
 				ObjectInputStream objectIn = new ObjectInputStream(fileIn);
-
 				Object obj = objectIn.readObject();
-				System.out.println("The Object has been read from the file");
 				objectIn.close();
 				flightList = (ArrayList<Flight>) obj;
 			} catch (IOException | ClassNotFoundException e) {

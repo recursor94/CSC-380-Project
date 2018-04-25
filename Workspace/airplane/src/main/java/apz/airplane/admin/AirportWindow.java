@@ -91,7 +91,6 @@ public class AirportWindow {
 		buttonBox.getChildren().addAll(airportView, removeButtonBox);
 		gridPane.setVgap(5);
 		gridPane.setHgap(5);
-		System.out.println(gridPane);
 		gridPane.setAlignment(Pos.CENTER);
 		gridPane.add(airportName, 0, 0);
 		gridPane.add(airportNameField, 1, 0);
@@ -224,7 +223,7 @@ public class AirportWindow {
 
 	private Airport findAirport() {
 		String sAirport = airportView.getSelectionModel().getSelectedItem().toString();
-		System.out.println(sAirport);
+	//	System.out.println(sAirport);
 		for (Airport airport : airportList) {
 			if (airport.toString().equals(sAirport)) {
 				System.out.println("find airport found it");

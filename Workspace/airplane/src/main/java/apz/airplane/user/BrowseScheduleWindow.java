@@ -117,7 +117,7 @@ public class BrowseScheduleWindow implements WindowInterface {
 						flight.getDepartureTime().getTimeString()));
 			}
 		}
-		System.out.println(flightsOnDate.size());
+		//System.out.println(flightsOnDate.size());
 		return flightsOnDate;
 	}
 

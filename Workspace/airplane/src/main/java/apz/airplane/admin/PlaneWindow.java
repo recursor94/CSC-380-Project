@@ -137,9 +137,7 @@ public class PlaneWindow {
 				
 				planeList.add(new Airplane(planeNum, airline, capacity));
 				AdminState.savePlane(planeList);
-				System.out.println(planeList);
 				loadFile();
-				System.out.println(planeList);
 				resetFields();
 		}
 	}
@@ -154,8 +152,6 @@ public class PlaneWindow {
 
 	private void loadFile() {
 		planeList = AdminState.loadPlanes();
-		System.out.println(planeList);
-
 		if (!planeView.getItems().isEmpty())
 			planeView.getItems().clear();
 		for (int i = 0; i < planeList.size(); i++)

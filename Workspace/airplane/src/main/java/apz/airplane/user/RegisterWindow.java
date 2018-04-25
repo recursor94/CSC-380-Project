@@ -102,7 +102,6 @@ public class RegisterWindow implements WindowInterface {
 	private void verifyInput() {
 		//Checks if a user name exists already 
 		if (APZLauncher.getUserController().userExists(userField.getText())) {
-			System.out.println("The username you chose already exists");
 			MessageBox.message(AlertType.ERROR, "ERROR: The User Name Already Exists", "Please choose a different user name");
 		}
 		//If a user name does not already exist
@@ -126,9 +125,7 @@ public class RegisterWindow implements WindowInterface {
 				APZState.saveInformation();
 				System.out.println("User successfully created!");
 				MessageBox.message(AlertType.INFORMATION, "Successful User Creation", "Your account has been created!");
-				System.out.println(APZLauncher.getUserController());
 				new LoginWindow();
-				//new ViewFlightWindow(primaryStage);
 			}	
 		}
 	}
