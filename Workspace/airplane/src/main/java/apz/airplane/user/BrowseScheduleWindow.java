@@ -51,8 +51,8 @@ public class BrowseScheduleWindow implements WindowInterface {
 		departingTime = new TableColumn<>("Time");
 		flightDatePicker = new DatePicker();
 		windowHeader = new Text("Browse Flight Schedules");
-		dateText = new Text("Select Date");
-		windowHeaderBox = new VBox(10);
+		dateText = new Text("Select Date: ");
+		windowHeaderBox = new VBox(20);
 		dateBox = new HBox(10);
 		headerSeparator = new Separator(Orientation.HORIZONTAL);
 	}
@@ -90,7 +90,7 @@ public class BrowseScheduleWindow implements WindowInterface {
 		destinationCity.prefWidthProperty().bind(flightTable.widthProperty().multiply(0.25));
 		departingTime.prefWidthProperty().bind(flightTable.widthProperty().multiply(0.25));
 		windowHeader.setStyle("-fx-font: 32 arial;");
-		dateText.setStyle("-fx-font: 18 arial;");
+		dateText.setStyle("-fx-font: 14 arial;");
 	}
 
 	private void setupTableContents() {
