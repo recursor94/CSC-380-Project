@@ -1,6 +1,7 @@
 package apz.airplane.model;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 public class Booking implements Serializable {
 	
@@ -51,6 +52,15 @@ public class Booking implements Serializable {
 	
 	public void setTripCost(double cost) {
 		tripCost = cost;
+	}
+	
+	public boolean isCancellable() {
+		LocalDate currentDate = LocalDate.now(); 
+		
+		if(ChronoUnit.DAYS.between(bookDate, currentDate) > 1) {
+			return false;	
+		}
+		return true;
 	}
 
 	@Override
