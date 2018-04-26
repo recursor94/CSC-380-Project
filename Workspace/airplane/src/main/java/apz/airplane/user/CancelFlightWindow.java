@@ -137,9 +137,11 @@ public class CancelFlightWindow {
 		destinationAirportColumn.setCellValueFactory(new PropertyValueFactory<>("destinationAirport"));
 		bookDateColumn.setCellValueFactory(new PropertyValueFactory<>("bookDate"));
 		tripCostColumn.setCellValueFactory(new PropertyValueFactory<>("tripCost"));
-		tripTable.getColumns().addAll(flightNumberColumn, airlineColumn, departureDateColumn, arriveTimeColumn,
-				departureTimeColumn, departureAirportColumn, destinationAirportColumn, bookDateColumn);
+		tripTable.getColumns().addAll(departureDateColumn, flightNumberColumn, airlineColumn, arriveTimeColumn,
+				departureTimeColumn, departureAirportColumn, destinationAirportColumn);
 		tripTable.setPrefHeight(APZLauncher.getBorderPane().getHeight() -10);
+		
+		tripTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 	}
 
 	private void resetTableData() {
