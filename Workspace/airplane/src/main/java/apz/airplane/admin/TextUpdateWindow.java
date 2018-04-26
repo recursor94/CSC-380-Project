@@ -70,6 +70,9 @@ public class TextUpdateWindow {
 			else {
 				AdminState.saveUpdate(updateField.getText());
 				System.out.println(AdminState.loadUpdate());
+				MessageBox.message(AlertType.INFORMATION, "Text Saved", "Your update has been saved!");
+				updateField.clear();
+				updateField.requestFocus();
 			}
 		});
 	}
