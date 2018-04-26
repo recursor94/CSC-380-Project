@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class RentalSystem {
 	
-	ArrayList<Rental> rentalList;
+	private ArrayList<Rental> rentalList;
 	
 	public RentalSystem() {
 		rentalList = new ArrayList<>();

@@ -1,15 +1,13 @@
 package apz.car.model;
 
-import java.util.ArrayList;
-
 public class Car {
 	
 	private CarManufacturer name;
-	private String model;
+	private CarModel model;
 	private CarType type;
 	private double rate;
 	
-	public Car(CarManufacturer name, String model, CarType type, double rate) {
+	public Car(CarManufacturer name, CarModel model, CarType type, double rate) {
 		this.name = name;
 		this.model = model;
 		this.type = type;
@@ -23,12 +21,12 @@ public class Car {
 	public void setName(CarManufacturer name) {
 		this.name = name;
 	}
-	
-	public String getModel() {
+
+	public CarModel getModel() {
 		return model;
 	}
 
-	public void setModel(String model) {
+	public void setModel(CarModel model) {
 		this.model = model;
 	}
 
