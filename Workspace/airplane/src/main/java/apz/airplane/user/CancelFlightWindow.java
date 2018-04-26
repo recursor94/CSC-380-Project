@@ -99,10 +99,10 @@ public class CancelFlightWindow {
 			if (tripTable.getSelectionModel().getSelectedItem() != null) {
 				Booking foundBooking = user.findTrip(tripTable.getSelectionModel().getSelectedItem().getFlight());
 				
-				if(!foundBooking.isCancellable()) {
-					CancelDenialAlert.cancelFlightError();
-					return;
-				}
+//				if(!foundBooking.isCancellable()) {
+//					CancelDenialAlert.cancelFlightError();
+//					return;
+//				}
 
 				Optional<ButtonType> result = MessageBox.message(AlertType.CONFIRMATION, "APZ Confirmation Dialog",
 						"Are you okay with removing the selected flight?");
