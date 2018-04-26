@@ -56,8 +56,7 @@ public class Booking implements Serializable {
 	
 	public boolean isCancellable() {
 		LocalDate currentDate = LocalDate.now(); 
-		
-		if(ChronoUnit.DAYS.between(bookDate, currentDate) > 1) {
+		if(ChronoUnit.DAYS.between(currentDate, bookDate) > 1) {
 			return false;	
 		}
 		return true;
