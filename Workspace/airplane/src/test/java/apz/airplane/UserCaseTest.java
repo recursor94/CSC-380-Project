@@ -158,4 +158,21 @@ public class UserCaseTest {
 		
 		assertEquals(false, user.removePayment(payment2));
 	}
+	@Test 
+	public void flightCancellableTrue() {
+		User user = new User("george@george.com", "George", "Smith");
+		Flight flight = new Flight(new Airplane(3, "Test United", 9001), new Airport("test", "test"), new Airport("test","test"), null, null, null, null,3 );
+		LocalDate bookDate = LocalDate.now();
+		Booking booking = new Booking(flight, bookDate, user, 3);
+
+		assertEquals(true, booking.isCancellable());
+	}
+	public void flightCancellableFalse() {
+		User user = new User("george@george.com", "George", "Smith");
+		Flight flight = new Flight(null, null, null, null, null, null, null,3 );
+		LocalDate bookDate = LocalDate.now().plusDays(1);
+		Booking booking = new Booking(flight, bookDate, user, 3);
+
+		assertEquals(true, booking.isCancellable());
+	}
 }
