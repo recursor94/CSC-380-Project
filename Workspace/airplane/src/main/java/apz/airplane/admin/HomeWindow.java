@@ -20,7 +20,7 @@ public class HomeWindow {
 	private Text header;
 	private GridPane gridPane;
 	private VBox mainPane;
-	private Button addPlaneButton, addFlightButton, userManageButton, launchButton;
+	private Button addPlaneButton, addFlightButton, userManageButton, launchButton, updateTextButton;
 
 	public HomeWindow(Stage primaryStage) {
 		initialize();
@@ -38,6 +38,7 @@ public class HomeWindow {
 		addFlightButton = new Button("Add a Flight");
 		userManageButton = new Button("User Management");
 		launchButton = new Button("Launch APZ Application");
+		updateTextButton = new Button("Update Home Screen Text");
 	}
 	
 	private void content() {
@@ -45,6 +46,7 @@ public class HomeWindow {
 		img.setFitHeight(150);
 		addPlaneButton.setMaxWidth(200);
 		addFlightButton.setMaxWidth(250);
+		updateTextButton.setMaxWidth(330);
 		gridPane.setHgap(10);
 		gridPane.setVgap(10);
 		gridPane.setAlignment(Pos.CENTER);
@@ -54,7 +56,7 @@ public class HomeWindow {
 		gridPane.add(launchButton, 1, 1);
 		header.setFont(new Font(30));
 		mainPane.setAlignment(Pos.TOP_CENTER);
-		mainPane.getChildren().addAll(header, img, new Separator(), gridPane);
+		mainPane.getChildren().addAll(header, img, new Separator(), gridPane, updateTextButton);
 	}
 	
 	private void actionEvents(Stage primaryStage) {
@@ -78,6 +80,10 @@ public class HomeWindow {
 					e.printStackTrace();
 				}
 			});
+		});
+		
+		updateTextButton.setOnAction(event -> {
+			new TextUpdateWindow();
 		});
 	}
 	
