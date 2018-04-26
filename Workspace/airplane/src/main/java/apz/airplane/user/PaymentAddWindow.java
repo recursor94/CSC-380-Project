@@ -131,7 +131,7 @@ public class PaymentAddWindow implements WindowInterface {
 			APZLauncher.getStage().setTitle("APZ Application - Add Payment Method");
 		}
 		else {
-			stage.setScene(new Scene(mainPane, 500, 500));
+			stage.setScene(new Scene(mainPane, 500, 725));
 			stage.setTitle("APZ Application - Add Payment Method");
 			stage.show();
 		}
