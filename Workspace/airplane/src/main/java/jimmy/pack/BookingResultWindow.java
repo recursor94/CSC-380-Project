@@ -42,7 +42,7 @@ public class BookingResultWindow implements WindowInterface {
 	public void content() {
 		header.setFont(new Font(32));
 		
-		mainPane.getChildren().addAll(img, header, scrollPane);
+		mainPane.getChildren().addAll(header, img, scrollPane);
 		
 		for (int i = 0; i < tripList.size(); i++) {
 			VBox showBox = new VBox(10);

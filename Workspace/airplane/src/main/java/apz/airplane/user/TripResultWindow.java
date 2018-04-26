@@ -73,7 +73,7 @@ public class TripResultWindow implements WindowInterface {
 		gridPane.add(new ImageView(new Image(FilePath.LOGIN_IMAGE)), 0, 9);
 		gridPane.add(new Label("Account Holder: " + APZLauncher.getCurrentUser().getEmail()), 1, 9);
 		
-		mainPane.getChildren().addAll(new Label(), img, headerText, new Separator(), gridPane, new Separator(), backButton);
+		mainPane.getChildren().addAll(new Label(), headerText, img, new Separator(), gridPane, new Separator(), backButton);
 		
 	}
 

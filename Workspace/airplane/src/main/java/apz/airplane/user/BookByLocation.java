@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.Separator;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -73,7 +74,7 @@ public class BookByLocation implements WindowInterface {
 		
 		gridPane.setAlignment(Pos.CENTER);
 		
-		mainPane.getChildren().addAll(img, header, gridPane,findFlightButton, flightView, bookFlightButton);
+		mainPane.getChildren().addAll(new Label(), header, img, new Separator(), gridPane,findFlightButton, flightView, bookFlightButton);
 		
 		mainPane.setAlignment(Pos.CENTER);
 	}

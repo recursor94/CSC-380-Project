@@ -75,7 +75,7 @@ public class AccountChangeWindow implements WindowInterface {
 		buttonBox.getChildren().addAll(changeButton, backButton);
 		buttonBox.setAlignment(Pos.CENTER);
 		
-		mainPane.getChildren().addAll(new Label(), img, headerText, gridPane, buttonBox);
+		mainPane.getChildren().addAll(new Label(), headerText, img, gridPane, buttonBox);
 	}
 
 	public void actionEvents() {

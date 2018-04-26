@@ -52,7 +52,7 @@ public class PaymentWindow implements WindowInterface {
 		gridPane.add(paymentBox, 1, 0);
 		gridPane.add(createButton, 0, 1);
 		gridPane.add(removeButton, 1, 1);
-		mainPane.getChildren().addAll(new Label(), img, headerText, new Separator(), gridPane, new Separator());
+		mainPane.getChildren().addAll(new Label(), headerText, img, new Separator(), gridPane, new Separator());
 	}
 
 	public void actionEvents() {

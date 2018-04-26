@@ -94,7 +94,7 @@ public class CancelFlightWindow {
 
 	private void actionEvents() {
 		confirmButton.setOnAction(event -> {
-			System.out.println(tripTable.getSelectionModel().getSelectedItem());
+			//System.out.println(tripTable.getSelectionModel().getSelectedItem());
 
 			if (tripTable.getSelectionModel().getSelectedItem() != null) {
 				Booking foundBooking = user.findTrip(tripTable.getSelectionModel().getSelectedItem().getFlight());
@@ -106,9 +106,9 @@ public class CancelFlightWindow {
 					resetTableData();
 					APZState.saveInformation();
 
-				} else {
-					System.out.println(":(");
-				}
+				} //else {
+				//	System.out.println(":(");
+				//}
 			} else {
 				MessageBox.message(AlertType.ERROR, "ERROR", "You must select a flight to cancel");
 			}
@@ -127,7 +127,7 @@ public class CancelFlightWindow {
 	}
 
 	private void setupTableContents() {
-		System.out.println(user.getTripList().size());
+		//System.out.println(user.getTripList().size());
 		flightNumberColumn.setCellValueFactory(new PropertyValueFactory<>("flightNumber"));
 		airlineColumn.setCellValueFactory(new PropertyValueFactory<>("Airline"));
 		arriveTimeColumn.setCellValueFactory(new PropertyValueFactory<>("arrivalTime"));

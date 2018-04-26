@@ -54,7 +54,7 @@ public class BookingWindow implements WindowInterface {
 	public void content() {
 		populateComboBox();
 		
-		mainPane.getChildren().addAll(img, headerText, gridPane);
+		mainPane.getChildren().addAll(new Label(), headerText, img, gridPane);
 		
 		gridPane.add(new Label("Trip date: "), 0, 2);
 		gridPane.add(datePicker, 1, 2);

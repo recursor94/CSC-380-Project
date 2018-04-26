@@ -65,7 +65,7 @@ public class AccountInfoWindow implements WindowInterface {
 		gridPane.add(changeButton, 3, 6);
 		gridPane.add(deleteButton, 4, 6);
 		
-		mainPane.getChildren().addAll(new Label(), img, headerText, new Separator(), gridPane, new Label(), new Separator());
+		mainPane.getChildren().addAll(new Label(), headerText, img, new Separator(), gridPane, new Label(), new Separator());
 	}
 	
 	public void actionEvents() {

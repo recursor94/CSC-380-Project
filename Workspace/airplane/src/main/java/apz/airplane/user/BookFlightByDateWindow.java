@@ -13,6 +13,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.Separator;
+import javafx.scene.control.SplitPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -24,9 +26,10 @@ import jimmy.pack.WindowInterface;
 
 public class BookFlightByDateWindow implements WindowInterface {
 	private ImageView img;
+	private SplitPane mainPane;
 	private GridPane gridPane;
 	private Text header, listText;
-	private VBox mainPane;
+	private VBox leftPane, rightPane;
 	private ListView<Flight> flightView;
 	private ArrayList<Flight> flightList;
 	private DatePicker calendar;
@@ -41,7 +44,9 @@ public class BookFlightByDateWindow implements WindowInterface {
 
 	public void initialize() {
 		img = new ImageView(new Image(FilePath.LOGIN_IMAGE));
-		mainPane = new VBox(10);
+		mainPane = new SplitPane();
+		leftPane = new VBox(10);
+		rightPane = new VBox(10);
 		gridPane = new GridPane();
 		header = new Text("Find and Book Flights by Date");
 		listText = new Text("List of flights on selected date");
@@ -72,14 +77,23 @@ public class BookFlightByDateWindow implements WindowInterface {
 		
 		gridPane.setAlignment(Pos.CENTER);
 		
-		mainPane.getChildren().addAll(img, header, gridPane, findFlightButton, listText, flightView, bookFlightButton);
+		leftPane.getChildren().addAll(new Label(), header, img, new Separator(), gridPane, findFlightButton, new Separator(), listText, flightView, bookFlightButton);
 
-		mainPane.setAlignment(Pos.CENTER);
+		leftPane.setAlignment(Pos.CENTER);
+		
+//		rightPane.getChildren().addAll(listText, flightView, bookFlightButton);
+//		
+//		rightPane.setAlignment(Pos.CENTER);
+//		
+//		mainPane.setDividerPositions(.5);
+//		mainPane.getItems().addAll(leftPane, rightPane);
 	}
 	
 	public void properties() {
-		APZLauncher.getBorderPane().setCenter(mainPane);
+		APZLauncher.getBorderPane().setCenter(leftPane);
 		APZLauncher.getStage().setTitle("APZ Application - Book Flight by Date");
+//		APZLauncher.getStage().setWidth(725);
+//		APZLauncher.getStage().setHeight(500);
 	}
 	public void actionEvents() {
 		findFlightButton.setOnAction(event -> {

@@ -68,7 +68,7 @@ public class TripViewWindow implements WindowInterface {
 		}
 		
 		scrollPane.setContent(gridPane);
-		mainPane.getChildren().addAll(img, headerText, scrollPane);
+		mainPane.getChildren().addAll(new Label(), headerText, img, scrollPane);
 	}
 	
 	public void actionEvents() {
