@@ -1,18 +1,21 @@
 package apz.airplane.admin;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import apz.airplane.model.Airplane;
 import apz.airplane.model.Airport;
 import apz.airplane.model.Flight;
 import apz.airplane.model.UserController;
-import apz.airplane.user.APZLauncher;
 
 public class AdminState {
 
@@ -20,6 +23,7 @@ public class AdminState {
 	private static String planeObject = "planeList.apz";
 	private static String airportObject = "airportList.apz";
 	private static String flightObject = "flightList.apz";
+	private static String homeScreenTextObject = "updateText.txt";
 	
 	
 	public static void saveInformation(UserController uc) {
@@ -146,6 +150,36 @@ public class AdminState {
 			return flightList;
 		}
 		return new ArrayList<Flight>();
+	}
+	
+	public static void saveUpdate(String updateText) {
+		FileOutputStream fileOut;
+		ObjectOutputStream objectOut;
+		try {
+			fileOut = new FileOutputStream(homeScreenTextObject);
+			objectOut = new ObjectOutputStream(fileOut);
+			objectOut.writeObject(updateText);
+			objectOut.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	public static String loadUpdate() {
+		if (new File(homeScreenTextObject).exists()) {
+			String updateText = "";
+			FileInputStream fileIn;
+			try {
+				fileIn = new FileInputStream(homeScreenTextObject);
+				ObjectInputStream objectIn = new ObjectInputStream(fileIn);
+				Object obj = objectIn.readObject();
+				objectIn.close();
+				updateText = (String) obj;
+			} catch (IOException | ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+			return updateText;
+		}
+		return "";
 	}
 
 }
