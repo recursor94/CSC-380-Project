@@ -31,9 +31,9 @@ public class HomeWindow {
 	
 	private void initialize() {
 		img = new ImageView(new Image(FilePath.LOGIN_IMAGE));
-		header = new Text("Administrative Controls");
+		header = new Text("\nAdministrative Controls");
 		gridPane = new GridPane();
-		mainPane = new VBox(10);
+		mainPane = new VBox(20);
 		addPlaneButton = new Button("Add a Plane");
 		addFlightButton = new Button("Add a Flight");
 		userManageButton = new Button("User Management");
@@ -82,7 +82,7 @@ public class HomeWindow {
 	}
 	
 	private void properties(Stage primaryStage) {
-		primaryStage.setScene(new Scene(mainPane, 425, 350));
+		primaryStage.setScene(new Scene(mainPane, 425, 370));
 		primaryStage.setTitle("Admin Debug Window");
 		primaryStage.show();
 	}

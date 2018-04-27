@@ -71,8 +71,8 @@ public class LoginWindow implements WindowInterface {
 		buttonBox.getChildren().addAll(loginButton, registerButton);
 		
 		ImageView img = new ImageView(new Image(FilePath.LOGIN_IMAGE));
-		img.setFitWidth(150);
-		img.setFitHeight(150);
+		img.setFitWidth(250);
+		img.setFitHeight(80);
 		
 		rootPane.getChildren().addAll(header, img, status, userBox, passBox, buttonBox);
 	}
