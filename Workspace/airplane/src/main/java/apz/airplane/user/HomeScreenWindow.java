@@ -13,16 +13,9 @@ import apz.airplane.util.FilePath;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.control.Separator;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
@@ -64,7 +57,7 @@ public class HomeScreenWindow implements WindowInterface {
 		img.setFitHeight(150);
 		flightsToday = getFlightsToday();
 		orderFlightsByTime();
-		timeLabel.setText(LocalDateTime.now().toString());
+		// timeLabel.setText(LocalDateTime.now().toString());
 		timeLabel.setStyle("-fx-font: 24 arial;");
 		timeLabel.setFill(Color.BLACK);
 		dateLabel.setText(LocalDateTime.now().toString());
@@ -76,6 +69,8 @@ public class HomeScreenWindow implements WindowInterface {
 		rootPane.setAlignment(Pos.CENTER);
 		APZLauncher.getBorderPane().setCenter(rootPane);
 		APZLauncher.getStage().setTitle("APZ Application - Home Screen");
+		refreshClockContent();
+		setupClock();
 		realTimeClock.stop();
 		realTimeClock.playFromStart();
 
@@ -93,28 +88,30 @@ public class HomeScreenWindow implements WindowInterface {
 
 	private void setupClock() {
 		System.out.println("Init clock");
-		realTimeClock = new Timeline(new KeyFrame(Duration.ZERO, e -> {
-			Calendar cal = Calendar.getInstance();
-			timeHour = cal.get(Calendar.HOUR);
-			timeMinute = cal.get(Calendar.MINUTE);
-			// timeHour++;
-			String timeOfDay = "AM";
-
-			if (cal.get(Calendar.AM_PM) == Calendar.PM) {
-				timeOfDay = "PM";
-			}
-			System.out.println("Got Here");
-			DateFormat dateFormat = new SimpleDateFormat("EEEE, MMMMM dd");
-			DateFormat timeFormat = new SimpleDateFormat("hh:mm");
-			String sDate = dateFormat.format(cal.getTime());
-			String sTime = timeFormat.format(cal.getTime());
-			// timeLabel.setText(timeHour + ":" + (minuteString) + " " + timeOfDay);
-			timeLabel.setText(sTime + " " + timeOfDay);
-			dateLabel.setText(sDate);
-			System.out.println("Everything good here");
+		realTimeClock = new Timeline(new KeyFrame(Duration.minutes(1), e -> {
+			refreshClockContent();
 		}));
 		realTimeClock.setCycleCount(Animation.INDEFINITE);
-		realTimeClock.play();
+
+	}
+
+	private void refreshClockContent() {
+		Calendar cal = Calendar.getInstance();
+		timeHour = cal.get(Calendar.HOUR);
+		timeMinute = cal.get(Calendar.MINUTE);
+		// timeHour++;
+		String timeOfDay = "AM";
+
+		if (cal.get(Calendar.AM_PM) == Calendar.PM) {
+			timeOfDay = "PM";
+		}
+		DateFormat dateFormat = new SimpleDateFormat("EEEE, MMMMM dd");
+		DateFormat timeFormat = new SimpleDateFormat("hh:mm");
+		String sDate = dateFormat.format(cal.getTime());
+		String sTime = timeFormat.format(cal.getTime());
+		// timeLabel.setText(timeHour + ":" + (minuteString) + " " + timeOfDay);
+		timeLabel.setText(sTime + " " + timeOfDay);
+		dateLabel.setText(sDate);
 
 	}
 
