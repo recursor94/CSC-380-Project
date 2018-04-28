@@ -7,22 +7,16 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import apz.airplane.admin.AdminState;
 import apz.airplane.model.Flight;
 import apz.airplane.util.APZState;
 import apz.airplane.util.FilePath;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.control.Separator;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
@@ -35,11 +29,8 @@ import jimmy.pack.WindowInterface;
 public class HomeScreenWindow implements WindowInterface {
 	private ImageView img;
 	private VBox rootPane;
-	private Text timeLabel, dateLabel, header;
+	private Text timeLabel, dateLabel, header, newsHeader, newsUpdate;
 	private Timeline realTimeClock;
-	private TableView<FlightInformation> flightTable;
-	private TableColumn<FlightInformation, Integer> flightNumber;
-	private TableColumn<FlightInformation, String> departingCity, destinationCity, departingTime;
 	private ArrayList<FlightInformation> flightsToday;
 
 	private int timeHour;
@@ -59,11 +50,6 @@ public class HomeScreenWindow implements WindowInterface {
 	public void properties() {
 		APZLauncher.getStage().setWidth(500);
 		APZLauncher.getStage().setHeight(725);
-		flightTable.setMinHeight(APZLauncher.getStage().getHeight() - 10);
-		flightNumber.prefWidthProperty().bind(flightTable.widthProperty().multiply(0.25));
-		departingCity.prefWidthProperty().bind(flightTable.widthProperty().multiply(0.25));
-		destinationCity.prefWidthProperty().bind(flightTable.widthProperty().multiply(0.25));
-		departingTime.prefWidthProperty().bind(flightTable.widthProperty().multiply(0.25));
 	}
 
 	public void content() {
@@ -72,24 +58,24 @@ public class HomeScreenWindow implements WindowInterface {
 		img.setFitHeight(150);
 		flightsToday = getFlightsToday();
 		orderFlightsByTime();
-		timeLabel.setText(LocalDateTime.now().toString());
+		// timeLabel.setText(LocalDateTime.now().toString());
 		timeLabel.setStyle("-fx-font: 24 arial;");
 		timeLabel.setFill(Color.BLACK);
 		dateLabel.setText(LocalDateTime.now().toString());
 		dateLabel.setStyle("-fx-font: 24 arial;");
 		dateLabel.setFill(Color.BLACK);
+		newsHeader.setStyle("-fx-font: 22 arial;");
+		newsHeader.setFill(Color.BLACK);
+		newsUpdate.setStyle("-fx-font: 20 arial;");
+		newsUpdate.setFill(Color.DARKSLATEGRAY);
 
 		header.setFont(new Font(28));
-		setupTableContents();
-		rootPane.getChildren().addAll(new Label(), header, img, new Separator(), dateLabel, timeLabel, flightTable);
-		rootPane.setAlignment(Pos.CENTER);
+		rootPane.getChildren().addAll(new Label(), header, img, new Separator(), dateLabel, timeLabel, new Separator(), newsHeader, newsUpdate);
+		rootPane.setAlignment(Pos.TOP_CENTER);
 		APZLauncher.getBorderPane().setCenter(rootPane);
 		APZLauncher.getStage().setTitle("APZ Application - Home Screen");
-		ScrollPane scrollPane = new ScrollPane();
-		scrollPane.setPrefSize(120, 120);
-		scrollPane.setContent(flightTable);
-		scrollPane.setVbarPolicy(ScrollBarPolicy.ALWAYS);
-
+		refreshClockContent();
+		setupClock();
 		realTimeClock.stop();
 		realTimeClock.playFromStart();
 
@@ -99,68 +85,40 @@ public class HomeScreenWindow implements WindowInterface {
 		img = new ImageView(new Image(FilePath.LOGIN_IMAGE));
 		flightsToday = new ArrayList<>();
 		rootPane = new VBox(10);
-		flightTable = new TableView<>();
-		flightNumber = new TableColumn<>("Flight Number");
-		departingCity = new TableColumn<>("Arriving From");
-		destinationCity = new TableColumn<>("Departing To");
-		departingTime = new TableColumn<>("Scheduled");
 		dateLabel = new Text("");
 		timeLabel = new Text("00:00");
 		header = new Text("Welcome to APZ Booking!");
+		newsUpdate = new Text(AdminState.loadUpdate());
+		newsHeader = new Text("Today's News:\n");
 		setupClock();
 	}
 
-	private void setupTableContents() {
-		ObservableList<FlightInformation> flightData = FXCollections.observableArrayList(flightsToday);
-		flightTable.setItems(flightData);
-		flightTable.getColumns().addAll(flightNumber, departingCity, destinationCity, departingTime);
-		flightNumber.setCellValueFactory(new PropertyValueFactory<FlightInformation, Integer>("flightNumber"));
-		departingCity.setCellValueFactory(new PropertyValueFactory<FlightInformation, String>("departureAirport"));
-		destinationCity.setCellValueFactory(new PropertyValueFactory<FlightInformation, String>("destinationAirport"));
-		departingTime.setCellValueFactory(new PropertyValueFactory<FlightInformation, String>("departureTimeString"));
-	}
-
 	private void setupClock() {
-		realTimeClock = new Timeline(new KeyFrame(Duration.ZERO, e -> {
-			Calendar cal = Calendar.getInstance();
-			timeHour = cal.get(Calendar.HOUR);
-			timeMinute = cal.get(Calendar.MINUTE);
-			// timeHour++;
-			String timeOfDay = "AM";
-
-			if (cal.get(Calendar.AM_PM) == Calendar.PM) {
-				timeOfDay = "PM";
-			}
-			DateFormat dateFormat = new SimpleDateFormat("EEEE, MMMMM dd");
-			DateFormat timeFormat = new SimpleDateFormat("hh:mm");
-			String sDate = dateFormat.format(cal.getTime());
-			String sTime = timeFormat.format(cal.getTime());
-			//timeLabel.setText(timeHour + ":" + (minuteString) + " " + timeOfDay);
-			timeLabel.setText(sTime + " " + timeOfDay);
-			dateLabel.setText(sDate);
-		}), new KeyFrame(Duration.minutes(1), e -> {
-			for (FlightInformation flight : flightsToday) {
-				if (flight != null) {
-					double departureTime = flight.getTime();
-					int departureMinute = 0;
-					int departureHour = (int) departureTime;
-
-					if (departureTime % 1 == 0) {
-						departureMinute = 30;
-					}
-
-					if (departureHour == timeHour && departureMinute == timeMinute) {
-						flightsToday.remove(flight);
-						flightTable.getItems().remove(flightTable.getSelectionModel().getSelectedItem());
-					}
-
-				}
-
-			}
-
+		System.out.println("Init clock");
+		realTimeClock = new Timeline(new KeyFrame(Duration.minutes(1), e -> {
+			refreshClockContent();
 		}));
 		realTimeClock.setCycleCount(Animation.INDEFINITE);
-		realTimeClock.play();
+
+	}
+
+	private void refreshClockContent() {
+		Calendar cal = Calendar.getInstance();
+		timeHour = cal.get(Calendar.HOUR);
+		timeMinute = cal.get(Calendar.MINUTE);
+		// timeHour++;
+		String timeOfDay = "AM";
+
+		if (cal.get(Calendar.AM_PM) == Calendar.PM) {
+			timeOfDay = "PM";
+		}
+		DateFormat dateFormat = new SimpleDateFormat("EEEE, MMMMM dd");
+		DateFormat timeFormat = new SimpleDateFormat("hh:mm");
+		String sDate = dateFormat.format(cal.getTime());
+		String sTime = timeFormat.format(cal.getTime());
+		// timeLabel.setText(timeHour + ":" + (minuteString) + " " + timeOfDay);
+		timeLabel.setText(sTime + " " + timeOfDay);
+		dateLabel.setText(sDate);
 
 	}
 
@@ -174,7 +132,6 @@ public class HomeScreenWindow implements WindowInterface {
 						flight.getDepartureTime().getTimeString()));
 			}
 		}
-	//	System.out.println(flightsToday.size());
 		return flightsToday;
 	}
 
