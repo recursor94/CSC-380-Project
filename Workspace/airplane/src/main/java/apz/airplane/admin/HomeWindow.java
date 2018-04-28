@@ -88,7 +88,7 @@ public class HomeWindow {
 	}
 	
 	private void properties(Stage primaryStage) {
-		primaryStage.setScene(new Scene(mainPane, 425, 370));
+		primaryStage.setScene(new Scene(mainPane, 425, 425));
 		primaryStage.setTitle("Admin Debug Window");
 		primaryStage.show();
 	}

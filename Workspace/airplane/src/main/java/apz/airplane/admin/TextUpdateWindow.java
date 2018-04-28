@@ -11,6 +11,7 @@ import javafx.scene.control.Separator;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -20,6 +21,7 @@ import javafx.stage.Stage;
 
 public class TextUpdateWindow {
 	
+	private Stage stage;
 	private ImageView img;
 	private VBox mainPane;
 	private TextField updateField;
@@ -65,25 +67,33 @@ public class TextUpdateWindow {
 	
 	public void actionEvents() {
 		saveButton.setOnAction(event -> {
-			if(updateField.getText().isEmpty())
-				MessageBox.message(AlertType.ERROR, "ERROR", "You must enter an update");
-			else {
-				AdminState.saveUpdate(updateField.getText());
-				System.out.println(AdminState.loadUpdate());
-				MessageBox.message(AlertType.INFORMATION, "Text Saved", "Your update has been saved!");
-				updateField.clear();
-				updateField.requestFocus();
-			}
+			saveText();
+		});
+		
+		mainPane.setOnKeyPressed(event -> {
+			if(event.getCode() == KeyCode.ENTER)
+				saveText();
 		});
 	}
 	
 	public void properties() {
-		Stage stage = new Stage();
+		stage = new Stage();
 		stage.initModality(Modality.APPLICATION_MODAL);
 		stage.setTitle("Update Home Screen Text");
 		stage.setScene(new Scene(mainPane, 350, 250));
 		stage.setResizable(false);
 		stage.show();
+	}
+	
+	private void saveText() {
+		if(updateField.getText().isEmpty())
+			MessageBox.message(AlertType.ERROR, "ERROR", "You must enter an update");
+		else {
+			AdminState.saveUpdate(updateField.getText());
+			System.out.println(AdminState.loadUpdate());
+			MessageBox.message(AlertType.INFORMATION, "Text Saved", "Your update has been saved!");
+			stage.close();
+		}
 	}
 
 }

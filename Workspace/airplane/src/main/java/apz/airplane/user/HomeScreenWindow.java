@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import apz.airplane.admin.AdminState;
 import apz.airplane.model.Flight;
 import apz.airplane.util.APZState;
 import apz.airplane.util.FilePath;
@@ -28,7 +29,7 @@ import jimmy.pack.WindowInterface;
 public class HomeScreenWindow implements WindowInterface {
 	private ImageView img;
 	private VBox rootPane;
-	private Text timeLabel, dateLabel, header;
+	private Text timeLabel, dateLabel, header, newsHeader, newsUpdate;
 	private Timeline realTimeClock;
 	private ArrayList<FlightInformation> flightsToday;
 
@@ -63,10 +64,14 @@ public class HomeScreenWindow implements WindowInterface {
 		dateLabel.setText(LocalDateTime.now().toString());
 		dateLabel.setStyle("-fx-font: 24 arial;");
 		dateLabel.setFill(Color.BLACK);
+		newsHeader.setStyle("-fx-font: 22 arial;");
+		newsHeader.setFill(Color.BLACK);
+		newsUpdate.setStyle("-fx-font: 20 arial;");
+		newsUpdate.setFill(Color.DARKSLATEGRAY);
 
 		header.setFont(new Font(28));
-		rootPane.getChildren().addAll(new Label(), header, img, new Separator(), dateLabel, timeLabel);
-		rootPane.setAlignment(Pos.CENTER);
+		rootPane.getChildren().addAll(new Label(), header, img, new Separator(), dateLabel, timeLabel, new Separator(), newsHeader, newsUpdate);
+		rootPane.setAlignment(Pos.TOP_CENTER);
 		APZLauncher.getBorderPane().setCenter(rootPane);
 		APZLauncher.getStage().setTitle("APZ Application - Home Screen");
 		refreshClockContent();
@@ -83,6 +88,8 @@ public class HomeScreenWindow implements WindowInterface {
 		dateLabel = new Text("");
 		timeLabel = new Text("00:00");
 		header = new Text("Welcome to APZ Booking!");
+		newsUpdate = new Text(AdminState.loadUpdate());
+		newsHeader = new Text("Today's News:\n");
 		setupClock();
 	}
 
