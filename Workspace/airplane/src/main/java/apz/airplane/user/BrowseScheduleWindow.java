@@ -1,25 +1,30 @@
 package apz.airplane.user;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import apz.airplane.model.Flight;
 import apz.airplane.util.APZState;
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.control.Separator;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 import jimmy.pack.WindowInterface;
 
 public class BrowseScheduleWindow implements WindowInterface {
@@ -34,6 +39,9 @@ public class BrowseScheduleWindow implements WindowInterface {
 	private VBox windowHeaderBox;
 	private HBox dateBox;
 	private Separator headerSeparator;
+	private Timeline realTimeClock;
+	private double timeHour;
+	private double timeMinute;
 
 	public BrowseScheduleWindow() {
 		initialize();
@@ -105,6 +113,10 @@ public class BrowseScheduleWindow implements WindowInterface {
 		flightsOnDate = getFlightsOnDate(date);
 		flightTable.setItems(FXCollections.observableArrayList(flightsOnDate));
 		orderFlightsByTime();
+
+		if (date.equals(LocalDate.now())) {
+			refreshClock();
+		}
 	}
 
 	private ArrayList<FlightInformation> getFlightsOnDate(LocalDate date) {
@@ -117,7 +129,7 @@ public class BrowseScheduleWindow implements WindowInterface {
 						flight.getDepartureTime().getTimeString()));
 			}
 		}
-		//System.out.println(flightsOnDate.size());
+		// System.out.println(flightsOnDate.size());
 		return flightsOnDate;
 	}
 
@@ -137,5 +149,47 @@ public class BrowseScheduleWindow implements WindowInterface {
 				}
 			}
 		}
+
 	}
+
+	private void refreshClock() {
+		realTimeClock = new Timeline(new KeyFrame(Duration.ZERO, e -> {
+			Calendar cal = Calendar.getInstance();
+			timeHour = cal.get(Calendar.HOUR);
+			timeMinute = cal.get(Calendar.MINUTE);
+			// timeHour++;
+			String timeOfDay = "AM";
+
+			if (cal.get(Calendar.AM_PM) == Calendar.PM) {
+				timeOfDay = "PM";
+			}
+			DateFormat dateFormat = new SimpleDateFormat("EEEE, MMMMM dd");
+			DateFormat timeFormat = new SimpleDateFormat("hh:mm");
+			String sDate = dateFormat.format(cal.getTime());
+			String sTime = timeFormat.format(cal.getTime());
+		}), new KeyFrame(Duration.minutes(1), e -> {
+			for (FlightInformation flight : flightsOnDate) {
+				if (flight != null) {
+					double departureTime = flight.getTime();
+					int departureMinute = 0;
+					int departureHour = (int) departureTime;
+
+					if (departureTime % 1 == 0) {
+						departureMinute = 30;
+					}
+
+					if (departureHour == timeHour && departureMinute == timeMinute) {
+						flightsOnDate.remove(flight);
+						flightTable.getItems().remove(flightTable.getSelectionModel().getSelectedItem());
+					}
+
+				}
+
+			}
+
+		}));
+		realTimeClock.setCycleCount(Animation.INDEFINITE);
+		realTimeClock.play();
+	};
+
 }
