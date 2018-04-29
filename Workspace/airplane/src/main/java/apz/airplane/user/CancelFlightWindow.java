@@ -99,10 +99,11 @@ public class CancelFlightWindow {
 			if (tripTable.getSelectionModel().getSelectedItem() != null) {
 				Booking foundBooking = user.findTrip(tripTable.getSelectionModel().getSelectedItem().getFlight());
 				
-//				if(!foundBooking.isCancellable()) {
-//					CancelDenialAlert.cancelFlightError();
-//					return;
-//				}
+				if(!foundBooking.isCancellable()) {
+					MessageBox.message(AlertType.ERROR, "Error Cancelling", "Cancellation Period Expired", "You can not cancel a flight you have booked more than "
+							+ "24 hours ago.  Please contact Customer Service for support.");
+					return;
+				}
 
 				Optional<ButtonType> result = MessageBox.message(AlertType.CONFIRMATION, "APZ Confirmation Dialog",
 						"Are you okay with removing the selected flight?");
