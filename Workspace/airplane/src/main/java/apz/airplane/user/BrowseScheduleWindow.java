@@ -15,8 +15,7 @@ import javafx.collections.FXCollections;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.ScrollPane.ScrollBarPolicy;
+import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -42,6 +41,7 @@ public class BrowseScheduleWindow implements WindowInterface {
 	private Timeline realTimeClock;
 	private double timeHour;
 	private double timeMinute;
+	private Text dateTimeLabel;
 
 	public BrowseScheduleWindow() {
 		initialize();
@@ -63,28 +63,29 @@ public class BrowseScheduleWindow implements WindowInterface {
 		windowHeaderBox = new VBox(20);
 		dateBox = new HBox(10);
 		headerSeparator = new Separator(Orientation.HORIZONTAL);
+		dateTimeLabel = new Text("");
+		setupClock();
 	}
 
 	public void content() {
 		flightDatePicker.setValue(LocalDate.now());
-		refreshTable(LocalDate.now());
+		setTableData(LocalDate.now());
 		setupTableContents();
 		windowHeaderBox.getChildren().addAll(windowHeader, headerSeparator);
 		windowHeaderBox.setAlignment(Pos.BASELINE_CENTER);
 		dateBox.getChildren().addAll(dateText, flightDatePicker);
 		dateBox.setAlignment(Pos.BASELINE_CENTER);
-		mainPane.getChildren().addAll(windowHeaderBox, dateBox, flightTable);
+		HBox dateTimeHbox = new HBox();
+		dateTimeHbox.setAlignment(Pos.BASELINE_CENTER);
+		dateTimeHbox.getChildren().add(dateTimeLabel);
+		mainPane.getChildren().addAll(windowHeaderBox, dateBox, dateTimeHbox, flightTable);
 		APZLauncher.getBorderPane().setCenter(mainPane);
 		APZLauncher.getStage().setTitle("APZ Application - Scheduled Flights");
-		ScrollPane scrollPane = new ScrollPane();
-		scrollPane.setPrefSize(120, 120);
-		scrollPane.setContent(flightTable);
-		scrollPane.setVbarPolicy(ScrollBarPolicy.ALWAYS);
 	}
 
 	public void actionEvents() {
 		flightDatePicker.valueProperty().addListener((ov, oldValue, newValue) -> {
-			refreshTable(newValue);
+			setTableData(newValue);
 		});
 	}
 
@@ -99,6 +100,7 @@ public class BrowseScheduleWindow implements WindowInterface {
 		departingTime.prefWidthProperty().bind(flightTable.widthProperty().multiply(0.25));
 		windowHeader.setStyle("-fx-font: 32 arial;");
 		dateText.setStyle("-fx-font: 14 arial;");
+		dateTimeLabel.setStyle("-fx-font: 12 arial;");
 	}
 
 	private void setupTableContents() {
@@ -109,14 +111,10 @@ public class BrowseScheduleWindow implements WindowInterface {
 		departingTime.setCellValueFactory(new PropertyValueFactory<FlightInformation, String>("departureTimeString"));
 	}
 
-	private void refreshTable(LocalDate date) {
+	private void setTableData(LocalDate date) {
 		flightsOnDate = getFlightsOnDate(date);
 		flightTable.setItems(FXCollections.observableArrayList(flightsOnDate));
 		orderFlightsByTime();
-
-		if (date.equals(LocalDate.now())) {
-			refreshClock();
-		}
 	}
 
 	private ArrayList<FlightInformation> getFlightsOnDate(LocalDate date) {
@@ -129,7 +127,6 @@ public class BrowseScheduleWindow implements WindowInterface {
 						flight.getDepartureTime().getTimeString()));
 			}
 		}
-		// System.out.println(flightsOnDate.size());
 		return flightsOnDate;
 	}
 
@@ -152,44 +149,52 @@ public class BrowseScheduleWindow implements WindowInterface {
 
 	}
 
-	private void refreshClock() {
-		realTimeClock = new Timeline(new KeyFrame(Duration.ZERO, e -> {
-			Calendar cal = Calendar.getInstance();
-			timeHour = cal.get(Calendar.HOUR);
-			timeMinute = cal.get(Calendar.MINUTE);
-			// timeHour++;
-			String timeOfDay = "AM";
-
-			if (cal.get(Calendar.AM_PM) == Calendar.PM) {
-				timeOfDay = "PM";
-			}
-			DateFormat dateFormat = new SimpleDateFormat("EEEE, MMMMM dd");
-			DateFormat timeFormat = new SimpleDateFormat("hh:mm");
-			String sDate = dateFormat.format(cal.getTime());
-			String sTime = timeFormat.format(cal.getTime());
-		}), new KeyFrame(Duration.minutes(1), e -> {
-			for (FlightInformation flight : flightsOnDate) {
-				if (flight != null) {
-					double departureTime = flight.getTime();
-					int departureMinute = 0;
-					int departureHour = (int) departureTime;
-
-					if (departureTime % 1 == 0) {
-						departureMinute = 30;
-					}
-
-					if (departureHour == timeHour && departureMinute == timeMinute) {
-						flightsOnDate.remove(flight);
-						flightTable.getItems().remove(flightTable.getSelectionModel().getSelectedItem());
-					}
-
-				}
-
-			}
+	private void setupClock() {
+		refreshClockContent();
+		realTimeClock = new Timeline(new KeyFrame(Duration.minutes(1), e -> {
+			refreshClockContent();
+			if (flightDatePicker.getValue().equals(LocalDate.now()))
+				updateTable();
 
 		}));
 		realTimeClock.setCycleCount(Animation.INDEFINITE);
 		realTimeClock.play();
-	};
 
+	}
+
+	private void refreshClockContent() {
+		Calendar cal = Calendar.getInstance();
+		timeHour = cal.get(Calendar.HOUR);
+		timeMinute = cal.get(Calendar.MINUTE);
+		String timeOfDay = "AM";
+
+		if (cal.get(Calendar.AM_PM) == Calendar.PM) {
+			timeOfDay = "PM";
+		}
+		DateFormat dateFormat = new SimpleDateFormat("EEEE, MMMMM dd hh:mm");
+		String sDate = dateFormat.format(cal.getTime());
+		dateTimeLabel.setText("Current Time: " + sDate + " " + timeOfDay);
+
+	}
+
+	private void updateTable() {
+		for (FlightInformation flight : flightsOnDate) {
+			if (flight != null) {
+				double departureTime = flight.getTime();
+				int departureMinute = 0;
+				int departureHour = (int) departureTime;
+
+				if (departureTime % 1 == 0) {
+					departureMinute = 30;
+				}
+
+				if (departureHour == timeHour && departureMinute == timeMinute) {
+					flightsOnDate.remove(flight);
+					flightTable.getItems().remove(flightTable.getSelectionModel().getSelectedItem());
+				}
+
+			}
+
+		}
+	}
 }
