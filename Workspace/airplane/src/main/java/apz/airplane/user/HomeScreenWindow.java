@@ -88,7 +88,7 @@ public class HomeScreenWindow implements WindowInterface {
 		dateLabel = new Text("");
 		timeLabel = new Text("00:00");
 		header = new Text("Welcome to APZ Booking!");
-		newsUpdate = new Text(AdminState.loadUpdate());
+		newsUpdate = new Text(AdminState.readUpdate());
 		newsHeader = new Text("Today's News:\n");
 		setupClock();
 	}
