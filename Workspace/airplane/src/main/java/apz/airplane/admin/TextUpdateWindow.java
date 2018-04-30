@@ -8,6 +8,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -24,7 +25,7 @@ public class TextUpdateWindow {
 	private Stage stage;
 	private ImageView img;
 	private VBox mainPane;
-	private TextField updateField;
+	private TextArea updateField;
 	private GridPane gridPane;
 	private Button saveButton;
 	private Text header;
@@ -40,14 +41,13 @@ public class TextUpdateWindow {
 	public void initialize() {
 		img = new ImageView(new Image(FilePath.LOGIN_IMAGE));
 		mainPane = new VBox(10);
-		updateField = new TextField();
+		updateField = new TextArea();
 		gridPane = new GridPane();
 		saveButton = new Button("Save Text");
 		header = new Text("Update Home Screen Text");
 	}
 	
 	public void content() {
-		
 		img.setFitWidth(100);
 		img.setFitHeight(100);
 		header.setFont(new Font(28));
@@ -57,10 +57,9 @@ public class TextUpdateWindow {
 		gridPane.setHgap(10);
 		gridPane.setVgap(10);
 		
-		gridPane.add(new Label("Enter Update Text: "), 0, 0);
 		gridPane.add(updateField, 1, 0);
 		
-		mainPane.getChildren().addAll(header, img, new Separator(), gridPane, saveButton);
+		mainPane.getChildren().addAll(header, img, new Separator(), new Label("Update the news update section"), gridPane, saveButton);
 		
 		mainPane.setAlignment(Pos.CENTER);
 	}
@@ -80,12 +79,12 @@ public class TextUpdateWindow {
 		stage = new Stage();
 		stage.initModality(Modality.APPLICATION_MODAL);
 		stage.setTitle("Update Home Screen Text");
-		stage.setScene(new Scene(mainPane, 350, 250));
+		stage.setScene(new Scene(mainPane, 400, 300));
 		stage.setResizable(false);
 		stage.show();
 	}
 	
-	private void saveText() {
+	private void saveText() {	// change to save text IO not bin io
 		if(updateField.getText().isEmpty())
 			MessageBox.message(AlertType.ERROR, "ERROR", "You must enter an update");
 		else {

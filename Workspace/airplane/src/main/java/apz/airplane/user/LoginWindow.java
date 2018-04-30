@@ -72,7 +72,7 @@ public class LoginWindow implements WindowInterface {
 		
 		ImageView img = new ImageView(new Image(FilePath.LOGIN_IMAGE));
 		img.setFitWidth(250);
-		img.setFitHeight(80);
+		img.setFitHeight(0);
 		
 		rootPane.getChildren().addAll(header, img, status, userBox, passBox, buttonBox);
 	}
