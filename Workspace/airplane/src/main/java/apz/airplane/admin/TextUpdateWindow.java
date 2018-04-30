@@ -41,7 +41,7 @@ public class TextUpdateWindow {
 	public void initialize() {
 		img = new ImageView(new Image(FilePath.LOGIN_IMAGE));
 		mainPane = new VBox(10);
-		updateField = new TextArea();
+		updateField = new TextArea(AdminState.readUpdate());
 		gridPane = new GridPane();
 		saveButton = new Button("Save Text");
 		header = new Text("Update Home Screen Text");
@@ -88,8 +88,7 @@ public class TextUpdateWindow {
 		if(updateField.getText().isEmpty())
 			MessageBox.message(AlertType.ERROR, "ERROR", "You must enter an update");
 		else {
-			AdminState.saveUpdate(updateField.getText());
-			System.out.println(AdminState.loadUpdate());
+			AdminState.writeUpdate(updateField.getText());
 			MessageBox.message(AlertType.INFORMATION, "Text Saved", "Your update has been saved!");
 			stage.close();
 		}

@@ -1,14 +1,13 @@
 package apz.airplane.admin;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -152,34 +151,37 @@ public class AdminState {
 		return new ArrayList<Flight>();
 	}
 	
-	public static void saveUpdate(String updateText) {
-		FileOutputStream fileOut;
-		ObjectOutputStream objectOut;
-		try {
-			fileOut = new FileOutputStream(homeScreenTextObject);
-			objectOut = new ObjectOutputStream(fileOut);
-			objectOut.writeObject(updateText);
-			objectOut.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	public static String loadUpdate() {
+	public static String readUpdate() {
+		
+		String line = "";
 		if (new File(homeScreenTextObject).exists()) {
-			String updateText = "";
-			FileInputStream fileIn;
+			File file = new File(homeScreenTextObject);
 			try {
-				fileIn = new FileInputStream(homeScreenTextObject);
-				ObjectInputStream objectIn = new ObjectInputStream(fileIn);
-				Object obj = objectIn.readObject();
-				objectIn.close();
-				updateText = (String) obj;
-			} catch (IOException | ClassNotFoundException e) {
+				Scanner input = new Scanner(file);
+				while(input.hasNextLine()) {
+					line += input.nextLine() + "\n";	
+				}
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			return updateText;
 		}
-		return "";
+		return line;
+		
+	}
+	
+	public static void writeUpdate(String updateText) {
+		if (new File(homeScreenTextObject).exists()) {
+			File file = new File(homeScreenTextObject);
+			try {
+				FileWriter fw = new FileWriter(file);
+				PrintWriter pw = new PrintWriter(fw);
+				pw.write(updateText);
+				pw.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 }
