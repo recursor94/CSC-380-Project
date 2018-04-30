@@ -46,17 +46,17 @@ public class HomeWindow {
 		img.setFitHeight(150);
 		addPlaneButton.setMaxWidth(200);
 		addFlightButton.setMaxWidth(250);
-		updateTextButton.setMaxWidth(330);
+		launchButton.setMaxWidth(350);
 		gridPane.setHgap(10);
 		gridPane.setVgap(10);
 		gridPane.setAlignment(Pos.CENTER);
 		gridPane.add(addPlaneButton, 0, 0);
 		gridPane.add(addFlightButton, 1, 0);
 		gridPane.add(userManageButton, 0, 1);
-		gridPane.add(launchButton, 1, 1);
+		gridPane.add(updateTextButton, 1, 1);
 		header.setFont(new Font(30));
 		mainPane.setAlignment(Pos.TOP_CENTER);
-		mainPane.getChildren().addAll(header, img, new Separator(), gridPane, updateTextButton);
+		mainPane.getChildren().addAll(header, img, new Separator(), gridPane, launchButton);
 	}
 	
 	private void actionEvents(Stage primaryStage) {
