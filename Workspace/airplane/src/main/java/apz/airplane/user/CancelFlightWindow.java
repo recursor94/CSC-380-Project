@@ -24,8 +24,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import jimmy.pack.WindowInterface;
 
-public class CancelFlightWindow {
+public class CancelFlightWindow implements WindowInterface{
 
 	private Text windowHeader;
 	private TableView<BookingTableData> tripTable;
@@ -48,7 +49,7 @@ public class CancelFlightWindow {
 		properties();
 	}
 
-	private void initialize() {
+	public void initialize() {
 
 		windowHeader = new Text("Manage Trips");
 		tripTable = new TableView<>();
@@ -69,41 +70,40 @@ public class CancelFlightWindow {
 		mainPane = new VBox(20);
 	}
 
-	private void content() {
+	public void content() {
 		user = APZLauncher.getCurrentUser();
 		resetTableData();
 		setupTableContents();
-		confirmButton.setMaxWidth(Double.MAX_VALUE);
+		
 		HBox.setHgrow(confirmButton, Priority.ALWAYS);
 		headerBox.getChildren().addAll(windowHeader, headerHorizontalSeparator);
 		bottomContentBox.getChildren().addAll(tripTable, new HBox(confirmButton));
-		//mainPane.setAlignment(Pos.CENTER);
+		// mainPane.setAlignment(Pos.CENTER);
 		mainPane.getChildren().addAll(headerBox, bottomContentBox);
 
 	}
 
-	private void properties() {
+	public void properties() {
 		APZLauncher.getBorderPane().setCenter(mainPane);
 		formatHeader();
 	}
 
-	private void formatHeader() {
+	public void formatHeader() {
 		windowHeader.setStyle("-fx-font: 24 arial;");
 		headerBox.setAlignment(Pos.CENTER);
 	}
 
-	private void actionEvents() {
+	public void actionEvents() {
 		confirmButton.setOnAction(event -> {
-			//System.out.println(tripTable.getSelectionModel().getSelectedItem());
+			// System.out.println(tripTable.getSelectionModel().getSelectedItem());
 
 			if (tripTable.getSelectionModel().getSelectedItem() != null) {
 				Booking foundBooking = user.findTrip(tripTable.getSelectionModel().getSelectedItem().getFlight());
-				
-				if(!foundBooking.isCancellable()) {
-					MessageBox.message(AlertType.ERROR, "Error Cancelling", "Cancellation Period Expired", "You can not cancel a flight you have booked more than "
-							+ "24 hours ago.  Please contact Customer Service for support.");
-					return;
-				}
+
+				// if(!foundBooking.isCancellable()) {
+				// CancelDenialAlert.cancelFlightError();
+				// return;
+				// }
 
 				Optional<ButtonType> result = MessageBox.message(AlertType.CONFIRMATION, "APZ Confirmation Dialog",
 						"Are you okay with removing the selected flight?");
@@ -112,9 +112,9 @@ public class CancelFlightWindow {
 					resetTableData();
 					APZState.saveInformation();
 
-				} //else {
-				//	System.out.println(":(");
-				//}
+				} // else {
+					// System.out.println(":(");
+					// }
 			} else {
 				MessageBox.message(AlertType.ERROR, "ERROR", "You must select a flight to cancel");
 			}
@@ -123,9 +123,10 @@ public class CancelFlightWindow {
 		tripTable.setRowFactory(tableView -> {
 			TableRow<BookingTableData> row = new TableRow<>();
 			row.setOnMouseClicked(event -> {
-				if(event.getClickCount() >= 2 &&!row.isEmpty()) {
+				if (event.getClickCount() >= 2 && !row.isEmpty()) {
+					System.out.println("Clicked twice");
 					BookingTableData rowData = row.getItem();
-					new TripResultWindow(rowData.getBookingRef());
+					new TripResultWindow(rowData.getBookingRef(), this);
 				}
 			});
 			return row;
@@ -133,7 +134,7 @@ public class CancelFlightWindow {
 	}
 
 	private void setupTableContents() {
-		//System.out.println(user.getTripList().size());
+		// System.out.println(user.getTripList().size());
 		flightNumberColumn.setCellValueFactory(new PropertyValueFactory<>("flightNumber"));
 		airlineColumn.setCellValueFactory(new PropertyValueFactory<>("Airline"));
 		arriveTimeColumn.setCellValueFactory(new PropertyValueFactory<>("arrivalTime"));
@@ -145,8 +146,8 @@ public class CancelFlightWindow {
 		tripCostColumn.setCellValueFactory(new PropertyValueFactory<>("tripCost"));
 		tripTable.getColumns().addAll(departureDateColumn, flightNumberColumn, airlineColumn, arriveTimeColumn,
 				departureTimeColumn, departureAirportColumn, destinationAirportColumn);
-		tripTable.setPrefHeight(APZLauncher.getBorderPane().getHeight() -10);
-		
+		tripTable.setPrefHeight(APZLauncher.getBorderPane().getHeight() - 10);
+
 		tripTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 	}
 

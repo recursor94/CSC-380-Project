@@ -1,4 +1,4 @@
-package apz.airplane.user;
+ackage apz.airplane.user;
 
 import apz.airplane.model.Flight;
 import apz.airplane.model.Payment;

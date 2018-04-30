@@ -60,68 +60,70 @@ public class BookFlightByDateWindow implements WindowInterface {
 	public void content() {
 		img.setFitWidth(150);
 		img.setFitHeight(150);
-		
+
 		header.setFont(new Font(28));
 		listText.setFont(new Font(20));
-		
+
 		bookFlightButton.setDisable(true);
-		
+
 		calendar.setEditable(false);
 		calendar.setMaxWidth(200);
-		
+
 		gridPane.setHgap(10);
 		gridPane.setVgap(10);
-		
+
 		gridPane.add(new Label("Select a flight date: "), 0, 0);
 		gridPane.add(calendar, 1, 0);
-		
+
 		gridPane.setAlignment(Pos.CENTER);
-		
-		leftPane.getChildren().addAll(new Label(), header, img, new Separator(), gridPane, findFlightButton, new Separator(), listText, flightView, bookFlightButton);
+
+		leftPane.getChildren().addAll(new Label(), header, img, new Separator(), gridPane, findFlightButton,
+				new Separator(), listText, flightView, bookFlightButton);
 
 		leftPane.setAlignment(Pos.CENTER);
-		
-//		rightPane.getChildren().addAll(listText, flightView, bookFlightButton);
-//		
-//		rightPane.setAlignment(Pos.CENTER);
-//		
-//		mainPane.setDividerPositions(.5);
-//		mainPane.getItems().addAll(leftPane, rightPane);
+
+		// rightPane.getChildren().addAll(listText, flightView, bookFlightButton);
+		//
+		// rightPane.setAlignment(Pos.CENTER);
+		//
+		// mainPane.setDividerPositions(.5);
+		// mainPane.getItems().addAll(leftPane, rightPane);
 	}
-	
+
 	public void properties() {
 		APZLauncher.getBorderPane().setCenter(leftPane);
 		APZLauncher.getStage().setTitle("APZ Application - Book Flight by Date");
-//		APZLauncher.getStage().setWidth(725);
-//		APZLauncher.getStage().setHeight(500);
+		// APZLauncher.getStage().setWidth(725);
+		// APZLauncher.getStage().setHeight(500);
 	}
+
 	public void actionEvents() {
 		findFlightButton.setOnAction(event -> {
 			if (calendar.getValue() != null) {
 				flightList = findFlights(calendar.getValue());
-				
+
 				if (!flightView.getItems().isEmpty())
 					flightView.getItems().clear();
 				for (int i = 0; i < flightList.size(); i++)
 					flightView.getItems().add(flightList.get(i));
 
 				if (flightView.getItems().isEmpty())
-					MessageBox.message(AlertType.INFORMATION, "No Flights Found", "There are no flights scheduled for " + calendar.getValue());
-		   
-			}
-			else 
+					MessageBox.message(AlertType.INFORMATION, "No Flights Found",
+							"There are no flights scheduled for " + calendar.getValue());
+
+			} else
 				MessageBox.message(AlertType.ERROR, "ERROR", "You must select a date");
-			
+
 			bookFlightButton.setDisable(true);
 		});
 
 		flightView.getSelectionModel().selectedItemProperty().addListener(event -> {
 			bookFlightButton.setDisable(false);
 		});
-		
+
 		bookFlightButton.setOnAction(event -> {
-				//new CheckBaggageWindow(flightView.getSelectionModel().getSelectedItem());
-				new BookingPaymentWindow(flightView.getSelectionModel().getSelectedItem());
+			// new CheckBaggageWindow(flightView.getSelectionModel().getSelectedItem());
+			new BookingPaymentWindow(flightView.getSelectionModel().getSelectedItem());
 		});
 	}
 
@@ -131,10 +133,11 @@ public class BookFlightByDateWindow implements WindowInterface {
 		ArrayList<Flight> flightsFound = new ArrayList<>();
 
 		for (int i = 0; i < searchFlights.size(); i++) {
-			if (departure.equals(searchFlights.get(i).getDepartureDate()) && !searchFlights.get(i).getPlane().getSeats().isFull()) 
+			if (departure.equals(searchFlights.get(i).getDepartureDate())
+					&& !searchFlights.get(i).getPlane().getSeats().isFull())
 				flightsFound.add(searchFlights.get(i));
 		}
-		
+
 		return flightsFound;
 	}
 }

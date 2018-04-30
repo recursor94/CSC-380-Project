@@ -1,7 +1,5 @@
 package apz.airplane.user;
 
-import java.time.LocalDate;
-
 import apz.airplane.model.Booking;
 import apz.airplane.util.FilePath;
 import javafx.geometry.Pos;
@@ -25,6 +23,7 @@ public class TripResultWindow implements WindowInterface {
 	private Button backButton;
 	
 	private Booking booking;
+	private WindowInterface parentWindow;
 
 	public TripResultWindow(Booking booking) {
 		this.booking = booking;
@@ -33,7 +32,15 @@ public class TripResultWindow implements WindowInterface {
 		actionEvents();
 		properties();
 	}
-
+	
+	public TripResultWindow(Booking booking, WindowInterface parentWindow) {
+		this.booking = booking;
+		this.parentWindow = parentWindow;
+		initialize();
+		content();
+		actionEvents();
+		properties();
+	}
 	public void initialize() {
 		img = new ImageView(new Image(FilePath.LOGIN_IMAGE));
 		headerText = new Text("Trip Query");
@@ -85,7 +92,9 @@ public class TripResultWindow implements WindowInterface {
 		}
 		
 		backButton.setOnAction(event -> {
-			new TripViewWindow();
+			if(parentWindow instanceof CancelFlightWindow)  {
+				new CancelFlightWindow();
+		}
 		});
 	}
 
@@ -99,5 +108,4 @@ public class TripResultWindow implements WindowInterface {
 		gridPane.setAlignment(Pos.TOP_CENTER);
 		APZLauncher.getBorderPane().setCenter(mainPane);
 	}
-
 }
