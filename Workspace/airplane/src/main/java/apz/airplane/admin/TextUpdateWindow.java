@@ -68,11 +68,6 @@ public class TextUpdateWindow {
 		saveButton.setOnAction(event -> {
 			saveText();
 		});
-		
-		mainPane.setOnKeyPressed(event -> {
-			if(event.getCode() == KeyCode.ENTER)
-				saveText();
-		});
 	}
 	
 	public void properties() {
@@ -84,7 +79,7 @@ public class TextUpdateWindow {
 		stage.show();
 	}
 	
-	private void saveText() {	// change to save text IO not bin io
+	private void saveText() {
 		if(updateField.getText().isEmpty())
 			MessageBox.message(AlertType.ERROR, "ERROR", "You must enter an update");
 		else {
