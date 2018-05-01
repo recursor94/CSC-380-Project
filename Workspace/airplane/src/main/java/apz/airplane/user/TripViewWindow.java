@@ -66,6 +66,11 @@ public class TripViewWindow implements GuiApplication {
 				new TripResultWindow(tripList.get(index));
 			});
 		}
+//		GridPane itemPane; 
+//		for(int i = 0; i < tripList.size(); i++) {
+//			itemPane = new GridPane();
+//
+//		}
 		
 		scrollPane.setContent(gridPane);
 		mainPane.getChildren().addAll(new Label(), headerText, img, scrollPane);

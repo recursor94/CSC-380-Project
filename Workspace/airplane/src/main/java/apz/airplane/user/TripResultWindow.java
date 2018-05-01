@@ -1,14 +1,21 @@
 package apz.airplane.user;
 
+import java.util.Optional;
+
 import apz.airplane.model.Booking;
+import apz.airplane.util.APZState;
 import apz.airplane.util.FilePath;
+import apz.airplane.util.MessageBox;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -19,8 +26,10 @@ public class TripResultWindow implements GuiApplication {
 	private ImageView img;
 	private Text headerText;
 	private VBox mainPane;
+	private HBox buttonBox;
 	private GridPane gridPane;
 	private Button backButton;
+	private Button cancelButton;
 
 	private Booking booking;
 	private GuiApplication parentWindow;
@@ -46,11 +55,15 @@ public class TripResultWindow implements GuiApplication {
 		img = new ImageView(new Image(FilePath.QUERY_IMAGE));
 		headerText = new Text("Trip Query");
 		mainPane = new VBox(10);
+		buttonBox = new HBox(8);
 		gridPane = new GridPane();
 		backButton = new Button("Go back");
+		cancelButton = new Button("Cancel Flight");
 	}
 
 	public void content() {
+		buttonBox.setAlignment(Pos.BASELINE_CENTER);
+		buttonBox.getChildren().addAll(cancelButton, backButton);
 		gridPane.add(new ImageView(new Image(FilePath.BULLET_POINT_IMAGE)), 0, 0);
 		gridPane.add(new Label("Date Booked: " + booking.getBookDate()), 1, 0);
 
@@ -82,7 +95,7 @@ public class TripResultWindow implements GuiApplication {
 		gridPane.add(new Label("Account Holder: " + APZLauncher.getCurrentUser().getEmail()), 1, 9);
 
 		mainPane.getChildren().addAll(new Label(), headerText, img, new Separator(), gridPane, new Separator(),
-				backButton);
+				buttonBox);
 
 	}
 
@@ -100,6 +113,25 @@ public class TripResultWindow implements GuiApplication {
 				new TripViewWindow();
 			}
 		});
+
+		cancelButton.setOnAction(event -> {
+
+			Optional<ButtonType> result = MessageBox.message(AlertType.CONFIRMATION, "APZ Confirmation Dialog",
+					"Are you okay with removing the selected flight?");
+			if (result.get() == ButtonType.OK) {
+				// I TRIED TO REMOVE A USER FROM A SEAT BUT IT DID NOT SEEM TO WORK
+				// foundBooking.getFlight().getPlane().getSeats().remove(user);
+				APZLauncher.getCurrentUser().removeTrip(booking.getFlight());
+				APZState.saveInformation();
+				new TripViewWindow();
+			} // else {
+				// System.out.println(":(");
+				// }
+			else {
+				MessageBox.message(AlertType.INFORMATION, "Cancellation Aborted", "Flight Cancellation Aborted");
+			}
+		});
+
 	}
 
 	public void properties() {

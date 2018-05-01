@@ -5,7 +5,7 @@ import javafx.scene.image.Image;
 public class CarModel {
 	
 	private String model;
-	private Image carImage;
+	private static Image carImage;
 	
 	public CarModel(String model) {
 		this.model = model;
@@ -61,12 +61,40 @@ public class CarModel {
 		this.model = model;
 	}
 
-	public Image getCarImage() {
+	public static Image getCarImage(String model) {
+		if (model.equals("2017 2 Series"))
+			carImage = new Image("file:resource/bmw2series.png");
+		else if (model.equals("2017 5 Series")) 
+			carImage = new Image("file:resource/bmw5series.png");
+		else if (model.equals("2017 7 Series"))
+			carImage = new Image("file:resource/bmw7series.png");
+		else if (model.equals("2017 6 Series"))
+			carImage = new Image("file:resource/bmw6series.png");
+		else if (model.equals("2017 M6"))
+			carImage = new Image("file:resource/bmwm6.png");
+		else if (model.equals("2017 i8"))
+			carImage = new Image("file:resource/bmwi8.png");
+		else if (model.equals("2017 X3"))
+			carImage = new Image("file:resource/bmwx3.png");
+		else if (model.equals("2017 X6"))
+			carImage = new Image("file:resource/bmwx6.png");
+		else if (model.equals("2017 EU Mondeo Vignale"))
+			carImage = new Image("file:resource/fordmondeo.png");
+		else if (model.equals("2013 Fiesta"))
+			carImage = new Image("file:resource/fordfiesta.png");
+		else if (model.equals("2006 Focus"))
+			carImage = new Image("file:resource/fordfocus.png");
+		else if (model.equals("2015 Focus RS"))
+			carImage = new Image("file:resource/fordfocusrs.png");
+		else if (model.equals("2004 Mustang Cobra"))
+			carImage = new Image("file:resource/bmw2series.png");
+		else if (model.equals("2016 GT"))
+			carImage = new Image("file:resource/bmw2series.png");
+		else if (model.equals("2017 Explorer"))
+			carImage = new Image("file:resource/bmw2series.png");
+		else if (model.equals("2017 Edge"))
+			carImage = new Image("file:resource/bmw2series.png");
 		return carImage;
-	}
-
-	public void setCarImage(Image carImage) {
-		this.carImage = carImage;
 	}
 	
 }
