@@ -42,7 +42,7 @@ public class CancelFlightWindow implements GuiApplication {
 
 	public void initialize() {
 
-		windowHeader = new Text("Manage Trips");
+		windowHeader = new Text("Upcoming Trips");
 		tripTable = new TableView<>();
 		windowHeader = new Text("Manage Trips");
 		flightNumberColumn = new TableColumn<>("Flight");
@@ -82,7 +82,7 @@ public class CancelFlightWindow implements GuiApplication {
 	}
 
 	public void actionEvents() {
-			tripTable.setRowFactory(tableView -> {
+		tripTable.setRowFactory(tableView -> {
 			TableRow<BookingTableData> row = new TableRow<>();
 			row.setOnMouseClicked(event -> {
 				if (event.getClickCount() >= 2 && !row.isEmpty()) {
@@ -105,8 +105,8 @@ public class CancelFlightWindow implements GuiApplication {
 		destinationAirportColumn.setCellValueFactory(new PropertyValueFactory<>("destinationAirport"));
 		bookDateColumn.setCellValueFactory(new PropertyValueFactory<>("bookDate"));
 		tripCostColumn.setCellValueFactory(new PropertyValueFactory<>("tripCost"));
-		tripTable.getColumns().addAll(departureDateColumn, flightNumberColumn, airlineColumn,
-				departureTimeColumn, departureAirportColumn, destinationAirportColumn);
+		tripTable.getColumns().addAll(departureDateColumn, flightNumberColumn, airlineColumn, departureTimeColumn,
+				departureAirportColumn, destinationAirportColumn);
 		tripTable.setPrefHeight(APZLauncher.getBorderPane().getHeight() - 10);
 
 		tripTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
@@ -116,7 +116,8 @@ public class CancelFlightWindow implements GuiApplication {
 		ArrayList<Booking> tripList = user.getTripList();
 		ArrayList<BookingTableData> informationList = new ArrayList<>();
 		for (Booking trip : tripList) {
-			informationList.add(new BookingTableData(trip));
+			if (!trip.getBookDate().isBefore(LocalDate.now()))
+				informationList.add(new BookingTableData(trip));
 		}
 		tripTable.setItems(FXCollections.observableArrayList(informationList));
 
