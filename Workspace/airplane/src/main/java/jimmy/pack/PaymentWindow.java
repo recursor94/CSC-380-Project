@@ -36,7 +36,7 @@ public class PaymentWindow implements WindowInterface {
 	}
 	
 	public void initialize() {
-		img = new ImageView(new Image(FilePath.LOGIN_IMAGE));
+		img = new ImageView(new Image(FilePath.PAYMENT_INFO_IMAGE));
 		headerText = new Text("Payment Information");
 		mainPane = new VBox(10);
 		gridPane = new GridPane();
@@ -81,7 +81,7 @@ public class PaymentWindow implements WindowInterface {
 	public void properties() {
 		headerText.setFont(new Font(32));
 		
-		img.setFitWidth(150);
+		img.setFitWidth(250);
 		img.setFitHeight(150);
 		
 		gridPane.setVgap(15);

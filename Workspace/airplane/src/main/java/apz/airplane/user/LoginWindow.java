@@ -52,7 +52,7 @@ public class LoginWindow implements WindowInterface {
 		status = new Text("");
 		status.setFill(Color.RED);
 		
-		header = new Text("APZ Application");
+		header = new Text("APZ Project Application");
 		
 		loginButton = new Button("Login");
 		registerButton = new Button("Register");
@@ -70,11 +70,11 @@ public class LoginWindow implements WindowInterface {
 		passBox.getChildren().addAll(new Label("Password: "), passField);
 		buttonBox.getChildren().addAll(loginButton, registerButton);
 		
-		ImageView img = new ImageView(new Image(FilePath.LOGIN_IMAGE));
-		img.setFitWidth(250);
-		img.setFitHeight(0);
+		ImageView img = new ImageView(new Image(FilePath.LOGO_IMAGE));
+		img.setFitWidth(170);
+		img.setFitHeight(170);
 		
-		rootPane.getChildren().addAll(header, img, status, userBox, passBox, buttonBox);
+		rootPane.getChildren().addAll(img, header, status, userBox, passBox, buttonBox);
 	}
 	
 	public void properties() {

@@ -60,7 +60,7 @@ public class PaymentAddWindow implements WindowInterface {
 	}
 	
 	public void initialize() {
-		img = new ImageView(new Image(FilePath.LOGIN_IMAGE));
+		img = new ImageView(new Image(FilePath.PAYMENT_ADD_IMAGE));
 		header = new Text("Enter Payment Information");
 		mainPane = new VBox(10);
 		infoPane = new HBox(10);
@@ -79,7 +79,7 @@ public class PaymentAddWindow implements WindowInterface {
 	}
 	
 	public void content() {
-		img.setFitWidth(150);
+		img.setFitWidth(250);
 		img.setFitHeight(150);
 		
 		header.setFont(new Font(32));

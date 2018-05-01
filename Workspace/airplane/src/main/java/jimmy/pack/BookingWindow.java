@@ -40,7 +40,7 @@ public class BookingWindow implements WindowInterface {
 	}
 
 	public void initialize() {
-		img = new ImageView(new Image(FilePath.LOGIN_IMAGE));
+		img = new ImageView(new Image(FilePath.BOOK_TRIP_IMAGE));
 		headerText = new Text("Book a trip");
 		mainPane = new VBox(10);
 		gridPane = new GridPane();
@@ -88,7 +88,7 @@ public class BookingWindow implements WindowInterface {
 	}
 
 	public void properties() {
-		img.setFitWidth(150);
+		img.setFitWidth(235);
 		img.setFitHeight(150);
 		
 		headerText.setFont(new Font(32));

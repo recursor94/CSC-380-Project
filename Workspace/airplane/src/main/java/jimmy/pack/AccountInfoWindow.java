@@ -1,16 +1,10 @@
 package jimmy.pack;
 
-import java.util.Optional;
-
 import apz.airplane.model.User;
 import apz.airplane.user.APZLauncher;
 import apz.airplane.util.FilePath;
 import javafx.geometry.Pos;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonBar.ButtonData;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
 import javafx.scene.image.Image;
@@ -40,7 +34,7 @@ public class AccountInfoWindow implements WindowInterface {
 	}
 
 	public void initialize() {
-		img = new ImageView(new Image(FilePath.LOGIN_IMAGE));
+		img = new ImageView(new Image(FilePath.ACCOUNT_INFO_IMAGE));
 		mainPane = new VBox(10);
 		gridPane = new GridPane();
 		headerText = new Text("Account Information");
@@ -51,15 +45,15 @@ public class AccountInfoWindow implements WindowInterface {
 	public void content() {
 		uc = APZLauncher.getCurrentUser();
 		
-		gridPane.add(new ImageView(new Image(FilePath.LOGIN_IMAGE)), 1, 2);
+		gridPane.add(new ImageView(new Image(FilePath.BULLET_POINT_IMAGE)), 1, 2);
 		gridPane.add(new Label("Email: "), 2, 2);
 		gridPane.add(new Label(uc.getEmail()), 3, 2);
 		
-		gridPane.add(new ImageView(new Image(FilePath.LOGIN_IMAGE)), 1, 3);
+		gridPane.add(new ImageView(new Image(FilePath.BULLET_POINT_IMAGE)), 1, 3);
 		gridPane.add(new Label("Username: "), 2, 3);
 		gridPane.add(new Label(uc.getUsername()), 3, 3);
 
-		gridPane.add(new ImageView(new Image(FilePath.LOGIN_IMAGE)), 1, 4);
+		gridPane.add(new ImageView(new Image(FilePath.BULLET_POINT_IMAGE)), 1, 4);
 		gridPane.add(new Label("Password: "), 2, 4);
 		gridPane.add(new Label("******"), 3, 4);
 		gridPane.add(changeButton, 3, 6);
@@ -72,8 +66,8 @@ public class AccountInfoWindow implements WindowInterface {
 		
 		for (int i = 0; i < gridPane.getChildren().size(); i++) 
 			if (gridPane.getChildren().get(i) instanceof ImageView) {
-				((ImageView) gridPane.getChildren().get(i)).setFitWidth(50);
-				((ImageView) gridPane.getChildren().get(i)).setFitHeight(50);
+				((ImageView) gridPane.getChildren().get(i)).setFitWidth(25);
+				((ImageView) gridPane.getChildren().get(i)).setFitHeight(25);
 		}
 		
 		changeButton.setOnAction(event -> {
@@ -90,7 +84,7 @@ public class AccountInfoWindow implements WindowInterface {
 		mainPane.setAlignment(Pos.TOP_CENTER);
 		gridPane.setVgap(10);
 		gridPane.setHgap(10);
-		img.setFitWidth(150);
+		img.setFitWidth(235);
 		img.setFitHeight(150);
 		APZLauncher.getBorderPane().setCenter(mainPane);
 		APZLauncher.getStage().setTitle("APZ Application - Account Information");

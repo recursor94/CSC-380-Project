@@ -36,7 +36,7 @@ public class TripViewWindow implements WindowInterface {
 	}
 
 	public void initialize() {
-		img = new ImageView(new Image(FilePath.LOGIN_IMAGE));
+		img = new ImageView(new Image(FilePath.HISTORY_IMAGE));
 		headerText = new Text("Trip History");
 		mainPane = new VBox(10);
 		scrollPane = new ScrollPane();
@@ -76,7 +76,7 @@ public class TripViewWindow implements WindowInterface {
 	}
 
 	public void properties() {
-		img.setFitWidth(150);
+		img.setFitWidth(235);
 		img.setFitHeight(150);
 		headerText.setFont(new Font(32));
 		gridPane.setVgap(10);
