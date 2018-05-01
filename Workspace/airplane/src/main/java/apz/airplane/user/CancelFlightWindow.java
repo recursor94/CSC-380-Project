@@ -26,7 +26,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import jimmy.pack.GuiApplication;
 
-public class CancelFlightWindow implements GuiApplication{
+public class CancelFlightWindow implements GuiApplication {
 
 	private Text windowHeader;
 	private TableView<BookingTableData> tripTable;
@@ -39,7 +39,6 @@ public class CancelFlightWindow implements GuiApplication{
 	private VBox headerBox;
 	private VBox bottomContentBox;
 	private static VBox mainPane;
-	private Button confirmButton;
 	private User user;
 
 	public CancelFlightWindow() {
@@ -53,7 +52,6 @@ public class CancelFlightWindow implements GuiApplication{
 
 		windowHeader = new Text("Manage Trips");
 		tripTable = new TableView<>();
-		confirmButton = new Button("Cancel Flight");
 		windowHeader = new Text("Manage Trips");
 		flightNumberColumn = new TableColumn<>("Flight");
 		arriveTimeColumn = new TableColumn<>("Boarding");
@@ -74,10 +72,9 @@ public class CancelFlightWindow implements GuiApplication{
 		user = APZLauncher.getCurrentUser();
 		resetTableData();
 		setupTableContents();
-		
-		HBox.setHgrow(confirmButton, Priority.ALWAYS);
+
 		headerBox.getChildren().addAll(windowHeader, headerHorizontalSeparator);
-		bottomContentBox.getChildren().addAll(tripTable, new HBox(confirmButton));
+		bottomContentBox.getChildren().add(tripTable);
 		// mainPane.setAlignment(Pos.CENTER);
 		mainPane.getChildren().addAll(headerBox, bottomContentBox);
 
@@ -94,35 +91,7 @@ public class CancelFlightWindow implements GuiApplication{
 	}
 
 	public void actionEvents() {
-		confirmButton.setOnAction(event -> {
-			// System.out.println(tripTable.getSelectionModel().getSelectedItem());
-
-			if (tripTable.getSelectionModel().getSelectedItem() != null) {
-				Booking foundBooking = user.findTrip(tripTable.getSelectionModel().getSelectedItem().getFlight());
-
-				// if(!foundBooking.isCancellable()) {
-				// CancelDenialAlert.cancelFlightError();
-				// return;
-				// }
-
-				Optional<ButtonType> result = MessageBox.message(AlertType.CONFIRMATION, "APZ Confirmation Dialog",
-						"Are you okay with removing the selected flight?");
-				if (result.get() == ButtonType.OK) {
-					//I TRIED TO REMOVE A USER FROM A SEAT BUT IT DID NOT SEEM TO WORK
-					//foundBooking.getFlight().getPlane().getSeats().remove(user);
-					user.removeTrip(foundBooking.getFlight());
-					resetTableData();
-					APZState.saveInformation();
-
-				} // else {
-					// System.out.println(":(");
-					// }
-			} else {
-				MessageBox.message(AlertType.ERROR, "ERROR", "You must select a flight to cancel");
-			}
-
-		});
-		tripTable.setRowFactory(tableView -> {
+			tripTable.setRowFactory(tableView -> {
 			TableRow<BookingTableData> row = new TableRow<>();
 			row.setOnMouseClicked(event -> {
 				if (event.getClickCount() >= 2 && !row.isEmpty()) {
