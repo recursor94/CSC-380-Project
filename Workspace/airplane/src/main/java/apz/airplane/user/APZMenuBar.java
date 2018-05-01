@@ -18,7 +18,7 @@ import jimmy.pack.PaymentWindow;
 public class APZMenuBar {
 	
 	private MenuBar menuBar;
-	private Menu fileMenu, flightMenu, accountMenu, tripHistoryMenu, homeMenu;
+	private Menu fileMenu, flightMenu, accountMenu, bookMenu, homeMenu;
 	private MenuItem exitItem, logoutItem;
 	private MenuItem bookATripItem, bookByDateItem, bookByDestinationItem;
 	private MenuItem viewFlightItem, scheduleFlightItem;
@@ -36,7 +36,7 @@ public class APZMenuBar {
 		fileMenu = new Menu("File");
 		flightMenu = new Menu("Flights");
 		accountMenu = new Menu("My Account");
-		tripHistoryMenu = new Menu("Trip history");
+		bookMenu = new Menu("Book a trip");
 
 		homeMenu = new Menu("Home");
 		
@@ -57,9 +57,9 @@ public class APZMenuBar {
 	}
 	
 	private void content() {
-		tripHistoryMenu.getItems().addAll(bookATripItem, new SeparatorMenuItem(), bookByDateItem, bookByDestinationItem);
+		bookMenu.getItems().addAll(bookATripItem, new SeparatorMenuItem(), bookByDateItem, bookByDestinationItem);
 		fileMenu.getItems().addAll(exitItem, new SeparatorMenuItem(), logoutItem);
-		flightMenu.getItems().addAll(tripHistoryMenu, viewFlightItem, scheduleFlightItem);
+		flightMenu.getItems().addAll(bookMenu, viewFlightItem, scheduleFlightItem);
 		accountMenu.getItems().addAll(manageAccountItem, managePaymentItem, manageBookingItem);
 		homeMenu.getItems().add(returnHomeMenuItem);
 		menuBar.getMenus().addAll(fileMenu, flightMenu, accountMenu, homeMenu);
