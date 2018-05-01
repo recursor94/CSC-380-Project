@@ -15,13 +15,13 @@ import javafx.scene.text.Text;
 import jimmy.pack.GuiApplication;
 
 public class TripResultWindow implements GuiApplication {
-	
+
 	private ImageView img;
 	private Text headerText;
 	private VBox mainPane;
 	private GridPane gridPane;
 	private Button backButton;
-	
+
 	private Booking booking;
 	private GuiApplication parentWindow;
 
@@ -32,7 +32,7 @@ public class TripResultWindow implements GuiApplication {
 		actionEvents();
 		properties();
 	}
-	
+
 	public TripResultWindow(Booking booking, GuiApplication parentWindow) {
 		this.booking = booking;
 		this.parentWindow = parentWindow;
@@ -41,6 +41,7 @@ public class TripResultWindow implements GuiApplication {
 		actionEvents();
 		properties();
 	}
+
 	public void initialize() {
 		img = new ImageView(new Image(FilePath.QUERY_IMAGE));
 		headerText = new Text("Trip Query");
@@ -52,49 +53,52 @@ public class TripResultWindow implements GuiApplication {
 	public void content() {
 		gridPane.add(new ImageView(new Image(FilePath.BULLET_POINT_IMAGE)), 0, 0);
 		gridPane.add(new Label("Date Booked: " + booking.getBookDate()), 1, 0);
-		
+
 		gridPane.add(new ImageView(new Image(FilePath.BULLET_POINT_IMAGE)), 0, 1);
 		gridPane.add(new Label("Trip Cost: $" + booking.getTripCost()), 1, 1);
-		
+
 		gridPane.add(new ImageView(new Image(FilePath.BULLET_POINT_IMAGE)), 0, 2);
 		gridPane.add(new Label("Airline: " + booking.getFlight().getPlane().getAirline()), 1, 2);
-		
+
 		gridPane.add(new ImageView(new Image(FilePath.BULLET_POINT_IMAGE)), 0, 3);
 		gridPane.add(new Label("Plane Number: " + booking.getFlight().getPlane().getPlaneNum()), 1, 3);
-		
+
 		gridPane.add(new ImageView(new Image(FilePath.BULLET_POINT_IMAGE)), 0, 4);
 		gridPane.add(new Label("Departing Airport: " + booking.getFlight().getDepartureAirport()), 1, 4);
-		
+
 		gridPane.add(new ImageView(new Image(FilePath.BULLET_POINT_IMAGE)), 0, 5);
 		gridPane.add(new Label("Departing Time: " + booking.getFlight().getDepartureTime()), 1, 5);
-		
+
 		gridPane.add(new ImageView(new Image(FilePath.BULLET_POINT_IMAGE)), 0, 6);
 		gridPane.add(new Label("Destination Airport: " + booking.getFlight().getDestinationAirport()), 1, 6);
-		
+
 		gridPane.add(new ImageView(new Image(FilePath.BULLET_POINT_IMAGE)), 0, 7);
 		gridPane.add(new Label("Destination Time: " + booking.getFlight().getArrivalTime()), 1, 7);
-		
+
 		gridPane.add(new ImageView(new Image(FilePath.BULLET_POINT_IMAGE)), 0, 8);
 		gridPane.add(new Label("Flight Number: " + booking.getFlight().getFlightNum()), 1, 8);
-		
+
 		gridPane.add(new ImageView(new Image(FilePath.BULLET_POINT_IMAGE)), 0, 9);
 		gridPane.add(new Label("Account Holder: " + APZLauncher.getCurrentUser().getEmail()), 1, 9);
-		
-		mainPane.getChildren().addAll(new Label(), headerText, img, new Separator(), gridPane, new Separator(), backButton);
-		
+
+		mainPane.getChildren().addAll(new Label(), headerText, img, new Separator(), gridPane, new Separator(),
+				backButton);
+
 	}
 
 	public void actionEvents() {
-		for (int i = 0; i < gridPane.getChildren().size(); i++) 
+		for (int i = 0; i < gridPane.getChildren().size(); i++)
 			if (gridPane.getChildren().get(i) instanceof ImageView) {
 				((ImageView) gridPane.getChildren().get(i)).setFitWidth(20);
 				((ImageView) gridPane.getChildren().get(i)).setFitHeight(20);
-		}
-		
+			}
+
 		backButton.setOnAction(event -> {
-			if(parentWindow instanceof CancelFlightWindow)  {
+			if (parentWindow instanceof CancelFlightWindow) {
 				new CancelFlightWindow();
-		}
+			} else {
+				new TripViewWindow();
+			}
 		});
 	}
 
