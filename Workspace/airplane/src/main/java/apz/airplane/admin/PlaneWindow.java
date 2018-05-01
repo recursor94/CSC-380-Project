@@ -3,7 +3,6 @@ package apz.airplane.admin;
 import java.util.ArrayList;
 
 import apz.airplane.model.Airplane;
-import apz.airplane.util.IsInteger;
 import apz.airplane.util.MessageBox;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;

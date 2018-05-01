@@ -1,4 +1,4 @@
-package apz.airplane.user;
+package apz.airplane.user.gui;
 
 import apz.airplane.model.User;
 import apz.airplane.model.UserController;

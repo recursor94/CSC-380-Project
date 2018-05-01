@@ -10,7 +10,6 @@ import apz.airplane.model.Time;
 import apz.airplane.model.User;
 import apz.airplane.model.UserController;
 import apz.airplane.util.APZState;
-import apz.airplane.util.IsInteger;
 import apz.airplane.util.MessageBox;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;

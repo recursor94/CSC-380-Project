@@ -1,4 +1,4 @@
-package apz.airplane.user;
+package apz.airplane.user.gui.booking;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -7,6 +7,9 @@ import apz.airplane.model.Airport;
 import apz.airplane.model.Booking;
 import apz.airplane.model.Flight;
 import apz.airplane.model.User;
+import apz.airplane.user.gui.APZLauncher;
+import apz.airplane.user.gui.viewtrips.TripResultWindow;
+import apz.airplane.util.GuiApplication;
 import javafx.collections.FXCollections;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
@@ -17,7 +20,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import jimmy.pack.GuiApplication;
 
 public class CancelFlightWindow implements GuiApplication {
 

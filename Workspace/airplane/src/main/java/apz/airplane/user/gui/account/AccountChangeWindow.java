@@ -1,8 +1,9 @@
-package jimmy.pack;
+package apz.airplane.user.gui.account;
 
-import apz.airplane.user.APZLauncher;
+import apz.airplane.user.gui.APZLauncher;
 import apz.airplane.util.APZState;
 import apz.airplane.util.FilePath;
+import apz.airplane.util.GuiApplication;
 import apz.airplane.util.MessageBox;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert.AlertType;

@@ -1,4 +1,4 @@
-package apz.airplane.user;
+package apz.airplane.user.gui.home;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -7,7 +7,10 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import apz.airplane.model.Flight;
+import apz.airplane.user.gui.APZLauncher;
+import apz.airplane.user.gui.booking.BookingResultWindow;
 import apz.airplane.util.APZState;
+import apz.airplane.util.GuiApplication;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -25,14 +28,12 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
-import jimmy.pack.BookingResultWindow;
-import jimmy.pack.GuiApplication;
 
 public class BrowseScheduleWindow implements GuiApplication {
-	private TableView<FlightInformation> flightTable;
-	private TableColumn<FlightInformation, Integer> flightNumber;
-	private TableColumn<FlightInformation, String> departingCity, destinationCity, departingTime;
-	private ArrayList<FlightInformation> flightsOnDate;
+	private TableView<HomeTableData> flightTable;
+	private TableColumn<HomeTableData, Integer> flightNumber;
+	private TableColumn<HomeTableData, String> departingCity, destinationCity, departingTime;
+	private ArrayList<HomeTableData> flightsOnDate;
 	private DatePicker flightDatePicker;
 	private Text windowHeader;
 	private Text dateText;
@@ -90,10 +91,10 @@ public class BrowseScheduleWindow implements GuiApplication {
 			setTableData(newValue);
 		});
 		flightTable.setRowFactory(tableView -> {
-			TableRow<FlightInformation> row = new TableRow<>();
+			TableRow<HomeTableData> row = new TableRow<>();
 			row.setOnMouseClicked(event -> {
 				if (event.getClickCount() >= 2 && !row.isEmpty()) {
-					FlightInformation rowData = row.getItem();
+					HomeTableData rowData = row.getItem();
 					
 					ArrayList<Flight> flightList = new ArrayList<>();
 					flightList.add(rowData.getFlightRef());
@@ -120,10 +121,10 @@ public class BrowseScheduleWindow implements GuiApplication {
 
 	private void setupTableContents() {
 		flightTable.getColumns().addAll(flightNumber, departingCity, destinationCity, departingTime);
-		flightNumber.setCellValueFactory(new PropertyValueFactory<FlightInformation, Integer>("flightNumber"));
-		departingCity.setCellValueFactory(new PropertyValueFactory<FlightInformation, String>("departureAirport"));
-		destinationCity.setCellValueFactory(new PropertyValueFactory<FlightInformation, String>("destinationAirport"));
-		departingTime.setCellValueFactory(new PropertyValueFactory<FlightInformation, String>("departureTimeString"));
+		flightNumber.setCellValueFactory(new PropertyValueFactory<HomeTableData, Integer>("flightNumber"));
+		departingCity.setCellValueFactory(new PropertyValueFactory<HomeTableData, String>("departureAirport"));
+		destinationCity.setCellValueFactory(new PropertyValueFactory<HomeTableData, String>("destinationAirport"));
+		departingTime.setCellValueFactory(new PropertyValueFactory<HomeTableData, String>("departureTimeString"));
 	}
 
 	private void setTableData(LocalDate date) {
@@ -132,7 +133,7 @@ public class BrowseScheduleWindow implements GuiApplication {
 		orderFlightsByTime();
 	}
 
-	private ArrayList<FlightInformation> getFlightsOnDate(LocalDate date) {
+	private ArrayList<HomeTableData> getFlightsOnDate(LocalDate date) {
 		ArrayList<Flight> allFlights = APZState.loadFlights();
 		
 		ArrayList<Flight> freeFlightList = new ArrayList<>();
@@ -142,10 +143,10 @@ public class BrowseScheduleWindow implements GuiApplication {
 			}
 		}
 		
-		ArrayList<FlightInformation> flightsOnDate = new ArrayList<>(); // has to be new arraylist
+		ArrayList<HomeTableData> flightsOnDate = new ArrayList<>(); // has to be new arraylist
 		for (Flight flight : freeFlightList) {
 			if (flight.getArriveDate().isEqual(date)) {
-				flightsOnDate.add(new FlightInformation(flight.getFlightNum(), flight.getDepartureAirport().toString(),
+				flightsOnDate.add(new HomeTableData(flight.getFlightNum(), flight.getDepartureAirport().toString(),
 						flight.getDestinationAirport().toString(), flight.getDepartureTime().getTimeDouble(),
 						flight.getDepartureTime().getTimeString(), flight));
 			}
@@ -154,7 +155,7 @@ public class BrowseScheduleWindow implements GuiApplication {
 	}
 
 	private void orderFlightsByTime() {
-		FlightInformation temp, previous;
+		HomeTableData temp, previous;
 
 		for (int i = 0; i < flightsOnDate.size(); i++) {
 			previous = flightsOnDate.get(i);
@@ -201,7 +202,7 @@ public class BrowseScheduleWindow implements GuiApplication {
 	}
 
 	private void updateTable() {
-		for (FlightInformation flight : flightsOnDate) {
+		for (HomeTableData flight : flightsOnDate) {
 			if (flight != null) {
 				double departureTime = flight.getTime();
 				int departureMinute = 0;

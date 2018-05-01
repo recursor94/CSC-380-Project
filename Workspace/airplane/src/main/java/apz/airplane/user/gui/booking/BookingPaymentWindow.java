@@ -1,4 +1,4 @@
-package jimmy.pack;
+package apz.airplane.user.gui.booking;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -6,13 +6,14 @@ import java.util.ArrayList;
 import apz.airplane.model.Booking;
 import apz.airplane.model.Flight;
 import apz.airplane.model.Payment;
+import apz.airplane.model.Province;
 import apz.airplane.model.User;
-import apz.airplane.user.APZLauncher;
-import apz.airplane.user.HomeScreenWindow;
-import apz.airplane.user.PaymentAddWindow;
-import apz.airplane.util.APZMath;
+import apz.airplane.user.gui.APZLauncher;
+import apz.airplane.user.gui.account.PaymentAddWindow;
+import apz.airplane.user.gui.home.HomeScreenWindow;
 import apz.airplane.util.APZState;
 import apz.airplane.util.FilePath;
+import apz.airplane.util.GuiApplication;
 import apz.airplane.util.MessageBox;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert.AlertType;
@@ -55,7 +56,7 @@ public class BookingPaymentWindow implements GuiApplication {
 		img = new ImageView(new Image(FilePath.LOGIN_IMAGE));
 		user = APZLauncher.getCurrentUser();
 		
-		cost = APZMath.getPrice(flight.getDepartureAirport().getCity(), flight.getDestinationAirport().getCity());
+		cost = Province.getPrice(flight.getDepartureAirport().getCity(), flight.getDestinationAirport().getCity());
 		
 		mainPane = new VBox(10);
 		paymentPane = new GridPane();

@@ -1,7 +1,8 @@
-package apz.airplane.user;
+package apz.airplane.user.gui;
 
 import apz.airplane.model.User;
 import apz.airplane.util.APZState;
+import apz.airplane.util.GuiApplication;
 import apz.airplane.util.MessageBox;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert.AlertType;
@@ -16,10 +17,10 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import jimmy.pack.GuiApplication;
 
 public class RegisterWindow implements GuiApplication {
 
+	private ImageView img;
 	private TextField userField, emailField;
 	private Text header;
 	private PasswordField passField;
@@ -37,6 +38,7 @@ public class RegisterWindow implements GuiApplication {
 	}
 	
 	public void initialize() {
+		img = new ImageView(new Image("file:resource/logo.png"));
 		header = new Text("User Registration");
 		rootPane = new VBox(10);
 		userBox = new HBox(10);
@@ -51,28 +53,23 @@ public class RegisterWindow implements GuiApplication {
 	}
 	
 	public void content() {
-		header.setFont(new Font(20));
-		
-		userBox.setAlignment(Pos.CENTER);
-		emailBox.setAlignment(Pos.CENTER);
-		passBox.setAlignment(Pos.CENTER);
-		buttonBox.setAlignment(Pos.CENTER);
-		rootPane.setAlignment(Pos.CENTER);
-		
 		userBox.getChildren().addAll(new Label("      Username: "), userField);
 		emailBox.getChildren().addAll(new Label("Email Address: "), emailField);
 		passBox.getChildren().addAll(new Label("       Password: "), passField);
 		buttonBox.getChildren().addAll(registerButton, backButton);
-		
-		ImageView img = new ImageView(new Image("file:img.png"));
-		img.setFitWidth(150);
-		img.setFitHeight(150);
-		
 		rootPane.getChildren().addAll(header, img, userBox, emailBox, passBox, buttonBox);
 		
 	}
 	
 	public void properties() {
+		header.setFont(new Font(20));
+		userBox.setAlignment(Pos.CENTER);
+		emailBox.setAlignment(Pos.CENTER);
+		passBox.setAlignment(Pos.CENTER);
+		buttonBox.setAlignment(Pos.CENTER);
+		rootPane.setAlignment(Pos.CENTER);
+		img.setFitWidth(150);
+		img.setFitHeight(150);
 		APZLauncher.getBorderPane().setCenter(rootPane);
 		APZLauncher.getStage().setTitle("APZ Application - Register Account");
 	}
@@ -100,25 +97,13 @@ public class RegisterWindow implements GuiApplication {
 	}
 	
 	private void verifyInput() {
-		//Checks if a user name exists already 
-		if (APZLauncher.getUserController().userExists(userField.getText())) {
+		if (APZLauncher.getUserController().userExists(userField.getText()))
 			MessageBox.message(AlertType.ERROR, "ERROR: The User Name Already Exists", "Please choose a different user name");
-		}
-		//If a user name does not already exist
 		else {	
-			//Check if the username contains any empty spaces
-			if (userField.getText().contains(" ")) {
+			if (userField.getText().contains(" ")) 
 				MessageBox.message(AlertType.ERROR, "Invalid User Name", "Your user name cannot contain the empty space character");	
-			}
-			//Check if the password contains empty spaces 
-			else if (passField.getText().contains(" ")) {
+			else if (passField.getText().contains(" ")) 
 				MessageBox.message(AlertType.ERROR, "Invalid Password", "Your password cannot contain the empty space character");
-			}
-			// IF WE WANT A PASSWORD TO BE A CERTAIN LENGTH, WE CAN ADD THIS ELSE IF IN
-//						else if (passField.getText().length() < 8) {
-//							MessageBox.message(AlertType.ERROR, "Invalid Password", "Your password must be at least 8 characters long");
-//						}
-			//Create a user if there are not errors in the input
 			else {
 				User user = new User (emailField.getText(), userField.getText(), passField.getText());
 				APZLauncher.getUserController().addUser(user);
@@ -129,4 +114,5 @@ public class RegisterWindow implements GuiApplication {
 			}	
 		}
 	}
+	
 }

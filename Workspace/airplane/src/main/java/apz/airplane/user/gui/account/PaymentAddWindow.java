@@ -1,11 +1,13 @@
-package apz.airplane.user;
+package apz.airplane.user.gui.account;
 
 import apz.airplane.model.Flight;
 import apz.airplane.model.Payment;
 import apz.airplane.model.User;
+import apz.airplane.user.gui.APZLauncher;
+import apz.airplane.user.gui.booking.BookingPaymentWindow;
 import apz.airplane.util.APZState;
 import apz.airplane.util.FilePath;
-import apz.airplane.util.IsInteger;
+import apz.airplane.util.GuiApplication;
 import apz.airplane.util.MessageBox;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -27,9 +29,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import jimmy.pack.BookingPaymentWindow;
-import jimmy.pack.PaymentWindow;
-import jimmy.pack.GuiApplication;
 
 public class PaymentAddWindow implements GuiApplication {
 	private ImageView img;

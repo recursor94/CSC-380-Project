@@ -1,4 +1,4 @@
-package apz.airplane.user;
+package apz.airplane.user.gui.home;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -9,8 +9,10 @@ import java.util.Calendar;
 
 import apz.airplane.admin.AdminState;
 import apz.airplane.model.Flight;
+import apz.airplane.user.gui.APZLauncher;
 import apz.airplane.util.APZState;
 import apz.airplane.util.FilePath;
+import apz.airplane.util.GuiApplication;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -24,14 +26,13 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
-import jimmy.pack.GuiApplication;
 
 public class HomeScreenWindow implements GuiApplication {
 	private ImageView img;
 	private VBox rootPane;
 	private Text timeLabel, dateLabel, header, newsHeader, newsUpdate;
 	private Timeline realTimeClock;
-	private ArrayList<FlightInformation> flightsToday;
+	private ArrayList<HomeTableData> flightsToday;
 
 	private int timeHour;
 	private int timeMinute;
@@ -122,12 +123,12 @@ public class HomeScreenWindow implements GuiApplication {
 
 	}
 
-	private ArrayList<FlightInformation> getFlightsToday() {
+	private ArrayList<HomeTableData> getFlightsToday() {
 		ArrayList<Flight> allFlights = APZState.loadFlights();
-		ArrayList<FlightInformation> flightsToday = new ArrayList<>(); // has to be new arraylist
+		ArrayList<HomeTableData> flightsToday = new ArrayList<>(); // has to be new arraylist
 		for (Flight flight : allFlights) {
 			if (flight.getArriveDate().isEqual(LocalDate.now())) {
-				flightsToday.add(new FlightInformation(flight.getFlightNum(), flight.getDepartureAirport().toString(),
+				flightsToday.add(new HomeTableData(flight.getFlightNum(), flight.getDepartureAirport().toString(),
 						flight.getDestinationAirport().toString(), flight.getDepartureTime().getTimeDouble(),
 						flight.getDepartureTime().getTimeString(), flight));
 			}
@@ -136,7 +137,7 @@ public class HomeScreenWindow implements GuiApplication {
 	}
 
 	private void orderFlightsByTime() {
-		FlightInformation temp, previous;
+		HomeTableData temp, previous;
 
 		for (int i = 0; i < flightsToday.size(); i++) {
 			previous = flightsToday.get(i);

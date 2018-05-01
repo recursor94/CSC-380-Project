@@ -1,12 +1,12 @@
-package jimmy.pack;
+package apz.airplane.user.gui.account;
 
 import java.util.ArrayList;
 
 import apz.airplane.model.Payment;
-import apz.airplane.user.APZLauncher;
-import apz.airplane.user.PaymentAddWindow;
+import apz.airplane.user.gui.APZLauncher;
 import apz.airplane.util.APZState;
 import apz.airplane.util.FilePath;
+import apz.airplane.util.GuiApplication;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;

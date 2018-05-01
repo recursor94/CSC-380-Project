@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import apz.airplane.model.Airport;
 import apz.airplane.model.Flight;
 import apz.airplane.model.UserController;
-import apz.airplane.user.APZLauncher;
+import apz.airplane.user.gui.APZLauncher;
 
 public class APZState {
 	

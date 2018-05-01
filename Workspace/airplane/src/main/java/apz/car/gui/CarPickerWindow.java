@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import apz.airplane.model.User;
 import apz.airplane.util.FilePath;
+import apz.airplane.util.GuiApplication;
 import apz.airplane.util.MessageBox;
 import apz.car.model.Car;
 import apz.car.model.CarManufacturer;
@@ -26,7 +27,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import jimmy.pack.GuiApplication;
 
 public class CarPickerWindow implements GuiApplication {
 

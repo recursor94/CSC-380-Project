@@ -1,11 +1,13 @@
-package apz.airplane.user;
+package apz.airplane.user.gui.booking;
 
 import java.util.ArrayList;
 
 import apz.airplane.model.Airport;
 import apz.airplane.model.Flight;
+import apz.airplane.user.gui.APZLauncher;
 import apz.airplane.util.APZState;
 import apz.airplane.util.FilePath;
+import apz.airplane.util.GuiApplication;
 import apz.airplane.util.MessageBox;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert.AlertType;
@@ -20,8 +22,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import jimmy.pack.BookingPaymentWindow;
-import jimmy.pack.GuiApplication;
 
 public class BookByLocation implements GuiApplication {
 	

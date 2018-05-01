@@ -1,7 +1,9 @@
-package apz.airplane.user;
+package apz.airplane.user.gui;
 
 import apz.airplane.model.User;
+import apz.airplane.user.gui.home.HomeScreenWindow;
 import apz.airplane.util.FilePath;
+import apz.airplane.util.GuiApplication;
 import apz.airplane.util.MessageBox;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
@@ -18,7 +20,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import jimmy.pack.GuiApplication;
 
 public class LoginWindow implements GuiApplication {
 	

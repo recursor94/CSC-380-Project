@@ -20,7 +20,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class TextUpdateWindow {
+public class NewsWindow {
 	
 	private Stage stage;
 	private ImageView img;
@@ -30,7 +30,7 @@ public class TextUpdateWindow {
 	private Button saveButton;
 	private Text header;
 	
-	public TextUpdateWindow() {
+	public NewsWindow() {
 		initialize();
 		content();
 		actionEvents();

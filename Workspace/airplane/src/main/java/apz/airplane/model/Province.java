@@ -12,6 +12,10 @@ public enum Province {
 	static String strCA = "California";
 	static String strTX = "Texas";
 	
+	public static double getPrice(String provinceA, String provinceB) {
+		return Province.getRate(provinceA) + Province.getRate(provinceB);
+	}
+	
 	public static Province getCityEnum(String city) {
 		if (city.equals(strNY)) 
 			return NY;

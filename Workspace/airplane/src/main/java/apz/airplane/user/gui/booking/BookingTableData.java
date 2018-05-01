@@ -1,4 +1,4 @@
-package apz.airplane.user;
+package apz.airplane.user.gui.booking;
 
 import java.text.NumberFormat;
 import java.time.LocalDate;

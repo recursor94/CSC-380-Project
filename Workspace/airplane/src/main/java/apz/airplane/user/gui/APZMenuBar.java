@@ -1,7 +1,17 @@
-package apz.airplane.user;
+package apz.airplane.user.gui;
 
 import java.util.Optional;
 
+import apz.airplane.user.gui.account.AccountInfoWindow;
+import apz.airplane.user.gui.account.PasswordPromptWindow;
+import apz.airplane.user.gui.account.PaymentWindow;
+import apz.airplane.user.gui.booking.BookByLocation;
+import apz.airplane.user.gui.booking.BookFlightByDateWindow;
+import apz.airplane.user.gui.booking.BookingWindow;
+import apz.airplane.user.gui.booking.CancelFlightWindow;
+import apz.airplane.user.gui.home.BrowseScheduleWindow;
+import apz.airplane.user.gui.home.HomeScreenWindow;
+import apz.airplane.user.gui.viewtrips.TripViewWindow;
 import apz.airplane.util.MessageBox;
 import javafx.application.Platform;
 import javafx.scene.control.ButtonType;
@@ -10,10 +20,6 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.control.Alert.AlertType;
-import jimmy.pack.AccountInfoWindow;
-import jimmy.pack.BookingWindow;
-import jimmy.pack.PasswordPromptWindow;
-import jimmy.pack.PaymentWindow;
 
 public class APZMenuBar {
 	

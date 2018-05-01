@@ -1,6 +1,6 @@
 package apz.airplane.admin;
 
-import apz.airplane.user.APZLauncher;
+import apz.airplane.user.gui.APZLauncher;
 import apz.airplane.util.FilePath;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
@@ -83,7 +83,7 @@ public class HomeWindow {
 		});
 		
 		updateTextButton.setOnAction(event -> {
-			new TextUpdateWindow();
+			new NewsWindow();
 		});
 	}
 	

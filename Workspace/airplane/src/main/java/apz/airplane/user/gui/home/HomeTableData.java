@@ -1,8 +1,8 @@
-package apz.airplane.user;
+package apz.airplane.user.gui.home;
 
 import apz.airplane.model.Flight;
 
-public class FlightInformation {
+public class HomeTableData {
 
 	private int flightNumber;
 	private String departureAirport;
@@ -11,7 +11,7 @@ public class FlightInformation {
 	private String departureTimeString;
 	private Flight flightRef;
 	
-	public FlightInformation(int flightNumber, String departureAirport, String destinationAirport, double time, String departureTimeString, Flight flightRef) {
+	public HomeTableData(int flightNumber, String departureAirport, String destinationAirport, double time, String departureTimeString, Flight flightRef) {
 		this.flightNumber = flightNumber;
 		this.departureAirport = departureAirport;
 		this.destinationAirport = destinationAirport;

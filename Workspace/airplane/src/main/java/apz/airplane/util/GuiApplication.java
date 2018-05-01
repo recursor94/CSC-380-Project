@@ -1,4 +1,4 @@
-package jimmy.pack;
+package apz.airplane.util;
 
 public interface GuiApplication {
 	
