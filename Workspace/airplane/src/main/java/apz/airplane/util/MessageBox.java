@@ -14,16 +14,6 @@ public class MessageBox {
 		alert.setHeaderText(null);
 		alert.setContentText(message);
 		return alert.showAndWait();
-		
-	}
-	
-	//overloaded method with option to include header message:
-	public static Optional<ButtonType> message(AlertType type, String title, String message, String header) {
-		Alert alert = new Alert(type);
-		alert.setTitle(title);
-		alert.setHeaderText(header);
-		alert.setContentText(message);
-		return alert.showAndWait();
 	}
 
 }

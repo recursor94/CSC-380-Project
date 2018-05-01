@@ -11,6 +11,7 @@ public class RentalSystem {	// user has this?
 	}
 	
 	public void addCarRental(Rental rental) {
+		System.out.println("ADDED!");
 		rentalList.add(rental);
 	}
 	
@@ -34,7 +35,5 @@ public class RentalSystem {	// user has this?
 	public void setRentalList(ArrayList<Rental> rentalList) {
 		this.rentalList = rentalList;
 	}
-	
-	
 
 }

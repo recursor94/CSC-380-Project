@@ -1,9 +1,12 @@
 package apz.car.gui;
 
+import java.text.DecimalFormat;
 import java.util.Arrays;
+import java.util.Optional;
 
 import apz.airplane.model.User;
 import apz.airplane.util.FilePath;
+import apz.airplane.util.MessageBox;
 import apz.car.model.Car;
 import apz.car.model.CarManufacturer;
 import apz.car.model.CarModel;
@@ -11,7 +14,9 @@ import apz.car.model.CarType;
 import apz.car.model.Rental;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
@@ -47,7 +52,7 @@ public class CarPickerWindow implements GuiApplication {
 	public void initialize() {
 		img = new ImageView(FilePath.DEFAULT_CAR_IMAGE);
 		header = new Text("Car Rental");
-		price = new Text("$24.99");
+		price = new Text();
 		mainPane = new VBox(20);
 		gridPane = new GridPane();
 		manufacturerBox = new ComboBox<>();
@@ -58,9 +63,6 @@ public class CarPickerWindow implements GuiApplication {
 	}
 
 	public void content() {
-
-		// user.getRentalSystem().addCarRental();
-
 		gridPane.add(new Label("Car Manufacturer: "), 0, 0);
 		gridPane.add(manufacturerBox, 1, 0);
 
@@ -87,12 +89,12 @@ public class CarPickerWindow implements GuiApplication {
 		for (int i = 1; i < 12; i++)
 			daysBox.getItems().add(i);
 		daysBox.setValue(daysBox.getItems().get(0));
+		updatePrice();
 
 		mainPane.getChildren().addAll(new Label(), img, header, new Separator(), gridPane, new Separator(), rentButton);
 	}
 
 	public void actionEvents() {
-
 		manufacturerBox.setOnAction(event -> {
 			typeBox.setValue(typeBox.getItems().get(0));
 			updateModelBox();
@@ -121,11 +123,17 @@ public class CarPickerWindow implements GuiApplication {
 		});
 
 		rentButton.setOnAction(event -> {
-			user.getRentalSystem()
-					.addCarRental(new Rental(
-							new Car(CarManufacturer.getManufacturerName(manufacturerBox.getValue()),
-									new CarModel(modelBox.getValue()), CarType.getCarTypeName(typeBox.getValue())),
-							daysBox.getValue(), Double.parseDouble(price.getText().replace("$", ""))));
+			Optional<ButtonType> result = MessageBox.message(AlertType.CONFIRMATION, null,
+					"Are you sure you want to rent this vehicle?");
+			if (result.get() == ButtonType.OK) {
+				user.getRentalSystem()
+						.addCarRental(new Rental(
+								new Car(CarManufacturer.getManufacturerName(manufacturerBox.getValue()),
+										new CarModel(modelBox.getValue()), CarType.getCarTypeName(typeBox.getValue())),
+								daysBox.getValue(), Double.parseDouble(price.getText().replace("$", ""))));
+				MessageBox.message(AlertType.INFORMATION, null, "Your selected vehicle has been set aside for you.");
+				stage.close();
+			}
 		});
 
 	}
@@ -150,9 +158,10 @@ public class CarPickerWindow implements GuiApplication {
 	}
 
 	private void updatePrice() {
+		DecimalFormat df = new DecimalFormat(".00");
 		double rate = CarType.getTypeRate(typeBox.getValue());
 		double priceCalc = daysBox.getValue() * rate;
-		price.setText("$" + priceCalc);
+		price.setText("$" + df.format(priceCalc));
 	}
 
 }

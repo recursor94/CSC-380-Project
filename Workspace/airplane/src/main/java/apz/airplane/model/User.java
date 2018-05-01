@@ -21,6 +21,7 @@ public class User implements Serializable {
 		this.password = generatePasswordHash(password);
 		tripList = new ArrayList<>();
 		paymentInformation = new ArrayList<>();
+		rentalSystem = new RentalSystem();
 	}
 	
 	public String getUsername() {
