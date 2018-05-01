@@ -5,11 +5,13 @@ import java.util.ArrayList;
 import apz.airplane.model.Booking;
 import apz.airplane.model.User;
 import apz.airplane.util.FilePath;
+import apz.airplane.util.MessageBox;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Separator;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -29,6 +31,15 @@ public class TripViewWindow implements GuiApplication {
 	private GridPane gridPane;
 
 	public TripViewWindow() {
+		
+		ArrayList<Booking> tripList = APZLauncher.getCurrentUser().getTripList();
+
+		if (tripList.isEmpty()) {
+			MessageBox.message(AlertType.INFORMATION, null, "No trips have been made to view!");
+			new HomeScreenWindow();
+			return;
+		}
+		
 		initialize();
 		content();
 		actionEvents();
@@ -45,9 +56,8 @@ public class TripViewWindow implements GuiApplication {
 	}
 
 	public void content() {
-		User uc = APZLauncher.getCurrentUser();
 
-		ArrayList<Booking> tripList = uc.getTripList();
+		ArrayList<Booking> tripList = APZLauncher.getCurrentUser().getTripList();
 
 		int shift = 0;
 
@@ -55,29 +65,28 @@ public class TripViewWindow implements GuiApplication {
 			Button viewButton = new Button("View in more detail");
 			gridPane.add(new Label(tripList.get(i).toString()), 0, (3 + shift++ + i));
 			gridPane.add(viewButton, 0, (3 + shift++ + i));
-			
+
 			if (i != tripList.size() - 1)
 				gridPane.add(new Separator(), 0, (4 + shift++ + i));
-			else 
+			else
 				gridPane.add(new Label(), 0, (4 + shift++ + i));
-			
+
 			int index = i;
 			viewButton.setOnAction(event -> {
 				new TripResultWindow(tripList.get(index));
 			});
 		}
-//		GridPane itemPane; 
-//		for(int i = 0; i < tripList.size(); i++) {
-//			itemPane = new GridPane();
-//
-//		}
-		
+		// GridPane itemPane;
+		// for(int i = 0; i < tripList.size(); i++) {
+		// itemPane = new GridPane();
+		//
+		// }
+
 		scrollPane.setContent(gridPane);
 		mainPane.getChildren().addAll(new Label(), headerText, img, scrollPane);
 	}
-	
+
 	public void actionEvents() {
-		
 	}
 
 	public void properties() {
@@ -86,7 +95,7 @@ public class TripViewWindow implements GuiApplication {
 		headerText.setFont(new Font(32));
 		gridPane.setVgap(10);
 		gridPane.setHgap(10);
-		scrollPane.setFitToWidth(true); 
+		scrollPane.setFitToWidth(true);
 		scrollPane.setFitToHeight(true);
 		mainPane.setAlignment(Pos.TOP_CENTER);
 		gridPane.setAlignment(Pos.TOP_CENTER);

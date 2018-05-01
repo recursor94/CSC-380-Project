@@ -1,10 +1,13 @@
 package apz.car.model;
 
+import java.io.Serializable;
+
 import apz.airplane.util.FilePath;
 import javafx.scene.image.Image;
 
-public class CarModel {
+public class CarModel implements Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private String model;
 
 	public CarModel(String model) {

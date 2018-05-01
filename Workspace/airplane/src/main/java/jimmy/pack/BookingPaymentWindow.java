@@ -118,12 +118,13 @@ public class BookingPaymentWindow implements GuiApplication {
 					user.getTripList().add(trip);
 					MessageBox.message(AlertType.INFORMATION, null, "Trip has been booked!");
 					APZState.saveInformation();
-					ArrayList<Flight> fList = APZState.loadFlights();
 					
+					
+					ArrayList<Flight> fList = APZState.loadFlights();
 					//This was in CheckBaggageWindow for saving an updated flight with a new passenger on board
 					for (int i = 0; i < fList.size(); i++) {
 						if (fList.get(i).getFlightNum() == trip.getFlight().getFlightNum()) {
-							fList.get(i).setPlane(trip.getFlight().getPlane());
+							fList.set(i, trip.getFlight());
 							break;
 						}
 					}

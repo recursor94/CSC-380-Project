@@ -1,7 +1,10 @@
 package apz.car.model;
 
-public class Rental {
+import java.io.Serializable;
+
+public class Rental implements Serializable {
 	
+	private static final long serialVersionUID = 1L;
 	private Car car;
 	private int days;
 	private double price;

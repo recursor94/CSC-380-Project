@@ -1,8 +1,9 @@
 package apz.car.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class RentalSystem {	// user has this?
+public class RentalSystem implements Serializable {	// user has this?
 	
 	private ArrayList<Rental> rentalList;
 	

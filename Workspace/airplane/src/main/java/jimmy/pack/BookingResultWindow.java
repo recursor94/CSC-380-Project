@@ -64,7 +64,6 @@ public class BookingResultWindow implements GuiApplication {
 			textBox.getChildren().addAll(new Label(), img2, new Text(tripList.get(i).toString()), new Label(), bookButton);
 			showBox.getChildren().addAll(new Separator(), textBox, new Label());
 			
-			
 			scrollPane.setContent(showBox);
 		}
 		

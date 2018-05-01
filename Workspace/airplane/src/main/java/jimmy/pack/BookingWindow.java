@@ -140,9 +140,10 @@ public class BookingWindow implements GuiApplication {
 			LocalDate date = bookList.get(i).getDepartureDate();
 			String departAirport = bookList.get(i).getDepartureAirport().toString();
 			String arriveAirport = bookList.get(i).getDestinationAirport().toString();
+			
 
 			if (departAirport.equals(cityDepartBox.getValue()) && arriveAirport.equals(cityArrivalBox.getValue())
-					&& date.equals(datePicker.getValue()))
+					&& date.equals(datePicker.getValue()) && !bookList.get(i).getPlane().getSeats().isFull())
 				bookFoundList.add(bookList.get(i));
 		}
 

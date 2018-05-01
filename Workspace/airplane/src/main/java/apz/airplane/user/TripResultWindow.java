@@ -122,12 +122,13 @@ public class TripResultWindow implements GuiApplication {
 					"Are you okay with removing the selected flight?");
 			if (result.get() == ButtonType.OK) {
 				APZLauncher.getCurrentUser().removeTrip(booking.getFlight());
+				
 				ArrayList<Flight> flightList = APZState.loadFlights();
 				for (int i = 0; i < flightList.size(); i++) {
 					if (flightList.get(i).getFlightNum() == booking.getFlight().getFlightNum()) 
 						flightList.set(i, booking.getFlight());
 				}
-									
+				
 				APZState.saveFlight(flightList);
 				APZState.saveInformation();
 				new TripViewWindow();

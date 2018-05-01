@@ -1,7 +1,10 @@
 package apz.car.model;
 
-public class Car {
+import java.io.Serializable;
+
+public class Car implements Serializable {
 	
+	private static final long serialVersionUID = 1L;
 	private CarManufacturer name;
 	private CarModel model;
 	private CarType type;

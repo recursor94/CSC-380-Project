@@ -1,9 +1,10 @@
 package apz.car.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public enum CarManufacturer {
+public enum CarManufacturer implements Serializable {
 
 	FORD, BMW;
 

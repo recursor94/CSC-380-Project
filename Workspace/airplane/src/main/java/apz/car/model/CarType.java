@@ -1,9 +1,10 @@
 package apz.car.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public enum CarType {
+public enum CarType implements Serializable {
 	
 	SEDAN, SUV, SPORT, SUPERCAR, LUXURY;
 	
