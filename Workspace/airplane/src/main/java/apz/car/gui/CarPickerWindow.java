@@ -4,9 +4,11 @@ import java.util.Arrays;
 
 import apz.airplane.model.User;
 import apz.airplane.util.FilePath;
+import apz.car.model.Car;
 import apz.car.model.CarManufacturer;
 import apz.car.model.CarModel;
 import apz.car.model.CarType;
+import apz.car.model.Rental;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -26,10 +28,11 @@ public class CarPickerWindow implements GuiApplication {
 	private Stage stage;
 	private User user;
 	private ImageView img;
-	private Text header;
+	private Text header, price;
 	private VBox mainPane;
 	private GridPane gridPane;
 	private ComboBox<String> manufacturerBox, typeBox, modelBox;
+	private ComboBox<Integer> daysBox;
 	private Button rentButton;
 
 	public CarPickerWindow(Stage stage, User user) {
@@ -44,63 +47,85 @@ public class CarPickerWindow implements GuiApplication {
 	public void initialize() {
 		img = new ImageView(FilePath.DEFAULT_CAR_IMAGE);
 		header = new Text("Car Rental");
+		price = new Text("$24.99");
 		mainPane = new VBox(20);
 		gridPane = new GridPane();
 		manufacturerBox = new ComboBox<>();
 		typeBox = new ComboBox<>();
 		modelBox = new ComboBox<>();
+		daysBox = new ComboBox<>();
 		rentButton = new Button("Rent");
 	}
 
 	public void content() {
-		
+
 		// user.getRentalSystem().addCarRental();
-		
-		gridPane.add(new Label("Car Manufacturer"), 0, 0);
+
+		gridPane.add(new Label("Car Manufacturer: "), 0, 0);
 		gridPane.add(manufacturerBox, 1, 0);
-		
-		gridPane.add(new Label("Car Type"), 0, 1);
+
+		gridPane.add(new Label("Car Type: "), 0, 1);
 		gridPane.add(typeBox, 1, 1);
-		
-		gridPane.add(new Label("Car Model"), 0, 2);
+
+		gridPane.add(new Label("Car Model: "), 0, 2);
 		gridPane.add(modelBox, 1, 2);
+
+		gridPane.add(new Label("Number of Days: "), 0, 3);
+		gridPane.add(daysBox, 1, 3);
+
+		gridPane.add(new Label("Total Price: "), 0, 4);
+		gridPane.add(price, 1, 4);
 
 		manufacturerBox.getItems().addAll(CarManufacturer.getManufacturerList());
 		typeBox.getItems().addAll(CarType.getManufacturerList());
-		
+
 		manufacturerBox.setValue(manufacturerBox.getItems().get(0));
 		typeBox.setValue(typeBox.getItems().get(0));
+		updateModelBox();
+		modelBox.setValue(modelBox.getItems().get(0));
 
-		modelBox.setDisable(true);
-		
+		for (int i = 1; i < 12; i++)
+			daysBox.getItems().add(i);
+		daysBox.setValue(daysBox.getItems().get(0));
+
 		mainPane.getChildren().addAll(new Label(), img, header, new Separator(), gridPane, new Separator(), rentButton);
 	}
-	
+
 	public void actionEvents() {
 
 		manufacturerBox.setOnAction(event -> {
 			typeBox.setValue(typeBox.getItems().get(0));
-			modelBox.setDisable(true);
-			modelBox.setValue(null);
-			
-			img.setFitWidth(150);
-			img.setFitHeight(150);
+			updateModelBox();
+			modelBox.setValue(modelBox.getItems().get(0));
+			updatePrice();
 		});
-		
+
 		typeBox.setOnAction(event -> {
 			updateModelBox();
 			modelBox.setDisable(false);
 			modelBox.setValue(modelBox.getItems().get(0));
-			
-			img.setImage(CarModel.getCarImage(modelBox.getValue()));
-			img.setFitWidth(300);
-			img.setFitHeight(150);
+			updatePrice();
 		});
-		
+
+		modelBox.setOnAction(event -> {
+			if (modelBox.getValue() != null) {
+				img.setImage(CarModel.getCarImage(modelBox.getValue()));
+				img.setFitWidth(300);
+				img.setFitHeight(150);
+				updatePrice();
+			}
+		});
+
+		daysBox.setOnAction(event -> {
+			updatePrice();
+		});
+
 		rentButton.setOnAction(event -> {
-			img.setImage(CarModel.getCarImage(modelBox.getValue()));
-			img.setFitWidth(300);
-			img.setFitHeight(150);
+			user.getRentalSystem()
+					.addCarRental(new Rental(
+							new Car(CarManufacturer.getManufacturerName(manufacturerBox.getValue()),
+									new CarModel(modelBox.getValue()), CarType.getCarTypeName(typeBox.getValue())),
+							daysBox.getValue(), Double.parseDouble(price.getText().replace("$", ""))));
 		});
 
 	}
@@ -113,15 +138,21 @@ public class CarPickerWindow implements GuiApplication {
 		mainPane.setAlignment(Pos.TOP_CENTER);
 		gridPane.setHgap(10);
 		gridPane.setVgap(10);
-		stage.setScene(new Scene(mainPane, 400, 430));
+		stage.setScene(new Scene(mainPane, 400, 550));
 		stage.show();
 	}
-	
+
 	private void updateModelBox() {
 		modelBox.getItems().clear();
 		modelBox.getItems().addAll(
 				Arrays.asList(CarModel.getCarModels(CarManufacturer.getManufacturerName(manufacturerBox.getValue()),
 						CarType.getCarTypeName(typeBox.getValue()))));
+	}
+
+	private void updatePrice() {
+		double rate = CarType.getTypeRate(typeBox.getValue());
+		double priceCalc = daysBox.getValue() * rate;
+		price.setText("$" + priceCalc);
 	}
 
 }

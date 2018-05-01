@@ -5,13 +5,11 @@ public class Car {
 	private CarManufacturer name;
 	private CarModel model;
 	private CarType type;
-	private double rate;
 	
-	public Car(CarManufacturer name, CarModel model, CarType type, double rate) {
+	public Car(CarManufacturer name, CarModel model, CarType type) {
 		this.name = name;
 		this.model = model;
 		this.type = type;
-		this.rate = rate;
 	}
 	
 	public CarManufacturer getName() {
@@ -38,17 +36,9 @@ public class Car {
 		this.type = type;
 	}
 
-	public double getRate() {
-		return rate;
-	}
-
-	public void setRate(double rate) {
-		this.rate = rate;
-	}
-
 	@Override
 	public String toString() {
-		return "Car [name=" + name + ", type=" + type + ", rate=" + rate + "]";
+		return "Car [name=" + name + ", type=" + type;
 	}
 	
 	

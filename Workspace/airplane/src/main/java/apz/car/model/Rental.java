@@ -8,11 +8,10 @@ public class Rental {
 	private static int number = 0;
 	private int receiptNumber;
 	
-	public Rental(Car car, int days) {
+	public Rental(Car car, int days, double price) {
 		this.car = car;
 		this.days = days;
-		
-		price = car.getRate() * days;
+		this.price = price;
 		receiptNumber = number++;
 	}
 

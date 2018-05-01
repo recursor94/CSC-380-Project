@@ -18,6 +18,20 @@ public enum CarType {
 		return list;
 	}
 	
+	public static double getTypeRate(String type) {
+		if (type.equals("Luxury"))
+			return 550.52;
+		else if (type.equals("Sedan"))
+			return 120.92;
+		else if (type.equals("Sport"))
+			return 240.21;
+		else if (type.equals("Super Car"))
+			return 450.34;
+		else if (type.equals("SUV"))
+			return 198.43;
+		return 0;
+	}
+	
 	public static CarType getCarTypeName(String type) {
 		if (type.equals("Luxury"))
 			return LUXURY;

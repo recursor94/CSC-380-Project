@@ -73,7 +73,7 @@ public class APZMenuBar {
 		});
 		
 		logoutItem.setOnAction(event -> {
-			Optional<ButtonType> result = MessageBox.message(AlertType.CONFIRMATION, "APZ Application - Logout", "Are you sure you want to logout?");
+			Optional<ButtonType> result = MessageBox.message(AlertType.CONFIRMATION, "APZ Application", "Are you sure you want to logout?");
 			if (result.get() == ButtonType.OK) {
 				new LoginWindow();
 				APZLauncher.getBorderPane().setTop(null);
