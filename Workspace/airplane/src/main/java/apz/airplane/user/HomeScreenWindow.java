@@ -24,9 +24,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
-import jimmy.pack.WindowInterface;
+import jimmy.pack.GuiApplication;
 
-public class HomeScreenWindow implements WindowInterface {
+public class HomeScreenWindow implements GuiApplication {
 	private ImageView img;
 	private VBox rootPane;
 	private Text timeLabel, dateLabel, header, newsHeader, newsUpdate;

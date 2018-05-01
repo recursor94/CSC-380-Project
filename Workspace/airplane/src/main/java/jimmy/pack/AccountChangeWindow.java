@@ -20,7 +20,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
-public class AccountChangeWindow implements WindowInterface {
+public class AccountChangeWindow implements GuiApplication {
 	
 	private ImageView img;
 	private Text headerText;

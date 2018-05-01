@@ -27,9 +27,9 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import jimmy.pack.BookingPaymentWindow;
 import jimmy.pack.PaymentWindow;
-import jimmy.pack.WindowInterface;
+import jimmy.pack.GuiApplication;
 
-public class PaymentAddWindow implements WindowInterface {
+public class PaymentAddWindow implements GuiApplication {
 	private ImageView img;
 	private Text header;
 	private VBox mainPane;

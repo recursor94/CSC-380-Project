@@ -28,7 +28,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class BookingPaymentWindow implements WindowInterface {
+public class BookingPaymentWindow implements GuiApplication {
 	
 	private ImageView img;
 	private User user;

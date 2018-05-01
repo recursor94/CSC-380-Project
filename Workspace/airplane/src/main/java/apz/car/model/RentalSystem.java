@@ -2,7 +2,7 @@ package apz.car.model;
 
 import java.util.ArrayList;
 
-public class RentalSystem {
+public class RentalSystem {	// user has this?
 	
 	private ArrayList<Rental> rentalList;
 	

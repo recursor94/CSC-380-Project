@@ -24,9 +24,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import jimmy.pack.WindowInterface;
+import jimmy.pack.GuiApplication;
 
-public class CancelFlightWindow implements WindowInterface{
+public class CancelFlightWindow implements GuiApplication{
 
 	private Text windowHeader;
 	private TableView<BookingTableData> tripTable;

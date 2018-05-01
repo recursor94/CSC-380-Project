@@ -12,9 +12,9 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import jimmy.pack.WindowInterface;
+import jimmy.pack.GuiApplication;
 
-public class TripResultWindow implements WindowInterface {
+public class TripResultWindow implements GuiApplication {
 	
 	private ImageView img;
 	private Text headerText;
@@ -23,7 +23,7 @@ public class TripResultWindow implements WindowInterface {
 	private Button backButton;
 	
 	private Booking booking;
-	private WindowInterface parentWindow;
+	private GuiApplication parentWindow;
 
 	public TripResultWindow(Booking booking) {
 		this.booking = booking;
@@ -33,7 +33,7 @@ public class TripResultWindow implements WindowInterface {
 		properties();
 	}
 	
-	public TripResultWindow(Booking booking, WindowInterface parentWindow) {
+	public TripResultWindow(Booking booking, GuiApplication parentWindow) {
 		this.booking = booking;
 		this.parentWindow = parentWindow;
 		initialize();

@@ -23,9 +23,9 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import jimmy.pack.WindowInterface;
+import jimmy.pack.GuiApplication;
 
-public class CheckBaggageWindow implements WindowInterface {
+public class CheckBaggageWindow implements GuiApplication {
 	
 	private Text header;
 	private VBox mainPane;

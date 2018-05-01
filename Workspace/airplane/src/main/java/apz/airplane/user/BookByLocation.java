@@ -21,9 +21,9 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import jimmy.pack.BookingPaymentWindow;
-import jimmy.pack.WindowInterface;
+import jimmy.pack.GuiApplication;
 
-public class BookByLocation implements WindowInterface {
+public class BookByLocation implements GuiApplication {
 	
 	private ImageView img;
 	private VBox mainPane;

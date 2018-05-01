@@ -12,7 +12,7 @@ public class CarModel {
 		// set image depending on what it is in getCarModel
 	}
 	
-	public static String[] getCarModel(CarManufacturer name, CarType type) {
+	public static String[] getCarModels(CarManufacturer name, CarType type) {
 		if (name == CarManufacturer.BMW) {
 			if (type == CarType.LUXURY) {
 				String[] cars = {"2017 2 Series"};
@@ -32,7 +32,7 @@ public class CarModel {
 			}
 		} else if (name == CarManufacturer.FORD) {
 			if (type == CarType.LUXURY) {
-				String[] cars = {};
+				String[] cars = {"2017 EU Mondeo Vignale"};
 				return cars;
 			} else if (type == CarType.SEDAN) {
 				String[] cars = {"2013 Fiesta", "2006 Focus"};

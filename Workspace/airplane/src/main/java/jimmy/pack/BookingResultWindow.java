@@ -17,7 +17,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
-public class BookingResultWindow implements WindowInterface {
+public class BookingResultWindow implements GuiApplication {
 	
 	private ImageView img;
 	private VBox mainPane;

@@ -1,6 +1,6 @@
 package jimmy.pack;
 
-public interface WindowInterface {
+public interface GuiApplication {
 	
 	public void initialize();
 	public void content();

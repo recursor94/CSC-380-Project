@@ -22,7 +22,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
-public class BookingWindow implements WindowInterface {
+public class BookingWindow implements GuiApplication {
 
 	private ImageView img;
 	private Text headerText;

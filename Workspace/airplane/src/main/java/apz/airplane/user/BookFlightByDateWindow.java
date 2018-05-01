@@ -22,9 +22,9 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import jimmy.pack.BookingPaymentWindow;
-import jimmy.pack.WindowInterface;
+import jimmy.pack.GuiApplication;
 
-public class BookFlightByDateWindow implements WindowInterface {
+public class BookFlightByDateWindow implements GuiApplication {
 	private ImageView img;
 	private SplitPane mainPane;
 	private GridPane gridPane;

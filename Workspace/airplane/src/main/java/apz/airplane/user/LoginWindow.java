@@ -18,9 +18,9 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import jimmy.pack.WindowInterface;
+import jimmy.pack.GuiApplication;
 
-public class LoginWindow implements WindowInterface {
+public class LoginWindow implements GuiApplication {
 	
 	private int loginAttempt = 0;
 

@@ -14,7 +14,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
-public class AccountInfoWindow implements WindowInterface {
+public class AccountInfoWindow implements GuiApplication {
 
 	// have email as part of registration?
 

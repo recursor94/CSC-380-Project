@@ -16,9 +16,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import jimmy.pack.WindowInterface;
+import jimmy.pack.GuiApplication;
 
-public class RegisterWindow implements WindowInterface {
+public class RegisterWindow implements GuiApplication {
 
 	private TextField userField, emailField;
 	private Text header;

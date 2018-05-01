@@ -16,9 +16,9 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import jimmy.pack.WindowInterface;
+import jimmy.pack.GuiApplication;
 
-public class TripViewWindow implements WindowInterface {
+public class TripViewWindow implements GuiApplication {
 
 	// have email as part of registration?
 

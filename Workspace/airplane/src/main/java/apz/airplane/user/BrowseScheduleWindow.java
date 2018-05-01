@@ -24,9 +24,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
-import jimmy.pack.WindowInterface;
+import jimmy.pack.GuiApplication;
 
-public class BrowseScheduleWindow implements WindowInterface {
+public class BrowseScheduleWindow implements GuiApplication {
 	private TableView<FlightInformation> flightTable;
 	private TableColumn<FlightInformation, Integer> flightNumber;
 	private TableColumn<FlightInformation, String> departingCity, destinationCity, departingTime;

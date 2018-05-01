@@ -3,6 +3,8 @@ package apz.airplane.model;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import apz.car.model.RentalSystem;
+
 public class User implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
@@ -11,6 +13,7 @@ public class User implements Serializable {
 	private String password;
 	private ArrayList<Booking> tripList;
 	private ArrayList<Payment> paymentInformation;
+	private RentalSystem rentalSystem;
 
 	public User(String email, String username, String password) {
 		this.email = email;
@@ -104,6 +107,22 @@ public class User implements Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+	public RentalSystem getRentalSystem() {
+		return rentalSystem;
+	}
+
+	public void setRentalSystem(RentalSystem rentalSystem) {
+		this.rentalSystem = rentalSystem;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	public void setTripList(ArrayList<Booking> tripList) {
+		this.tripList = tripList;
 	}
 
 	@Override

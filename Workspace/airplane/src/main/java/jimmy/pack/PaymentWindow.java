@@ -19,7 +19,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
-public class PaymentWindow implements WindowInterface {
+public class PaymentWindow implements GuiApplication {
 	
 	private ImageView img;
 	private Text headerText;
