@@ -7,6 +7,7 @@ import apz.airplane.util.APZState;
 import apz.airplane.util.FilePath;
 import apz.airplane.util.IsInteger;
 import apz.airplane.util.MessageBox;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;
@@ -19,6 +20,7 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -146,6 +148,27 @@ public class PaymentAddWindow implements GuiApplication {
 			if(event.getCode() == KeyCode.ENTER)
 				verifyInput();
 		});
+		
+		zipCodeField.addEventFilter(KeyEvent.KEY_TYPED, new EventHandler<KeyEvent>() {
+			public void handle(KeyEvent keyEvent) {
+				if (!"0123456789".contains(keyEvent.getCharacter()))
+		            keyEvent.consume();
+	        }
+	      });
+		
+		cardNumField.addEventFilter(KeyEvent.KEY_TYPED, new EventHandler<KeyEvent>() {
+			public void handle(KeyEvent keyEvent) {
+				if (!"0123456789".contains(keyEvent.getCharacter()))
+		            keyEvent.consume();
+	        }
+	      });
+		
+		CCVNumField.addEventFilter(KeyEvent.KEY_TYPED, new EventHandler<KeyEvent>() {
+			public void handle(KeyEvent keyEvent) {
+				if (!"0123456789".contains(keyEvent.getCharacter()))
+		            keyEvent.consume();
+	        }
+	      });
 	}
 	
 	private void verifyInput () {
@@ -154,16 +177,16 @@ public class PaymentAddWindow implements GuiApplication {
 			&& !(addressField.getText().isEmpty()) && !(cityField.getText().isEmpty()) && !(CCVNumField.getText().isEmpty()) 
 			&& !(stateBox.getSelectionModel().isEmpty()) && !(monthBox.getSelectionModel().isEmpty()) 
 			&& !(yearBox.getSelectionModel().isEmpty()) ) {
-			if(!(IsInteger.isInteger(cardNumField.getText())))
-				MessageBox.message(AlertType.ERROR, "Invalid Data Entry", "You must enter an integer for a card number");
-			else if(!(IsInteger.isInteger(zipCodeField.getText())))
-				MessageBox.message(AlertType.ERROR, "Invalid Data Entry", "You must enter an integer for a zip code");
-			else if(cardNumField.getText().length() != 16)
+//			if(!(IsInteger.isInteger(cardNumField.getText())))
+//				MessageBox.message(AlertType.ERROR, "Invalid Data Entry", "You must enter an integer for a card number");
+//			else if(!(IsInteger.isInteger(zipCodeField.getText())))
+//				MessageBox.message(AlertType.ERROR, "Invalid Data Entry", "You must enter an integer for a zip code");
+		    if(cardNumField.getText().length() != 16)
 				MessageBox.message(AlertType.ERROR, "Invalid Data Entry", "You must enter a 16 digit card number");
 			else if(zipCodeField.getText().length() != 5)
 				MessageBox.message(AlertType.ERROR, "Invalid Data Entry", "You must enter a 5 digit zip code");
-			else if(!(IsInteger.isInteger(CCVNumField.getText())))
-				MessageBox.message(AlertType.ERROR, "Invalid Data Entry", "You must enter an integer for a CCV Number");
+//			else if(!(IsInteger.isInteger(CCVNumField.getText())))
+//				MessageBox.message(AlertType.ERROR, "Invalid Data Entry", "You must enter an integer for a CCV Number");
 			else if(CCVNumField.getText().length() != 3)
 				MessageBox.message(AlertType.ERROR, "Invalid Data Entry", "You must enter a 3 digit CCV Number");
 			else {

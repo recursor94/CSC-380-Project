@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import apz.airplane.model.Airplane;
 import apz.airplane.util.IsInteger;
 import apz.airplane.util.MessageBox;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;
@@ -15,6 +16,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.Separator;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -113,6 +115,13 @@ public class PlaneWindow {
 			if (event.getCode() == KeyCode.ESCAPE)
 				resetFields();
 		});
+		
+		planeNumField.addEventFilter(KeyEvent.KEY_TYPED, new EventHandler<KeyEvent>() {
+			public void handle(KeyEvent keyEvent) {
+				if (!"0123456789".contains(keyEvent.getCharacter()))
+		            keyEvent.consume();
+	        }
+	      });
 	}
 
 	private void properties() {
@@ -128,9 +137,10 @@ public class PlaneWindow {
 		if (planeNumField.getText().isEmpty() && airlineField.getText().isEmpty() || planeNumField.getText().isEmpty()
 				|| airlineField.getText().isEmpty())
 			MessageBox.message(AlertType.ERROR, "Invalid Data", "You must enter all of the necessary data");
-		else if (!(IsInteger.isInteger(planeNumField.getText()))) {
-			MessageBox.message(AlertType.ERROR, "Invalid Data", "The plane number must be an integer");
-		} else {
+//		else if (!(IsInteger.isInteger(planeNumField.getText()))) {
+//			MessageBox.message(AlertType.ERROR, "Invalid Data", "The plane number must be an integer");
+//			} 
+		else {
 				int planeNum = Integer.valueOf(planeNumField.getText());
 				String airline = airlineField.getText();
 				int capacity = seatField.getSelectionModel().getSelectedItem();

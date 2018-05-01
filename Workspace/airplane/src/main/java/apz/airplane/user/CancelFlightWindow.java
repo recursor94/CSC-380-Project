@@ -108,6 +108,8 @@ public class CancelFlightWindow implements GuiApplication{
 				Optional<ButtonType> result = MessageBox.message(AlertType.CONFIRMATION, "APZ Confirmation Dialog",
 						"Are you okay with removing the selected flight?");
 				if (result.get() == ButtonType.OK) {
+					//I TRIED TO REMOVE A USER FROM A SEAT BUT IT DID NOT SEEM TO WORK
+					//foundBooking.getFlight().getPlane().getSeats().remove(user);
 					user.removeTrip(foundBooking.getFlight());
 					resetTableData();
 					APZState.saveInformation();

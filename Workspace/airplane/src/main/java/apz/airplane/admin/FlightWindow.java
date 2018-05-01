@@ -12,6 +12,7 @@ import apz.airplane.model.UserController;
 import apz.airplane.util.APZState;
 import apz.airplane.util.IsInteger;
 import apz.airplane.util.MessageBox;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;
@@ -23,6 +24,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.Separator;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -176,6 +178,13 @@ public class FlightWindow {
 //			else
 //				createFlightButton.setText("Create Flight");
 		});
+		
+		flightNumField.addEventFilter(KeyEvent.KEY_TYPED, new EventHandler<KeyEvent>() {
+			public void handle(KeyEvent keyEvent) {
+				if (!"0123456789".contains(keyEvent.getCharacter()))
+		            keyEvent.consume();
+	        }
+	      });
 	}
 
 	private void properties(Stage mainStage) {
@@ -249,9 +258,9 @@ public class FlightWindow {
 			else if(departAirportBox.getSelectionModel().getSelectedItem().equals(arriveAirportBox.getSelectionModel().getSelectedItem()))
 					MessageBox.message(AlertType.ERROR, "Invalid Data Entry", "Your departure airport cannot be the same as your arrival airport");
 			//Check if the flight number is an integer
-			else if(!(IsInteger.isInteger(flightNumField.getText()))) {
-				MessageBox.message(AlertType.ERROR, "Invalid Data Entry", "The flight number must be an integer");
-			}
+//			else if(!(IsInteger.isInteger(flightNumField.getText()))) {
+//				MessageBox.message(AlertType.ERROR, "Invalid Data Entry", "The flight number must be an integer");
+//			}
 			else {
 				Airplane plane = planeBox.getSelectionModel().getSelectedItem();
 				Time departure = new Time(departTimeBox.getSelectionModel().getSelectedItem());

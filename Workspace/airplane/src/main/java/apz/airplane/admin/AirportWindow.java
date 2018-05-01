@@ -157,7 +157,7 @@ public class AirportWindow {
 		airportView.getSelectionModel().selectedItemProperty().addListener(event -> {
 			Airport airport = airportView.getSelectionModel().getSelectedItem();
 			if (airport != null) {
-				createButton.setText("Change Airport");
+				//createButton.setText("Change Airport");
 				airportNameField.setText(airport.getName());
 				airportProvinceBox.setValue(airport.getCity());
 			} else
