@@ -2,26 +2,18 @@ package apz.airplane.user;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Optional;
 
 import apz.airplane.model.Airport;
 import apz.airplane.model.Booking;
 import apz.airplane.model.User;
-import apz.airplane.util.APZState;
-import apz.airplane.util.MessageBox;
 import javafx.collections.FXCollections;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Separator;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import jimmy.pack.GuiApplication;
@@ -31,7 +23,7 @@ public class CancelFlightWindow implements GuiApplication {
 	private Text windowHeader;
 	private TableView<BookingTableData> tripTable;
 	private TableColumn<BookingTableData, Integer> flightNumberColumn;
-	private TableColumn<BookingTableData, String> arriveTimeColumn, departureTimeColumn, airlineColumn;
+	private TableColumn<BookingTableData, String> departureTimeColumn, airlineColumn;
 	private TableColumn<BookingTableData, Airport> departureAirportColumn, destinationAirportColumn;
 	private TableColumn<BookingTableData, LocalDate> departureDateColumn, bookDateColumn;
 	private TableColumn<BookingTableData, String> tripCostColumn;
@@ -54,7 +46,6 @@ public class CancelFlightWindow implements GuiApplication {
 		tripTable = new TableView<>();
 		windowHeader = new Text("Manage Trips");
 		flightNumberColumn = new TableColumn<>("Flight");
-		arriveTimeColumn = new TableColumn<>("Boarding");
 		departureTimeColumn = new TableColumn<>("Departing");
 		airlineColumn = new TableColumn<>("Airline");
 		departureAirportColumn = new TableColumn<>("From");
@@ -108,14 +99,13 @@ public class CancelFlightWindow implements GuiApplication {
 		// System.out.println(user.getTripList().size());
 		flightNumberColumn.setCellValueFactory(new PropertyValueFactory<>("flightNumber"));
 		airlineColumn.setCellValueFactory(new PropertyValueFactory<>("Airline"));
-		arriveTimeColumn.setCellValueFactory(new PropertyValueFactory<>("arrivalTime"));
 		departureDateColumn.setCellValueFactory(new PropertyValueFactory<>("bookDate"));
 		departureTimeColumn.setCellValueFactory(new PropertyValueFactory<>("departureTime"));
 		departureAirportColumn.setCellValueFactory(new PropertyValueFactory<>("departureAirport"));
 		destinationAirportColumn.setCellValueFactory(new PropertyValueFactory<>("destinationAirport"));
 		bookDateColumn.setCellValueFactory(new PropertyValueFactory<>("bookDate"));
 		tripCostColumn.setCellValueFactory(new PropertyValueFactory<>("tripCost"));
-		tripTable.getColumns().addAll(departureDateColumn, flightNumberColumn, airlineColumn, arriveTimeColumn,
+		tripTable.getColumns().addAll(departureDateColumn, flightNumberColumn, airlineColumn,
 				departureTimeColumn, departureAirportColumn, destinationAirportColumn);
 		tripTable.setPrefHeight(APZLauncher.getBorderPane().getHeight() - 10);
 
