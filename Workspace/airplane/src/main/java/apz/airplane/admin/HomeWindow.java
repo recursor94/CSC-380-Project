@@ -30,7 +30,7 @@ public class HomeWindow {
 	}
 	
 	private void initialize() {
-		img = new ImageView(new Image(FilePath.LOGIN_IMAGE));
+		img = new ImageView(new Image(FilePath.ADMIN_IMAGE));
 		header = new Text("\nAdministrative Controls");
 		gridPane = new GridPane();
 		mainPane = new VBox(20);
