@@ -94,7 +94,7 @@ public class HomeScreenWindow implements GuiApplication {
 	}
 
 	private void setupClock() {
-		System.out.println("Init clock");
+		//System.out.println("Init clock");
 		realTimeClock = new Timeline(new KeyFrame(Duration.minutes(1), e -> {
 			refreshClockContent();
 		}));
