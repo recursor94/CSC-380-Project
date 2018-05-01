@@ -1,17 +1,19 @@
 package apz.airplane.user;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
 import apz.airplane.model.Booking;
+import apz.airplane.model.Flight;
 import apz.airplane.util.APZState;
 import apz.airplane.util.FilePath;
 import apz.airplane.util.MessageBox;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -119,14 +121,17 @@ public class TripResultWindow implements GuiApplication {
 			Optional<ButtonType> result = MessageBox.message(AlertType.CONFIRMATION, "APZ Confirmation Dialog",
 					"Are you okay with removing the selected flight?");
 			if (result.get() == ButtonType.OK) {
-				// I TRIED TO REMOVE A USER FROM A SEAT BUT IT DID NOT SEEM TO WORK
-				// foundBooking.getFlight().getPlane().getSeats().remove(user);
 				APZLauncher.getCurrentUser().removeTrip(booking.getFlight());
+				ArrayList<Flight> flightList = APZState.loadFlights();
+				for (int i = 0; i < flightList.size(); i++) {
+					if (flightList.get(i).getFlightNum() == booking.getFlight().getFlightNum()) 
+						flightList.set(i, booking.getFlight());
+				}
+									
+				APZState.saveFlight(flightList);
 				APZState.saveInformation();
 				new TripViewWindow();
-			} // else {
-				// System.out.println(":(");
-				// }
+			} 
 			else {
 				MessageBox.message(AlertType.INFORMATION, "Cancellation Aborted", "Flight Cancellation Aborted");
 			}

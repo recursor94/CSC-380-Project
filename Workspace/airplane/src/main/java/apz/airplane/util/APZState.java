@@ -106,14 +106,6 @@ public class APZState {
 			}
 			
 			return flightList;
-		
-//		ArrayList<Flight> freeFlightList = new ArrayList<>();
-//		for (int i = 0; i < flightList.size(); i++) {
-//			if (!flightList.get(i).getPlane().getSeats().isFull()) {
-//				freeFlightList.add(flightList.get(i));
-//			}
-//		}
-//		return freeFlightList;
 	}
 
 }
