@@ -15,7 +15,7 @@ public class AirplaneCaseTest {
 	public void seatFullTest() {
 		Airplane plane = new Airplane(0, "American Airlines", 5);
 		for (int i = 0; i < 5; i++) {
-			plane.getSeats().addTo(new User("asd@asd.org", "Pooper", "Scooper"));
+			plane.getSeats().addTo();
 		}
 		assertEquals(true, plane.getSeats().isFull());
 	}
@@ -24,7 +24,7 @@ public class AirplaneCaseTest {
 	public void seatFullTestInvalid() {
 		Airplane plane = new Airplane(0, "American Airlines", 5);
 		for (int i = 0; i < 4; i++) {
-			plane.getSeats().addTo(new User("asd@asd.org", "Pooper", "Scooper"));
+			plane.getSeats().addTo();
 		}
 		assertEquals(false, plane.getSeats().isFull());
 	}
@@ -47,7 +47,7 @@ public class AirplaneCaseTest {
 		User user = new User("asd@asd.org", "Pooper", "Scooper");
 		
 		Seating seats = testPlane.getSeats();
-		seats.addTo(user);
+		seats.addTo();
 		assertEquals(true, seats.isFull());
 	}
 
@@ -56,7 +56,7 @@ public class AirplaneCaseTest {
 		Airplane testPlane = new Airplane(0, "Test Airlines", 10);
 		User user = new User("asd@asd.org", "Pooper", "Scooper");
 		Seating seats = testPlane.getSeats();
-		seats.addTo(user);
+		seats.addTo();
 		assertEquals(false, seats.isFull());
 	}
 

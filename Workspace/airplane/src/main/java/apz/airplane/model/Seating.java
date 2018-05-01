@@ -7,36 +7,36 @@ public class Seating implements Serializable {
 
 	// average plane has 200
 	private static final long serialVersionUID = 1L;
-	private ArrayList<User> seating;
-	private int capacity;
+	private int capacity, currentSeats;
 
 	public Seating(int capacity) {
 		this.capacity = capacity;
-		seating = new ArrayList<>(capacity);
+		currentSeats = 0;
 	}
 
-	public void addTo(User user) {
-		if (seating.size() == capacity) {
+	public void addTo() {
+		if (currentSeats == capacity)
 			System.out.println("FULL LIST");
-			return;
+		else {
+			currentSeats++;
+			System.out.println("User added to seat\nNumber of seats available: " + (capacity - currentSeats));
 		}
-
-		seating.add(user);
+	
 	}
 
-	public void remove(User user) {
+	public void remove() {
+		currentSeats--;
+		System.out.println("User added to seat\nNumber of seats available: " + (capacity - currentSeats));
 		// if (isFull()) {
 		// System.out.println("NO ONE IN LIST TO REMOVE");
 		// return;
 		// }
 
-		for (int i = 0; i < seating.size(); i++) {
-			if (seating.get(i) == user)
-				seating.remove(user);
-		}
-		System.out.println("USER NOT EXISTS");
+//		if(availableSeats < capacity) {
+//			availableSeats ++;
+//			System.out.println("User removed\nNumber of seats: " + availableSeats);
+//			}
 	}
-
 	// public boolean isOnBoard(User user) {
 	// for (int i = 0; i < seating.length; i++) {
 	// if (seating[i] != null)
@@ -59,12 +59,7 @@ public class Seating implements Serializable {
 	// return null;
 	// }
 
-	public String setSeatNaming(int index) {
-		if (index < (seating.size() / 2))
-			return "a";
-		else
-			return "b";
-	}
+
 
 	// public boolean isFull() {
 	// for (int i = 0; i < seating.length; i++) {
@@ -75,19 +70,13 @@ public class Seating implements Serializable {
 	// return true;
 	// }
 	public boolean isFull() {
-		if (capacity == seating.size())
-
+		if (currentSeats == capacity)
 			return true;
 		return false;
 	}
 	
-public int getCapacity() {
+	public int getCapacity() {
 		return capacity;
-	}
-
-	@Override
-	public String toString() {
-		return "Seating: " + seating;
 	}
 
 }

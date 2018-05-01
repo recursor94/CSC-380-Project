@@ -134,8 +134,16 @@ public class BrowseScheduleWindow implements GuiApplication {
 
 	private ArrayList<FlightInformation> getFlightsOnDate(LocalDate date) {
 		ArrayList<Flight> allFlights = APZState.loadFlights();
+		ArrayList<Flight> freeFlightList = new ArrayList<>();
+		for (int i = 0; i < allFlights.size(); i++) {
+			if (!allFlights.get(i).getPlane().getSeats().isFull()) {
+				freeFlightList.add(allFlights.get(i));
+			}
+		}
+		
+		
 		ArrayList<FlightInformation> flightsOnDate = new ArrayList<>(); // has to be new arraylist
-		for (Flight flight : allFlights) {
+		for (Flight flight : freeFlightList) {
 			if (flight.getArriveDate().isEqual(date)) {
 				flightsOnDate.add(new FlightInformation(flight.getFlightNum(), flight.getDepartureAirport().toString(),
 						flight.getDestinationAirport().toString(), flight.getDepartureTime().getTimeDouble(),

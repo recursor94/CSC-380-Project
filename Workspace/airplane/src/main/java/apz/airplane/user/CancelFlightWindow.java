@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import apz.airplane.model.Airport;
 import apz.airplane.model.Booking;
+import apz.airplane.model.Flight;
 import apz.airplane.model.User;
 import apz.airplane.util.APZState;
 import apz.airplane.util.MessageBox;
@@ -109,10 +110,20 @@ public class CancelFlightWindow implements GuiApplication{
 						"Are you okay with removing the selected flight?");
 				if (result.get() == ButtonType.OK) {
 					//I TRIED TO REMOVE A USER FROM A SEAT BUT IT DID NOT SEEM TO WORK
-					//foundBooking.getFlight().getPlane().getSeats().remove(user);
+//					foundBooking.getFlight().getPlane().getSeats().remove();
 					user.removeTrip(foundBooking.getFlight());
 					resetTableData();
 					APZState.saveInformation();
+					
+					ArrayList<Flight> flightList = APZState.loadFlights();
+					for (int i = 0; i < flightList.size(); i++) {
+						if (flightList.get(i).getFlightNum() == foundBooking.getFlight().getFlightNum()) 
+							flightList.set(i, foundBooking.getFlight());
+					}
+					
+					APZState.saveFlight(flightList);
+					
+//					APZState.saveFlight();
 
 				} // else {
 					// System.out.println(":(");

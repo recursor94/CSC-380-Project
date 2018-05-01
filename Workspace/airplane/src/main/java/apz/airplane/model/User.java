@@ -65,12 +65,20 @@ public class User implements Serializable {
 	}
 	
 	public boolean removeTrip(Flight flight) {
-		for(Booking trip : tripList) {
-			if(trip.getFlight().equals(flight)) {
-				tripList.remove(trip);
-				return true;
+		for (int i = 0; i < tripList.size(); i++) {
+			if (tripList.get(i).getFlight().equals(flight)) {
+				tripList.get(i).getFlight().getPlane().getSeats().remove();
+				tripList.remove(tripList.get(i));
 			}
 		}
+//		
+//		for(Booking trip : tripList) {
+//			if(trip.getFlight().equals(flight)) {
+//				tripList.get
+//				tripList.remove(trip);
+//				return true;
+//			}
+//		}
 		return false;
 	}
 	
