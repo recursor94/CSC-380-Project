@@ -1,5 +1,7 @@
 package apz.airplane.user;
 
+import apz.airplane.model.Flight;
+
 public class FlightInformation {
 
 	private int flightNumber;
@@ -7,13 +9,15 @@ public class FlightInformation {
 	private String destinationAirport;
 	private double time;
 	private String departureTimeString;
+	private Flight flightRef;
 	
-	public FlightInformation(int flightNumber, String departureAirport, String destinationAirport, double time, String departureTimeString) {
+	public FlightInformation(int flightNumber, String departureAirport, String destinationAirport, double time, String departureTimeString, Flight flightRef) {
 		this.flightNumber = flightNumber;
 		this.departureAirport = departureAirport;
 		this.destinationAirport = destinationAirport;
 		this.time = time;
 		this.departureTimeString = departureTimeString;
+		this.setFlightRef(flightRef);
 	}
 	public int getFlightNumber() {
 		return flightNumber;
@@ -44,6 +48,12 @@ public class FlightInformation {
 	}
 	public void setDepartureTimeString(String departureTimeString) {
 		this.departureTimeString = departureTimeString;
+	}
+	public Flight getFlightRef() {
+		return flightRef;
+	}
+	public void setFlightRef(Flight flightRef) {
+		this.flightRef = flightRef;
 	}
 	
 	

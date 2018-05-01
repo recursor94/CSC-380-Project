@@ -18,12 +18,14 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
+import jimmy.pack.BookingResultWindow;
 import jimmy.pack.GuiApplication;
 
 public class BrowseScheduleWindow implements GuiApplication {
@@ -87,6 +89,19 @@ public class BrowseScheduleWindow implements GuiApplication {
 		flightDatePicker.valueProperty().addListener((ov, oldValue, newValue) -> {
 			setTableData(newValue);
 		});
+		flightTable.setRowFactory(tableView -> {
+			TableRow<FlightInformation> row = new TableRow<>();
+			row.setOnMouseClicked(event -> {
+				if (event.getClickCount() >= 2 && !row.isEmpty()) {
+					FlightInformation rowData = row.getItem();
+					
+					ArrayList<Flight> flightList = new ArrayList<>();
+					flightList.add(rowData.getFlightRef());
+					new BookingResultWindow(flightList);
+				}
+			});
+			return row;
+		});
 	}
 
 	public void properties() {
@@ -124,7 +139,7 @@ public class BrowseScheduleWindow implements GuiApplication {
 			if (flight.getArriveDate().isEqual(date)) {
 				flightsOnDate.add(new FlightInformation(flight.getFlightNum(), flight.getDepartureAirport().toString(),
 						flight.getDestinationAirport().toString(), flight.getDepartureTime().getTimeDouble(),
-						flight.getDepartureTime().getTimeString()));
+						flight.getDepartureTime().getTimeString(), flight));
 			}
 		}
 		return flightsOnDate;

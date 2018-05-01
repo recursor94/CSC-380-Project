@@ -129,7 +129,7 @@ public class HomeScreenWindow implements GuiApplication {
 			if (flight.getArriveDate().isEqual(LocalDate.now())) {
 				flightsToday.add(new FlightInformation(flight.getFlightNum(), flight.getDepartureAirport().toString(),
 						flight.getDestinationAirport().toString(), flight.getDepartureTime().getTimeDouble(),
-						flight.getDepartureTime().getTimeString()));
+						flight.getDepartureTime().getTimeString(), flight));
 			}
 		}
 		return flightsToday;
