@@ -339,20 +339,24 @@ public class FlightWindow {
 	private void removeFlights() {
 		UserController uc = AdminState.loadInformation();
 		Flight flight = flightView.getSelectionModel().getSelectedItem();
-//		ArrayList<Flight> flights = APZState.loadFlights();
-//	
-//		for (int i = 0; i < flights.size(); i++) {
-//			if (flights.get(i).getFlightNum() == flight.getFlightNum()) 
-//				flights.set(i, booking.getFlight());
-//		}
+		ArrayList<Flight> flights = APZState.loadFlights();
+	
 		for(int ind = 0; ind < uc.getUserList().size(); ind ++) {
-			uc.getUserList().get(ind).removeTrip(flight);
+			for(int i = 0; i < uc.getUserList().get(ind).getTripList().size(); i ++) {
+				if(uc.getUserList().get(ind).getTripList().get(i).getFlight().getFlightNum() == flight.getFlightNum())
+					uc.getUserList().get(ind).removeTrip(flight);
+			}
 		}
-		flightList.remove(flight);
-		AdminState.saveFlight(flightList);
-//		APZState.saveFlight(flightList);
+				
+		for (int i = 0; i < flights.size(); i++) {
+			if (flights.get(i).getFlightNum() == flight.getFlightNum()) 
+				flights.set(i, flight);
+		}
+		flights.remove(flight);
+		AdminState.saveFlight(flights);
+		APZState.saveFlight(flights);
 		AdminState.saveInformation(uc);
-//		APZState.saveInformation(uc);
+		APZState.saveInformation(uc);
 		loadFlights();
 	}
 
