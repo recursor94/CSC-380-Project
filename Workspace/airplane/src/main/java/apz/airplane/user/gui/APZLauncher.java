@@ -3,8 +3,10 @@ package apz.airplane.user.gui;
 import apz.airplane.model.User;
 import apz.airplane.model.UserController;
 import apz.airplane.util.APZState;
+import apz.airplane.util.JUtility;
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
@@ -28,6 +30,15 @@ public class APZLauncher extends Application {
 		primaryStage.setTitle("APZ Airplane Application");
 		primaryStage.setResizable(false);
 		primaryStage.show();
+		
+		primaryStage.getScene().setOnKeyPressed(event -> {
+			if (event.getCode() == KeyCode.P && event.isControlDown())
+				try {
+					new JUtility().start(new Stage());
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+		});
 
 		new LoginWindow();
 	}

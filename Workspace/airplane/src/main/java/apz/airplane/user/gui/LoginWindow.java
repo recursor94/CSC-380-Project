@@ -5,6 +5,8 @@ import apz.airplane.user.gui.home.HomeScreenWindow;
 import apz.airplane.util.FilePath;
 import apz.airplane.util.GuiApplication;
 import apz.airplane.util.MessageBox;
+import javafx.animation.Animation;
+import javafx.animation.RotateTransition;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert.AlertType;
@@ -20,28 +22,30 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 
 public class LoginWindow implements GuiApplication {
-	
+
 	private int loginAttempt = 0;
 
+	private ImageView img;
 	private TextField userField;
 	private PasswordField passField;
 	private Button loginButton, registerButton;
-	
+
 	private VBox rootPane;
 	private HBox userBox, passBox, buttonBox;
 	private Text status, header;
-	
+
 	public LoginWindow() {
 		initialize();
 		content();
 		actionEvents();
 		properties();
 	}
-	
+
 	public void initialize() {
-		
+		img = new ImageView(new Image(FilePath.LOGO_IMAGE));
 		rootPane = new VBox(10);
 		userBox = new HBox(10);
 		passBox = new HBox(10);
@@ -49,77 +53,83 @@ public class LoginWindow implements GuiApplication {
 
 		userField = new TextField();
 		passField = new PasswordField();
-		
+
 		status = new Text("");
 		status.setFill(Color.RED);
-		
+
 		header = new Text("APZ Project Application");
-		
+
 		loginButton = new Button("Login");
 		registerButton = new Button("Register");
 	}
-	
+
 	public void content() {
-		
+
 		header.setFont(new Font(20));
 		userBox.setAlignment(Pos.CENTER);
 		passBox.setAlignment(Pos.CENTER);
 		rootPane.setAlignment(Pos.CENTER);
 		buttonBox.setAlignment(Pos.CENTER);
-		
+
 		userBox.getChildren().addAll(new Label("Username: "), userField);
 		passBox.getChildren().addAll(new Label("Password: "), passField);
 		buttonBox.getChildren().addAll(loginButton, registerButton);
-		
-		ImageView img = new ImageView(new Image(FilePath.LOGO_IMAGE));
-		img.setFitWidth(170);
-		img.setFitHeight(170);
-		
+
+		RotateTransition rt = new RotateTransition(Duration.millis(3000), img);
+		rt.setByAngle(15);
+		rt.setCycleCount(Animation.INDEFINITE);
+		rt.setAutoReverse(true);
+
+		rt.play();
+
 		rootPane.getChildren().addAll(img, header, status, userBox, passBox, buttonBox);
 	}
-	
+
 	public void properties() {
+		img.setFitWidth(170);
+		img.setFitHeight(170);
 		APZLauncher.getBorderPane().setCenter(rootPane);
 		APZLauncher.getStage().setWidth(320);
 		APZLauncher.getStage().setHeight(410);
 		APZLauncher.getStage().setTitle("APZ Application - User Login");
 	}
-	
+
 	public void actionEvents() {
 		rootPane.setOnKeyPressed(event -> {
 			if (event.getCode() == KeyCode.ENTER)
 				tryLogin();
 		});
-		
+
 		loginButton.setOnAction((event) -> {
 			tryLogin();
 		});
-		
+
 		registerButton.setOnAction(event -> {
 			new RegisterWindow();
 		});
 	}
-	
+
 	private void tryLogin() {
 		++loginAttempt;
 		User user = APZLauncher.getUserController().login(userField.getText(), passField.getText());
 		if (user != null) {
-//			System.out.println("Username: " + userField.getText());
-//			System.out.println("Password: " + passField.getText());
-			MessageBox.message(AlertType.INFORMATION, "APZ Airplane Application", "Welcome " + userField.getText() + " to the APZ Application!");
+			// System.out.println("Username: " + userField.getText());
+			// System.out.println("Password: " + passField.getText());
+			MessageBox.message(AlertType.INFORMATION, "APZ Airplane Application",
+					"Welcome " + userField.getText() + " to the APZ Application!");
 			APZLauncher.setCurrentUser(user);
 			new APZMenuBar();
 			new HomeScreenWindow();
 		} else {
-			if (loginAttempt < 5) 
+			if (loginAttempt < 5)
 				status.setText("Login Attempt " + loginAttempt + "\nIncorrect user or password combination!");
 			else if (loginAttempt == 5)
 				status.setText("Last login attempt" + "\nIncorrect user or password combination!");
-			else if (loginAttempt > 5){
+			else if (loginAttempt > 5) {
 				MessageBox.message(AlertType.ERROR, null, "Your account has been locked out. Try again in 5 minutes!");
 				Platform.exit();
 			}
 		}
 	}
-	
+
 }
