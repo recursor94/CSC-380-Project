@@ -13,6 +13,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.control.Separator;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -32,7 +33,7 @@ public class TripViewWindow implements GuiApplication {
 	private GridPane gridPane;
 
 	public TripViewWindow() {
-		
+
 		ArrayList<Booking> tripList = APZLauncher.getCurrentUser().getTripList();
 
 		if (tripList.isEmpty()) {
@@ -40,7 +41,7 @@ public class TripViewWindow implements GuiApplication {
 			new HomeScreenWindow();
 			return;
 		}
-		
+
 		initialize();
 		content();
 		actionEvents();
@@ -60,30 +61,31 @@ public class TripViewWindow implements GuiApplication {
 
 		ArrayList<Booking> tripList = APZLauncher.getCurrentUser().getTripList();
 
-		int shift = 0;
-
+		GridPane itemPane;
 		for (int i = 0; i < tripList.size(); i++) {
+			itemPane = new GridPane();
 			Button viewButton = new Button("View in more detail");
-			gridPane.add(new Label(tripList.get(i).toString()), 0, (3 + shift++ + i));
-			gridPane.add(viewButton, 0, (3 + shift++ + i));
-
+			String sItemPane = tripList.get(i).toString();
+			Label label = new Label(sItemPane);
+			VBox bottomBox = new VBox(10);
+			bottomBox.getChildren().add(viewButton);
+			itemPane.add(label, 0, 3);
 			if (i != tripList.size() - 1)
-				gridPane.add(new Separator(), 0, (4 + shift++ + i));
+				bottomBox.getChildren().add(new Separator());
 			else
-				gridPane.add(new Label(), 0, (4 + shift++ + i));
-
+				bottomBox.getChildren().add(new Label());
 			int index = i;
+			VBox itemBox = new VBox(10);
+			itemBox.getChildren().addAll(itemPane, bottomBox);
+			itemBox.setMinHeight(150);
 			viewButton.setOnAction(event -> {
 				new TripResultWindow(tripList.get(index));
 			});
+			gridPane.add(itemBox, 0, i);
 		}
-		// GridPane itemPane;
-		// for(int i = 0; i < tripList.size(); i++) {
-		// itemPane = new GridPane();
-		//
-		// }
 
 		scrollPane.setContent(gridPane);
+		scrollPane.setFitToHeight(true);
 		mainPane.getChildren().addAll(new Label(), headerText, img, scrollPane);
 	}
 
