@@ -1,7 +1,11 @@
 package apz.airplane.user.gui.account;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
+import apz.airplane.admin.AdminState;
+import apz.airplane.model.Flight;
+import apz.airplane.model.User;
 import apz.airplane.user.gui.APZLauncher;
 import apz.airplane.user.gui.LoginWindow;
 import apz.airplane.util.APZState;
@@ -56,8 +60,18 @@ public class AccountDeleteWindow {
 		
 		
 		yesButton.setOnAction(event -> {
-			APZLauncher.getUserController().removeUser(APZLauncher.getCurrentUser().getUsername());
+			ArrayList<Flight> flightList = APZState.loadFlights();
+			User user = APZLauncher.getCurrentUser();
+			for(int i= 0; i < user.getTripList().size(); i ++) {
+				for (int ind = 0; ind < flightList.size(); ind++) {
+					if (flightList.get(i).getFlightNum() == user.getTripList().get(ind).getFlight().getFlightNum()) 
+						flightList.set(i, user.getTripList().get(ind).getFlight());
+				}
+				user.removeTrip(user.getTripList().get(i).getFlight());
+			}
+			APZLauncher.getUserController().removeUser(user.getUsername());
 			MessageBox.message(AlertType.INFORMATION, null, "Your account has been permanently deleted!");
+			APZState.saveFlight(flightList);
 			APZState.saveInformation();
 			new LoginWindow();
 			stage.close();

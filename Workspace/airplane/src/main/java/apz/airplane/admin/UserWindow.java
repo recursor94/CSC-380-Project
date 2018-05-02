@@ -2,8 +2,10 @@ package apz.airplane.admin;
 
 import java.util.ArrayList;
 
+import apz.airplane.model.Flight;
 import apz.airplane.model.User;
 import apz.airplane.model.UserController;
+import apz.airplane.util.APZState;
 import apz.airplane.util.MessageBox;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -89,8 +91,17 @@ public class UserWindow {
 		});
 		removeButton.setOnAction(event -> {
 			if (userView.getSelectionModel().getSelectedItem() != null) {
+				ArrayList<Flight> flightList = AdminState.loadFlights();
 				User user = userView.getSelectionModel().getSelectedItem();
+				for(int i= 0; i < user.getTripList().size(); i ++) {
+					for (int ind = 0; ind < flightList.size(); ind++) {
+						if (flightList.get(i).getFlightNum() == user.getTripList().get(ind).getFlight().getFlightNum()) 
+							flightList.set(i, user.getTripList().get(ind).getFlight());
+					}
+					user.removeTrip(user.getTripList().get(i).getFlight());
+				}
 				uc.removeUser(user.getUsername());
+				AdminState.saveFlight(flightList);
 				AdminState.saveInformation(uc);
 				loadFile();
 			} else
