@@ -150,7 +150,7 @@ public class FlightWindow {
 			loadFlights();
 			
 			//This is not doing exactly what I want yet
-			//removeFlights();
+//			removeFlights();
 			removeFlightButton.setDisable(true);
 			resetFields();
 		});
@@ -337,17 +337,22 @@ public class FlightWindow {
 	
 	//I Tried to get this to remove a flight from the user list, but it did not work
 	private void removeFlights() {
-		UserController uc = APZState.loadInformation();
+		UserController uc = AdminState.loadInformation();
 		Flight flight = flightView.getSelectionModel().getSelectedItem();
-		
-		for(User user : uc.getUserList()) {
-			user.removeTrip(flight);
+//		ArrayList<Flight> flights = APZState.loadFlights();
+//	
+//		for (int i = 0; i < flights.size(); i++) {
+//			if (flights.get(i).getFlightNum() == flight.getFlightNum()) 
+//				flights.set(i, booking.getFlight());
+//		}
+		for(int ind = 0; ind < uc.getUserList().size(); ind ++) {
+			uc.getUserList().get(ind).removeTrip(flight);
 		}
 		flightList.remove(flight);
 		AdminState.saveFlight(flightList);
-		APZState.saveFlight(flightList);
+//		APZState.saveFlight(flightList);
 		AdminState.saveInformation(uc);
-		APZState.saveInformation(uc);
+//		APZState.saveInformation(uc);
 		loadFlights();
 	}
 
