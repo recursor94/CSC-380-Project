@@ -72,9 +72,9 @@ public class BookingWindow implements GuiApplication {
 				MessageBox.message(AlertType.ERROR, null, "Date field is blank!");
 			else if (datePicker.getValue().isBefore(LocalDate.now()))
 				MessageBox.message(AlertType.ERROR, null, "Enter a valid date (not one beyond today)");
-			else if (cityDepartBox.getValue().equals(cityArrivalBox.getValue()))
-				MessageBox.message(AlertType.ERROR, null,
-						"Departing airport cannot be the same as destination airport!");
+//			else if (cityDepartBox.getSelectionModel().getSelectedItem().equals(cityArrivalBox.getSelectionModel().getSelectedItem()))
+//				MessageBox.message(AlertType.ERROR, null,
+//						"Departing airport cannot be the same as destination airport!");
 			else
 				findAirportWindow();
 		});
@@ -134,25 +134,29 @@ public class BookingWindow implements GuiApplication {
 	}
 
 	private void findAirportWindow() {
-		ArrayList<Flight> bookList = APZState.loadFlights();
-		ArrayList<Flight> bookFoundList = new ArrayList<>();
-
-		for (int i = 0; i < bookList.size(); i++) {
-			LocalDate date = bookList.get(i).getDepartureDate();
-			String departAirport = bookList.get(i).getDepartureAirport().toString();
-			String arriveAirport = bookList.get(i).getDestinationAirport().toString();
-			
-
-			if (departAirport.equals(cityDepartBox.getValue()) && arriveAirport.equals(cityArrivalBox.getValue())
-					&& date.equals(datePicker.getValue()) && !bookList.get(i).getPlane().getSeats().isFull())
-				bookFoundList.add(bookList.get(i));
+		
+		if(cityDepartBox.getSelectionModel().getSelectedItem() == null || cityArrivalBox.getSelectionModel().getSelectedItem() == null)
+			MessageBox.message(AlertType.ERROR, "Invalid Data Entry", "You must enter a location for your departure and arrival");
+		else {
+			ArrayList<Flight> bookList = APZState.loadFlights();
+			ArrayList<Flight> bookFoundList = new ArrayList<>();
+	
+			for (int i = 0; i < bookList.size(); i++) {
+				LocalDate date = bookList.get(i).getDepartureDate();
+				String departAirport = bookList.get(i).getDepartureAirport().toString();
+				String arriveAirport = bookList.get(i).getDestinationAirport().toString();
+				
+	
+				if (departAirport.equals(cityDepartBox.getValue()) && arriveAirport.equals(cityArrivalBox.getValue())
+						&& date.equals(datePicker.getValue()) && !bookList.get(i).getPlane().getSeats().isFull())
+					bookFoundList.add(bookList.get(i));
+			}
+	
+			if (bookFoundList.isEmpty())
+				MessageBox.message(AlertType.INFORMATION, null, "No flights found for " + cityDepartBox.getValue() + " to "
+						+ cityArrivalBox.getValue() + " on " + datePicker.getValue());
+			else
+				new BookingResultWindow(bookFoundList);
 		}
-
-		if (bookFoundList.isEmpty())
-			MessageBox.message(AlertType.INFORMATION, null, "No flights found for " + cityDepartBox.getValue() + " to "
-					+ cityArrivalBox.getValue() + " on " + datePicker.getValue());
-		else
-			new BookingResultWindow(bookFoundList);
 	}
-
 }

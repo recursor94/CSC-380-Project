@@ -230,7 +230,7 @@ public class AirportWindow {
 				return airport;
 			}
 		}
-		System.out.println("Null");
+		//System.out.println("Null");
 		return null;
 	}
 

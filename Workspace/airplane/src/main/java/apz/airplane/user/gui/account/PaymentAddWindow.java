@@ -176,16 +176,11 @@ public class PaymentAddWindow implements GuiApplication {
 			&& !(addressField.getText().isEmpty()) && !(cityField.getText().isEmpty()) && !(CCVNumField.getText().isEmpty()) 
 			&& !(stateBox.getSelectionModel().isEmpty()) && !(monthBox.getSelectionModel().isEmpty()) 
 			&& !(yearBox.getSelectionModel().isEmpty()) ) {
-//			if(!(IsInteger.isInteger(cardNumField.getText())))
-//				MessageBox.message(AlertType.ERROR, "Invalid Data Entry", "You must enter an integer for a card number");
-//			else if(!(IsInteger.isInteger(zipCodeField.getText())))
-//				MessageBox.message(AlertType.ERROR, "Invalid Data Entry", "You must enter an integer for a zip code");
+			
 		    if(cardNumField.getText().length() != 16)
 				MessageBox.message(AlertType.ERROR, "Invalid Data Entry", "You must enter a 16 digit card number");
 			else if(zipCodeField.getText().length() != 5)
 				MessageBox.message(AlertType.ERROR, "Invalid Data Entry", "You must enter a 5 digit zip code");
-//			else if(!(IsInteger.isInteger(CCVNumField.getText())))
-//				MessageBox.message(AlertType.ERROR, "Invalid Data Entry", "You must enter an integer for a CCV Number");
 			else if(CCVNumField.getText().length() != 3)
 				MessageBox.message(AlertType.ERROR, "Invalid Data Entry", "You must enter a 3 digit CCV Number");
 			else {
@@ -206,7 +201,6 @@ public class PaymentAddWindow implements GuiApplication {
 				}
 				else
 					new PaymentWindow();
-				
 			}
 		}
 		else 

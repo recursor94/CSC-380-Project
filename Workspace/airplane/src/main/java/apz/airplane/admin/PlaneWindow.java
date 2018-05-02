@@ -136,9 +136,6 @@ public class PlaneWindow {
 		if (planeNumField.getText().isEmpty() && airlineField.getText().isEmpty() || planeNumField.getText().isEmpty()
 				|| airlineField.getText().isEmpty())
 			MessageBox.message(AlertType.ERROR, "Invalid Data", "You must enter all of the necessary data");
-//		else if (!(IsInteger.isInteger(planeNumField.getText()))) {
-//			MessageBox.message(AlertType.ERROR, "Invalid Data", "The plane number must be an integer");
-//			} 
 		else {
 				int planeNum = Integer.valueOf(planeNumField.getText());
 				String airline = airlineField.getText();

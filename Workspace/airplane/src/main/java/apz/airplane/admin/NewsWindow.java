@@ -86,5 +86,4 @@ public class NewsWindow {
 			stage.close();
 		}
 	}
-
 }

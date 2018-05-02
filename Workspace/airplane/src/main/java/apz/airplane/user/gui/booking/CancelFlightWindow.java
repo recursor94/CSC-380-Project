@@ -89,7 +89,7 @@ public class CancelFlightWindow implements GuiApplication {
 			TableRow<BookingTableData> row = new TableRow<>();
 			row.setOnMouseClicked(event -> {
 				if (event.getClickCount() >= 2 && !row.isEmpty()) {
-					System.out.println("Clicked twice");
+					//System.out.println("Clicked twice");
 					BookingTableData rowData = row.getItem();
 					new TripResultWindow(rowData.getBookingRef(), this);
 				}
@@ -125,22 +125,4 @@ public class CancelFlightWindow implements GuiApplication {
 		tripTable.setItems(FXCollections.observableArrayList(informationList));
 
 	}
-
-	// public void createdStuff() {
-	// Airplane airplane = new Airplane(1, "American Airline", 5);
-	// LocalDate bookDate = LocalDate.now();
-	// LocalDate departure = LocalDate.of(2018, 3, 12);
-	// LocalDate arrival = LocalDate.of(2018, 3, 12);
-	// Time departTime = new Time("12:00 PM");
-	// Time arriveTime = new Time("7:00 PM");
-	// Airport departureAirport = new Airport("JFK", "New York");
-	// Airport destinationAirport = new Airport("Syracuse Hancock International",
-	// "Syracuse");
-	// Flight flight = new Flight(airplane, departureAirport, destinationAirport,
-	// arrival, departure, departTime, arriveTime, 40908);
-	// Booking trip = new Booking(flight, bookDate, user);
-	// user.addTrip(trip);
-	//
-	// }
-
 }

@@ -30,7 +30,6 @@ public class BookByLocation implements GuiApplication {
 	private GridPane gridPane;
 	private Text header;
 	private ListView<Flight> flightView;
-	private ArrayList <Flight> flightList;
 	private Button findFlightButton, bookFlightButton;
 	private ComboBox<String> departureBox, destinationBox;
 	
@@ -47,7 +46,6 @@ public class BookByLocation implements GuiApplication {
 		mainPane = new VBox(10);
 		header = new Text("Find and Book Flights by Location");
 		flightView = new ListView <>();
-	    flightList = new ArrayList<>();
 		findFlightButton = new Button("Find Flights");
 		bookFlightButton = new Button("Book Flight");
 		destinationBox = new ComboBox<>();
@@ -85,7 +83,7 @@ public class BookByLocation implements GuiApplication {
 	}
 	public void actionEvents() {
 		findFlightButton.setOnAction(event -> {
-			flightList = findFlights();
+			findFlights();
 			bookFlightButton.setDisable(true);
 		});
 		
@@ -94,7 +92,6 @@ public class BookByLocation implements GuiApplication {
 		});
 		
 		bookFlightButton.setOnAction(event -> {
-				//new CheckBaggageWindow(flightView.getSelectionModel().getSelectedItem());
 				new BookingPaymentWindow(flightView.getSelectionModel().getSelectedItem());
 		});
 		
@@ -141,7 +138,7 @@ public class BookByLocation implements GuiApplication {
 			box.setValue(null);
 	}
 
-	private ArrayList<Flight> findFlights() {
+	private void findFlights() {
 		ArrayList<Flight> searchFlights = APZState.loadFlights();
 		ArrayList<Flight> flightsFound = new ArrayList<>();
 		if(destinationBox.getSelectionModel().getSelectedItem() == null || departureBox.getSelectionModel().getSelectedItem() == null) {
@@ -152,19 +149,19 @@ public class BookByLocation implements GuiApplication {
 			String destination = destinationBox.getSelectionModel().getSelectedItem();
 			for (int i = 0; i < searchFlights.size(); i ++) {
 				if (destination.equals(searchFlights.get(i).getDestinationAirport().toString()) && 
-						departure.equals(searchFlights.get(i).getDepartureAirport().toString())) {
-					flightList.add(searchFlights.get(i));
+						departure.equals(searchFlights.get(i).getDepartureAirport().toString()) && 
+						!searchFlights.get(i).getPlane().getSeats().isFull()) {
+					flightsFound.add(searchFlights.get(i));
 				}
 			}
 			if (!flightView.getItems().isEmpty())
 				flightView.getItems().clear();
-			for (int i = 0; i < flightList.size(); i++)
-				flightView.getItems().add(flightList.get(i));
+			for (int i = 0; i < flightsFound.size(); i++)
+				flightView.getItems().add(flightsFound.get(i));
 			if (flightView.getItems().isEmpty()) {
 				MessageBox.message(AlertType.INFORMATION, "No Flights Found", "There are no flights going from " + departure +
 						" to " + destination);
 			}
 		}
-		return flightsFound;
 	}
 }
