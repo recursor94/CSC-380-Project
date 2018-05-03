@@ -114,6 +114,7 @@ public class TripResultWindow implements GuiApplication {
 			if (parentWindow instanceof CancelFlightWindow) {
 				new CancelFlightWindow();
 			} else {
+				
 				new TripViewWindow();
 			}
 		});
