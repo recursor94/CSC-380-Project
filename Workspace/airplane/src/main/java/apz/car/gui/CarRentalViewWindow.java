@@ -1,4 +1,4 @@
-package apz.airplane.user.gui.viewtrips;
+package apz.car.gui;
 
 import java.util.ArrayList;
 
@@ -49,7 +49,7 @@ public class CarRentalViewWindow implements GuiApplication {
 
 	public void initialize() {
 		img = new ImageView(new Image(FilePath.HISTORY_IMAGE));
-		headerText = new Text("Trip History");
+		headerText = new Text("Car Rental History");
 		mainPane = new VBox(10);
 		scrollPane = new ScrollPane();
 		gridPane = new GridPane();
