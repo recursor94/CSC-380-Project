@@ -42,5 +42,4 @@ public enum CarManufacturer implements Serializable {
 
 		return mType;
 	}
-
 }

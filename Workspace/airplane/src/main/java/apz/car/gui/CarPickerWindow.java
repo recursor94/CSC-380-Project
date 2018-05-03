@@ -177,5 +177,4 @@ public class CarPickerWindow implements GuiApplication {
 		double priceCalc = daysBox.getValue() * rate;
 		price.setText("$" + df.format(priceCalc));
 	}
-
 }

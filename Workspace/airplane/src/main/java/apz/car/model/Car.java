@@ -43,5 +43,4 @@ public class Car implements Serializable {
 	public String toString() {
 		return "[ " + manufacturer + " ] - " + model.getModel() + " - [ " + type + " ]";
 	}
-	
 }

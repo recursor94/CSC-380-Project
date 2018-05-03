@@ -145,7 +145,6 @@ public class UserWindow implements GuiApplication {
 					System.out.println("User successfully created!");
 					MessageBox.message(AlertType.INFORMATION, "Successful User Creation",
 							"Your account has been created!");
-					System.out.println(uc);
 					loadFile();
 				}
 			} else

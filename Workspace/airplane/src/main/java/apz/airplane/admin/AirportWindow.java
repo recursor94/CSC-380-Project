@@ -204,7 +204,6 @@ public class AirportWindow implements GuiApplication {
 		String sAirport = airportView.getSelectionModel().getSelectedItem().toString();
 		for (Airport airport : airportList) {
 			if (airport.toString().equals(sAirport)) {
-				System.out.println("find airport found it");
 				return airport;
 			}
 		}

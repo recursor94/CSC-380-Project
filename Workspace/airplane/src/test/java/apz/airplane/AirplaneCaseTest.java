@@ -41,5 +41,4 @@ public class AirplaneCaseTest {
 		seats.addTo();
 		assertEquals(false, seats.isFull());
 	}
-
 }

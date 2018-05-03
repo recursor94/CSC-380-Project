@@ -221,7 +221,8 @@ public class FlightWindow {
 		departAirportBox.setValue("Select an Airport");
 		arriveAirportBox.setValue("Select an Airport");
 		
-		if (departAirportBox.getItems().size() < 2 || arriveAirportBox.getItems().size() < 2 || departAirportBox.getItems().size() < 2 && arriveAirportBox.getItems().size() < 2) {
+		if (departAirportBox.getItems().size() < 2 || arriveAirportBox.getItems().size() < 2 || 
+				departAirportBox.getItems().size() < 2 && arriveAirportBox.getItems().size() < 2) {
 			departAirportBox.setDisable(true);
 			arriveAirportBox.setDisable(true);
 		} else {

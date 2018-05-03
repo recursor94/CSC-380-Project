@@ -110,8 +110,6 @@ public class LoginWindow implements GuiApplication {
 		++loginAttempt;
 		User user = APZLauncher.getUserController().login(userField.getText(), passField.getText());
 		if (user != null) {
-			// System.out.println("Username: " + userField.getText());
-			// System.out.println("Password: " + passField.getText());
 			MessageBox.message(AlertType.INFORMATION, "APZ Airplane Application",
 					"Welcome " + userField.getText() + " to the APZ Application!");
 			APZLauncher.setCurrentUser(user);
