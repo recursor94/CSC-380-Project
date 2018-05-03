@@ -24,12 +24,10 @@ public class AdminState {
 	private static String flightObject = "flightList.apz";
 	private static String homeScreenTextObject = "updateText.txt";
 	
-	
 	public static boolean[] configureFiles() {
 		boolean[] obj = {new File(ucFilePath).exists(), new File(flightObject).exists(), new File(airportObject).exists(), new File(planeObject).exists(), new File(homeScreenTextObject).exists()};
 		return obj;
 	}
-	
 	
 	public static void saveInformation(UserController uc) {
 		FileOutputStream fileOut;
@@ -102,6 +100,7 @@ public class AdminState {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	public static ArrayList<Airplane> loadPlanes() {
 		if (new File(planeObject).exists()) {
 			ArrayList<Airplane> planeList = new ArrayList<>();
@@ -120,6 +119,7 @@ public class AdminState {
 		return new ArrayList<Airplane>();
 	}
 
+	@SuppressWarnings("unchecked")
 	public static ArrayList<Airport> loadAirports() {
 		if (new File(airportObject).exists()) {
 			ArrayList<Airport> airportList = new ArrayList<>();
@@ -139,6 +139,7 @@ public class AdminState {
 		return new ArrayList<Airport>();
 	}
 
+	@SuppressWarnings("unchecked")
 	public static ArrayList<Flight> loadFlights() {
 		if (new File(flightObject).exists()) {
 			ArrayList<Flight> flightList = new ArrayList<>();
@@ -164,9 +165,9 @@ public class AdminState {
 			File file = new File(homeScreenTextObject);
 			try {
 				Scanner input = new Scanner(file);
-				while(input.hasNextLine()) {
+				while(input.hasNextLine()) 
 					line += input.nextLine() + "\n";	
-				}
+				input.close();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
