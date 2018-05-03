@@ -133,6 +133,8 @@ public class UserWindow {
 				else if (password.contains(" "))
 					MessageBox.message(AlertType.ERROR, "Invalid Password",
 							"Your password cannot contain the empty space character");
+				else if (!emailField.getText().contains("@") && !emailField.getText().contains("."))
+					MessageBox.message(AlertType.ERROR, "Invalid Email", "Your email must be properly formatted!");
 				else {
 					uc.addUser(new User(email, username, password));
 					AdminState.saveInformation(uc);
