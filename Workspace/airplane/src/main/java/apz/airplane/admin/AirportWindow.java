@@ -98,6 +98,7 @@ public class AirportWindow {
 		setupTableContent();
 	}
 
+	@SuppressWarnings("unchecked")
 	public void setupTableContent() {
 		airportView.setItems(FXCollections.observableArrayList(airportList));
 		airportView.getColumns().addAll(nameColumn, provinceColumn);
@@ -185,21 +186,8 @@ public class AirportWindow {
 	}
 
 	private void changeAirport() {
-		// for (int i = 0; i < airportList.size(); i++) {
-		// if (airportList.get(i) == findAirport()) {
-		// System.out.println("Airport list size: " + airportList.size());
-		// airportList.get(i).setName(airportNameField.getText());
-		// airportList.get(i).setCity(airportProvinceBox.getValue());
-		// System.out.println("Found and changed!");
-		// AdminState.saveAirports(airportList);
-		// FlightWindow.populateComboBoxes();
-		// resetFields();
-		// loadFile();
-		// return;
-		// }
 		for (Airport airport : airportList) {
 			if (airport.equals(findAirport())) {
-				//System.out.println("FOUND");
 				airport.setName(airportNameField.getText());
 				airport.setCity(airportProvinceBox.getValue());
 				break;
@@ -219,14 +207,12 @@ public class AirportWindow {
 
 	private Airport findAirport() {
 		String sAirport = airportView.getSelectionModel().getSelectedItem().toString();
-	//	System.out.println(sAirport);
 		for (Airport airport : airportList) {
 			if (airport.toString().equals(sAirport)) {
 				System.out.println("find airport found it");
 				return airport;
 			}
 		}
-		//System.out.println("Null");
 		return null;
 	}
 
