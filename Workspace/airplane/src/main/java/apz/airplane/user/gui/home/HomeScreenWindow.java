@@ -1,12 +1,9 @@
 package apz.airplane.user.gui.home;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 import apz.airplane.admin.AdminState;
-import apz.airplane.model.Flight;
 import apz.airplane.user.gui.APZLauncher;
-import apz.airplane.util.APZState;
 import apz.airplane.util.FilePath;
 import apz.airplane.util.GuiApplication;
 import javafx.geometry.Pos;
@@ -16,7 +13,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 public class HomeScreenWindow implements GuiApplication {
@@ -32,8 +28,6 @@ public class HomeScreenWindow implements GuiApplication {
 		properties();
 	}
 
-	
-
 	public void initialize() {
 		img = new ImageView(new Image(FilePath.HOME_PLANE));
 		flightsToday = new ArrayList<>();
@@ -48,6 +42,7 @@ public class HomeScreenWindow implements GuiApplication {
 		APZLauncher.getBorderPane().setCenter(rootPane);
 		APZLauncher.getStage().setTitle("APZ Application - Home Screen");
 	}
+
 	public void actionEvents() {
 
 	}
