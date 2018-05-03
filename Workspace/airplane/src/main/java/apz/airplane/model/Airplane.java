@@ -35,8 +35,8 @@ public class Airplane implements Serializable {
 		return seats;
 	}
 
-	public void setSeats(Seating seatArray) {
-		this.seats = seatArray;
+	public void setSeats(Seating seats) {
+		this.seats = seats;
 	}
 
 	@Override

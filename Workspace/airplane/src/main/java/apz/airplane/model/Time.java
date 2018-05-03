@@ -8,7 +8,7 @@ public class Time implements Serializable {
 	private double timeDouble;
 	private String timeString;
 	
-	public Time(String time) {	// for ex. 3:00 PM converts to 15 in double and 3:30 PM converts to 15.5;
+	public Time(String time) {	
 		timeString = time;
 		timeDouble = parseTime(time);
 	}

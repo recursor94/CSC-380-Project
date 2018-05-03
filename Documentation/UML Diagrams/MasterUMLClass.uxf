@@ -11,7 +11,7 @@
     </coordinates>
     <panel_attributes>UserController
 --
--serialVersionUID: long
+_-serialVersionUID: long_
 -userList: ArrayList&lt;User&gt;
 --
 +UserController()
@@ -31,17 +31,19 @@
       <x>243</x>
       <y>0</y>
       <w>315</w>
-      <h>342</h>
+      <h>432</h>
     </coordinates>
     <panel_attributes>User
 --
--serialVersionUID: long
+_-serialVersionUID: long_
+-email: String
 -username: String
 -password: String
 -tripList: ArrayList&lt;Booking&gt;
 -paymentInformation: ArrayList&lt;Payment&gt;
+-rentalSystem: RentalSystem
 --
-+User(String, String)
++User(String, String, String)
 +getUsername(): String
 +setUsername(String): void
 +getPassword(): String
@@ -56,6 +58,11 @@
 +removePayment(Payment): boolean
 +findTrip(Flight): Booking
 +getTripList(): ArrayList&lt;Booking&gt;
++getEmail(): String
++setEmail(String): void
++getRentalSystem(): RentalSystem
++setRentalSystem(RentalSystem): void
++setTripList(ArrayList&lt;Booking&gt;): void
 +toString(): String</panel_attributes>
     <additional_attributes/>
   </element>
@@ -80,7 +87,7 @@
     </coordinates>
     <panel_attributes>Time
 --
--serialVersionUID: long
+_-serialVersionUID: long_
 -timeDouble: double
 -timeString: String
 --
@@ -96,24 +103,23 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>234</x>
-      <y>369</y>
+      <x>225</x>
+      <y>441</y>
       <w>189</w>
-      <h>189</h>
+      <h>171</h>
     </coordinates>
     <panel_attributes>Seating
 --
--serialVersionUID: long
+_-serialVersionUID: long_
 -currentSeats: int
 -capacity: int
 --
 +Seating(int)
 +addTo(): void
 +remove(): void
-+getCurrentSeats(): int
-+getCapacity(): int
 +isFull(): boolean
-+toString(): String</panel_attributes>
++getCapacity(): int
++getCurrentSeats(): int</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -126,7 +132,7 @@
     </coordinates>
     <panel_attributes>Flight
 --
--serialVersionUID: long
+_-serialVersionUID: long_
 -plane: Airplane
 -departureAirport: Airport
 -destinationAirport: Airport
@@ -166,24 +172,25 @@ LocalDate, Time, Time, int)
     <coordinates>
       <x>603</x>
       <y>81</y>
-      <w>198</w>
-      <h>225</h>
+      <w>207</w>
+      <h>234</h>
     </coordinates>
     <panel_attributes>Booking
 --
--serialVersionUID: long
+_-serialVersionUID: long_
 -flight: Flight
 -bookDate: LocalDate
 -plane: Airplane
 -tripCost: double
 --
-+Booking(Flight, LocalDate, User)
++Booking(Flight, LocalDate, double)
 +getFlight(): Flight
 +setFlight(Flight): void
 +getBookDate(): LocalDate
 +setBookDate(LocalDate): void
 +getTripCost(): double
 +setTripCost(double): void
++isCancellable(): boolean
 +toString(): String
 </panel_attributes>
     <additional_attributes/>
@@ -198,7 +205,7 @@ LocalDate, Time, Time, int)
     </coordinates>
     <panel_attributes>Airport
 --
--serialVersionUID: long
+_-serialVersionUID: long_
 -name: String
 -city: String
 --
@@ -213,14 +220,14 @@ LocalDate, Time, Time, int)
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>459</x>
-      <y>369</y>
+      <x>450</x>
+      <y>441</y>
       <w>189</w>
       <h>207</h>
     </coordinates>
     <panel_attributes>Airplane
 --
--serialVersionUID: long
+_-serialVersionUID: long_
 -planeNume: int
 -airline: String
 -seats: Seating
@@ -253,7 +260,7 @@ LocalDate, Time, Time, int)
       <x>9</x>
       <y>657</y>
       <w>234</w>
-      <h>252</h>
+      <h>279</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Enumeration&gt;&gt;
 Province
@@ -263,16 +270,18 @@ CA
 PA
 FL
 TX
-+strNY: String
-+strCA: String
-+strPA: String
-+strFL: String
-+strTX: String
+_+strNY: String_
+_+strCA: String_
+_+strPA: String_
+_+strFL: String_
+_+strTX: String_
 --
-+getCityEnum(String): Province
-+getCityName(Province): String
-+getRate(Province): double
-+getProvinces(): ArrayList&lt;Province&gt;</panel_attributes>
+_+getPrice(String, String): double_
+_+getCityEnum(String): Province_
+_+getCityName(Province): String_
+_+getRate(String): double_
+_+getRate(Province): double_
+_+getProvinces(): ArrayList&lt;Province&gt;_</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -311,19 +320,19 @@ TX
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>639</x>
-      <y>450</y>
-      <w>63</w>
+      <x>630</x>
+      <y>522</y>
+      <w>72</w>
       <h>27</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>50.0;10.0;10.0;10.0</additional_attributes>
+    <additional_attributes>60.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>414</x>
-      <y>450</y>
+      <x>405</x>
+      <y>522</y>
       <w>63</w>
       <h>27</h>
     </coordinates>
@@ -334,12 +343,12 @@ TX
     <id>Relation</id>
     <coordinates>
       <x>702</x>
-      <y>297</y>
+      <y>306</y>
       <w>108</w>
-      <h>108</h>
+      <h>99</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;50.0;100.0;50.0;100.0;100.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;40.0;100.0;40.0;100.0;90.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
@@ -351,7 +360,7 @@ TX
     </coordinates>
     <panel_attributes>Payment
 --
--serialVersionUID: long
+_-serialVersionUID: long_
 -name: String
 -street: String
 -city: String
@@ -398,19 +407,19 @@ String, int, long, String, int)
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1107</x>
+      <x>1125</x>
       <y>144</y>
-      <w>198</w>
-      <h>225</h>
+      <w>261</w>
+      <h>207</h>
     </coordinates>
     <panel_attributes>Car
 --
--serialVersionUID: long
+_-serialVersionUID: long_
 -name: CarManufacturer
 -model: CarModel
 -type: CarType
 --
-+Booking(Flight, LocalDate, User)
++Car(CarManufacturer, CarModel, CarType)
 +getManufacturer(): CarManufacturer
 +setManufacturer(CarManufacturer): void
 +getModel(): CarModel
@@ -424,24 +433,28 @@ String, int, long, String, int)
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>828</x>
-      <y>171</y>
-      <w>198</w>
-      <h>180</h>
+      <x>918</x>
+      <y>162</y>
+      <w>180</w>
+      <h>234</h>
     </coordinates>
     <panel_attributes>Rental
 --
--serialVersionUID: long
--days: int
--car: Car
--price: double
+_-serialVersionUID: long_
 -date: LocalDate
+-car: Car
+-days: int
+-price: double
 --
-+Rental(int, Car, double)
-+getDays(): int
++Rental(Car, int, double)
 +getCar() : Car
-+getPrice() : Double
-+toString(): String
++setCar(Car): void
++getDays(): int
++setDays(int): void
++getPrice() : double
++setPrice(double): void
++getDate(): LocalDate
++setDate(LocalDate): void
 </panel_attributes>
     <additional_attributes/>
   </element>
@@ -455,7 +468,7 @@ String, int, long, String, int)
     </coordinates>
     <panel_attributes>RentalSystem
 --
--serialVersionUID: long
+_-serialVersionUID: long_
 -rentalList: ArrayList&lt;Rental&gt;
 --
 +addCarRental(Rental) : void
@@ -469,11 +482,12 @@ String, int, long, String, int)
     <id>UMLClass</id>
     <coordinates>
       <x>927</x>
-      <y>423</y>
+      <y>414</y>
       <w>378</w>
-      <h>108</h>
+      <h>135</h>
     </coordinates>
-    <panel_attributes>CarManufacturer
+    <panel_attributes>&lt;&lt;Enumeration&gt;&gt;
+CarManufacturer
 --
 FORD
 BMW
@@ -481,6 +495,7 @@ BMW
 _+getManufacturerList() : ArrayList&lt;String&gt;_
 _+getManufacturerName(String name) : CarManufacturer_
 _+getManufacturerName(CarManufacturer name) : String_
+_+getManufacturerType(CarManufacturer name): int_
 </panel_attributes>
     <additional_attributes/>
   </element>
@@ -488,11 +503,12 @@ _+getManufacturerName(CarManufacturer name) : String_
     <id>UMLClass</id>
     <coordinates>
       <x>927</x>
-      <y>549</y>
+      <y>558</y>
       <w>378</w>
-      <h>171</h>
+      <h>198</h>
     </coordinates>
-    <panel_attributes>CarType
+    <panel_attributes>&lt;&lt;Enumeration&gt;&gt;
+CarType
 --
 SEDAN
 SUV
@@ -500,84 +516,89 @@ SPORT
 SUPERCAR
 LUXURY
 --
+_+getManufacturerList() : ArrayList&lt;String&gt;_
 _+getTypeRate(String manufacturer, String type) : double_
-_+getCarType(String type) : CarType_
-_+getCarName(String name) : CarManufacturer_
-_+getManufacturerList() : ArrayList&lt;String&gt;_</panel_attributes>
+_+getCarTypeName(String type) : CarType_
+_+getCarTypeName(CarType type) : String_
+_+getCarType(CarType type) : int_
+</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>927</x>
-      <y>729</y>
-      <w>378</w>
-      <h>108</h>
+      <x>918</x>
+      <y>765</y>
+      <w>441</w>
+      <h>144</h>
     </coordinates>
     <panel_attributes>CarModel
 --
--serialVersionUID: long
-- model : String
+_-serialVersionUID: long_
+-model : String
 --
++CarModel(String)
 _+getCarModels(CarManufacturer manufacturer, CarType type) : String[]_
++getModel(): String
++setModel(String): void
 _+getCarImage(String name) : Image_
-+getModel(): String</panel_attributes>
+</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>1098</x>
-      <y>360</y>
-      <w>117</w>
-      <h>81</h>
+      <y>342</y>
+      <w>135</w>
+      <h>90</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>110.0;10.0;110.0;50.0;10.0;50.0;10.0;70.0</additional_attributes>
+    <additional_attributes>130.0;10.0;130.0;70.0;10.0;70.0;10.0;80.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>1296</x>
       <y>216</y>
-      <w>63</w>
+      <w>135</w>
       <h>396</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;50.0;10.0;50.0;420.0;10.0;420.0</additional_attributes>
+    <additional_attributes>100.0;10.0;130.0;10.0;130.0;420.0;10.0;420.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1296</x>
+      <x>1350</x>
       <y>180</y>
-      <w>90</w>
-      <h>603</h>
+      <w>144</w>
+      <h>621</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;80.0;10.0;80.0;650.0;10.0;650.0</additional_attributes>
+    <additional_attributes>40.0;10.0;140.0;10.0;140.0;670.0;10.0;670.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1017</x>
-      <y>243</y>
-      <w>108</w>
+      <x>1089</x>
+      <y>225</y>
+      <w>54</w>
       <h>27</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;100.0;10.0</additional_attributes>
+    <additional_attributes>10.0;10.0;40.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>909</x>
+      <x>945</x>
       <y>126</y>
       <w>27</w>
-      <h>63</h>
+      <h>54</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;40.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>

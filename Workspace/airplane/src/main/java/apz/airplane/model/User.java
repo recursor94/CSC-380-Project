@@ -119,10 +119,6 @@ public class User implements Serializable {
 		this.rentalSystem = rentalSystem;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
 	public void setTripList(ArrayList<Booking> tripList) {
 		this.tripList = tripList;
 	}

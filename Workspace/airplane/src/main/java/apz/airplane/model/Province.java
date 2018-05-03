@@ -6,11 +6,11 @@ public enum Province {
 	
 	NY, CA, PA, FL, TX;
 	
-	static String strNY = "New York";
-	static String strPA = "Pennsylvania";
-	static String strFL = "Florida";
-	static String strCA = "California";
-	static String strTX = "Texas";
+	public static String strNY = "New York";
+	public static String strPA = "Pennsylvania";
+	public static String strFL = "Florida";
+	public static String strCA = "California";
+	public static String strTX = "Texas";
 	
 	public static double getPrice(String provinceA, String provinceB) {
 		return Province.getRate(provinceA) + Province.getRate(provinceB);
