@@ -22,7 +22,6 @@ import javafx.stage.StageStyle;
 public class PasswordPromptWindow implements GuiApplication {
 
 	private int index;
-	
 	private Text header;
 	private VBox mainPane;
 	private GridPane gridPane;

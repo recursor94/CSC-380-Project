@@ -16,9 +16,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 public class AccountInfoWindow implements GuiApplication {
-
-	// have email as part of registration?
-
+	
 	private ImageView img;
 	private VBox mainPane;
 	private GridPane gridPane;

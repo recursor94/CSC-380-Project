@@ -21,8 +21,6 @@ import javafx.scene.text.Text;
 
 public class CarRentalViewWindow implements GuiApplication {
 
-	// have email as part of registration?
-
 	private ImageView img;
 	private Text headerText;
 	private VBox mainPane;

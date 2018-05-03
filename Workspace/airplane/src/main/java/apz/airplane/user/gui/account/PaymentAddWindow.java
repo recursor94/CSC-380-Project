@@ -31,6 +31,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class PaymentAddWindow implements GuiApplication {
+	
 	private ImageView img;
 	private Text header;
 	private VBox mainPane;
@@ -40,6 +41,8 @@ public class PaymentAddWindow implements GuiApplication {
 	private ComboBox<String> monthBox, yearBox, stateBox;
 	private Button submitButton;
 	private User user;
+	private Stage stage = null;
+	private Flight flight = null;
 
 	public PaymentAddWindow() {
 		initialize();
@@ -47,9 +50,6 @@ public class PaymentAddWindow implements GuiApplication {
 		properties();
 		actionEvents();
 	}
-	
-	private Stage stage = null;
-	private Flight flight = null;
 	
 	public PaymentAddWindow(Stage stage, Flight flight) {
 		this.stage = stage;
