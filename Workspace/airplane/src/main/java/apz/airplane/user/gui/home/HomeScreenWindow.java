@@ -32,28 +32,7 @@ public class HomeScreenWindow implements GuiApplication {
 		properties();
 	}
 
-	public void actionEvents() {
-
-	}
-
-	public void properties() {
-		APZLauncher.getStage().setWidth(500);
-		APZLauncher.getStage().setHeight(725);
-	}
-
-	public void content() {
-
-		img.setFitWidth(150);
-		img.setFitHeight(150);
-		newsHeader.setStyle("-fx-font: 22 arial;");
-		newsHeader.setFill(Color.BLACK);
-		newsUpdate.setStyle("-fx-font: 20 arial;");
-		newsUpdate.setFill(Color.DARKSLATEGRAY);
-		rootPane.getChildren().addAll(new Label(), img, new Separator(), newsHeader, newsUpdate);
-		rootPane.setAlignment(Pos.TOP_CENTER);
-		APZLauncher.getBorderPane().setCenter(rootPane);
-		APZLauncher.getStage().setTitle("APZ Application - Home Screen");
-	}
+	
 
 	public void initialize() {
 		img = new ImageView(new Image(FilePath.HOME_PLANE));
@@ -61,5 +40,26 @@ public class HomeScreenWindow implements GuiApplication {
 		rootPane = new VBox(10);
 		newsUpdate = new Text(AdminState.readUpdate());
 		newsHeader = new Text("Today's News:\n");
+	}
+
+	public void content() {
+		rootPane.getChildren().addAll(new Label(), img, new Separator(), newsHeader, newsUpdate);
+		rootPane.setAlignment(Pos.TOP_CENTER);
+		APZLauncher.getBorderPane().setCenter(rootPane);
+		APZLauncher.getStage().setTitle("APZ Application - Home Screen");
+	}
+	public void actionEvents() {
+
+	}
+
+	public void properties() {
+		APZLauncher.getStage().setWidth(500);
+		APZLauncher.getStage().setHeight(725);
+		img.setFitWidth(150);
+		img.setFitHeight(150);
+		newsHeader.setStyle("-fx-font: 22 arial;");
+		newsHeader.setFill(Color.BLACK);
+		newsUpdate.setStyle("-fx-font: 20 arial;");
+		newsUpdate.setFill(Color.DARKSLATEGRAY);
 	}
 }
