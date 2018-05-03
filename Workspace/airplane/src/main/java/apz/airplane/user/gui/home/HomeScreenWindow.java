@@ -16,7 +16,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 public class HomeScreenWindow implements GuiApplication {
@@ -42,7 +41,6 @@ public class HomeScreenWindow implements GuiApplication {
 	}
 
 	public void content() {
-
 		img.setFitWidth(150);
 		img.setFitHeight(150);
 		flightsToday = getFlightsToday();

@@ -26,7 +26,7 @@ public class APZLauncher extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		
 		if (!APZState.checkFilesExist()) {
-			MessageBox.message(AlertType.ERROR, "APZ ERROR", "Software not properly configured. Please contact your local administrator!");
+			MessageBox.message(AlertType.ERROR, "APZ Software Error", "Software not properly configured.\nPlease contact your system administrator!");
 			return;
 		}
 		
