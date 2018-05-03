@@ -8,7 +8,7 @@ import apz.airplane.user.gui.account.PaymentWindow;
 import apz.airplane.user.gui.booking.BookByLocation;
 import apz.airplane.user.gui.booking.BookFlightByDateWindow;
 import apz.airplane.user.gui.booking.BookingWindow;
-import apz.airplane.user.gui.booking.CancelFlightWindow;
+import apz.airplane.user.gui.booking.ViewUpcomingTripWindow;
 import apz.airplane.user.gui.home.BrowseScheduleWindow;
 import apz.airplane.user.gui.home.HomeScreenWindow;
 import apz.airplane.user.gui.viewtrips.TripViewWindow;
@@ -91,7 +91,7 @@ public class APZMenuBar {
 		});
 		
 		viewFlightItem.setOnAction(event -> {
-			new CancelFlightWindow();
+			new ViewUpcomingTripWindow();
 		});
 		
 		bookByDateItem.setOnAction(event -> {

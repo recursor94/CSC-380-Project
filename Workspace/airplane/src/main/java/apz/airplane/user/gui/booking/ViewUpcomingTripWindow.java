@@ -5,24 +5,28 @@ import java.util.ArrayList;
 
 import apz.airplane.model.Airport;
 import apz.airplane.model.Booking;
-import apz.airplane.model.Flight;
 import apz.airplane.model.User;
 import apz.airplane.user.gui.APZLauncher;
 import apz.airplane.user.gui.viewtrips.TripResultWindow;
+import apz.airplane.util.FilePath;
 import apz.airplane.util.GuiApplication;
 import javafx.collections.FXCollections;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
+import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
-public class CancelFlightWindow implements GuiApplication {
+public class ViewUpcomingTripWindow implements GuiApplication {
 
+	private ImageView img;
 	private Text windowHeader;
 	private TableView<BookingTableData> tripTable;
 	private TableColumn<BookingTableData, Integer> flightNumberColumn;
@@ -36,7 +40,7 @@ public class CancelFlightWindow implements GuiApplication {
 	private static VBox mainPane;
 	private User user;
 
-	public CancelFlightWindow() {
+	public ViewUpcomingTripWindow() {
 		initialize();
 		content();
 		actionEvents();
@@ -44,10 +48,9 @@ public class CancelFlightWindow implements GuiApplication {
 	}
 
 	public void initialize() {
-
-		windowHeader = new Text("Upcoming Trips");
+		img = new ImageView(new Image(FilePath.HOME_PLANE));
+		windowHeader = new Text("View Upcoming Trips");
 		tripTable = new TableView<>();
-		windowHeader = new Text("Manage Trips");
 		flightNumberColumn = new TableColumn<>("Flight");
 		departureTimeColumn = new TableColumn<>("Departing");
 		airlineColumn = new TableColumn<>("Airline");
@@ -67,7 +70,7 @@ public class CancelFlightWindow implements GuiApplication {
 		resetTableData();
 		setupTableContents();
 
-		headerBox.getChildren().addAll(windowHeader, headerHorizontalSeparator);
+		headerBox.getChildren().addAll(new Label(), windowHeader, img, headerHorizontalSeparator);
 		bottomContentBox.getChildren().add(tripTable);
 		// mainPane.setAlignment(Pos.CENTER);
 		mainPane.getChildren().addAll(headerBox, bottomContentBox);
@@ -80,6 +83,8 @@ public class CancelFlightWindow implements GuiApplication {
 	}
 
 	public void formatHeader() {
+		img.setFitWidth(150);
+		img.setFitHeight(150);
 		windowHeader.setStyle("-fx-font: 24 arial;");
 		headerBox.setAlignment(Pos.CENTER);
 	}

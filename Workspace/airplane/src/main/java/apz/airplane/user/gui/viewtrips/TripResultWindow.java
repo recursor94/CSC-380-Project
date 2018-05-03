@@ -6,7 +6,7 @@ import java.util.Optional;
 import apz.airplane.model.Booking;
 import apz.airplane.model.Flight;
 import apz.airplane.user.gui.APZLauncher;
-import apz.airplane.user.gui.booking.CancelFlightWindow;
+import apz.airplane.user.gui.booking.ViewUpcomingTripWindow;
 import apz.airplane.util.APZState;
 import apz.airplane.util.FilePath;
 import apz.airplane.util.GuiApplication;
@@ -111,8 +111,8 @@ public class TripResultWindow implements GuiApplication {
 			}
 
 		backButton.setOnAction(event -> {
-			if (parentWindow instanceof CancelFlightWindow) {
-				new CancelFlightWindow();
+			if (parentWindow instanceof ViewUpcomingTripWindow) {
+				new ViewUpcomingTripWindow();
 			} else {
 				
 				new TripViewWindow();
