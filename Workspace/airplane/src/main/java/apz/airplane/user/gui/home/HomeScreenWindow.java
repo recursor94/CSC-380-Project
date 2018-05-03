@@ -17,7 +17,7 @@ import javafx.scene.text.Text;
 
 public class HomeScreenWindow implements GuiApplication {
 	private ImageView img;
-	private VBox rootPane;
+	private VBox rootPane, headerPane;
 	private Text newsHeader, newsUpdate;
 	private ArrayList<HomeTableData> flightsToday;
 
@@ -32,12 +32,14 @@ public class HomeScreenWindow implements GuiApplication {
 		img = new ImageView(new Image(FilePath.HOME_PLANE));
 		flightsToday = new ArrayList<>();
 		rootPane = new VBox(10);
+		headerPane = new VBox(0);
 		newsUpdate = new Text(AdminState.readUpdate());
 		newsHeader = new Text("Today's News:\n");
 	}
 
 	public void content() {
-		rootPane.getChildren().addAll(new Label(), img, new Separator(), newsHeader, newsUpdate);
+		headerPane.getChildren().addAll(img, new Separator());
+		rootPane.getChildren().addAll(new Label(), img, headerPane, newsHeader, newsUpdate);
 		rootPane.setAlignment(Pos.TOP_CENTER);
 		APZLauncher.getBorderPane().setCenter(rootPane);
 		APZLauncher.getStage().setTitle("APZ Application - Home Screen");
@@ -54,7 +56,5 @@ public class HomeScreenWindow implements GuiApplication {
 		img.setFitHeight(150);
 		newsHeader.setStyle("-fx-font: 22 arial;");
 		newsHeader.setFill(Color.BLACK);
-		newsUpdate.setStyle("-fx-font: 20 arial;");
-		newsUpdate.setFill(Color.DARKSLATEGRAY);
 	}
 }

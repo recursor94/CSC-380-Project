@@ -62,7 +62,4 @@ public class UserController implements Serializable {
 	public String toString() {
 		return "User List\n-----------\n" + userList;
 	}
-	
-	
-
 }
