@@ -1,5 +1,6 @@
 package apz.airplane.user.gui.booking;
 
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Optional;
@@ -45,7 +46,7 @@ public class BookingPaymentWindow implements GuiApplication {
 	private static ComboBox<Payment> paymentBox;
 	private static ComboBox<Integer> baggageBox;
 	private Button confirmButton;
-	
+	private DecimalFormat df = new DecimalFormat(".00");
 	private Flight flight;
 	private double cost, baggagePrice;
 	private Label costLabel;
@@ -95,7 +96,7 @@ public class BookingPaymentWindow implements GuiApplication {
 		paymentPane.add(new Label("Cost for Flight: "), 0, 7);
 		paymentPane.add(costLabel, 1, 7);
 		
-		costLabel.setText("$" + cost);
+		costLabel.setText("$" + df.format(cost));
 		
 		paymentPane.add(new Label("Payment Method: "), 0, 9);
 		if (paymentBox.getItems().isEmpty()) {
@@ -160,7 +161,7 @@ public class BookingPaymentWindow implements GuiApplication {
 		
 		baggageBox.setOnAction(event -> {
 			baggagePrice = 30.35 * baggageBox.getValue();
-			costLabel.setText("$" + (cost + baggagePrice));
+			costLabel.setText("$" + df.format(cost + baggagePrice));
 		});
 		
 		
