@@ -4,8 +4,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>9</x>
-      <y>27</y>
+      <x>0</x>
+      <y>0</y>
       <w>189</w>
       <h>171</h>
     </coordinates>
@@ -28,8 +28,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>252</x>
-      <y>27</y>
+      <x>243</x>
+      <y>0</y>
       <w>315</w>
       <h>342</h>
     </coordinates>
@@ -62,8 +62,8 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>189</x>
-      <y>126</y>
+      <x>180</x>
+      <y>99</y>
       <w>81</w>
       <h>27</h>
     </coordinates>
@@ -73,8 +73,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>711</x>
-      <y>765</y>
+      <x>450</x>
+      <y>891</y>
       <w>189</w>
       <h>171</h>
     </coordinates>
@@ -96,8 +96,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>243</x>
-      <y>396</y>
+      <x>234</x>
+      <y>369</y>
       <w>189</w>
       <h>198</h>
     </coordinates>
@@ -120,8 +120,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>693</x>
-      <y>279</y>
+      <x>684</x>
+      <y>387</y>
       <w>225</w>
       <h>459</h>
     </coordinates>
@@ -166,7 +166,7 @@ LocalDate, Time, Time, int)
     <id>UMLClass</id>
     <coordinates>
       <x>603</x>
-      <y>27</y>
+      <y>81</y>
       <w>198</w>
       <h>225</h>
     </coordinates>
@@ -192,8 +192,8 @@ LocalDate, Time, Time, int)
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>459</x>
-      <y>702</y>
+      <x>279</x>
+      <y>675</y>
       <w>189</w>
       <h>171</h>
     </coordinates>
@@ -214,8 +214,8 @@ LocalDate, Time, Time, int)
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>468</x>
-      <y>396</y>
+      <x>459</x>
+      <y>369</y>
       <w>189</w>
       <h>207</h>
     </coordinates>
@@ -240,19 +240,19 @@ LocalDate, Time, Time, int)
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>558</x>
-      <y>126</y>
-      <w>63</w>
+      <x>549</x>
+      <y>180</y>
+      <w>72</w>
       <h>27</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;50.0;10.0</additional_attributes>
+    <additional_attributes>10.0;10.0;60.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>180</x>
-      <y>684</y>
+      <x>9</x>
+      <y>657</y>
       <w>234</w>
       <h>252</h>
     </coordinates>
@@ -279,41 +279,41 @@ TX
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>792</x>
-      <y>729</y>
-      <w>27</w>
-      <h>54</h>
+      <x>531</x>
+      <y>837</y>
+      <w>279</w>
+      <h>72</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;40.0</additional_attributes>
+    <additional_attributes>290.0;10.0;290.0;40.0;10.0;40.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>459</x>
+      <y>738</y>
+      <w>243</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>250.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>234</x>
+      <y>684</y>
+      <w>63</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>50.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>639</x>
-      <y>711</y>
-      <w>72</w>
-      <h>27</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>60.0;10.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>405</x>
-      <y>711</y>
-      <w>72</w>
-      <h>27</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>60.0;10.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>648</x>
-      <y>477</y>
+      <y>450</y>
       <w>63</w>
       <h>27</h>
     </coordinates>
@@ -323,8 +323,8 @@ TX
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>423</x>
-      <y>477</y>
+      <x>414</x>
+      <y>450</y>
       <w>63</w>
       <h>27</h>
     </coordinates>
@@ -334,19 +334,19 @@ TX
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>738</x>
-      <y>243</y>
-      <w>27</w>
-      <h>54</h>
+      <x>702</x>
+      <y>297</y>
+      <w>108</w>
+      <h>108</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;40.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0;100.0;50.0;100.0;100.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>9</x>
-      <y>216</y>
+      <x>0</x>
+      <y>189</y>
       <w>198</w>
       <h>441</h>
     </coordinates>
@@ -388,12 +388,207 @@ String, int, long, String, int)
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>198</x>
-      <y>270</y>
+      <x>189</x>
+      <y>243</y>
       <w>72</w>
       <h>27</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
     <additional_attributes>60.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1107</x>
+      <y>144</y>
+      <w>198</w>
+      <h>225</h>
+    </coordinates>
+    <panel_attributes>Car
+--
+-serialVersionUID: long
+-name: CarManufacturer
+-model: CarModel
+-type: CarType
+--
++Booking(Flight, LocalDate, User)
++getManufacturer(): CarManufacturer
++setManufacturer(CarManufacturer): void
++getModel(): CarModel
++setModel(CarModel): void
++getType(): CarType
++setType(CarType): void
++toString(): String
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>828</x>
+      <y>171</y>
+      <w>198</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>Rental
+--
+-serialVersionUID: long
+-days: int
+-car: Car
+-price: double
+-date: LocalDate
+--
++Rental(int, Car, double)
++getDays(): int
++getCar() : Car
++getPrice() : Double
++toString(): String
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>819</x>
+      <y>9</y>
+      <w>198</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>RentalSystem
+--
+-serialVersionUID: long
+-rentalList: ArrayList&lt;Rental&gt;
+--
++addCarRental(Rental) : void
++removeCarRental(Rental) : void
++getRentalList(): ArrayList&lt;Rental&gt;
++toString(): String
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>927</x>
+      <y>423</y>
+      <w>378</w>
+      <h>108</h>
+    </coordinates>
+    <panel_attributes>CarManufacturer
+--
+FORD
+BMW
+--
+_+getManufacturerList() : ArrayList&lt;String&gt;_
+_+getManufacturerName(String name) : CarManufacturer_
+_+getManufacturerName(CarManufacturer name) : String_
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>927</x>
+      <y>549</y>
+      <w>378</w>
+      <h>171</h>
+    </coordinates>
+    <panel_attributes>CarType
+--
+SEDAN
+SUV
+SPORT
+SUPERCAR
+LUXURY
+--
+_+getTypeRate(String manufacturer, String type) : double_
+_+getCarType(String type) : CarType_
+_+getCarName(String name) : CarManufacturer_
+_+getManufacturerList() : ArrayList&lt;String&gt;_</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>927</x>
+      <y>729</y>
+      <w>378</w>
+      <h>108</h>
+    </coordinates>
+    <panel_attributes>CarModel
+--
+-serialVersionUID: long
+- model : String
+--
+_+getCarModels(CarManufacturer manufacturer, CarType type) : String[]_
+_+getCarImage(String name) : Image_
++getModel(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1098</x>
+      <y>360</y>
+      <w>117</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>110.0;10.0;110.0;50.0;10.0;50.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1296</x>
+      <y>216</y>
+      <w>63</w>
+      <h>396</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;50.0;10.0;50.0;420.0;10.0;420.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1296</x>
+      <y>180</y>
+      <w>90</w>
+      <h>603</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;80.0;10.0;80.0;650.0;10.0;650.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1017</x>
+      <y>243</y>
+      <w>108</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;100.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>909</x>
+      <y>126</y>
+      <w>27</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>549</x>
+      <y>36</y>
+      <w>288</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;300.0;10.0</additional_attributes>
   </element>
 </diagram>

@@ -6,10 +6,10 @@
     <coordinates>
       <x>10</x>
       <y>0</y>
-      <w>150</w>
+      <w>200</w>
       <h>30</h>
     </coordinates>
-    <panel_attributes>uc: UserController </panel_attributes>
+    <panel_attributes>rentalSystem: RentalSystem </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -65,7 +65,7 @@
       <h>40</h>
     </coordinates>
     <panel_attributes>lt=-&gt;&gt;
-login(String username, String password)</panel_attributes>
+addRental(Rental rental)</panel_attributes>
     <additional_attributes>10.0;20.0;330.0;20.0</additional_attributes>
   </element>
   <element>
@@ -77,7 +77,7 @@ login(String username, String password)</panel_attributes>
       <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-return user: User</panel_attributes>
+void</panel_attributes>
     <additional_attributes>10.0;20.0;330.0;20.0</additional_attributes>
   </element>
   <element>
@@ -97,21 +97,21 @@ return user: User</panel_attributes>
       <x>410</x>
       <y>260</y>
       <w>30</w>
-      <h>80</h>
+      <h>70</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>410</x>
-      <y>370</y>
+      <y>360</y>
       <w>30</w>
-      <h>80</h>
+      <h>90</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
@@ -133,7 +133,7 @@ return user: User</panel_attributes>
       <h>40</h>
     </coordinates>
     <panel_attributes>lt=-&gt;&gt;
-addUser(User user)</panel_attributes>
+removeRental(Rental rental)</panel_attributes>
     <additional_attributes>10.0;20.0;330.0;20.0</additional_attributes>
   </element>
   <element>
@@ -145,7 +145,7 @@ addUser(User user)</panel_attributes>
       <h>40</h>
     </coordinates>
     <panel_attributes>lt=-&gt;&gt;
-findUser(String username)</panel_attributes>
+findRental(Rental rental)</panel_attributes>
     <additional_attributes>10.0;20.0;330.0;20.0</additional_attributes>
   </element>
   <element>
@@ -187,7 +187,7 @@ return user: User</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>80</x>
-      <y>820</y>
+      <y>340</y>
       <w>350</w>
       <h>40</h>
     </coordinates>
@@ -199,7 +199,7 @@ return rentalSystem: RentalSystem&lt;Rental&gt;</panel_attributes>
     <id>UMLGeneric</id>
     <coordinates>
       <x>410</x>
-      <y>790</y>
+      <y>310</y>
       <w>20</w>
       <h>60</h>
     </coordinates>
@@ -211,7 +211,7 @@ layer=1</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>80</x>
-      <y>780</y>
+      <y>300</y>
       <w>350</w>
       <h>40</h>
     </coordinates>
@@ -225,126 +225,9 @@ getRentalSystem()</panel_attributes>
       <x>80</x>
       <y>20</y>
       <w>30</w>
-      <h>870</h>
+      <h>520</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;850.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>410</x>
-      <y>590</y>
-      <w>30</w>
-      <h>300</h>
-    </coordinates>
-    <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;280.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLGeneric</id>
-    <coordinates>
-      <x>410</x>
-      <y>660</y>
-      <w>20</w>
-      <h>60</h>
-    </coordinates>
-    <panel_attributes>
-layer=1</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLGeneric</id>
-    <coordinates>
-      <x>410</x>
-      <y>540</y>
-      <w>20</w>
-      <h>60</h>
-    </coordinates>
-    <panel_attributes/>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>80</x>
-      <y>650</y>
-      <w>350</w>
-      <h>40</h>
-    </coordinates>
-    <panel_attributes>lt=-&gt;&gt;
-getUserList()</panel_attributes>
-    <additional_attributes>10.0;20.0;330.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>80</x>
-      <y>690</y>
-      <w>350</w>
-      <h>40</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-
-return userList: ArrayList&lt;User&gt;</panel_attributes>
-    <additional_attributes>10.0;20.0;330.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>80</x>
-      <y>570</y>
-      <w>350</w>
-      <h>40</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-
-return status: boolean</panel_attributes>
-    <additional_attributes>10.0;20.0;330.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>80</x>
-      <y>530</y>
-      <w>350</w>
-      <h>40</h>
-    </coordinates>
-    <panel_attributes>lt=-&gt;&gt;
-userExists(String username)</panel_attributes>
-    <additional_attributes>10.0;20.0;330.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLGeneric</id>
-    <coordinates>
-      <x>410</x>
-      <y>320</y>
-      <w>20</w>
-      <h>60</h>
-    </coordinates>
-    <panel_attributes/>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>80</x>
-      <y>350</y>
-      <w>350</w>
-      <h>40</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-
-return status: boolean</panel_attributes>
-    <additional_attributes>10.0;20.0;330.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>80</x>
-      <y>310</y>
-      <w>350</w>
-      <h>40</h>
-    </coordinates>
-    <panel_attributes>lt=-&gt;&gt;
-removeUser(String username)</panel_attributes>
-    <additional_attributes>10.0;20.0;330.0;20.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;500.0</additional_attributes>
   </element>
 </diagram>
