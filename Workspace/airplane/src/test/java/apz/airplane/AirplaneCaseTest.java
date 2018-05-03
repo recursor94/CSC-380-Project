@@ -1,13 +1,11 @@
 package apz.airplane;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
 import apz.airplane.model.Airplane;
 import apz.airplane.model.Seating;
-import apz.airplane.model.User;
-import apz.airplane.model.UserController;
 
 public class AirplaneCaseTest {
 
@@ -29,23 +27,10 @@ public class AirplaneCaseTest {
 		assertEquals(false, plane.getSeats().isFull());
 	}
 	
-	//@Test
-//	public void userOnboard() {
-//		User user = new User ("apz", "zpa12");
-//		UserController ctrl = new UserController();
-//		ctrl.addUser(user);
-//		Airplane plane = new Airplane(1, "APZ Airlines", 7);
-//		plane.getSeats().addTo(user);
-//		Seating seats = plane.getSeats();
-//		assertEquals(true, seats.isOnBoard(user));
-//	}
-	
 	@Test
 	public void seatingFullWhenFull() {
 		
 		Airplane testPlane = new Airplane(0, "Test Airlines", 1);
-		User user = new User("asd@asd.org", "Pooper", "Scooper");
-		
 		Seating seats = testPlane.getSeats();
 		seats.addTo();
 		assertEquals(true, seats.isFull());
@@ -54,7 +39,6 @@ public class AirplaneCaseTest {
 	@Test
 	public void seatingFullWhenNotFull() {
 		Airplane testPlane = new Airplane(0, "Test Airlines", 10);
-		User user = new User("asd@asd.org", "Pooper", "Scooper");
 		Seating seats = testPlane.getSeats();
 		seats.addTo();
 		assertEquals(false, seats.isFull());

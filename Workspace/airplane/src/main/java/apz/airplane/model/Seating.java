@@ -1,11 +1,9 @@
 package apz.airplane.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
 public class Seating implements Serializable {
 
-	// average plane has 200
 	private static final long serialVersionUID = 1L;
 	private int capacity, currentSeats;
 
@@ -37,5 +35,8 @@ public class Seating implements Serializable {
 	public int getCapacity() {
 		return capacity;
 	}
-
+	
+	public int getCurrentSeats() {
+		return currentSeats;
+	}
 }

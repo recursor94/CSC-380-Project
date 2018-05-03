@@ -3,7 +3,6 @@ package apz.airplane.user.gui.account;
 import java.util.ArrayList;
 import java.util.Optional;
 
-import apz.airplane.admin.AdminState;
 import apz.airplane.model.Flight;
 import apz.airplane.model.User;
 import apz.airplane.user.gui.APZLauncher;
