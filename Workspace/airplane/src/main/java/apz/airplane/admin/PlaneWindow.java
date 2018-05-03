@@ -49,11 +49,11 @@ public class PlaneWindow {
 		buttonBox = new HBox(10);
 		planeList = new ArrayList<>();
 		planeView = new ListView<>();
+		header = new Text("Create Planes");
+		planeText = new Text("List of Created Planes");
 		planeNumField = new TextField();
 		airlineField = new TextField();
 		seatField = new ComboBox<>();
-		header = new Text("Create Planes");
-		planeText = new Text("List of Created Planes");
 		createButton = new Button("Create Plane");
 		removeButton = new Button("Remove Plane");
 		loadFile(); 

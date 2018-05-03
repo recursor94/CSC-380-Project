@@ -56,8 +56,8 @@ public class FlightWindow {
 		flightList = new ArrayList<>();
 		flightView = new ListView<>();
 		flightNumField = new TextField();
-		arriveDatePicker = new DatePicker();
 		departDatePicker = new DatePicker();
+		arriveDatePicker = new DatePicker();
 		planeBox = new ComboBox<>();
 		arriveAirportBox = new ComboBox<>();
 		departAirportBox = new ComboBox<>();

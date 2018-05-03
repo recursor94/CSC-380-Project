@@ -29,22 +29,16 @@ import javafx.stage.Stage;
 
 public class AirportWindow {
 
-	private Text windowHeader;
-	private VBox buttonBox;
+	private VBox mainPane, headerBox, buttonBox;
 	private ArrayList<Airport> airportList;
 	private TableView<Airport> airportView;
-	private TableColumn<Airport, String> nameColumn;
-	private TableColumn<Airport, String> provinceColumn;
+	private TableColumn<Airport, String> nameColumn, provinceColumn;
 	private TextField airportNameField;
 	private ComboBox<String> airportProvinceBox;
 	private Button createButton, removeButton;
-	private VBox mainPane;
-	private VBox headerBox;
 	private GridPane gridPane;
-	private Text airportName;
-	private Text city;
-	private HBox removeButtonBox;
-	private HBox createButtonBox;
+	private Text windowHeader, airportName, city;;
+	private HBox removeButtonBox, createButtonBox;
 	private Separator headerSeperator;
 
 	public AirportWindow() {
@@ -55,24 +49,26 @@ public class AirportWindow {
 	}
 
 	public void initialize() {
-		airportList = new ArrayList<>();
+		windowHeader = new Text("Manage Airports");
 		mainPane = new VBox(20);
-		buttonBox = new VBox(2);
 		headerBox = new VBox(0);
-		removeButtonBox = new HBox(20);
-		createButtonBox = new HBox(20);
-		gridPane = new GridPane();
+		buttonBox = new VBox(2);
+		airportList = new ArrayList<>();
 		airportView = new TableView<>();
+		nameColumn = new TableColumn<>("Airport Name");
+		provinceColumn = new TableColumn<>("City");
 		airportNameField = new TextField();
 		airportProvinceBox = new ComboBox<>();
 		createButton = new Button("Create Airport");
 		removeButton = new Button("Remove");
+		gridPane = new GridPane();
 		windowHeader = new Text("Manage Airports");
 		airportName = new Text("Airport Name: ");
 		city = new Text("City Name: ");
+		removeButtonBox = new HBox(20);
+		createButtonBox = new HBox(20);
 		headerSeperator = new Separator(Orientation.HORIZONTAL);
-		nameColumn = new TableColumn<>("Airport Name");
-		provinceColumn = new TableColumn<>("City");
+	
 
 	}
 
