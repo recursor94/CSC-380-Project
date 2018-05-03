@@ -30,6 +30,7 @@ import javafx.scene.text.Text;
 import javafx.util.Duration;
 
 public class BrowseScheduleWindow implements GuiApplication {
+	
 	private TableView<HomeTableData> flightTable;
 	private TableColumn<HomeTableData, Integer> flightNumber;
 	private TableColumn<HomeTableData, String> departingCity, destinationCity, departingTime;
@@ -106,6 +107,7 @@ public class BrowseScheduleWindow implements GuiApplication {
 	}
 
 	public void properties() {
+		flightDatePicker.setEditable(true);
 		APZLauncher.getStage().setWidth(500);
 		APZLauncher.getStage().setHeight(725);
 		APZLauncher.getStage().setTitle("APZ Application - Browse Schedules");
