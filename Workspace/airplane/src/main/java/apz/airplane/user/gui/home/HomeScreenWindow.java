@@ -45,7 +45,7 @@ public class HomeScreenWindow implements GuiApplication {
 	}
 
 	public void actionEvents() {
-
+		
 	}
 
 	public void properties() {
@@ -71,7 +71,7 @@ public class HomeScreenWindow implements GuiApplication {
 		newsUpdate.setFill(Color.DARKSLATEGRAY);
 
 		header.setFont(new Font(28));
-		rootPane.getChildren().addAll(new Label(), header, img, new Separator(), dateLabel, timeLabel, new Separator(), newsHeader, newsUpdate);
+		rootPane.getChildren().addAll(new Label(), img, header, new Separator(), dateLabel, timeLabel, new Separator(), newsHeader, newsUpdate);
 		rootPane.setAlignment(Pos.TOP_CENTER);
 		APZLauncher.getBorderPane().setCenter(rootPane);
 		APZLauncher.getStage().setTitle("APZ Application - Home Screen");
@@ -83,12 +83,12 @@ public class HomeScreenWindow implements GuiApplication {
 	}
 
 	public void initialize() {
-		img = new ImageView(new Image(FilePath.LOGIN_IMAGE));
+		img = new ImageView(new Image(FilePath.HOME_PLANE));
 		flightsToday = new ArrayList<>();
 		rootPane = new VBox(10);
 		dateLabel = new Text("");
 		timeLabel = new Text("00:00");
-		header = new Text("Welcome to APZ Booking!");
+		header = new Text("");								// wahat?			JUST HAVE NEWS. OTHER STUFF IS CLUTTER
 		newsUpdate = new Text(AdminState.readUpdate());
 		newsHeader = new Text("Today's News:\n");
 		setupClock();
