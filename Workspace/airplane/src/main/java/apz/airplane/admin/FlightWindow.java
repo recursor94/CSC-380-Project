@@ -246,8 +246,19 @@ public class FlightWindow {
 				&& !departAirportBox.getSelectionModel().isEmpty() && departDatePicker != null
 				&& arriveDatePicker != null && !flightNumField.getText().isEmpty()) {
 			
+			//Check to see if the flight number is unique 
+			boolean result = false;
+			
+			for (int i = 0; i < flightList.size(); i ++) {
+				if(Integer.valueOf(flightNumField.getText()) == flightList.get(i).getFlightNum()) {
+					result = true;
+					break;
+				}
+			}
+			if(result)
+				MessageBox.message(AlertType.ERROR, "Invalid Data Entry", "You must enter a unique flight number");
 			//Check to make sure the depart date is before (or the same as) the arrive date
-			if(departDatePicker.getValue().isAfter(arriveDatePicker.getValue())) 
+			else if(departDatePicker.getValue().isAfter(arriveDatePicker.getValue())) 
 				MessageBox.message(AlertType.ERROR, "Invalid Data Entry", "Your departure date can not be after your arrival date");
 			//Check to make sure you are not creating a flight in the past
 			else if(departDatePicker.getValue().isBefore(LocalDate.now()))
@@ -256,6 +267,7 @@ public class FlightWindow {
 			else if(departAirportBox.getSelectionModel().getSelectedItem().equals(arriveAirportBox.getSelectionModel().getSelectedItem()))
 					MessageBox.message(AlertType.ERROR, "Invalid Data Entry", "Your departure airport cannot be the same as your arrival airport");
 			else {
+				int flightNum = Integer.valueOf(flightNumField.getText());
 				Airplane plane = planeBox.getSelectionModel().getSelectedItem();
 				Time departure = new Time(departTimeBox.getSelectionModel().getSelectedItem());
 				Time arrival = new Time(arriveTimeBox.getSelectionModel().getSelectedItem());
@@ -267,7 +279,6 @@ public class FlightWindow {
 				Airport incomingAirport = new Airport(partitionIncoming[0], partitionIncoming[1]);
 				LocalDate leaving = departDatePicker.getValue();
 				LocalDate arriving = arriveDatePicker.getValue();
-				int flightNum = Integer.valueOf(flightNumField.getText());
 				
 				//If the dates are the same, check to see if the depart time is before the arrive time
 				if((departure.getTimeDouble() >= arrival.getTimeDouble()) && leaving.equals(arriving)) {
