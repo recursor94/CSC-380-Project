@@ -163,7 +163,6 @@ public class FlightWindow {
 			removeFlightButton.setDisable(false);
 			Flight flight = flightView.getSelectionModel().getSelectedItem();
 			if(flight != null) {
-				//createFlightButton.setText("Change Flight");
 				planeBox.setValue(flight.getPlane());
 				flightNumField.setText(flight.getFlightNum() + "");
 				departAirportBox.setValue(flight.getDepartureAirport().toString());
@@ -173,8 +172,6 @@ public class FlightWindow {
 				departTimeBox.setValue(flight.getDepartureTime().getTimeString());
 				arriveTimeBox.setValue(flight.getArrivalTime().getTimeString());			
 			}
-//			else
-//				createFlightButton.setText("Create Flight");
 		});
 		
 		flightNumField.addEventFilter(KeyEvent.KEY_TYPED, new EventHandler<KeyEvent>() {
@@ -294,22 +291,23 @@ public class FlightWindow {
 						resetFields();
 					}
 					else {
-						for (int i = 0; i < flightList.size(); i++) {
-							if (flightList.get(i) == flightView.getSelectionModel().getSelectedItem()) {
-								flightList.get(i).setPlane(plane);
-								flightList.get(i).setFlightNum(flightNum);
-								flightList.get(i).setArrivalTime(arrival);
-								flightList.get(i).setDepartureTime(departure);
-								flightList.get(i).setArriveDate(arriving);
-								flightList.get(i).setDepartureDate(leaving);
-								flightList.get(i).setDepartureAirport(outgoingAirport);
-								flightList.get(i).setDestinationAirport(incomingAirport);
-								System.out.println("Found and changed!");
-								AdminState.saveFlight(flightList);
-								loadFlights();
-								return;
-							}
-						}
+						removeFlights();
+//						for (int i = 0; i < flightList.size(); i++) {
+//							if (flightList.get(i) == flightView.getSelectionModel().getSelectedItem()) {
+//								flightList.get(i).setPlane(plane);
+//								flightList.get(i).setFlightNum(flightNum);
+//								flightList.get(i).setArrivalTime(arrival);
+//								flightList.get(i).setDepartureTime(departure);
+//								flightList.get(i).setArriveDate(arriving);
+//								flightList.get(i).setDepartureDate(leaving);
+//								flightList.get(i).setDepartureAirport(outgoingAirport);
+//								flightList.get(i).setDestinationAirport(incomingAirport);
+//								System.out.println("Found and changed!");
+//								AdminState.saveFlight(flightList);
+//								loadFlights();
+//								return;
+//							}
+//						}
 					}
 				}
 			}
@@ -350,23 +348,22 @@ public class FlightWindow {
 		UserController uc = AdminState.loadInformation();
 		Flight flight = flightView.getSelectionModel().getSelectedItem();
 		ArrayList<Flight> flights = APZState.loadFlights();
-	
-		for(int ind = 0; ind < uc.getUserList().size(); ind ++) {
-			for(int i = 0; i < uc.getUserList().get(ind).getTripList().size(); i ++) {
-				if(uc.getUserList().get(ind).getTripList().get(i).getFlight().getFlightNum() == flight.getFlightNum())
-					uc.getUserList().get(ind).removeTrip(flight);
+		
+		for (int i = 0; i < uc.getUserList().size(); i++) {
+			
+			for (int j = 0; j < flights.size(); j++) {
+				if (uc.getUserList().get(i).getTripList().get(j).getFlight().getFlightNum() == flight.getFlightNum()) {
+					uc.getUserList().get(i).getTripList().remove(j);
+					flights.set(j, flight);
+				}
 			}
+			
 		}
-				
-		for (int i = 0; i < flights.size(); i++) {
-			if (flights.get(i).getFlightNum() == flight.getFlightNum()) 
-				flights.set(i, flight);
-		}
-		flights.remove(flight);
+		
+	
+		
 		AdminState.saveFlight(flights);
-		APZState.saveFlight(flights);
 		AdminState.saveInformation(uc);
-		APZState.saveInformation(uc);
 		loadFlights();
 	}
 

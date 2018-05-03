@@ -118,6 +118,10 @@ public class UserWindow {
 				removeButton.setDisable(true);
 			}
 		});
+		mainPane.setOnKeyPressed(event -> {
+			if (event.getCode() == KeyCode.ENTER)
+				verifyInput(userField.getText(), emailField.getText(), passField.getText());
+		});
 	}
 
 	private void verifyInput(String username, String email, String password) {
@@ -133,8 +137,10 @@ public class UserWindow {
 				else if (password.contains(" "))
 					MessageBox.message(AlertType.ERROR, "Invalid Password",
 							"Your password cannot contain the empty space character");
-				else if (!emailField.getText().contains("@") && !emailField.getText().contains("."))
-					MessageBox.message(AlertType.ERROR, "Invalid Email", "Your email must be properly formatted!");
+				else if (!emailField.getText().contains("@"))
+					MessageBox.message(AlertType.ERROR, "Invalid Email", "Your email must be properly formatted with a directory!");
+				else if (!emailField.getText().contains("."))
+					MessageBox.message(AlertType.ERROR, "Invalid Email", "Your email must be properly formatted with a domain!");
 				else {
 					uc.addUser(new User(email, username, password));
 					AdminState.saveInformation(uc);

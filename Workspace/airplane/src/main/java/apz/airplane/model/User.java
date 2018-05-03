@@ -70,16 +70,9 @@ public class User implements Serializable {
 			if (tripList.get(i).getFlight().equals(flight)) {
 				tripList.get(i).getFlight().getPlane().getSeats().remove();
 				tripList.remove(tripList.get(i));
+				return true;
 			}
 		}
-//		
-//		for(Booking trip : tripList) {
-//			if(trip.getFlight().equals(flight)) {
-//				tripList.get
-//				tripList.remove(trip);
-//				return true;
-//			}
-//		}
 		return false;
 	}
 	

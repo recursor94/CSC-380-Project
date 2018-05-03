@@ -22,17 +22,17 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 public class AccountChangeWindow implements GuiApplication {
-	
+
 	private ImageView img;
 	private Text headerText;
 	private VBox mainPane;
 	private GridPane gridPane;
-	
+
 	private TextField emailField;
 	private PasswordField passField, newPassField, confirmPassField;
-	
+
 	private Button changeButton, backButton;
-	
+
 	public AccountChangeWindow() {
 		initialize();
 		content();
@@ -45,12 +45,12 @@ public class AccountChangeWindow implements GuiApplication {
 		headerText = new Text("Change Account Information");
 		mainPane = new VBox(10);
 		gridPane = new GridPane();
-		
+
 		emailField = new TextField(APZLauncher.getCurrentUser().getEmail());
 		passField = new PasswordField();
 		newPassField = new PasswordField();
 		confirmPassField = new PasswordField();
-		
+
 		changeButton = new Button("Change");
 		backButton = new Button("Back");
 	}
@@ -59,7 +59,7 @@ public class AccountChangeWindow implements GuiApplication {
 		gridPane.add(new ImageView(new Image(FilePath.BULLET_POINT_IMAGE)), 1, 2);
 		gridPane.add(new Label("Email: "), 2, 2);
 		gridPane.add(emailField, 3, 2);
-		
+
 		gridPane.add(new ImageView(new Image(FilePath.BULLET_POINT_IMAGE)), 1, 3);
 		gridPane.add(new Label("Username: "), 2, 3);
 		gridPane.add(new Label(APZLauncher.getCurrentUser().getUsername()), 3, 3);
@@ -71,34 +71,31 @@ public class AccountChangeWindow implements GuiApplication {
 		gridPane.add(newPassField, 3, 5);
 		gridPane.add(new Label("Confirm New Password: "), 2, 6);
 		gridPane.add(confirmPassField, 3, 6);
-		
-		
+
 		HBox buttonBox = new HBox(10);
 		buttonBox.getChildren().addAll(changeButton, backButton);
 		buttonBox.setAlignment(Pos.CENTER);
-		
+
 		mainPane.getChildren().addAll(new Label(), img, headerText, new Separator(), gridPane, buttonBox);
 	}
 
 	public void actionEvents() {
-		for (int i = 0; i < gridPane.getChildren().size(); i++) 
+		for (int i = 0; i < gridPane.getChildren().size(); i++)
 			if (gridPane.getChildren().get(i) instanceof ImageView) {
 				((ImageView) gridPane.getChildren().get(i)).setFitWidth(15);
 				((ImageView) gridPane.getChildren().get(i)).setFitHeight(15);
-		}
-		
-		changeButton.setOnAction(event -> {
-			if (checkEmail() && checkPassword()) {
-				attemptChange();
 			}
-		}); 
-		
+
+		changeButton.setOnAction(event -> {
+			attemptChange();
+		});
+
 		backButton.setOnAction(event -> {
 			new AccountInfoWindow();
 		});
-		
+
 		mainPane.setOnKeyPressed(event -> {
-			if (event.getCode() == KeyCode.ENTER) 
+			if (event.getCode() == KeyCode.ENTER)
 				attemptChange();
 		});
 	}
@@ -113,27 +110,34 @@ public class AccountChangeWindow implements GuiApplication {
 		APZLauncher.getBorderPane().setCenter(mainPane);
 		APZLauncher.getStage().setTitle("APZ Application - Update Account Information");
 	}
-	
-	private boolean checkEmail() {
-		if (emailField.getText().contains("@") && emailField.getText().contains(".com"))
-			return true;
-		MessageBox.message(AlertType.ERROR, null, "Email input is invalid");
-		return false;
-	}
-	
-	private boolean checkPassword() {
-		if (APZLauncher.getCurrentUser().validatePassword(passField.getText()) && newPassField.getText().equals(confirmPassField.getText()) && !newPassField.getText().isEmpty())
-			return true;
-		MessageBox.message(AlertType.ERROR, null, "Password input is invalid");
-		return false;
-	}
-	
+
 	private void attemptChange() {
-		APZLauncher.getCurrentUser().setPassword(newPassField.getText());
-		APZLauncher.getCurrentUser().setEmail(emailField.getText());
-		APZState.saveInformation();
-		MessageBox.message(AlertType.INFORMATION, null, "Account details changed!");
-		new AccountInfoWindow();
+		if (passField.getText().equals(newPassField.getText())) {
+			MessageBox.message(AlertType.ERROR, null, "New password cannot be the same as old");
+			return;
+		}
+		if (!emailField.getText().contains("@")) {
+			MessageBox.message(AlertType.ERROR, null, "Email input is invalid");
+			return;
+		}
+		
+		if (!emailField.getText().contains(".")) {
+			MessageBox.message(AlertType.ERROR, null, "Email input is invalid");
+			return;
+		}
+
+		boolean fields = !passField.getText().isEmpty();
+		boolean fields2 = !confirmPassField.getText().isEmpty();
+		boolean fields3 = !newPassField.getText().isEmpty();
+		if (APZLauncher.getCurrentUser().validatePassword(passField.getText())
+				&& newPassField.getText().equals(confirmPassField.getText()) && fields && fields2 && fields3) {
+			APZLauncher.getCurrentUser().setPassword(newPassField.getText());
+			APZLauncher.getCurrentUser().setEmail(emailField.getText());
+			APZState.saveInformation();
+			MessageBox.message(AlertType.INFORMATION, null, "Account details changed!");
+			new AccountInfoWindow();
+		} else
+			MessageBox.message(AlertType.ERROR, null, "Password input is invalid");
 	}
 
 }
