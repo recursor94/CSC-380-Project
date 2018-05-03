@@ -152,13 +152,21 @@ public class PaymentAddWindow implements GuiApplication {
 			public void handle(KeyEvent keyEvent) {
 				if (!"0123456789".contains(keyEvent.getCharacter()))
 		            keyEvent.consume();
+				if (zipCodeField.getText().length() >= 3) {
+					zipCodeField.setText(zipCodeField.getText(0, (zipCodeField.getText().length() - 1)));
+					zipCodeField.positionCaret(zipCodeField.getText().length());
+				}
 	        }
 	      });
 		
 		cardNumField.addEventFilter(KeyEvent.KEY_TYPED, new EventHandler<KeyEvent>() {
 			public void handle(KeyEvent keyEvent) {
-				if (!"0123456789".contains(keyEvent.getCharacter()))
-		            keyEvent.consume();
+					if (!"0123456789".contains(keyEvent.getCharacter()))
+						keyEvent.consume();
+					if (cardNumField.getText().length() >= 16) {
+						cardNumField.setText(cardNumField.getText(0, (cardNumField.getText().length() - 1)));
+						cardNumField.positionCaret(cardNumField.getText().length());
+					}
 	        }
 	      });
 		
@@ -166,6 +174,11 @@ public class PaymentAddWindow implements GuiApplication {
 			public void handle(KeyEvent keyEvent) {
 				if (!"0123456789".contains(keyEvent.getCharacter()))
 		            keyEvent.consume();
+				
+				if (CCVNumField.getText().length() >= 3) {
+					CCVNumField.setText(CCVNumField.getText(0, (CCVNumField.getText().length() - 1)));
+					CCVNumField.positionCaret(CCVNumField.getText().length());
+				}
 	        }
 	      });
 	}
