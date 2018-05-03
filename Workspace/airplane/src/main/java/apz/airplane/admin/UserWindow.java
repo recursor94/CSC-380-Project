@@ -118,6 +118,10 @@ public class UserWindow {
 				removeButton.setDisable(true);
 			}
 		});
+		mainPane.setOnKeyPressed(event -> {
+			if (event.getCode() == KeyCode.ENTER)
+				verifyInput(userField.getText(), emailField.getText(), passField.getText());
+		});
 	}
 
 	private void verifyInput(String username, String email, String password) {

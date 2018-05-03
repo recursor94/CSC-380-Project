@@ -93,7 +93,7 @@ public class LoginWindow implements GuiApplication {
 		img.setFitHeight(170);
 		APZLauncher.getBorderPane().setCenter(rootPane);
 		APZLauncher.getStage().setWidth(320);
-		APZLauncher.getStage().setHeight(410);
+		APZLauncher.getStage().setHeight(430);
 		APZLauncher.getStage().setTitle("APZ Application - User Login");
 	}
 
