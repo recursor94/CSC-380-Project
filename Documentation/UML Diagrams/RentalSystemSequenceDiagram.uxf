@@ -175,17 +175,6 @@ return user: User</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>410</x>
-      <y>480</y>
-      <w>30</w>
-      <h>80</h>
-    </coordinates>
-    <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
       <x>80</x>
       <y>340</y>
       <w>350</w>
@@ -225,9 +214,9 @@ getRentalSystem()</panel_attributes>
       <x>80</x>
       <y>20</y>
       <w>30</w>
-      <h>520</h>
+      <h>490</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;500.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;470.0</additional_attributes>
   </element>
 </diagram>
