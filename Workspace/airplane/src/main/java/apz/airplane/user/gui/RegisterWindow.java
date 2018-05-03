@@ -4,6 +4,8 @@ import apz.airplane.model.User;
 import apz.airplane.util.APZState;
 import apz.airplane.util.GuiApplication;
 import apz.airplane.util.MessageBox;
+import javafx.animation.Animation;
+import javafx.animation.RotateTransition;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -17,6 +19,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 
 public class RegisterWindow implements GuiApplication {
 
@@ -59,6 +62,12 @@ public class RegisterWindow implements GuiApplication {
 		buttonBox.getChildren().addAll(registerButton, backButton);
 		rootPane.getChildren().addAll(header, img, userBox, emailBox, passBox, buttonBox);
 		
+		RotateTransition rt = new RotateTransition(Duration.millis(3000), img);
+		rt.setByAngle(-15);
+		rt.setCycleCount(Animation.INDEFINITE);
+		rt.setAutoReverse(true);
+
+		rt.play();
 	}
 	
 	public void properties() {
@@ -104,6 +113,8 @@ public class RegisterWindow implements GuiApplication {
 				MessageBox.message(AlertType.ERROR, "Invalid User Name", "Your user name cannot contain the empty space character");	
 			else if (passField.getText().contains(" ")) 
 				MessageBox.message(AlertType.ERROR, "Invalid Password", "Your password cannot contain the empty space character");
+			else if (!emailField.getText().contains("@") && !emailField.getText().contains("."))
+				MessageBox.message(AlertType.ERROR, "Invalid Email", "Your email must be properly formatted!");
 			else {
 				User user = new User (emailField.getText(), userField.getText(), passField.getText());
 				APZLauncher.getUserController().addUser(user);

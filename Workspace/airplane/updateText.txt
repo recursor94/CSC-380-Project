@@ -1,3 +1,1 @@
-All flights that are not cancelled
-are scheduled to be cancelled.
-Thank you!
+There are no new updates

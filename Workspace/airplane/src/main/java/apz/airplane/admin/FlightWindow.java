@@ -7,7 +7,6 @@ import apz.airplane.model.Airplane;
 import apz.airplane.model.Airport;
 import apz.airplane.model.Flight;
 import apz.airplane.model.Time;
-import apz.airplane.model.User;
 import apz.airplane.model.UserController;
 import apz.airplane.util.APZState;
 import apz.airplane.util.MessageBox;
@@ -33,16 +32,16 @@ import javafx.stage.Stage;
 
 public class FlightWindow {
 	
-	private GridPane gridPane;
-	private VBox mainPane; 
-	private ArrayList<Flight> flightList;
-	private ListView<Flight> flightView;
-	private TextField flightNumField;
-	private DatePicker departDatePicker, arriveDatePicker;
-	private static ComboBox<Airplane> planeBox;
-	private static ComboBox<String> departAirportBox, arriveAirportBox, arriveTimeBox, departTimeBox;
-	private Button createFlightButton, createAirportButton, removeFlightButton;
-	private Text header, flightText;
+	public GridPane gridPane;
+	public VBox mainPane; 
+	public ArrayList<Flight> flightList;
+	public ListView<Flight> flightView;
+	public TextField flightNumField;
+	public DatePicker departDatePicker, arriveDatePicker;
+	public static ComboBox<Airplane> planeBox;
+	public static ComboBox<String> departAirportBox, arriveAirportBox, arriveTimeBox, departTimeBox;
+	public Button createFlightButton, createAirportButton, removeFlightButton;
+	public Text header, flightText;
 
 	public FlightWindow(Stage mainStage) {
 		initialize();
@@ -51,7 +50,7 @@ public class FlightWindow {
 		properties(mainStage);
 	}
 	
-	private void initialize() {
+	public void initialize() {
 		gridPane = new GridPane();
 		mainPane = new VBox(10);
 		flightList = new ArrayList<>();
@@ -71,7 +70,7 @@ public class FlightWindow {
 		flightText = new Text("List of Created Flights");
 	}
 
-	private void content() {
+	public void content() {
 		addTimeToBox();
 		loadPlanes();
 		loadFlights();
@@ -129,7 +128,7 @@ public class FlightWindow {
 		mainPane.setAlignment(Pos.CENTER);
 	}
 
-	private void actionEvents() {
+	public void actionEvents() {
 		createAirportButton.setOnAction(event -> {
 			new AirportWindow();
 			removeFlightButton.setDisable(true);
@@ -186,7 +185,7 @@ public class FlightWindow {
 	      });
 	}
 
-	private void properties(Stage mainStage) {
+	public void properties(Stage mainStage) {
 		Stage stage = new Stage();
 		stage.initOwner(mainStage);
 		stage.setTitle("Create Flights");

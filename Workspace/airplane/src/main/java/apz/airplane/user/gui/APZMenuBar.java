@@ -11,25 +11,27 @@ import apz.airplane.user.gui.booking.BookingWindow;
 import apz.airplane.user.gui.booking.CancelFlightWindow;
 import apz.airplane.user.gui.home.BrowseScheduleWindow;
 import apz.airplane.user.gui.home.HomeScreenWindow;
+import apz.airplane.user.gui.viewtrips.CarRentalViewWindow;
 import apz.airplane.user.gui.viewtrips.TripViewWindow;
 import apz.airplane.util.MessageBox;
 import javafx.application.Platform;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.Separator;
 import javafx.scene.control.SeparatorMenuItem;
-import javafx.scene.control.Alert.AlertType;
 
 public class APZMenuBar {
 	
 	private MenuBar menuBar;
-	private Menu fileMenu, flightMenu, accountMenu, bookMenu, homeMenu;
-	private MenuItem exitItem, logoutItem;
+	private Menu fileMenu, flightMenu, accountMenu, bookMenu, aboutMenu;
+	private MenuItem returnHomeMenuItem, logoutItem, exitItem;
 	private MenuItem bookATripItem, bookByDateItem, bookByDestinationItem;
 	private MenuItem viewFlightItem, scheduleFlightItem;
-	private MenuItem manageAccountItem, managePaymentItem, manageBookingItem;
-	private MenuItem returnHomeMenuItem;
+	private MenuItem manageAccountItem, managePaymentItem, manageBookingItem, manageCarRentalItem;
+	private MenuItem aboutClassItem, aboutProjectItem, aboutUsItem;
 	
 	
 	public APZMenuBar() {
@@ -39,36 +41,39 @@ public class APZMenuBar {
 	}
 	private void initialize() {
 		menuBar = new MenuBar();
-		fileMenu = new Menu("File");
-		flightMenu = new Menu("Flights");
-		accountMenu = new Menu("My Account");
-		bookMenu = new Menu("Book a trip");
-
-		homeMenu = new Menu("Home");
 		
+		fileMenu = new Menu("File");
+		returnHomeMenuItem = new MenuItem("Homescreen");
+		logoutItem = new MenuItem("Logout");
+		exitItem = new MenuItem("Exit");
+		
+		flightMenu = new Menu("Flights");
+		bookMenu = new Menu("Booking");
 		bookATripItem = new MenuItem("Book a trip");
 		bookByDateItem = new MenuItem("Book flight by date");
 		bookByDestinationItem = new MenuItem("Book flight by destination");
+		viewFlightItem = new MenuItem("View my upcoming trips");
+		scheduleFlightItem = new MenuItem("Current flight schedules");
 		
-		exitItem = new MenuItem("Exit");
-		logoutItem = new MenuItem("Logout");
-		viewFlightItem = new MenuItem("View/Manage my upcoming trips");
-		scheduleFlightItem = new MenuItem("Current Schedules");
-		
+		accountMenu = new Menu("My Account");
 		manageAccountItem = new MenuItem("Information");
 		managePaymentItem = new MenuItem("Payment");
 		manageBookingItem = new MenuItem("Booking");
+		manageCarRentalItem = new MenuItem("Car Rental");
 		
-		returnHomeMenuItem = new MenuItem("Return to Homescreen");
+		aboutMenu = new Menu("About");
+		aboutClassItem = new MenuItem("Class");
+		aboutProjectItem = new MenuItem("Project");
+		aboutUsItem = new MenuItem("Team Members");
 	}
 	
 	private void content() {
 		bookMenu.getItems().addAll(bookATripItem, new SeparatorMenuItem(), bookByDateItem, bookByDestinationItem);
-		fileMenu.getItems().addAll(exitItem, new SeparatorMenuItem(), logoutItem);
+		fileMenu.getItems().addAll(returnHomeMenuItem, logoutItem, new SeparatorMenuItem(), exitItem);
 		flightMenu.getItems().addAll(bookMenu, viewFlightItem, scheduleFlightItem);
-		accountMenu.getItems().addAll(manageAccountItem, managePaymentItem, manageBookingItem);
-		homeMenu.getItems().add(returnHomeMenuItem);
-		menuBar.getMenus().addAll(fileMenu, flightMenu, accountMenu, homeMenu);
+		accountMenu.getItems().addAll(manageAccountItem, managePaymentItem, new SeparatorMenuItem(), manageBookingItem, manageCarRentalItem);
+		aboutMenu.getItems().addAll(aboutClassItem, aboutProjectItem, aboutUsItem);
+		menuBar.getMenus().addAll(fileMenu, flightMenu, accountMenu, aboutMenu);
 		
 		APZLauncher.getBorderPane().setTop(menuBar);
 	}
@@ -107,6 +112,10 @@ public class APZMenuBar {
 			new TripViewWindow();
 		});
 		
+		manageCarRentalItem.setOnAction(event -> {
+			new CarRentalViewWindow();
+		});
+		
 		bookByDestinationItem.setOnAction(event -> {
 			new BookByLocation();
 		});
@@ -120,6 +129,10 @@ public class APZMenuBar {
 		});
 		scheduleFlightItem.setOnAction(event -> {
 			new BrowseScheduleWindow();
+		});
+		
+		returnHomeMenuItem.setOnAction(event -> {
+			new HomeScreenWindow();
 		});
 	}
 

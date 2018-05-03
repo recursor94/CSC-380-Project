@@ -18,6 +18,14 @@ public class APZState {
 	private static String ucFilePath = "userList.apz";
 	private static String airportObject = "airportList.apz";
 	private static String flightObject = "flightList.apz";
+	private static String planeObject = "planeList.apz";
+	private static String homeScreenTextObject = "updateText.txt";
+	
+	public static boolean checkFilesExist() {
+		if (new File(airportObject).exists() && new File(flightObject).exists() && new File(planeObject).exists() && new File(homeScreenTextObject).exists())
+			return true;
+		return false;
+	}
 	
 	public static void saveInformation() {
 		FileOutputStream fileOut;

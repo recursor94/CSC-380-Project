@@ -67,8 +67,8 @@ public class AccountInfoWindow implements GuiApplication {
 		
 		for (int i = 0; i < gridPane.getChildren().size(); i++) 
 			if (gridPane.getChildren().get(i) instanceof ImageView) {
-				((ImageView) gridPane.getChildren().get(i)).setFitWidth(20);
-				((ImageView) gridPane.getChildren().get(i)).setFitHeight(20);
+				((ImageView) gridPane.getChildren().get(i)).setFitWidth(15);
+				((ImageView) gridPane.getChildren().get(i)).setFitHeight(15);
 		}
 		
 		changeButton.setOnAction(event -> {

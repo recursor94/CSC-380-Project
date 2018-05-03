@@ -41,9 +41,7 @@ public class Car implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Car [name=" + name + ", type=" + type;
+		return "[ " + name + " ] - " + model.getModel() + " - [ " + type + " ]";
 	}
-	
-	
 	
 }

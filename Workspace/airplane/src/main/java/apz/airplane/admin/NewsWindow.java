@@ -19,66 +19,58 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class NewsWindow {
-	
+
 	private Stage stage;
-	private ImageView img;
 	private VBox mainPane;
 	private TextArea updateField;
 	private GridPane gridPane;
 	private Button saveButton;
 	private Text header;
-	
+
 	public NewsWindow() {
 		initialize();
 		content();
 		actionEvents();
 		properties();
-		
+
 	}
-	
+
 	public void initialize() {
-		img = new ImageView(new Image(FilePath.LOGIN_IMAGE));
 		mainPane = new VBox(10);
 		updateField = new TextArea(AdminState.readUpdate());
 		gridPane = new GridPane();
 		saveButton = new Button("Save Text");
 		header = new Text("Update Home Screen Text");
 	}
-	
+
 	public void content() {
-		img.setFitWidth(100);
-		img.setFitHeight(100);
-		header.setFont(new Font(28));
-		
-		gridPane.setAlignment(Pos.CENTER);
-		
-		gridPane.setHgap(10);
-		gridPane.setVgap(10);
-		
 		gridPane.add(updateField, 1, 0);
-		
-		mainPane.getChildren().addAll(header, img, new Separator(), new Label("Update the news update section"), gridPane, saveButton);
-		
-		mainPane.setAlignment(Pos.CENTER);
+		mainPane.getChildren().addAll(header, new Separator(), new Label("Update the news update section"), gridPane,
+				saveButton);
 	}
-	
+
 	public void actionEvents() {
 		saveButton.setOnAction(event -> {
 			saveText();
 		});
 	}
-	
+
 	public void properties() {
+		header.setFont(new Font(28));
+		gridPane.setAlignment(Pos.CENTER);
+		gridPane.setHgap(10);
+		gridPane.setVgap(10);
+		mainPane.setAlignment(Pos.CENTER);
 		stage = new Stage();
 		stage.initModality(Modality.APPLICATION_MODAL);
 		stage.setTitle("Update Home Screen Text");
-		stage.setScene(new Scene(mainPane, 400, 300));
+		stage.setScene(new Scene(mainPane, 400, 310));
 		stage.setResizable(false);
 		stage.show();
 	}
-	
+
 	private void saveText() {
-		if(updateField.getText().isEmpty())
+		if (updateField.getText().isEmpty())
 			MessageBox.message(AlertType.ERROR, "ERROR", "You must enter an update");
 		else {
 			AdminState.writeUpdate(updateField.getText());

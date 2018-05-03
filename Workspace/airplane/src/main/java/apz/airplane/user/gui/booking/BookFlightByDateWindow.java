@@ -40,7 +40,7 @@ public class BookFlightByDateWindow implements GuiApplication {
 	}
 
 	public void initialize() {
-		img = new ImageView(new Image(FilePath.LOGIN_IMAGE));
+		img = new ImageView(new Image(FilePath.DATE_IMAGE));
 		mainPane = new VBox(10);
 		gridPane = new GridPane();
 		header = new Text("Find and Book Flights by Date");
@@ -52,32 +52,25 @@ public class BookFlightByDateWindow implements GuiApplication {
 	}
 
 	public void content() {
-		img.setFitWidth(150);
-		img.setFitHeight(150);
-
-		header.setFont(new Font(28));
-		listText.setFont(new Font(20));
-
-		bookFlightButton.setDisable(true);
-
-		calendar.setEditable(false);
-		calendar.setMaxWidth(200);
-
-		gridPane.setHgap(10);
-		gridPane.setVgap(10);
-
 		gridPane.add(new Label("Select a flight date: "), 0, 0);
 		gridPane.add(calendar, 1, 0);
 
-		gridPane.setAlignment(Pos.CENTER);
-
 		mainPane.getChildren().addAll(new Label(), header, img, new Separator(), gridPane, findFlightButton,
 				new Separator(), listText, flightView, bookFlightButton);
-
-		mainPane.setAlignment(Pos.CENTER);
 	}
 
 	public void properties() {
+		img.setFitWidth(250);
+		img.setFitHeight(150);
+		header.setFont(new Font(28));
+		listText.setFont(new Font(20));
+		bookFlightButton.setDisable(true);
+		calendar.setEditable(false);
+		calendar.setMaxWidth(200);
+		gridPane.setHgap(10);
+		gridPane.setVgap(10);
+		gridPane.setAlignment(Pos.CENTER);
+		mainPane.setAlignment(Pos.CENTER);
 		APZLauncher.getBorderPane().setCenter(mainPane);
 		APZLauncher.getStage().setTitle("APZ Application - Book Flight by Date");
 	}

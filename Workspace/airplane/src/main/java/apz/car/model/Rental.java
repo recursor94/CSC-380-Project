@@ -1,21 +1,21 @@
 package apz.car.model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 public class Rental implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
+	private LocalDate date;
 	private Car car;
 	private int days;
 	private double price;
-	private static int number = 0;
-	private int receiptNumber;
 	
 	public Rental(Car car, int days, double price) {
+		date = LocalDate.now();
 		this.car = car;
 		this.days = days;
 		this.price = price;
-		receiptNumber = number++;
 	}
 
 	public Car getCar() {
@@ -42,20 +42,12 @@ public class Rental implements Serializable {
 		this.price = price;
 	}
 
-	public static int getNumber() {
-		return number;
+	public LocalDate getDate() {
+		return date;
 	}
 
-	public static void setNumber(int number) {
-		Rental.number = number;
-	}
-
-	public int getReceiptNumber() {
-		return receiptNumber;
-	}
-
-	public void setReceiptNumber(int receiptNumber) {
-		this.receiptNumber = receiptNumber;
+	public void setDate(LocalDate date) {
+		this.date = date;
 	}
 	
 }

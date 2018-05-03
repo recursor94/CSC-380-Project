@@ -14,6 +14,8 @@ public class FilePath {
 	public static final String QUERY_IMAGE = "file:resource/query.png";
 	public static final String IMAGE = "file:img.png";
 	public static final String ADMIN_IMAGE = "file:resource/utility.png";
+	public static final String DATE_IMAGE = "file:resource/date.png";
+	public static final String LOCATION_IMAGE = "file:resource/location.png";
 	public static final String DEFAULT_CAR_IMAGE = "file:resource/default_car.png";
 
 }

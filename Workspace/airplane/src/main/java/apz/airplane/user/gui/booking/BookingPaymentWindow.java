@@ -2,6 +2,7 @@ package apz.airplane.user.gui.booking;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Optional;
 
 import apz.airplane.model.Booking;
 import apz.airplane.model.Flight;
@@ -15,9 +16,14 @@ import apz.airplane.util.APZState;
 import apz.airplane.util.FilePath;
 import apz.airplane.util.GuiApplication;
 import apz.airplane.util.MessageBox;
+import apz.car.gui.CarPickerWindow;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar.ButtonData;
+import javafx.scene.effect.GaussianBlur;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
@@ -53,7 +59,7 @@ public class BookingPaymentWindow implements GuiApplication {
 	}
 
 	public void initialize() {
-		img = new ImageView(new Image(FilePath.LOGIN_IMAGE));
+		img = new ImageView(new Image(FilePath.PAYMENT_INFO_IMAGE));
 		user = APZLauncher.getCurrentUser();
 		
 		cost = Province.getPrice(flight.getDepartureAirport().getCity(), flight.getDestinationAirport().getCity());
@@ -120,9 +126,7 @@ public class BookingPaymentWindow implements GuiApplication {
 					MessageBox.message(AlertType.INFORMATION, null, "Trip has been booked!");
 					APZState.saveInformation();
 					
-					
 					ArrayList<Flight> fList = APZState.loadFlights();
-					//This was in CheckBaggageWindow for saving an updated flight with a new passenger on board
 					for (int i = 0; i < fList.size(); i++) {
 						if (fList.get(i).getFlightNum() == trip.getFlight().getFlightNum()) {
 							fList.set(i, trip.getFlight());
@@ -130,7 +134,27 @@ public class BookingPaymentWindow implements GuiApplication {
 						}
 					}
 					APZState.saveFlight(fList);
-					new HomeScreenWindow();
+					
+					Alert alert = new Alert(AlertType.CONFIRMATION);
+					alert.setTitle("Confirmation Dialog with Custom Actions");
+					alert.setHeaderText("APZ Auto Rental");
+					alert.setContentText("Would you like to rent a vehicle as well at our auto airport location in " + flight.getDestinationAirport().getName() + ", " + flight.getDestinationAirport().getCity()  +"?");
+
+					ButtonType yesButton = new ButtonType("Yes");
+					ButtonType cancelButton = new ButtonType("No", ButtonData.CANCEL_CLOSE);
+
+					alert.getButtonTypes().setAll(yesButton, cancelButton);
+					
+					
+
+					Optional<ButtonType> result = alert.showAndWait();
+					if (result.get() == yesButton){
+						APZLauncher.getStage().getScene().getRoot().setEffect(new GaussianBlur());
+						new CarPickerWindow(new Stage(), APZLauncher.getCurrentUser());
+					} else {
+						new HomeScreenWindow();
+					}
+					
 			}
 		});
 		
@@ -138,10 +162,12 @@ public class BookingPaymentWindow implements GuiApplication {
 			baggagePrice = 30.35 * baggageBox.getValue();
 			costLabel.setText("$" + (cost + baggagePrice));
 		});
+		
+		
 	}
 
 	public void properties() {
-		img.setFitWidth(150);
+		img.setFitWidth(250);
 		img.setFitHeight(150);
 		confirmButton.setMinWidth(250);
 		paymentPane.setHgap(15);

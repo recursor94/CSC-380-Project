@@ -19,18 +19,26 @@ public enum CarType implements Serializable {
 		return list;
 	}
 	
-	public static double getTypeRate(String type) {
+	public static double getTypeRate(String manufacturer, String type) {
+		double rate = 0;
+		
 		if (type.equals("Luxury"))
-			return 550.52;
+			rate = 550.52;
 		else if (type.equals("Sedan"))
-			return 120.92;
+			rate = 120.92;
 		else if (type.equals("Sport"))
-			return 240.21;
+			rate = 240.21;
 		else if (type.equals("Super Car"))
-			return 450.34;
+			rate = 450.34;
 		else if (type.equals("SUV"))
-			return 198.43;
-		return 0;
+			rate = 198.43;
+		
+		if (manufacturer.equals("BMW"))
+			rate *= 1;
+		else if (manufacturer.equals("FORD"))
+			rate *= .7;
+		
+		return rate;
 	}
 	
 	public static CarType getCarTypeName(String type) {

@@ -8,12 +8,12 @@ import apz.airplane.user.gui.home.HomeScreenWindow;
 import apz.airplane.util.FilePath;
 import apz.airplane.util.GuiApplication;
 import apz.airplane.util.MessageBox;
+import apz.car.model.Rental;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.control.Separator;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -22,7 +22,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
-public class TripViewWindow implements GuiApplication {
+public class CarRentalViewWindow implements GuiApplication {
 
 	// have email as part of registration?
 
@@ -32,12 +32,11 @@ public class TripViewWindow implements GuiApplication {
 	private ScrollPane scrollPane;
 	private GridPane gridPane;
 
-	public TripViewWindow() {
+	public CarRentalViewWindow() {
+		ArrayList<Rental> rentList = APZLauncher.getCurrentUser().getRentalSystem().getRentalList();
 
-		ArrayList<Booking> tripList = APZLauncher.getCurrentUser().getTripList();
-
-		if (tripList.isEmpty()) {
-			MessageBox.message(AlertType.INFORMATION, null, "No trips have been made to view!");
+		if (rentList.isEmpty()) {
+			MessageBox.message(AlertType.INFORMATION, null, "No car rentals have been made to view!");
 			new HomeScreenWindow();
 			return;
 		}
@@ -54,33 +53,30 @@ public class TripViewWindow implements GuiApplication {
 		mainPane = new VBox(10);
 		scrollPane = new ScrollPane();
 		gridPane = new GridPane();
-
 	}
 
 	public void content() {
-		ArrayList<Booking> tripList = APZLauncher.getCurrentUser().getTripList();
+		ArrayList<Rental> rentList = APZLauncher.getCurrentUser().getRentalSystem().getRentalList();
 
-		GridPane itemPane;
-		for (int i = 0; i < tripList.size(); i++) {
-			itemPane = new GridPane();
-			Button viewButton = new Button("View in more detail");
-			String sItemPane = tripList.get(i).toString();
-			Label label = new Label(sItemPane);
-			VBox bottomBox = new VBox(10);
-			bottomBox.getChildren().add(viewButton);
-			itemPane.add(label, 0, 3);
-			if (i != tripList.size() - 1)
-				bottomBox.getChildren().add(new Separator());
-			else
-				bottomBox.getChildren().add(new Label());
-			int index = i;
-			VBox itemBox = new VBox(10);
-			itemBox.getChildren().addAll(itemPane, bottomBox);
-			itemBox.setMinHeight(150);
-			viewButton.setOnAction(event -> {
-				new TripResultWindow(tripList.get(index));
-			});
-			gridPane.add(itemBox, 0, i);
+		for (int i = 0; i < rentList.size(); i++) {
+			GridPane subPane = new GridPane();
+			
+			subPane.add(new Label("Rental Date: "), 0, i);
+			subPane.add(new Label(rentList.get(i).getDate().toString()), 1, i);
+			
+			subPane.add(new Label("Car Rented: "), 0, i + 1);
+			subPane.add(new Label(rentList.get(i).getCar().toString()), 1, i + 1);
+			
+			subPane.add(new Label("Days Rented: "), 0, i + 2);
+			subPane.add(new Label(rentList.get(i).getDays() + ""), 1, i + 2);
+			
+			subPane.add(new Label("Total Cost: "), 0, i + 3);
+			subPane.add(new Label("$" + rentList.get(i).getPrice()), 1, i + 3);
+			
+			subPane.setAlignment(Pos.TOP_CENTER);
+			
+			gridPane.add(subPane, 0, i);
+			
 		}
 
 		scrollPane.setContent(gridPane);

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 public class RentalSystem implements Serializable {	// user has this?
 	
+	private static final long serialVersionUID = 1L;
 	private ArrayList<Rental> rentalList;
 	
 	public RentalSystem() {
@@ -22,13 +23,6 @@ public class RentalSystem implements Serializable {	// user has this?
 				rentalList.remove(rental);
 	}
 	
-	public Rental findCarRental(int receiptNumber) {
-		for (int i = 0; i < rentalList.size(); i++)
-			if (rentalList.get(i).getReceiptNumber() == receiptNumber)
-				return rentalList.get(i);
-		return null;
-	}
-
 	public ArrayList<Rental> getRentalList() {
 		return rentalList;
 	}

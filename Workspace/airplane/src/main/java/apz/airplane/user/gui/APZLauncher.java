@@ -4,8 +4,10 @@ import apz.airplane.model.User;
 import apz.airplane.model.UserController;
 import apz.airplane.util.APZState;
 import apz.airplane.util.JUtility;
+import apz.airplane.util.MessageBox;
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -22,6 +24,12 @@ public class APZLauncher extends Application {
 	}
 	@Override
 	public void start(Stage primaryStage) throws Exception {
+		
+		if (!APZState.checkFilesExist()) {
+			MessageBox.message(AlertType.ERROR, "APZ ERROR", "Software not properly configured. Please contact your local administrator!");
+			return;
+		}
+		
 		stage = primaryStage;
 		uc = APZState.loadInformation();
 		root = new BorderPane();

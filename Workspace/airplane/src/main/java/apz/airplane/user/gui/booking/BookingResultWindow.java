@@ -34,7 +34,7 @@ public class BookingResultWindow implements GuiApplication {
 	}
 	
 	public void initialize() {
-		img = new ImageView(new Image(FilePath.LOGIN_IMAGE));
+		img = new ImageView(new Image(FilePath.QUERY_IMAGE));
 		mainPane = new VBox(10);
 		scrollPane = new ScrollPane();
 		header = new Text("Trips Found");
@@ -73,7 +73,7 @@ public class BookingResultWindow implements GuiApplication {
 	public void actionEvents() {}
 
 	public void properties() {
-		img.setFitWidth(150);
+		img.setFitWidth(230);
 		img.setFitHeight(150);
 		mainPane.setAlignment(Pos.TOP_CENTER);
 		APZLauncher.getBorderPane().setCenter(mainPane);

@@ -25,6 +25,12 @@ public class AdminState {
 	private static String homeScreenTextObject = "updateText.txt";
 	
 	
+	public static boolean[] configureFiles() {
+		boolean[] obj = {new File(ucFilePath).exists(), new File(flightObject).exists(), new File(airportObject).exists(), new File(planeObject).exists(), new File(homeScreenTextObject).exists()};
+		return obj;
+	}
+	
+	
 	public static void saveInformation(UserController uc) {
 		FileOutputStream fileOut;
 		ObjectOutputStream objectOut;
@@ -171,7 +177,6 @@ public class AdminState {
 	}
 	
 	public static void writeUpdate(String updateText) {
-		if (new File(homeScreenTextObject).exists()) {
 			File file = new File(homeScreenTextObject);
 			try {
 				FileWriter fw = new FileWriter(file);
@@ -181,7 +186,6 @@ public class AdminState {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-		}
 	}
 
 }

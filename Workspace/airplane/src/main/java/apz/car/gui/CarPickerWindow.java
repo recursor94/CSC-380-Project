@@ -5,6 +5,9 @@ import java.util.Arrays;
 import java.util.Optional;
 
 import apz.airplane.model.User;
+import apz.airplane.user.gui.APZLauncher;
+import apz.airplane.user.gui.home.HomeScreenWindow;
+import apz.airplane.util.APZState;
 import apz.airplane.util.FilePath;
 import apz.airplane.util.GuiApplication;
 import apz.airplane.util.MessageBox;
@@ -26,6 +29,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class CarPickerWindow implements GuiApplication {
@@ -39,7 +43,7 @@ public class CarPickerWindow implements GuiApplication {
 	private ComboBox<String> manufacturerBox, typeBox, modelBox;
 	private ComboBox<Integer> daysBox;
 	private Button rentButton;
-
+	
 	public CarPickerWindow(Stage stage, User user) {
 		this.stage = stage;
 		this.user = user;
@@ -47,6 +51,7 @@ public class CarPickerWindow implements GuiApplication {
 		content();
 		actionEvents();
 		properties();
+		img.setImage(CarModel.getCarImage(modelBox.getValue()));
 	}
 
 	public void initialize() {
@@ -132,21 +137,30 @@ public class CarPickerWindow implements GuiApplication {
 										new CarModel(modelBox.getValue()), CarType.getCarTypeName(typeBox.getValue())),
 								daysBox.getValue(), Double.parseDouble(price.getText().replace("$", ""))));
 				MessageBox.message(AlertType.INFORMATION, null, "Your selected vehicle has been set aside for you.");
+				APZState.saveInformation();
+				new HomeScreenWindow();
+				APZLauncher.getStage().getScene().getRoot().setEffect(null);
 				stage.close();
 			}
+		});
+		
+		stage.setOnCloseRequest(event -> {
+			MessageBox.message(AlertType.INFORMATION, null, "Car rental cancelled!");
+			APZLauncher.getStage().getScene().getRoot().setEffect(null);
 		});
 
 	}
 
 	public void properties() {
-		img.setFitWidth(150);
+		img.setFitWidth(300);
 		img.setFitHeight(150);
 		header.setFont(new Font(30));
 		gridPane.setAlignment(Pos.TOP_CENTER);
 		mainPane.setAlignment(Pos.TOP_CENTER);
 		gridPane.setHgap(10);
 		gridPane.setVgap(10);
-		stage.setScene(new Scene(mainPane, 400, 550));
+		stage.initModality(Modality.APPLICATION_MODAL);
+		stage.setScene(new Scene(mainPane, 400, 540));
 		stage.show();
 	}
 
@@ -159,7 +173,7 @@ public class CarPickerWindow implements GuiApplication {
 
 	private void updatePrice() {
 		DecimalFormat df = new DecimalFormat(".00");
-		double rate = CarType.getTypeRate(typeBox.getValue());
+		double rate = CarType.getTypeRate(manufacturerBox.getValue(), typeBox.getValue());
 		double priceCalc = daysBox.getValue() * rate;
 		price.setText("$" + df.format(priceCalc));
 	}

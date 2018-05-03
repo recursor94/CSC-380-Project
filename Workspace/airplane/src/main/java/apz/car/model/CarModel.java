@@ -88,13 +88,13 @@ public class CarModel implements Serializable {
 		else if (name.equals("2015 Focus RS"))
 			return new Image("file:resource/fordfocusrs.png");
 		else if (name.equals("2004 Mustang Cobra"))
-			return new Image("file:resource/bmw2series.png");
+			return new Image("file:resource/mustangc.png");
 		else if (name.equals("2016 GT"))
-			return new Image("file:resource/bmw2series.png");
+			return new Image("file:resource/fordgt.png");
 		else if (name.equals("2017 Explorer"))
-			return new Image("file:resource/bmw2series.png");
+			return new Image("file:resource/explorer.png");
 		else if (name.equals("2017 Edge"))
-			return new Image("file:resource/bmw2series.png");
+			return new Image("file:resource/edge.png");
 		else 
 			return new Image(FilePath.DEFAULT_CAR_IMAGE);
 	}

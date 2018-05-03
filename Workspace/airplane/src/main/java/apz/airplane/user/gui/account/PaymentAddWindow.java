@@ -152,7 +152,7 @@ public class PaymentAddWindow implements GuiApplication {
 			public void handle(KeyEvent keyEvent) {
 				if (!"0123456789".contains(keyEvent.getCharacter()))
 		            keyEvent.consume();
-				if (zipCodeField.getText().length() >= 3) {
+				if (zipCodeField.getText().length() >= 5) {
 					zipCodeField.setText(zipCodeField.getText(0, (zipCodeField.getText().length() - 1)));
 					zipCodeField.positionCaret(zipCodeField.getText().length());
 				}
