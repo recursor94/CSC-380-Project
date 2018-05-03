@@ -32,7 +32,7 @@ public class User implements Serializable {
 		this.username = username;
 	}
 	
-	public String getPassword() {	// change this
+	public String getPassword() {
 		return password;
 	}
 	
@@ -127,5 +127,4 @@ public class User implements Serializable {
 	public String toString() {
 		return "Username: " + username + ", Password: " + password + ", Email: " + email;
 	}
-
 }

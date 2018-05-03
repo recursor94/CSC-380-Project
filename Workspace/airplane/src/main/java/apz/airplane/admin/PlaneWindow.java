@@ -65,18 +65,7 @@ public class PlaneWindow {
 
 		seatField.setValue(1);
 
-		removeButton.setDisable(true);
-		
-		header.setFont(new Font(32));
-		planeText.setFont(new Font(18));
-
 		buttonBox.getChildren().addAll(createButton, removeButton);
-		buttonBox.setAlignment(Pos.CENTER);
-
-		gridPane.setAlignment(Pos.CENTER);
-
-		gridPane.setVgap(10);
-		gridPane.setHgap(10);
 
 		gridPane.add(new Label("Plane Number"), 0, 0);
 		gridPane.add(planeNumField, 1, 0);
@@ -88,7 +77,7 @@ public class PlaneWindow {
 		gridPane.add(seatField, 1, 2);
 
 		mainPane.getChildren().addAll(header, new Separator(), gridPane, createButton, new Separator(), planeText, planeView, removeButton);
-		mainPane.setAlignment(Pos.CENTER);
+		
 	}
 
 	private void actionEvents() {
@@ -124,6 +113,14 @@ public class PlaneWindow {
 	}
 
 	private void properties() {
+		removeButton.setDisable(true);
+		header.setFont(new Font(32));
+		planeText.setFont(new Font(18));
+		buttonBox.setAlignment(Pos.CENTER);
+		gridPane.setAlignment(Pos.CENTER);
+		gridPane.setVgap(10);
+		gridPane.setHgap(10);
+		mainPane.setAlignment(Pos.CENTER);
 		Stage stage = new Stage();
 		stage.initModality(Modality.APPLICATION_MODAL);
 		stage.setTitle("Create Planes");

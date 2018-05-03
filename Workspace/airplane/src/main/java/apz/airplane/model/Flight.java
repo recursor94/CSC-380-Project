@@ -92,7 +92,5 @@ public class Flight implements Serializable {
 	public String toString() {
 		return "Flight from " + departureAirport + " to " + destinationAirport + "\nFlight #" + flightNum
 				+ "\tDeparture: " + departureDate + "\nDeparture Time: " + departureTime.getTimeString();
-	
 	}
-
 }

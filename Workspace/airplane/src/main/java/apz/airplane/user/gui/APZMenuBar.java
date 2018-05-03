@@ -32,12 +32,12 @@ public class APZMenuBar {
 	private MenuItem manageAccountItem, managePaymentItem, manageBookingItem, manageCarRentalItem;
 	private MenuItem aboutClassItem, aboutProjectItem, aboutUsItem;
 	
-	
 	public APZMenuBar() {
 			initialize();
 			content();
 			actionEvents();
 	}
+	
 	private void initialize() {
 		menuBar = new MenuBar();
 		
@@ -134,5 +134,4 @@ public class APZMenuBar {
 			new HomeScreenWindow();
 		});
 	}
-
 }

@@ -83,5 +83,4 @@ public enum CarType implements Serializable {
 			tType = 4;
 		return tType;
 	}
-
 }

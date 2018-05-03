@@ -42,6 +42,5 @@ public class Airplane implements Serializable {
 	@Override
 	public String toString() {
 		return "[" + planeNum + "] " + airline + " "  + " :: " + seats.getCapacity() + " seats";
-	}
-	
+	}	
 }

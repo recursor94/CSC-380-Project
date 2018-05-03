@@ -22,7 +22,6 @@ public class AccountInfoWindow implements GuiApplication {
 	private GridPane gridPane;
 	private Text headerText;
 	private Button changeButton, deleteButton;
-
 	private User uc;
 
 	public AccountInfoWindow() {
@@ -39,11 +38,10 @@ public class AccountInfoWindow implements GuiApplication {
 		headerText = new Text("Account Information");
 		changeButton = new Button("Change Information");
 		deleteButton = new Button("Delete Account");
+		uc = APZLauncher.getCurrentUser();
 	}
 
 	public void content() {
-		uc = APZLauncher.getCurrentUser();
-		
 		gridPane.add(new ImageView(new Image(FilePath.BULLET_POINT_IMAGE)), 1, 2);
 		gridPane.add(new Label("Email: "), 2, 2);
 		gridPane.add(new Label(uc.getEmail()), 3, 2);
@@ -88,5 +86,4 @@ public class AccountInfoWindow implements GuiApplication {
 		APZLauncher.getBorderPane().setCenter(mainPane);
 		APZLauncher.getStage().setTitle("APZ Application - Account Information");
 	}
-
 }

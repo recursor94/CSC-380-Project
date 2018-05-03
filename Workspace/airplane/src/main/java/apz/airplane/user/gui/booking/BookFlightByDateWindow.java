@@ -41,14 +41,14 @@ public class BookFlightByDateWindow implements GuiApplication {
 
 	public void initialize() {
 		img = new ImageView(new Image(FilePath.DATE_IMAGE));
-		mainPane = new VBox(10);
 		gridPane = new GridPane();
+		mainPane = new VBox(10);
 		header = new Text("Find and Book Flights by Date");
 		listText = new Text("List of flights on selected date");
 		flightView = new ListView<>();
+		calendar = new DatePicker();
 		findFlightButton = new Button("Find Flights");
 		bookFlightButton = new Button("Book Flight");
-		calendar = new DatePicker();
 	}
 
 	public void content() {
@@ -57,22 +57,6 @@ public class BookFlightByDateWindow implements GuiApplication {
 
 		mainPane.getChildren().addAll(new Label(), header, img, new Separator(), gridPane, findFlightButton,
 				new Separator(), listText, flightView, bookFlightButton);
-	}
-
-	public void properties() {
-		img.setFitWidth(250);
-		img.setFitHeight(150);
-		header.setFont(new Font(28));
-		listText.setFont(new Font(20));
-		bookFlightButton.setDisable(true);
-		calendar.setEditable(false);
-		calendar.setMaxWidth(200);
-		gridPane.setHgap(10);
-		gridPane.setVgap(10);
-		gridPane.setAlignment(Pos.CENTER);
-		mainPane.setAlignment(Pos.CENTER);
-		APZLauncher.getBorderPane().setCenter(mainPane);
-		APZLauncher.getStage().setTitle("APZ Application - Book Flight by Date");
 	}
 
 	public void actionEvents() {
@@ -93,6 +77,22 @@ public class BookFlightByDateWindow implements GuiApplication {
 		bookFlightButton.setOnAction(event -> {
 			new BookingPaymentWindow(flightView.getSelectionModel().getSelectedItem());
 		});
+	}
+	
+	public void properties() {
+		img.setFitWidth(250);
+		img.setFitHeight(150);
+		header.setFont(new Font(28));
+		listText.setFont(new Font(20));
+		bookFlightButton.setDisable(true);
+		calendar.setEditable(false);
+		calendar.setMaxWidth(200);
+		gridPane.setHgap(10);
+		gridPane.setVgap(10);
+		gridPane.setAlignment(Pos.CENTER);
+		mainPane.setAlignment(Pos.CENTER);
+		APZLauncher.getBorderPane().setCenter(mainPane);
+		APZLauncher.getStage().setTitle("APZ Application - Book Flight by Date");
 	}
 
 	private void findFlights(LocalDate departure) {

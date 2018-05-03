@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import apz.airplane.model.Flight;
 import apz.airplane.model.User;
 import apz.airplane.model.UserController;
+import apz.airplane.util.GuiApplication;
 import apz.airplane.util.MessageBox;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -20,7 +21,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class UserWindow {
+public class UserWindow implements GuiApplication {
 
 	private SplitPane mainPane;
 	private GridPane gridPane;
@@ -38,7 +39,7 @@ public class UserWindow {
 		properties();
 	}
 
-	private void initialize() {
+	public void initialize() {
 		mainPane = new SplitPane();
 		gridPane = new GridPane();
 		userList = new ArrayList<>();
@@ -48,13 +49,10 @@ public class UserWindow {
 		createButton = new Button("Create");
 		removeButton = new Button("Remove");
 		userView = new ListView<>();
-
 		loadFile();
 	}
 
-	private void content() { // col row
-		removeButton.setDisable(true);
-		
+	public void content() { 
 		gridPane.add(new Label("Username"), 0, 0);
 		gridPane.add(userField, 1, 0);
 		
@@ -66,25 +64,13 @@ public class UserWindow {
 
 		gridPane.add(createButton, 0, 3);
 
-		gridPane.setVgap(10);
-		gridPane.setHgap(10);
-		gridPane.setAlignment(Pos.CENTER);
-
 		VBox innerBox = new VBox(10);
 		innerBox.getChildren().addAll(new Label("User List"), userView, removeButton);
 
-		mainPane.setDividerPositions(.4);
 		mainPane.getItems().addAll(gridPane, innerBox);
 	}
-
-	private void properties() {
-		Stage stage = new Stage();
-		stage.setTitle("Create Users");
-		stage.setScene(new Scene(mainPane, 750, 175));
-		stage.show();
-	}
-
-	private void actionEvents() {
+	
+	public void actionEvents() {
 		createButton.setOnAction(event -> {
 			verifyInput(userField.getText(), emailField.getText(), passField.getText());
 		});
@@ -117,10 +103,23 @@ public class UserWindow {
 				removeButton.setDisable(true);
 			}
 		});
+		
 		mainPane.setOnKeyPressed(event -> {
 			if (event.getCode() == KeyCode.ENTER)
 				verifyInput(userField.getText(), emailField.getText(), passField.getText());
 		});
+	}
+	
+	public void properties() {
+		removeButton.setDisable(true);
+		gridPane.setVgap(10);
+		gridPane.setHgap(10);
+		gridPane.setAlignment(Pos.CENTER);
+		mainPane.setDividerPositions(.4);
+		Stage stage = new Stage();
+		stage.setTitle("Create Users");
+		stage.setScene(new Scene(mainPane, 750, 175));
+		stage.show();
 	}
 
 	private void verifyInput(String username, String email, String password) {
@@ -157,8 +156,8 @@ public class UserWindow {
 
 	private void loadFile() {
 		uc = AdminState.loadInformation();
-
 		userList = uc.getUserList();
+		
 		if (!userView.getItems().isEmpty())
 			userView.getItems().clear();
 		for (int i = 0; i < userList.size(); i++)

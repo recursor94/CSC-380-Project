@@ -48,7 +48,6 @@ public class BookingWindow implements GuiApplication {
 		datePicker = new DatePicker();
 		cityDepartBox = new ComboBox<>();
 		cityArrivalBox = new ComboBox<>();
-
 		searchButton = new Button("Search");
 	}
 
@@ -59,10 +58,13 @@ public class BookingWindow implements GuiApplication {
 		
 		gridPane.add(new Label("Trip date: "), 0, 2);
 		gridPane.add(datePicker, 1, 2);
+		
 		gridPane.add(new Label("Departing Airport: "), 0, 3);
 		gridPane.add(cityDepartBox, 1, 3);
+		
 		gridPane.add(new Label("Destination Airport: "), 0, 4);
 		gridPane.add(cityArrivalBox, 1, 4);
+		
 		gridPane.add(searchButton, 1, 6);
 	}
 
@@ -72,9 +74,6 @@ public class BookingWindow implements GuiApplication {
 				MessageBox.message(AlertType.ERROR, null, "Date field is blank!");
 			else if (datePicker.getValue().isBefore(LocalDate.now()))
 				MessageBox.message(AlertType.ERROR, null, "Enter a valid date (not one beyond today)");
-//			else if (cityDepartBox.getSelectionModel().getSelectedItem().equals(cityArrivalBox.getSelectionModel().getSelectedItem()))
-//				MessageBox.message(AlertType.ERROR, null,
-//						"Departing airport cannot be the same as destination airport!");
 			else
 				findAirportWindow();
 		});
@@ -91,16 +90,13 @@ public class BookingWindow implements GuiApplication {
 	public void properties() {
 		img.setFitWidth(235);
 		img.setFitHeight(150);
-		
 		headerText.setFont(new Font(32));
 		datePicker.setMaxWidth(200);
 		datePicker.setEditable(false);
-
 		gridPane.setVgap(15);
 		gridPane.setHgap(15);
 		gridPane.setAlignment(Pos.TOP_CENTER);
 		mainPane.setAlignment(Pos.TOP_CENTER);
-
 		APZLauncher.getBorderPane().setCenter(mainPane);
 		APZLauncher.getStage().setTitle(("APZ Application - Search for Flight Bookings"));
 	}

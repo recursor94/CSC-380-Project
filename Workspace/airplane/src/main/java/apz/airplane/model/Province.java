@@ -81,5 +81,4 @@ public enum Province {
 		pList.add(TX);
 		return pList;
 	}
-	
 }

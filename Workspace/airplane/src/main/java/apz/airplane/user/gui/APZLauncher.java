@@ -70,5 +70,4 @@ public class APZLauncher extends Application {
 	public static Stage getStage() {
 		return stage;
 	}
-
 }

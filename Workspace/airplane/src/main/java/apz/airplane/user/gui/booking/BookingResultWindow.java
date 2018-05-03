@@ -67,7 +67,6 @@ public class BookingResultWindow implements GuiApplication {
 			
 			scrollPane.setContent(showBox);
 		}
-		
 	}
 	
 	public void actionEvents() {}
@@ -79,5 +78,4 @@ public class BookingResultWindow implements GuiApplication {
 		APZLauncher.getBorderPane().setCenter(mainPane);
 		APZLauncher.getStage().setTitle(("APZ Application - Booking Results"));
 	}
-	
 }

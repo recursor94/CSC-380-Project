@@ -4,11 +4,9 @@ import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.util.Locale;
 
-import apz.airplane.model.Airplane;
 import apz.airplane.model.Airport;
 import apz.airplane.model.Booking;
 import apz.airplane.model.Flight;
-import apz.airplane.model.Time;
 
 public class BookingTableData {
 
@@ -95,14 +93,6 @@ public class BookingTableData {
 	public void setFlightNumber(int flightNum) {
 		this.flightNumber = flightNum;
 	}
-
-	//public int getPlaneNum() {
-	//	return planeNum;
-	//}
-
-	//public void setPlaneNum(int planeNum) {
-	//	this.planeNum = planeNum;
-	//}
 
 	public String getAirline() {
 		return airline;

@@ -105,5 +105,4 @@ public class PaymentWindow implements GuiApplication {
 		else 
 			paymentBox.setDisable(true);
 	}
-
 }

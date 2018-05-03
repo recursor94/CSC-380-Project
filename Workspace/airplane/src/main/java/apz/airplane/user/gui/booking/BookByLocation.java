@@ -42,40 +42,28 @@ public class BookByLocation implements GuiApplication {
 	
 	public void initialize() {
 		img = new ImageView(new Image(FilePath.LOCATION_IMAGE));
-		gridPane = new GridPane();
 		mainPane = new VBox(10);
+		gridPane = new GridPane();
 		header = new Text("Find and Book Flights by Location");
 		flightView = new ListView<>();
 		findFlightButton = new Button("Find Flights");
 		bookFlightButton = new Button("Book Flight");
-		destinationBox = new ComboBox<>();
 		departureBox = new ComboBox<>();
+		destinationBox = new ComboBox<>();
 	}
 	
 	public void content() {
-		
 		populateComboBox();
 		
 		gridPane.add(new Label("Select your current location"), 0, 0);
 		gridPane.add(departureBox, 1, 0);
+		
 		gridPane.add(new Label("Select your desired destination"), 0, 1);
 		gridPane.add(destinationBox, 1, 1);
 		
 		mainPane.getChildren().addAll(new Label(), header, img, new Separator(), gridPane,findFlightButton, flightView, bookFlightButton);
 	}
 	
-	public void properties() {
-		img.setFitWidth(250);
-		img.setFitHeight(150);
-		header.setFont(new Font(28));
-		bookFlightButton.setDisable(true);
-		gridPane.setHgap(10);
-		gridPane.setVgap(10);
-		mainPane.setAlignment(Pos.CENTER);
-		gridPane.setAlignment(Pos.CENTER);
-		APZLauncher.getBorderPane().setCenter(mainPane);
-		APZLauncher.getStage().setTitle("APZ Application - Book Flight By Location");
-	}
 	public void actionEvents() {
 		findFlightButton.setOnAction(event -> {
 			findFlights();
@@ -97,6 +85,19 @@ public class BookByLocation implements GuiApplication {
 		departureBox.setOnAction(event -> {
 			comboBoxEvents(destinationBox);
 		});
+	}
+	
+	public void properties() {
+		img.setFitWidth(250);
+		img.setFitHeight(150);
+		header.setFont(new Font(28));
+		bookFlightButton.setDisable(true);
+		gridPane.setHgap(10);
+		gridPane.setVgap(10);
+		mainPane.setAlignment(Pos.CENTER);
+		gridPane.setAlignment(Pos.CENTER);
+		APZLauncher.getBorderPane().setCenter(mainPane);
+		APZLauncher.getStage().setTitle("APZ Application - Book Flight By Location");
 	}
 	
 	private void populateComboBox() {

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import apz.airplane.model.Airport;
 import apz.airplane.model.Province;
+import apz.airplane.util.GuiApplication;
 import apz.airplane.util.MessageBox;
 import javafx.collections.FXCollections;
 import javafx.geometry.Orientation;
@@ -27,7 +28,7 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class AirportWindow {
+public class AirportWindow implements GuiApplication {
 
 	private VBox mainPane, headerBox, buttonBox;
 	private ArrayList<Airport> airportList;
@@ -49,7 +50,6 @@ public class AirportWindow {
 	}
 
 	public void initialize() {
-		windowHeader = new Text("Manage Airports");
 		mainPane = new VBox(20);
 		headerBox = new VBox(0);
 		buttonBox = new VBox(2);
@@ -68,8 +68,6 @@ public class AirportWindow {
 		removeButtonBox = new HBox(20);
 		createButtonBox = new HBox(20);
 		headerSeperator = new Separator(Orientation.HORIZONTAL);
-	
-
 	}
 
 	public void content() {
@@ -77,24 +75,14 @@ public class AirportWindow {
 		populateProvince();
 		formatHeader();
 		headerBox.getChildren().add(headerSeperator);
-		removeButton.setMaxWidth(Double.MAX_VALUE);
-		createButton.setMaxWidth(Double.MAX_VALUE);
-		// HBox.setHgrow(createButton, Priority.ALWAYS);
-		HBox.setHgrow(removeButton, Priority.ALWAYS);
 		createButtonBox.getChildren().add(createButton);
-		createButtonBox.setAlignment(Pos.BASELINE_CENTER);
 		removeButtonBox.getChildren().add(removeButton);
 		buttonBox.getChildren().addAll(airportView, removeButtonBox);
-		gridPane.setVgap(5);
-		gridPane.setHgap(5);
-		gridPane.setAlignment(Pos.CENTER);
 		gridPane.add(airportName, 0, 0);
 		gridPane.add(airportNameField, 1, 0);
 		gridPane.add(city, 0, 1);
 		gridPane.add(airportProvinceBox, 1, 1);
-		// gridPane.add(createButton, 0, 2);
 		mainPane.getChildren().addAll(windowHeader, headerBox, gridPane, createButtonBox, buttonBox);
-		mainPane.setAlignment(Pos.CENTER);
 		setupTableContent();
 	}
 
@@ -104,7 +92,6 @@ public class AirportWindow {
 		airportView.getColumns().addAll(nameColumn, provinceColumn);
 		nameColumn.setCellValueFactory(new PropertyValueFactory<Airport, String>("name"));
 		provinceColumn.setCellValueFactory(new PropertyValueFactory<Airport, String>("city"));
-
 		nameColumn.prefWidthProperty().bind(airportView.widthProperty().multiply(0.5));
 		provinceColumn.prefWidthProperty().bind(airportView.widthProperty().multiply(0.5));
 		nameColumn.setResizable(false);
@@ -142,8 +129,7 @@ public class AirportWindow {
 				if (airport != null)
 					airportList.remove(airport);
 				AdminState.saveAirports(airportList);
-				FlightWindow.populateComboBoxes(); // NEED TO CHANGE BUT THIS UPDATES COMBOBOX. NEED TO HAVE STATIC
-													// BOXES WITH THESE DATA INSIDE?
+				FlightWindow.populateComboBoxes(); 
 				loadFile();
 			} else {
 				MessageBox.message(AlertType.ERROR, "ERROR: No Airport Selected",
@@ -168,7 +154,15 @@ public class AirportWindow {
 	}
 
 	public void properties() {
+		removeButton.setMaxWidth(Double.MAX_VALUE);
+		createButton.setMaxWidth(Double.MAX_VALUE);
 		airportView.setMinHeight(150);
+		HBox.setHgrow(removeButton, Priority.ALWAYS);
+		createButtonBox.setAlignment(Pos.BASELINE_CENTER);
+		gridPane.setVgap(5);
+		gridPane.setHgap(5);
+		gridPane.setAlignment(Pos.CENTER);
+		mainPane.setAlignment(Pos.CENTER);
 		Stage stage = new Stage();
 		stage.initModality(Modality.APPLICATION_MODAL);
 		stage.setScene(new Scene(mainPane, 400, 500));
@@ -176,6 +170,7 @@ public class AirportWindow {
 		stage.show();
 		stage.setResizable(false);
 	} 
+	
 	private void createAirport(Airport airport) {
 		airportList.add(airport);
 		airportView.getItems().add(airport);

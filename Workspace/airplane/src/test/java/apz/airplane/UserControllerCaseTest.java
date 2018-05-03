@@ -1,9 +1,7 @@
 package apz.airplane;
 
 import static org.junit.Assert.*;
-
 import org.junit.Test;
-
 import apz.airplane.model.User;
 import apz.airplane.model.UserController;
 
@@ -49,6 +47,7 @@ public class UserControllerCaseTest {
 		assertEquals(true, ctrl.userExists("zeg"));
 		
 	}
+	
 	@Test
 	public void userNonExistsTest() {
 		User user = new User("asd@asd.org", "zeg", "pass");
@@ -57,5 +56,4 @@ public class UserControllerCaseTest {
 		assertEquals(false, ctrl.userExists("zerg"));
 		
 	}
-
 }

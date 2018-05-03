@@ -10,7 +10,6 @@ import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
-
 import apz.airplane.model.Airplane;
 import apz.airplane.model.Airport;
 import apz.airplane.model.Flight;
@@ -25,10 +24,12 @@ public class AdminState {
 	private static String homeScreenTextObject = "updateText.txt";
 	
 	public static boolean[] configureFiles() {
-		boolean[] obj = {new File(ucFilePath).exists(), new File(flightObject).exists(), new File(airportObject).exists(), new File(planeObject).exists(), new File(homeScreenTextObject).exists()};
+		boolean[] obj = { new File(ucFilePath).exists(), new File(flightObject).exists(),
+				new File(airportObject).exists(), new File(planeObject).exists(),
+				new File(homeScreenTextObject).exists() };
 		return obj;
 	}
-	
+
 	public static void saveInformation(UserController uc) {
 		FileOutputStream fileOut;
 		ObjectOutputStream objectOut;
@@ -41,12 +42,12 @@ public class AdminState {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public static UserController loadInformation() {
 		UserController uc = new UserController();
 		FileInputStream fileIn;
 		try {
-			if(!new File(ucFilePath).exists())
+			if (!new File(ucFilePath).exists())
 				saveInformation(uc);
 			fileIn = new FileInputStream(ucFilePath);
 			ObjectInputStream objectIn = new ObjectInputStream(fileIn);
@@ -56,7 +57,7 @@ public class AdminState {
 			uc = (UserController) obj;
 
 		} catch (IOException | ClassNotFoundException e) {
-//			e.printStackTrace();
+			 e.printStackTrace();
 		}
 		return uc;
 	}
@@ -157,36 +158,34 @@ public class AdminState {
 		}
 		return new ArrayList<Flight>();
 	}
-	
+
 	public static String readUpdate() {
-		
+
 		String line = "";
 		if (new File(homeScreenTextObject).exists()) {
 			File file = new File(homeScreenTextObject);
 			try {
 				Scanner input = new Scanner(file);
-				while(input.hasNextLine()) 
-					line += input.nextLine() + "\n";	
+				while (input.hasNextLine())
+					line += input.nextLine() + "\n";
 				input.close();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
 		return line;
-		
-	}
-	
-	public static void writeUpdate(String updateText) {
-			File file = new File(homeScreenTextObject);
-			try {
-				FileWriter fw = new FileWriter(file);
-				PrintWriter pw = new PrintWriter(fw);
-				pw.write(updateText);
-				pw.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+
 	}
 
+	public static void writeUpdate(String updateText) {
+		File file = new File(homeScreenTextObject);
+		try {
+			FileWriter fw = new FileWriter(file);
+			PrintWriter pw = new PrintWriter(fw);
+			pw.write(updateText);
+			pw.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 }

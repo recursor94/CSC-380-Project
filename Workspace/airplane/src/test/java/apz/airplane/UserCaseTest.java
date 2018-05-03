@@ -1,11 +1,8 @@
 package apz.airplane;
 
 import static org.junit.Assert.assertEquals;
-
 import java.time.LocalDate;
-
 import org.junit.Test;
-
 import apz.airplane.model.Airplane;
 import apz.airplane.model.Airport;
 import apz.airplane.model.Booking;
@@ -155,12 +152,12 @@ public class UserCaseTest {
 		Payment payment = new Payment(name, street, city, state, zip, cardNum, expirationDate, CCV);
 		Payment payment2 = new Payment(name, street, city, state, zip, cardNum2, expirationDate, CCV);
 		user.addPayment(payment);
-		
 		assertEquals(false, user.removePayment(payment2));
 	}
 	@Test 
 	public void flightCancellableTrue() {
-		Flight flight = new Flight(new Airplane(3, "Test United", 9001), new Airport("test", "test"), new Airport("test","test"), null, null, null, null,3 );
+		Flight flight = new Flight(new Airplane(3, "Test United", 9001), new Airport("test", "test"), new Airport("test","test"), 
+				null, null, null, null,3 );
 		LocalDate bookDate = LocalDate.now();
 		Booking booking = new Booking(flight, bookDate, 3);
 
@@ -168,10 +165,10 @@ public class UserCaseTest {
 	}
 	@Test
 	public void flightCancellableFalse() {
-		Flight flight = new Flight(new Airplane(3, "Test United", 9001), new Airport("test", "test"), new Airport("test","test"), null, null, null, null,3 );
+		Flight flight = new Flight(new Airplane(3, "Test United", 9001), new Airport("test", "test"), new Airport("test","test"), 
+				null, null, null, null,3 );
 		LocalDate bookDate = LocalDate.now().plusDays(2);
 		Booking booking = new Booking(flight, bookDate, 3);
-
 		assertEquals(false, booking.isCancellable());
 	}
 }

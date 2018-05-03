@@ -30,5 +30,4 @@ public class RentalSystem implements Serializable {	// user has this?
 	public void setRentalList(ArrayList<Rental> rentalList) {
 		this.rentalList = rentalList;
 	}
-
 }

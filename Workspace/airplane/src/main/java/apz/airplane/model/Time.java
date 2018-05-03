@@ -42,6 +42,7 @@ public class Time implements Serializable {
 		}
 		String[] numSplit = timeSplit[0].split(":");
 		tempTime += Double.valueOf(numSplit[0]);
+		
 		// Add .5 if the time is on the half hour
 		if (Integer.valueOf(numSplit[1]) == 30)
 			tempTime += .5;
@@ -53,5 +54,4 @@ public class Time implements Serializable {
 	public String toString() {
 		return timeString;
 	}
-
 }

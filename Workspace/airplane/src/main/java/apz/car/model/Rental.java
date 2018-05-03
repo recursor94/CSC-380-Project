@@ -49,5 +49,4 @@ public class Rental implements Serializable {
 	public void setDate(LocalDate date) {
 		this.date = date;
 	}
-	
 }

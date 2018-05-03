@@ -1,9 +1,7 @@
 package apz.airplane;
 
 import static org.junit.Assert.assertEquals;
-
 import org.junit.Test;
-
 import apz.airplane.model.Airplane;
 import apz.airplane.model.Seating;
 

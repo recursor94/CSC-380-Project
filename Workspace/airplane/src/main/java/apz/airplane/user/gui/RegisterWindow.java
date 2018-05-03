@@ -29,7 +29,6 @@ public class RegisterWindow implements GuiApplication {
 	private PasswordField passField;
 	private Button registerButton;
 	private Button backButton;
-	
 	private VBox rootPane;
 	private HBox userBox, emailBox, passBox, buttonBox;
 	
@@ -42,17 +41,17 @@ public class RegisterWindow implements GuiApplication {
 	
 	public void initialize() {
 		img = new ImageView(new Image("file:resource/logo.png"));
-		header = new Text("User Registration");
-		rootPane = new VBox(10);
-		userBox = new HBox(10);
-		passBox = new HBox(10);
-		emailBox = new HBox(10);
-		buttonBox = new HBox(10);
 		userField = new TextField();
 		emailField = new TextField();
+		header = new Text("User Registration");
 		passField = new PasswordField();
 		registerButton = new Button("Register");
 		backButton = new Button("Back");
+		rootPane = new VBox(10);
+		userBox = new HBox(10);
+		emailBox = new HBox(10);
+		passBox = new HBox(10);
+		buttonBox = new HBox(10);
 	}
 	
 	public void content() {
@@ -70,19 +69,6 @@ public class RegisterWindow implements GuiApplication {
 		rt.play();
 	}
 	
-	public void properties() {
-		header.setFont(new Font(20));
-		userBox.setAlignment(Pos.CENTER);
-		emailBox.setAlignment(Pos.CENTER);
-		passBox.setAlignment(Pos.CENTER);
-		buttonBox.setAlignment(Pos.CENTER);
-		rootPane.setAlignment(Pos.CENTER);
-		img.setFitWidth(150);
-		img.setFitHeight(150);
-		APZLauncher.getBorderPane().setCenter(rootPane);
-		APZLauncher.getStage().setTitle("APZ Application - Register Account");
-	}
-	
 	public void actionEvents() {
 		registerButton.setOnAction((event) -> {
 			tryRegister();
@@ -96,6 +82,19 @@ public class RegisterWindow implements GuiApplication {
 			if (event.getCode() == KeyCode.ENTER)
 				tryRegister();
 		});
+	}
+	
+	public void properties() {
+		header.setFont(new Font(20));
+		userBox.setAlignment(Pos.CENTER);
+		emailBox.setAlignment(Pos.CENTER);
+		passBox.setAlignment(Pos.CENTER);
+		buttonBox.setAlignment(Pos.CENTER);
+		rootPane.setAlignment(Pos.CENTER);
+		img.setFitWidth(150);
+		img.setFitHeight(150);
+		APZLauncher.getBorderPane().setCenter(rootPane);
+		APZLauncher.getStage().setTitle("APZ Application - Register Account");
 	}
 	
 	private void tryRegister() {
@@ -127,5 +126,4 @@ public class RegisterWindow implements GuiApplication {
 			}	
 		}
 	}
-	
 }

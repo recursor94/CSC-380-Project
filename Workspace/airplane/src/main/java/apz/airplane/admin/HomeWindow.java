@@ -16,12 +16,12 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class HomeWindow {
+	
 	private ImageView img;
 	private Text header;
 	private GridPane gridPane;
 	private VBox mainPane;
-	private Button configureButton;
-	private Button addPlaneButton, addFlightButton, userManageButton, launchButton, updateTextButton;
+	private Button configureButton, addPlaneButton, addFlightButton, userManageButton, launchButton, updateTextButton;
 
 	public HomeWindow(Stage primaryStage) {
 		initialize();
@@ -99,5 +99,4 @@ public class HomeWindow {
 		primaryStage.setTitle("Admin Debug Window");
 		primaryStage.show();
 	}
-
 }

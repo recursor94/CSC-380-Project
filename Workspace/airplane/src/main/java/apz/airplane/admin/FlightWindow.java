@@ -76,25 +76,6 @@ public class FlightWindow {
 		loadFlights();
 		populateComboBoxes();
 		
-		header.setFont(new Font(32));
-		flightText.setFont(new Font(18));
-		
-		arriveDatePicker.setMaxWidth(200);
-		departDatePicker.setMaxWidth(200);
-		arriveAirportBox.setMaxWidth(200);
-		departAirportBox.setMaxWidth(200);
-		arriveTimeBox.setMaxWidth(200);
-		departTimeBox.setMaxWidth(200);
-		planeBox.setMaxWidth(200);
-		
-		removeFlightButton.setDisable(true);
-		
-		arriveDatePicker.setEditable(false);
-		departDatePicker.setEditable(false);
-		
-		gridPane.setHgap(10);
-		gridPane.setVgap(10);
-		
 		gridPane.add(new Label("Plane Selection"), 0, 0);
 		gridPane.add(planeBox, 1, 0);
 		
@@ -121,11 +102,8 @@ public class FlightWindow {
 		gridPane.add(departDatePicker, 0, 7);
 		gridPane.add(arriveDatePicker, 1, 7);
 		
-		gridPane.setAlignment(Pos.CENTER);
-		
-		mainPane.getChildren().addAll(header, new Separator(), gridPane, createFlightButton, new Separator(), flightText, flightView, removeFlightButton);
-		
-		mainPane.setAlignment(Pos.CENTER);
+		mainPane.getChildren().addAll(header, new Separator(), gridPane, createFlightButton, 
+				new Separator(), flightText, flightView, removeFlightButton);
 	}
 
 	public void actionEvents() {
@@ -141,7 +119,6 @@ public class FlightWindow {
 				removeFlightButton.setDisable(true);
 		});
 		
-
 		removeFlightButton.setOnAction(event -> {
 			Flight flight = flightView.getSelectionModel().getSelectedItem();
 			flightList.remove(flight);
@@ -183,6 +160,22 @@ public class FlightWindow {
 	}
 
 	public void properties(Stage mainStage) {
+		header.setFont(new Font(32));
+		flightText.setFont(new Font(18));
+		arriveDatePicker.setMaxWidth(200);
+		departDatePicker.setMaxWidth(200);
+		arriveAirportBox.setMaxWidth(200);
+		departAirportBox.setMaxWidth(200);
+		arriveTimeBox.setMaxWidth(200);
+		departTimeBox.setMaxWidth(200);
+		planeBox.setMaxWidth(200);
+		removeFlightButton.setDisable(true);
+		arriveDatePicker.setEditable(false);
+		departDatePicker.setEditable(false);
+		gridPane.setHgap(10);
+		gridPane.setVgap(10);
+		gridPane.setAlignment(Pos.CENTER);
+		mainPane.setAlignment(Pos.CENTER);
 		Stage stage = new Stage();
 		stage.initOwner(mainStage);
 		stage.setTitle("Create Flights");

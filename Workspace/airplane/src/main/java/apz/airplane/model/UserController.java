@@ -35,7 +35,6 @@ public class UserController implements Serializable {
 		return null;
 	}
 	
-	//This checks to see if a username exists
 	public boolean userExists (String username) {
 		for(User user : userList) {
 			if(user.getUsername().equals(username)) {

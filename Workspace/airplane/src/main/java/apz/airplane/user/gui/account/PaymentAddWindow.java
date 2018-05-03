@@ -77,27 +77,16 @@ public class PaymentAddWindow implements GuiApplication {
 		yearBox = new ComboBox<>();
 		stateBox = new ComboBox<>();
 		submitButton = new Button("Submit");
+		user = APZLauncher.getCurrentUser();
 	}
 	
 	public void content() {
-		img.setFitWidth(250);
-		img.setFitHeight(150);
-		
-		header.setFont(new Font(32));
-		
-		CCVNumField.setMaxWidth(50);
-		CCVNumField.setTooltip(new Tooltip("CCV"));
-		
-		user = APZLauncher.getCurrentUser();
-		
 		populateExpirationFields();
 		populateStates();
 		
 		expirationPane.getChildren().addAll(monthBox, yearBox);
 		
 		infoPane.getChildren().addAll(cardNumField, CCVNumField);
-		gridPane.setHgap(10);
-		gridPane.setVgap(10);
 		
 		gridPane.add(new Label("Credit Card Number: "), 0, 0);
 		gridPane.add(infoPane, 1, 0);
@@ -120,22 +109,7 @@ public class PaymentAddWindow implements GuiApplication {
 		gridPane.add(new Label("Select Your State: "), 0, 6);
 		gridPane.add(stateBox, 1, 6);
 		
-		gridPane.setAlignment(Pos.CENTER);
-		
 		mainPane.getChildren().addAll(header, img, new Separator(), gridPane, submitButton);
-		mainPane.setAlignment(Pos.CENTER);
-	}
-	
-	public void properties() {
-		if (stage == null) {
-			APZLauncher.getBorderPane().setCenter(mainPane);
-			APZLauncher.getStage().setTitle("APZ Application - Add Payment Method");
-		}
-		else {
-			stage.setScene(new Scene(mainPane, 500, 725));
-			stage.setTitle("APZ Application - Add Payment Method");
-			stage.show();
-		}
 	}
 	
 	public void actionEvents() {
@@ -181,6 +155,28 @@ public class PaymentAddWindow implements GuiApplication {
 				}
 	        }
 	      });
+	}
+	
+	public void properties() {
+		img.setFitWidth(250);
+		img.setFitHeight(150);
+		header.setFont(new Font(32));
+		CCVNumField.setMaxWidth(50);
+		CCVNumField.setTooltip(new Tooltip("CCV"));
+		gridPane.setHgap(10);
+		gridPane.setVgap(10);
+		gridPane.setAlignment(Pos.CENTER);
+		mainPane.setAlignment(Pos.CENTER);
+		
+		if (stage == null) {
+			APZLauncher.getBorderPane().setCenter(mainPane);
+			APZLauncher.getStage().setTitle("APZ Application - Add Payment Method");
+		}
+		else {
+			stage.setScene(new Scene(mainPane, 500, 725));
+			stage.setTitle("APZ Application - Add Payment Method");
+			stage.show();
+		}
 	}
 	
 	private void verifyInput () {

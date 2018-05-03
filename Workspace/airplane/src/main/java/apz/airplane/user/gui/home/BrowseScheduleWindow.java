@@ -75,15 +75,14 @@ public class BrowseScheduleWindow implements GuiApplication {
 		setTableData(LocalDate.now());
 		setupTableContents();
 		windowHeaderBox.getChildren().addAll(windowHeader, headerSeparator);
-		windowHeaderBox.setAlignment(Pos.BASELINE_CENTER);
+		
 		dateBox.getChildren().addAll(dateText, flightDatePicker);
-		dateBox.setAlignment(Pos.BASELINE_CENTER);
+		
 		HBox dateTimeHbox = new HBox();
 		dateTimeHbox.setAlignment(Pos.BASELINE_CENTER);
 		dateTimeHbox.getChildren().add(dateTimeLabel);
+		
 		mainPane.getChildren().addAll(windowHeaderBox, dateBox, dateTimeHbox, flightTable);
-		APZLauncher.getBorderPane().setCenter(mainPane);
-		APZLauncher.getStage().setTitle("APZ Application - Scheduled Flights");
 	}
 
 	public void actionEvents() {
@@ -107,9 +106,8 @@ public class BrowseScheduleWindow implements GuiApplication {
 
 	public void properties() {
 		flightDatePicker.setEditable(true);
-		APZLauncher.getStage().setWidth(500);
-		APZLauncher.getStage().setHeight(725);
 		APZLauncher.getStage().setTitle("APZ Application - Browse Schedules");
+		APZLauncher.getBorderPane().setCenter(mainPane);
 		flightTable.setMinHeight(APZLauncher.getStage().getHeight() - 10);
 		flightNumber.prefWidthProperty().bind(flightTable.widthProperty().multiply(0.25));
 		departingCity.prefWidthProperty().bind(flightTable.widthProperty().multiply(0.25));
@@ -118,8 +116,11 @@ public class BrowseScheduleWindow implements GuiApplication {
 		windowHeader.setStyle("-fx-font: 32 arial;");
 		dateText.setStyle("-fx-font: 14 arial;");
 		dateTimeLabel.setStyle("-fx-font: 12 arial;");
+		windowHeaderBox.setAlignment(Pos.BASELINE_CENTER);
+		dateBox.setAlignment(Pos.BASELINE_CENTER);
 	}
 
+	@SuppressWarnings("unchecked")
 	private void setupTableContents() {
 		flightTable.getColumns().addAll(flightNumber, departingCity, destinationCity, departingTime);
 		flightNumber.setCellValueFactory(new PropertyValueFactory<HomeTableData, Integer>("flightNumber"));
@@ -171,7 +172,6 @@ public class BrowseScheduleWindow implements GuiApplication {
 				}
 			}
 		}
-
 	}
 
 	private void setupClock() {
@@ -184,7 +184,6 @@ public class BrowseScheduleWindow implements GuiApplication {
 		}));
 		realTimeClock.setCycleCount(Animation.INDEFINITE);
 		realTimeClock.play();
-
 	}
 
 	private void refreshClockContent() {
@@ -193,9 +192,9 @@ public class BrowseScheduleWindow implements GuiApplication {
 		timeMinute = cal.get(Calendar.MINUTE);
 		String timeOfDay = "AM";
 
-		if (cal.get(Calendar.AM_PM) == Calendar.PM) {
+		if (cal.get(Calendar.AM_PM) == Calendar.PM) 
 			timeOfDay = "PM";
-		}
+		
 		DateFormat dateFormat = new SimpleDateFormat("EEEE, MMMMM dd hh:mm");
 		String sDate = dateFormat.format(cal.getTime());
 		dateTimeLabel.setText("Current Time: " + sDate + " " + timeOfDay);
@@ -209,17 +208,14 @@ public class BrowseScheduleWindow implements GuiApplication {
 				int departureMinute = 0;
 				int departureHour = (int) departureTime;
 
-				if (departureTime % 1 == 0) {
+				if (departureTime % 1 == 0) 
 					departureMinute = 30;
-				}
 
 				if (departureHour == timeHour && departureMinute == timeMinute) {
 					flightsOnDate.remove(flight);
 					flightTable.getItems().remove(flightTable.getSelectionModel().getSelectedItem());
 				}
-
 			}
-
 		}
 	}
 }

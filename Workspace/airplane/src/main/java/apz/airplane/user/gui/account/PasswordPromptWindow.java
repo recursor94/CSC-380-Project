@@ -92,7 +92,7 @@ public class PasswordPromptWindow implements GuiApplication {
 	}
 	
 	private void attemptLogin() {
-		if (	APZLauncher.getCurrentUser().validatePassword(passwordTf.getText())) {
+		if (APZLauncher.getCurrentUser().validatePassword(passwordTf.getText())) {
 			APZLauncher.getStage().getScene().getRoot().setEffect(null);
 			stage.close();
 			if (index == 1) 
@@ -114,5 +114,4 @@ public class PasswordPromptWindow implements GuiApplication {
 		APZLauncher.getStage().getScene().getRoot().setEffect(null);
 		stage.close();
 	}
-
 }

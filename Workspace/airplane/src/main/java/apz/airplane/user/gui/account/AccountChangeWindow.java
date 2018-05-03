@@ -27,10 +27,8 @@ public class AccountChangeWindow implements GuiApplication {
 	private Text headerText;
 	private VBox mainPane;
 	private GridPane gridPane;
-
 	private TextField emailField;
 	private PasswordField passField, newPassField, confirmPassField;
-
 	private Button changeButton, backButton;
 
 	public AccountChangeWindow() {
@@ -139,5 +137,4 @@ public class AccountChangeWindow implements GuiApplication {
 		} else
 			MessageBox.message(AlertType.ERROR, null, "Password input is invalid");
 	}
-
 }

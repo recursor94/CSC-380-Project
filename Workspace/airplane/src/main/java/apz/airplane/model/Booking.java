@@ -55,5 +55,4 @@ public class Booking implements Serializable {
 	public String toString() {
 		return flight.toString() + "\tArrival Time: " + flight.getArrivalTime().getTimeString() + "\nFlight booked on " + bookDate;
 	}
-
 }

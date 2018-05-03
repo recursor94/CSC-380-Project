@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 public class ConfigureWindow {
 	
 	public ConfigureWindow() {
+		
 		Stage stage = new Stage();
 		GridPane gridPane = new GridPane();
 		
@@ -56,6 +57,5 @@ public class ConfigureWindow {
 		stage.setResizable(false);
 		stage.show();
 	}
-	
 }
 

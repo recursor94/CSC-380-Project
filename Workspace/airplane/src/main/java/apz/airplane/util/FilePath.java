@@ -18,5 +18,4 @@ public class FilePath {
 	public static final String LOCATION_IMAGE = "file:resource/location.png";
 	public static final String DEFAULT_CAR_IMAGE = "file:resource/default_car.png";
 	public static final String HOME_PLANE = "file:resource/home_plane.png";
-
 }

@@ -1,5 +1,6 @@
 package apz.airplane.admin;
 
+import apz.airplane.util.GuiApplication;
 import apz.airplane.util.MessageBox;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -15,7 +16,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class NewsWindow {
+public class NewsWindow implements GuiApplication {
 
 	private Stage stage;
 	private VBox mainPane;
@@ -29,7 +30,6 @@ public class NewsWindow {
 		content();
 		actionEvents();
 		properties();
-
 	}
 
 	public void initialize() {

@@ -94,5 +94,4 @@ public class CarRentalViewWindow implements GuiApplication {
 		gridPane.setAlignment(Pos.TOP_CENTER);
 		APZLauncher.getBorderPane().setCenter(mainPane);
 	}
-
 }

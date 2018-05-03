@@ -98,5 +98,4 @@ public class CarModel implements Serializable {
 		else 
 			return new Image(FilePath.DEFAULT_CAR_IMAGE);
 	}
-
 }

@@ -14,19 +14,20 @@ import apz.airplane.model.UserController;
 import apz.airplane.user.gui.APZLauncher;
 
 public class APZState {
-	
+
 	private static String ucFilePath = "userList.apz";
 	private static String airportObject = "airportList.apz";
 	private static String flightObject = "flightList.apz";
 	private static String planeObject = "planeList.apz";
 	private static String homeScreenTextObject = "updateText.txt";
-	
+
 	public static boolean checkFilesExist() {
-		if (new File(airportObject).exists() && new File(flightObject).exists() && new File(planeObject).exists() && new File(homeScreenTextObject).exists())
+		if (new File(airportObject).exists() && new File(flightObject).exists() && new File(planeObject).exists()
+				&& new File(homeScreenTextObject).exists())
 			return true;
 		return false;
 	}
-	
+
 	public static void saveInformation() {
 		FileOutputStream fileOut;
 		ObjectOutputStream objectOut;
@@ -39,7 +40,7 @@ public class APZState {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public static void saveInformation(UserController uc) {
 		FileOutputStream fileOut;
 		ObjectOutputStream objectOut;
@@ -52,7 +53,7 @@ public class APZState {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public static UserController loadInformation() {
 		UserController uc = new UserController();
 		FileInputStream fileIn;
@@ -69,24 +70,25 @@ public class APZState {
 		}
 		return uc;
 	}
-	
+
+	@SuppressWarnings("unchecked")
 	public static ArrayList<Airport> loadAirports() {
-			ArrayList<Airport> airportList = new ArrayList<>();
-			FileInputStream fileIn;
-			try {
-				fileIn = new FileInputStream(airportObject);
-				ObjectInputStream objectIn = new ObjectInputStream(fileIn);
+		ArrayList<Airport> airportList = new ArrayList<>();
+		FileInputStream fileIn;
+		try {
+			fileIn = new FileInputStream(airportObject);
+			ObjectInputStream objectIn = new ObjectInputStream(fileIn);
 
-				Object obj = objectIn.readObject();
-				objectIn.close();
-				airportList = (ArrayList<Airport>) obj;
+			Object obj = objectIn.readObject();
+			objectIn.close();
+			airportList = (ArrayList<Airport>) obj;
 
-			} catch (IOException | ClassNotFoundException e) {
-				e.printStackTrace();
-			}
-			return airportList;
+		} catch (IOException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return airportList;
 	}
-	
+
 	public static void saveFlight(ArrayList<Flight> flight) {
 		FileOutputStream fileOut;
 		ObjectOutputStream objectOut;
@@ -99,21 +101,22 @@ public class APZState {
 			e.printStackTrace();
 		}
 	}
-	
+
+	@SuppressWarnings("unchecked")
 	public static ArrayList<Flight> loadFlights() {
 		ArrayList<Flight> flightList = new ArrayList<>();
-			FileInputStream fileIn;
-			try {
-				fileIn = new FileInputStream(flightObject);
-				ObjectInputStream objectIn = new ObjectInputStream(fileIn);
+		FileInputStream fileIn;
+		try {
+			fileIn = new FileInputStream(flightObject);
+			ObjectInputStream objectIn = new ObjectInputStream(fileIn);
 
-				Object obj = objectIn.readObject();
-				objectIn.close();
-				flightList = (ArrayList<Flight>) obj;
-			} catch (IOException | ClassNotFoundException e) {
-				e.printStackTrace();
-			}
-			
-			return flightList;
+			Object obj = objectIn.readObject();
+			objectIn.close();
+			flightList = (ArrayList<Flight>) obj;
+		} catch (IOException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+
+		return flightList;
 	}
 }

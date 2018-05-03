@@ -33,7 +33,6 @@ public class LoginWindow implements GuiApplication {
 	private TextField userField;
 	private PasswordField passField;
 	private Button loginButton, registerButton;
-
 	private VBox rootPane;
 	private HBox userBox, passBox, buttonBox;
 	private Text status, header;
@@ -41,6 +40,7 @@ public class LoginWindow implements GuiApplication {
 	public LoginWindow() {
 		if (APZLauncher.getBorderPane().getTop() instanceof MenuBar)
 			APZLauncher.getBorderPane().setTop(null);
+		
 		initialize();
 		content();
 		actionEvents();
@@ -49,31 +49,19 @@ public class LoginWindow implements GuiApplication {
 
 	public void initialize() {
 		img = new ImageView(new Image(FilePath.LOGO_IMAGE));
+		userField = new TextField();
+		passField = new PasswordField();
+		loginButton = new Button("Login");
+		registerButton = new Button("Register");
 		rootPane = new VBox(10);
 		userBox = new HBox(10);
 		passBox = new HBox(10);
 		buttonBox = new HBox(10);
-
-		userField = new TextField();
-		passField = new PasswordField();
-
 		status = new Text("");
-		status.setFill(Color.RED);
-
 		header = new Text("APZ Project Application");
-
-		loginButton = new Button("Login");
-		registerButton = new Button("Register");
 	}
 
 	public void content() {
-
-		header.setFont(new Font(20));
-		userBox.setAlignment(Pos.CENTER);
-		passBox.setAlignment(Pos.CENTER);
-		rootPane.setAlignment(Pos.CENTER);
-		buttonBox.setAlignment(Pos.CENTER);
-
 		userBox.getChildren().addAll(new Label("Username: "), userField);
 		passBox.getChildren().addAll(new Label("Password: "), passField);
 		buttonBox.getChildren().addAll(loginButton, registerButton);
@@ -86,15 +74,6 @@ public class LoginWindow implements GuiApplication {
 		rt.play();
 
 		rootPane.getChildren().addAll(img, header, status, userBox, passBox, buttonBox);
-	}
-
-	public void properties() {
-		img.setFitWidth(170);
-		img.setFitHeight(170);
-		APZLauncher.getBorderPane().setCenter(rootPane);
-		APZLauncher.getStage().setWidth(320);
-		APZLauncher.getStage().setHeight(430);
-		APZLauncher.getStage().setTitle("APZ Application - User Login");
 	}
 
 	public void actionEvents() {
@@ -112,6 +91,21 @@ public class LoginWindow implements GuiApplication {
 		});
 	}
 
+	public void properties() {
+		img.setFitWidth(170);
+		img.setFitHeight(170);
+		status.setFill(Color.RED);
+		header.setFont(new Font(20));
+		userBox.setAlignment(Pos.CENTER);
+		passBox.setAlignment(Pos.CENTER);
+		rootPane.setAlignment(Pos.CENTER);
+		buttonBox.setAlignment(Pos.CENTER);
+		APZLauncher.getBorderPane().setCenter(rootPane);
+		APZLauncher.getStage().setWidth(320);
+		APZLauncher.getStage().setHeight(430);
+		APZLauncher.getStage().setTitle("APZ Application - User Login");
+	}
+	
 	private void tryLogin() {
 		++loginAttempt;
 		User user = APZLauncher.getUserController().login(userField.getText(), passField.getText());

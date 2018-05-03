@@ -63,8 +63,6 @@ public class BookingPaymentWindow implements GuiApplication {
 		img = new ImageView(new Image(FilePath.PAYMENT_INFO_IMAGE));
 		user = APZLauncher.getCurrentUser();
 		
-		cost = Province.getPrice(flight.getDepartureAirport().getCity(), flight.getDestinationAirport().getCity());
-		
 		mainPane = new VBox(10);
 		paymentPane = new GridPane();
 		header = new Text("\nPayment");
@@ -72,6 +70,8 @@ public class BookingPaymentWindow implements GuiApplication {
 		paymentBox = new ComboBox<>();
 		baggageBox = new ComboBox<>();
 		confirmButton = new Button("Confirm Payment");
+		
+		cost = Province.getPrice(flight.getDepartureAirport().getCity(), flight.getDestinationAirport().getCity());
 		
 		costLabel = new Label("");
 	}
@@ -95,8 +95,6 @@ public class BookingPaymentWindow implements GuiApplication {
 		
 		paymentPane.add(new Label("Cost for Flight: "), 0, 7);
 		paymentPane.add(costLabel, 1, 7);
-		
-		costLabel.setText("$" + df.format(cost));
 		
 		paymentPane.add(new Label("Payment Method: "), 0, 9);
 		if (paymentBox.getItems().isEmpty()) {
@@ -139,15 +137,14 @@ public class BookingPaymentWindow implements GuiApplication {
 					Alert alert = new Alert(AlertType.CONFIRMATION);
 					alert.setTitle("Confirmation Dialog with Custom Actions");
 					alert.setHeaderText("APZ Auto Rental");
-					alert.setContentText("Would you like to rent a vehicle as well at our auto airport location in " + flight.getDestinationAirport().getName() + ", " + flight.getDestinationAirport().getCity()  +"?");
+					alert.setContentText("Would you like to rent a vehicle as well at our auto airport location in " + 
+							flight.getDestinationAirport().getName() + ", " + flight.getDestinationAirport().getCity()  +"?");
 
 					ButtonType yesButton = new ButtonType("Yes");
 					ButtonType cancelButton = new ButtonType("No", ButtonData.CANCEL_CLOSE);
 
 					alert.getButtonTypes().setAll(yesButton, cancelButton);
 					
-					
-
 					Optional<ButtonType> result = alert.showAndWait();
 					if (result.get() == yesButton){
 						APZLauncher.getStage().getScene().getRoot().setEffect(new GaussianBlur());
@@ -174,10 +171,10 @@ public class BookingPaymentWindow implements GuiApplication {
 		paymentPane.setHgap(15);
 		paymentPane.setVgap(15);
 		paymentPane.setAlignment(Pos.TOP_CENTER);
+		costLabel.setText("$" + df.format(cost));
 		APZLauncher.getBorderPane().setCenter(mainPane);
 		APZLauncher.getStage().setTitle("APZ Application - Pay for Booking");
 	}
-	
 	
 	private void loadComboBoxInformation() {
 		for (int i = 0; i < 4; i++) 
@@ -214,7 +211,4 @@ public class BookingPaymentWindow implements GuiApplication {
 	
 		return result;
 	}
-	
-	// is full for airport
-
 }
