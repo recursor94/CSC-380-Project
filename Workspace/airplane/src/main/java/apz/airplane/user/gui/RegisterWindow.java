@@ -113,8 +113,10 @@ public class RegisterWindow implements GuiApplication {
 				MessageBox.message(AlertType.ERROR, "Invalid User Name", "Your user name cannot contain the empty space character");	
 			else if (passField.getText().contains(" ")) 
 				MessageBox.message(AlertType.ERROR, "Invalid Password", "Your password cannot contain the empty space character");
-			else if (!emailField.getText().contains("@") && !emailField.getText().contains("."))
-				MessageBox.message(AlertType.ERROR, "Invalid Email", "Your email must be properly formatted!");
+			else if (!emailField.getText().contains("@"))
+				MessageBox.message(AlertType.ERROR, "Invalid Email", "Your email must be properly formatted with a directory!");
+			else if (!emailField.getText().contains("."))
+				MessageBox.message(AlertType.ERROR, "Invalid Email", "Your email must be properly formatted with a domain!");
 			else {
 				User user = new User (emailField.getText(), userField.getText(), passField.getText());
 				APZLauncher.getUserController().addUser(user);
