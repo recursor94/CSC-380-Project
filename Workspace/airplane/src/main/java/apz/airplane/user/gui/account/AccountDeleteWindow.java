@@ -62,13 +62,15 @@ public class AccountDeleteWindow {
 		yesButton.setOnAction(event -> {
 			ArrayList<Flight> flightList = APZState.loadFlights();
 			User user = APZLauncher.getCurrentUser();
-			for(int i= 0; i < user.getTripList().size(); i ++) {
-				for (int ind = 0; ind < flightList.size(); ind++) {
-					if (flightList.get(i).getFlightNum() == user.getTripList().get(ind).getFlight().getFlightNum()) 
-						flightList.set(i, user.getTripList().get(ind).getFlight());
+			//if (user.getTripList().size() > 0) {
+				for (int i= 0; i < user.getTripList().size(); i ++) {
+					for (int ind = 0; ind < flightList.size(); ind++) {
+						if (flightList.get(ind).getFlightNum() == user.getTripList().get(i).getFlight().getFlightNum()) 
+							flightList.set(ind, user.getTripList().get(i).getFlight());
+					}
+					user.removeTrip(user.getTripList().get(i).getFlight());
 				}
-				user.removeTrip(user.getTripList().get(i).getFlight());
-			}
+			//}
 			APZLauncher.getUserController().removeUser(user.getUsername());
 			MessageBox.message(AlertType.INFORMATION, null, "Your account has been permanently deleted!");
 			APZState.saveFlight(flightList);

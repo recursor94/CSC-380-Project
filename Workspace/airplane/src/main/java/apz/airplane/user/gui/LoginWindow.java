@@ -12,6 +12,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuBar;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -38,6 +39,8 @@ public class LoginWindow implements GuiApplication {
 	private Text status, header;
 
 	public LoginWindow() {
+		if (APZLauncher.getBorderPane().getTop() instanceof MenuBar)
+			APZLauncher.getBorderPane().setTop(null);
 		initialize();
 		content();
 		actionEvents();
