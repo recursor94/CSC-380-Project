@@ -61,6 +61,7 @@ public class AccountDeleteWindow {
 		yesButton.setOnAction(event -> {
 			ArrayList<Flight> flightList = APZState.loadFlights();
 			User user = APZLauncher.getCurrentUser();
+			
 			for (int i= 0; i < user.getTripList().size(); i ++) {
 				for (int ind = 0; ind < flightList.size(); ind++) {
 					if (flightList.get(ind).getFlightNum() == user.getTripList().get(i).getFlight().getFlightNum()) 

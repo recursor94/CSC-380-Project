@@ -7,8 +7,6 @@ import apz.airplane.model.Airplane;
 import apz.airplane.model.Airport;
 import apz.airplane.model.Flight;
 import apz.airplane.model.Time;
-import apz.airplane.model.UserController;
-import apz.airplane.util.APZState;
 import apz.airplane.util.MessageBox;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -124,9 +122,6 @@ public class FlightWindow {
 			flightList.remove(flight);
 			AdminState.saveFlight(flightList);
 			loadFlights();
-			
-			//This is not doing exactly what I want yet
-//			removeFlights();
 			removeFlightButton.setDisable(true);
 			resetFields();
 		});
@@ -276,33 +271,11 @@ public class FlightWindow {
 					MessageBox.message(AlertType.ERROR, "Invalid Data Entry", "Your arrival time must be after your departure time");
 				}
 				else {
-					
-					if(createFlightButton.getText().equals("Create Flight")) {
 						flightList.add(new Flight(plane, outgoingAirport, incomingAirport, arriving, leaving, arrival,
 								departure, flightNum));
 						AdminState.saveFlight(flightList);
 						loadFlights();
 						resetFields();
-					}
-					else {
-						removeFlights();
-//						for (int i = 0; i < flightList.size(); i++) {
-//							if (flightList.get(i) == flightView.getSelectionModel().getSelectedItem()) {
-//								flightList.get(i).setPlane(plane);
-//								flightList.get(i).setFlightNum(flightNum);
-//								flightList.get(i).setArrivalTime(arrival);
-//								flightList.get(i).setDepartureTime(departure);
-//								flightList.get(i).setArriveDate(arriving);
-//								flightList.get(i).setDepartureDate(leaving);
-//								flightList.get(i).setDepartureAirport(outgoingAirport);
-//								flightList.get(i).setDestinationAirport(incomingAirport);
-//								System.out.println("Found and changed!");
-//								AdminState.saveFlight(flightList);
-//								loadFlights();
-//								return;
-//							}
-//						}
-					}
 				}
 			}
 		} else 
@@ -336,29 +309,4 @@ public class FlightWindow {
 		if (!planeList.isEmpty())
 			planeBox.setValue(planeList.get(0));
 	}
-	
-	//I Tried to get this to remove a flight from the user list, but it did not work
-	private void removeFlights() {
-		UserController uc = AdminState.loadInformation();
-		Flight flight = flightView.getSelectionModel().getSelectedItem();
-		ArrayList<Flight> flights = APZState.loadFlights();
-		
-		for (int i = 0; i < uc.getUserList().size(); i++) {
-			
-			for (int j = 0; j < flights.size(); j++) {
-				if (uc.getUserList().get(i).getTripList().get(j).getFlight().getFlightNum() == flight.getFlightNum()) {
-					uc.getUserList().get(i).getTripList().remove(j);
-					flights.set(j, flight);
-				}
-			}
-			
-		}
-		
-	
-		
-		AdminState.saveFlight(flights);
-		AdminState.saveInformation(uc);
-		loadFlights();
-	}
-
 }

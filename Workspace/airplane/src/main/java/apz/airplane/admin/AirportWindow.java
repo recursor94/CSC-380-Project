@@ -115,12 +115,10 @@ public class AirportWindow implements GuiApplication {
 	public void actionEvents() {
 
 		createButton.setOnAction(event -> {
-			if (airportNameField.getText().isEmpty() || airportNameField.getText().isEmpty())
+			if (airportNameField.getText().isEmpty())
 				MessageBox.message(AlertType.ERROR, "No Data Entered", "You must enter an airport name");
-			else if (createButton.getText().equals("Create Airport"))
+			else
 				createAirport(new Airport(airportNameField.getText(), airportProvinceBox.getValue()));
-			else if (createButton.getText().equals("Change Airport"))
-				changeAirport();
 		});
 
 		removeButton.setOnAction(event -> {
@@ -140,11 +138,9 @@ public class AirportWindow implements GuiApplication {
 		airportView.getSelectionModel().selectedItemProperty().addListener(event -> {
 			Airport airport = airportView.getSelectionModel().getSelectedItem();
 			if (airport != null) {
-				//createButton.setText("Change Airport");
 				airportNameField.setText(airport.getName());
 				airportProvinceBox.setValue(airport.getCity());
-			} else
-				createButton.setText("Create Airport");
+			}
 		});
 
 		airportView.setOnKeyPressed(event -> {
@@ -174,20 +170,6 @@ public class AirportWindow implements GuiApplication {
 	private void createAirport(Airport airport) {
 		airportList.add(airport);
 		airportView.getItems().add(airport);
-		AdminState.saveAirports(airportList);
-		FlightWindow.populateComboBoxes();
-		resetFields();
-		loadFile();
-	}
-
-	private void changeAirport() {
-		for (Airport airport : airportList) {
-			if (airport.equals(findAirport())) {
-				airport.setName(airportNameField.getText());
-				airport.setCity(airportProvinceBox.getValue());
-				break;
-			}
-		}
 		AdminState.saveAirports(airportList);
 		FlightWindow.populateComboBoxes();
 		resetFields();
