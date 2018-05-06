@@ -68,7 +68,7 @@ public class CarRentalViewWindow implements GuiApplication {
 			subPane.add(new Label("Total Cost: "), 0, i + 3);
 			subPane.add(new Label("$" + rentList.get(i).getPrice()), 1, i + 3);
 			
-			subPane.setAlignment(Pos.TOP_CENTER);
+			subPane.setAlignment(Pos.TOP_LEFT);
 			
 			gridPane.add(subPane, 0, i);
 			
@@ -93,5 +93,6 @@ public class CarRentalViewWindow implements GuiApplication {
 		mainPane.setAlignment(Pos.TOP_CENTER);
 		gridPane.setAlignment(Pos.TOP_CENTER);
 		APZLauncher.getBorderPane().setCenter(mainPane);
+		APZLauncher.getStage().setTitle("APZ Application - Car Rentals");
 	}
 }

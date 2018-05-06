@@ -13,7 +13,6 @@ public class RentalSystem implements Serializable {	// user has this?
 	}
 	
 	public void addCarRental(Rental rental) {
-		System.out.println("ADDED!");
 		rentalList.add(rental);
 	}
 	

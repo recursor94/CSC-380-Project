@@ -160,7 +160,7 @@ public class CarPickerWindow implements GuiApplication {
 		gridPane.setHgap(10);
 		gridPane.setVgap(10);
 		stage.initModality(Modality.APPLICATION_MODAL);
-		stage.setScene(new Scene(mainPane, 400, 540));
+		stage.setScene(new Scene(mainPane, 400, 560));
 		stage.show();
 	}
 

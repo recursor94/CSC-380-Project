@@ -46,7 +46,7 @@ public class BookingPaymentWindow implements GuiApplication {
 	private static ComboBox<Payment> paymentBox;
 	private static ComboBox<Integer> baggageBox;
 	private Button confirmButton;
-	private DecimalFormat df = new DecimalFormat(".00");
+	private DecimalFormat df;;
 	private Flight flight;
 	private double cost, baggagePrice;
 	private Label costLabel;
@@ -70,6 +70,8 @@ public class BookingPaymentWindow implements GuiApplication {
 		paymentBox = new ComboBox<>();
 		baggageBox = new ComboBox<>();
 		confirmButton = new Button("Confirm Payment");
+		
+		df = new DecimalFormat(".00");
 		
 		cost = Province.getPrice(flight.getDepartureAirport().getCity(), flight.getDestinationAirport().getCity());
 		

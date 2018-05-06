@@ -1,5 +1,6 @@
 package apz.airplane.user.gui.viewtrips;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Optional;
 
@@ -34,6 +35,7 @@ public class TripResultWindow implements GuiApplication {
 	private GridPane gridPane;
 	private Button backButton;
 	private Button cancelButton;
+	private DecimalFormat df;
 
 	private Booking booking;
 	private GuiApplication parentWindow;
@@ -63,6 +65,7 @@ public class TripResultWindow implements GuiApplication {
 		gridPane = new GridPane();
 		backButton = new Button("Go back");
 		cancelButton = new Button("Cancel Flight");
+		df = new DecimalFormat(".00");
 	}
 
 	public void content() {
@@ -72,7 +75,7 @@ public class TripResultWindow implements GuiApplication {
 		gridPane.add(new Label("Date Booked: " + booking.getBookDate()), 1, 0);
 
 		gridPane.add(new ImageView(new Image(FilePath.BULLET_POINT_IMAGE)), 0, 1);
-		gridPane.add(new Label("Trip Cost: $" + booking.getTripCost()), 1, 1);
+		gridPane.add(new Label("Trip Cost: $" + df.format(booking.getTripCost())), 1, 1);
 
 		gridPane.add(new ImageView(new Image(FilePath.BULLET_POINT_IMAGE)), 0, 2);
 		gridPane.add(new Label("Airline: " + booking.getFlight().getPlane().getAirline()), 1, 2);
@@ -152,5 +155,6 @@ public class TripResultWindow implements GuiApplication {
 		mainPane.setAlignment(Pos.TOP_CENTER);
 		gridPane.setAlignment(Pos.TOP_CENTER);
 		APZLauncher.getBorderPane().setCenter(mainPane);
+		APZLauncher.getStage().setTitle("APZ Application - Trip Query");
 	}
 }

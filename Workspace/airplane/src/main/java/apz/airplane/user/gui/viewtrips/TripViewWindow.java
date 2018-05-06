@@ -97,5 +97,6 @@ public class TripViewWindow implements GuiApplication {
 		mainPane.setAlignment(Pos.TOP_CENTER);
 		gridPane.setAlignment(Pos.TOP_CENTER);
 		APZLauncher.getBorderPane().setCenter(mainPane);
+		APZLauncher.getStage().setTitle("APZ Application - Trip History");
 	}
 }

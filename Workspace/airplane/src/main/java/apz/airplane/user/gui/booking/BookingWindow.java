@@ -98,7 +98,7 @@ public class BookingWindow implements GuiApplication {
 		gridPane.setAlignment(Pos.TOP_CENTER);
 		mainPane.setAlignment(Pos.TOP_CENTER);
 		APZLauncher.getBorderPane().setCenter(mainPane);
-		APZLauncher.getStage().setTitle(("APZ Application - Search for Flight Bookings"));
+		APZLauncher.getStage().setTitle(("APZ Application - Search for Flights"));
 	}
 
 	private void populateComboBox() {
