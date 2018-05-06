@@ -50,7 +50,7 @@ public class APZMenuBar {
 		bookMenu = new Menu("Booking");
 		bookATripItem = new MenuItem("Book a trip");
 		bookByDateItem = new MenuItem("Book flight by date");
-		bookByDestinationItem = new MenuItem("Book flight by destination");
+		bookByDestinationItem = new MenuItem("Book flight by location");
 		viewFlightItem = new MenuItem("View my upcoming trips");
 		scheduleFlightItem = new MenuItem("Current flight schedules");
 		

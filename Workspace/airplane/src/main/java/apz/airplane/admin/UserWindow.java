@@ -143,10 +143,10 @@ public class UserWindow implements GuiApplication {
 				else {
 					uc.addUser(new User(email, username, password));
 					AdminState.saveInformation(uc);
-					System.out.println("User successfully created!");
 					MessageBox.message(AlertType.INFORMATION, "Successful User Creation",
 							"Your account has been created!");
 					loadFile();
+					resetFields();
 				}
 			} else
 				MessageBox.message(AlertType.ERROR, "ERROR: You must enter a user name. email and password",
@@ -162,5 +162,11 @@ public class UserWindow implements GuiApplication {
 			userView.getItems().clear();
 		for (int i = 0; i < userList.size(); i++)
 			userView.getItems().add(userList.get(i));
+	}
+	
+	private void resetFields() {
+		passField.setText("");
+		userField.setText("");
+		emailField.setText("");
 	}
 }
