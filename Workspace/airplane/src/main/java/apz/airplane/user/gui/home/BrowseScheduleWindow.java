@@ -10,6 +10,7 @@ import apz.airplane.model.Flight;
 import apz.airplane.user.gui.APZLauncher;
 import apz.airplane.user.gui.booking.BookingResultWindow;
 import apz.airplane.util.APZState;
+import apz.airplane.util.FilePath;
 import apz.airplane.util.GuiApplication;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -18,11 +19,14 @@ import javafx.collections.FXCollections;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Separator;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -30,6 +34,8 @@ import javafx.util.Duration;
 
 public class BrowseScheduleWindow implements GuiApplication {
 	
+	private ScrollPane scrollPane;
+	private ImageView img;
 	private TableView<HomeTableData> flightTable;
 	private TableColumn<HomeTableData, Integer> flightNumber;
 	private TableColumn<HomeTableData, String> departingCity, destinationCity, departingTime;
@@ -54,6 +60,8 @@ public class BrowseScheduleWindow implements GuiApplication {
 	}
 
 	public void initialize() {
+		scrollPane = new ScrollPane();
+		img = new ImageView(new Image(FilePath.DATE_IMAGE));
 		mainPane = new VBox(20);
 		flightTable = new TableView<>();
 		flightNumber = new TableColumn<>("Flight Number");
@@ -74,7 +82,7 @@ public class BrowseScheduleWindow implements GuiApplication {
 		flightDatePicker.setValue(LocalDate.now());
 		setTableData(LocalDate.now());
 		setupTableContents();
-		windowHeaderBox.getChildren().addAll(windowHeader, headerSeparator);
+		windowHeaderBox.getChildren().addAll(windowHeader, img, headerSeparator);
 		
 		dateBox.getChildren().addAll(dateText, flightDatePicker);
 		
@@ -82,7 +90,7 @@ public class BrowseScheduleWindow implements GuiApplication {
 		dateTimeHbox.setAlignment(Pos.BASELINE_CENTER);
 		dateTimeHbox.getChildren().add(dateTimeLabel);
 		
-		mainPane.getChildren().addAll(windowHeaderBox, dateBox, dateTimeHbox, flightTable);
+		mainPane.getChildren().addAll(windowHeaderBox, dateBox, dateTimeHbox, scrollPane);
 	}
 
 	public void actionEvents() {
@@ -105,6 +113,8 @@ public class BrowseScheduleWindow implements GuiApplication {
 	}
 
 	public void properties() {
+		img.setFitWidth(250);
+		img.setFitHeight(150);
 		flightDatePicker.setEditable(true);
 		APZLauncher.getStage().setTitle("APZ Application - Browse Schedules");
 		APZLauncher.getBorderPane().setCenter(mainPane);
@@ -118,6 +128,9 @@ public class BrowseScheduleWindow implements GuiApplication {
 		dateTimeLabel.setStyle("-fx-font: 12 arial;");
 		windowHeaderBox.setAlignment(Pos.BASELINE_CENTER);
 		dateBox.setAlignment(Pos.BASELINE_CENTER);
+		scrollPane.setFitToWidth(true);
+		scrollPane.setFitToHeight(true);
+		scrollPane.setContent(flightTable);
 	}
 
 	@SuppressWarnings("unchecked")

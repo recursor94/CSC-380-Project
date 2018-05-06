@@ -334,7 +334,7 @@ public class FlightWindow {
 		Random rand = new Random();
 		
 		//Make Planes
-		for(int i = 0; i < 12; i ++) {
+		for(int i = 0; i < 16; i ++) {
 			int airlineNum = rand.nextInt(5);
 			planes.add(new Airplane(i + 1, airlines.get(airlineNum), 80));
 		}
@@ -358,37 +358,53 @@ public class FlightWindow {
 			LocalDate depart = LocalDate.of(2018, 5, i + 10);
 			LocalDate arrive = LocalDate.of(2018, 5, i + 10);
 			
-			for (int j = 0; j < 3; j ++) {
-				Time departTime = new Time("5:00 PM");
-				Time arriveTime = new Time("8:30 PM");
+			for (int j = 0; j < 2; j ++) {
+				Time departTime = new Time("11:30 AM");
+				Time arriveTime = new Time("2:30 PM");
 				int airportDepartNum = rand.nextInt(4);
 				int airportArriveNum = rand.nextInt(4) + 4;
 				flights.add(new Flight(planes.get(j), airports.get(airportDepartNum), airports.get(airportArriveNum), 
 						arrive, depart, arriveTime, departTime, flightNum));
 				flightNum++;
 			}
-			for (int k = 3; k < 6; k ++) {
+			for (int k = 2; k < 5; k ++) {
 				Time departTime = new Time("2:00 PM");
 				Time arriveTime = new Time("4:30 PM");
 				int airportNum = rand.nextInt(4);
-				flights.add(new Flight(planes.get(k), airports.get(airportNum), airports.get(airportNum  + k - 2), 
+				flights.add(new Flight(planes.get(k), airports.get(airportNum), airports.get(airportNum  + k - 1), 
 						arrive, depart, arriveTime, departTime, flightNum));
 				flightNum++;
 			}
-			for (int l = 6; l < 9; l ++) {
-				Time departTime = new Time("11:30 AM");
-				Time arriveTime = new Time("2:30 PM");
+			for (int l = 5; l < 7; l ++) {
+				Time departTime = new Time("5:00 PM");
+				Time arriveTime = new Time("8:30 PM");
 				int airportDepartNum = rand.nextInt(4) + 4;
 				int airportArriveNum = rand.nextInt(4);
 				flights.add(new Flight(planes.get(l), airports.get(airportDepartNum), airports.get(airportArriveNum), 
 						arrive, depart, arriveTime, departTime, flightNum));
 				flightNum++;
 			}
-			for (int m = 9; m < 12; m ++) {
-				Time departTime = new Time("8:30 PM");
-				Time arriveTime = new Time("11:00 PM");
+			for (int m = 7; m < 10; m ++) {
+				Time departTime = new Time("7:30 PM");
+				Time arriveTime = new Time("10:00 PM");
 				int airportNum = rand.nextInt(4) + 4;
-				flights.add(new Flight(planes.get(m), airports.get(airportNum), airports.get(airportNum + 8 -m), 
+				flights.add(new Flight(planes.get(m), airports.get(airportNum), airports.get(airportNum + 6 - m), 
+						arrive, depart, arriveTime, departTime, flightNum));
+				flightNum++;
+			}
+			for (int n = 10; n < 13; n ++) {
+				Time departTime = new Time("9:00 PM");
+				Time arriveTime = new Time("11:00 PM");
+				int airportNum = rand.nextInt(4);
+				flights.add(new Flight(planes.get(n), airports.get(airportNum + n - 9), airports.get(airportNum), 
+						arrive, depart, arriveTime, departTime, flightNum));
+				flightNum++;
+			}
+			for (int o = 13; o < 16; o++) {
+				Time departTime = new Time("10:00 PM");
+				Time arriveTime = new Time("11:30 PM");
+				int airportNum = rand.nextInt(4) + 4;
+				flights.add(new Flight(planes.get(o), airports.get(airportNum + 12 - o), airports.get(airportNum), 
 						arrive, depart, arriveTime, departTime, flightNum));
 				flightNum++;
 			}

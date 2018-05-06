@@ -79,8 +79,6 @@ public class TripViewWindow implements GuiApplication {
 			gridPane.add(itemBox, 0, i);
 		}
 
-		scrollPane.setContent(gridPane);
-		scrollPane.setFitToHeight(true);
 		mainPane.getChildren().addAll(new Label(), headerText, img, scrollPane);
 	}
 
@@ -95,9 +93,9 @@ public class TripViewWindow implements GuiApplication {
 		gridPane.setHgap(10);
 		scrollPane.setFitToWidth(true);
 		scrollPane.setFitToHeight(true);
+		scrollPane.setContent(gridPane);
 		mainPane.setAlignment(Pos.TOP_CENTER);
 		gridPane.setAlignment(Pos.TOP_CENTER);
 		APZLauncher.getBorderPane().setCenter(mainPane);
 	}
-
 }
