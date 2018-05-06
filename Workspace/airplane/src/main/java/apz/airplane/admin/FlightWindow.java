@@ -7,6 +7,7 @@ import java.util.Random;
 import apz.airplane.model.Airplane;
 import apz.airplane.model.Airport;
 import apz.airplane.model.Flight;
+import apz.airplane.model.Province;
 import apz.airplane.model.Time;
 import apz.airplane.util.MessageBox;
 import javafx.event.EventHandler;
@@ -39,7 +40,7 @@ public class FlightWindow {
 	public DatePicker departDatePicker, arriveDatePicker;
 	public static ComboBox<Airplane> planeBox;
 	public static ComboBox<String> departAirportBox, arriveAirportBox, arriveTimeBox, departTimeBox;
-	public Button createFlightButton, createAirportButton, removeFlightButton;
+	public Button createFlightButton, createAirportButton, removeFlightButton, autoGenerateButton;
 	public Text header, flightText;
 
 	public FlightWindow(Stage mainStage) {
@@ -65,6 +66,7 @@ public class FlightWindow {
 		createFlightButton = new Button("Create Flight");
 		createAirportButton = new Button("Create Airport");
 		removeFlightButton = new Button("Remove Flight");
+		autoGenerateButton = new Button("Generate Flights");
 		header = new Text("Create Flights");
 		flightText = new Text("List of Created Flights");
 	}
@@ -101,7 +103,10 @@ public class FlightWindow {
 		gridPane.add(departDatePicker, 0, 7);
 		gridPane.add(arriveDatePicker, 1, 7);
 		
-		mainPane.getChildren().addAll(header, new Separator(), gridPane, createFlightButton, 
+		gridPane.add(createFlightButton, 0, 8);
+		gridPane.add(autoGenerateButton, 1, 8);
+		
+		mainPane.getChildren().addAll(header, new Separator(), gridPane, 
 				new Separator(), flightText, flightView, removeFlightButton);
 	}
 
@@ -125,6 +130,10 @@ public class FlightWindow {
 			loadFlights();
 			removeFlightButton.setDisable(true);
 			resetFields();
+		});
+		
+		autoGenerateButton.setOnAction(event -> {
+			autoGenerate();
 		});
 		
 		flightView.setOnKeyPressed(event -> {
@@ -309,5 +318,70 @@ public class FlightWindow {
 			planeBox.getItems().add(planeList.get(i));
 		if (!planeList.isEmpty())
 			planeBox.setValue(planeList.get(0));
+	}
+	
+	private void autoGenerate() {
+		ArrayList<Airplane> planes = new ArrayList<>();
+		ArrayList<String> airlines = new ArrayList<>();
+		
+		//Make Airlines
+		airlines.add("Delta");
+		airlines.add("Southwest");
+		airlines.add("United");
+		airlines.add("Jet Blue");
+		airlines.add("American");
+		Random rand = new Random();
+		
+		//Make Planes
+		for(int i = 0; i < 12; i ++) {
+			int airlineNum = rand.nextInt(5);
+			planes.add(new Airplane(i + 1, airlines.get(airlineNum), 80));
+		}
+		
+		//Make Airports
+		ArrayList<Airport> airports = new ArrayList<>();
+		airports.add(new Airport("JFK", Province.strNY));
+		airports.add(new Airport("SYR", Province.strNY));
+		airports.add(new Airport("SFO", Province.strCA));
+		airports.add(new Airport("LAX", Province.strCA));
+		airports.add(new Airport("AUSTIN", Province.strTX));
+		airports.add(new Airport("TAMPA", Province.strFL));
+		airports.add(new Airport("FT MYERS", Province.strFL));
+		airports.add(new Airport("PHI", Province.strPA));
+		
+		//Make Flights
+		int flightNum = 1;
+		ArrayList<Flight> flights = new ArrayList<>();
+
+		for (int i = 0; i < 22; i ++) {
+			LocalDate depart = LocalDate.of(2018, 5, i + 10);
+			LocalDate arrive = LocalDate.of(2018, 5, i + 10);
+			for (int j = 0; j < 6; j ++) {
+				Time departTime = new Time("5:00 PM");
+				Time arriveTime = new Time("8:30 PM");
+				int airportDepartNum = rand.nextInt(4);
+				int airportArriveNum = rand.nextInt(4) + 4;
+				flights.add(new Flight(planes.get(j), airports.get(airportDepartNum), airports.get(airportArriveNum), 
+						arrive, depart, arriveTime, departTime, flightNum));
+				flightNum++;
+			}
+			for (int k = 6; k < 12; k ++) {
+				Time departTime = new Time("11:30 AM");
+				Time arriveTime = new Time("2:30 PM");
+				int airportDepartNum = rand.nextInt(4) + 4;
+				int airportArriveNum = rand.nextInt(4);
+				flights.add(new Flight(planes.get(k), airports.get(airportDepartNum), airports.get(airportArriveNum), 
+						arrive, depart, arriveTime, departTime, flightNum));
+				flightNum++;
+			}
+		}
+		
+		//Save the info
+		AdminState.saveAirports(airports);
+		AdminState.saveFlight(flights);
+		AdminState.savePlane(planes);
+		loadPlanes();
+		loadFlights();
+		populateComboBoxes();
 	}
 }
