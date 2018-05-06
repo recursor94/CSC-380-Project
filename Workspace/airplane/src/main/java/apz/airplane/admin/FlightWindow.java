@@ -313,6 +313,7 @@ public class FlightWindow {
 	}
 	
 	private void loadPlanes() {
+		planeBox.getItems().clear();
 		ArrayList<Airplane> planeList = AdminState.loadPlanes();
 		for (int i = 0; i < planeList.size(); i++) 
 			planeBox.getItems().add(planeList.get(i));
@@ -356,7 +357,8 @@ public class FlightWindow {
 		for (int i = 0; i < 22; i ++) {
 			LocalDate depart = LocalDate.of(2018, 5, i + 10);
 			LocalDate arrive = LocalDate.of(2018, 5, i + 10);
-			for (int j = 0; j < 6; j ++) {
+			
+			for (int j = 0; j < 3; j ++) {
 				Time departTime = new Time("5:00 PM");
 				Time arriveTime = new Time("8:30 PM");
 				int airportDepartNum = rand.nextInt(4);
@@ -365,12 +367,28 @@ public class FlightWindow {
 						arrive, depart, arriveTime, departTime, flightNum));
 				flightNum++;
 			}
-			for (int k = 6; k < 12; k ++) {
+			for (int k = 3; k < 6; k ++) {
+				Time departTime = new Time("2:00 PM");
+				Time arriveTime = new Time("4:30 PM");
+				int airportNum = rand.nextInt(4);
+				flights.add(new Flight(planes.get(k), airports.get(airportNum), airports.get(airportNum  + k - 2), 
+						arrive, depart, arriveTime, departTime, flightNum));
+				flightNum++;
+			}
+			for (int l = 6; l < 9; l ++) {
 				Time departTime = new Time("11:30 AM");
 				Time arriveTime = new Time("2:30 PM");
 				int airportDepartNum = rand.nextInt(4) + 4;
 				int airportArriveNum = rand.nextInt(4);
-				flights.add(new Flight(planes.get(k), airports.get(airportDepartNum), airports.get(airportArriveNum), 
+				flights.add(new Flight(planes.get(l), airports.get(airportDepartNum), airports.get(airportArriveNum), 
+						arrive, depart, arriveTime, departTime, flightNum));
+				flightNum++;
+			}
+			for (int m = 9; m < 12; m ++) {
+				Time departTime = new Time("8:30 PM");
+				Time arriveTime = new Time("11:00 PM");
+				int airportNum = rand.nextInt(4) + 4;
+				flights.add(new Flight(planes.get(m), airports.get(airportNum), airports.get(airportNum + 8 -m), 
 						arrive, depart, arriveTime, departTime, flightNum));
 				flightNum++;
 			}
