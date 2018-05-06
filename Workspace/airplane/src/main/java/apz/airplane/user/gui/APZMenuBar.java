@@ -72,7 +72,7 @@ public class APZMenuBar {
 		flightMenu.getItems().addAll(bookMenu, viewFlightItem, scheduleFlightItem);
 		accountMenu.getItems().addAll(manageAccountItem, managePaymentItem, new SeparatorMenuItem(), manageBookingItem, manageCarRentalItem);
 		aboutMenu.getItems().addAll(aboutClassItem, aboutProjectItem, aboutUsItem);
-		menuBar.getMenus().addAll(fileMenu, flightMenu, accountMenu, aboutMenu);
+		menuBar.getMenus().addAll(fileMenu, flightMenu, accountMenu);
 		
 		APZLauncher.getBorderPane().setTop(menuBar);
 	}
