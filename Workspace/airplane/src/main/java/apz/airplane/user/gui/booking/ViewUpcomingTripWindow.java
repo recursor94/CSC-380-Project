@@ -2,6 +2,7 @@ package apz.airplane.user.gui.booking;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+
 import apz.airplane.model.Airport;
 import apz.airplane.model.Booking;
 import apz.airplane.model.User;
@@ -26,7 +27,7 @@ import javafx.scene.text.Text;
 
 public class ViewUpcomingTripWindow implements GuiApplication {
 
-//	private ScrollPane scrollPane;
+	//private ScrollPane scrollPane;
 	private ImageView img;
 	private Text windowHeader;
 	private TableView<BookingTableData> tripTable;
@@ -49,7 +50,7 @@ public class ViewUpcomingTripWindow implements GuiApplication {
 	}
 
 	public void initialize() {
-//		scrollPane = new ScrollPane();
+		//scrollPane = new ScrollPane();
 		img = new ImageView(new Image(FilePath.HOME_PLANE));
 		windowHeader = new Text("View Upcoming Trips");
 		tripTable = new TableView<>();
@@ -72,7 +73,7 @@ public class ViewUpcomingTripWindow implements GuiApplication {
 		resetTableData();
 		setupTableContents();
 		headerBox.getChildren().addAll(new Label(), windowHeader, img, headerHorizontalSeparator);
-		bottomContentBox.getChildren().add(bottomContentBox);
+		bottomContentBox.getChildren().add(tripTable);
 		mainPane.getChildren().addAll(headerBox, bottomContentBox);
 	}
 
@@ -92,9 +93,9 @@ public class ViewUpcomingTripWindow implements GuiApplication {
 	public void properties() {
 		APZLauncher.getBorderPane().setCenter(mainPane);
 		formatHeader();
-//		scrollPane.setFitToWidth(true);
-//		scrollPane.setFitToHeight(true);
-//		scrollPane.setContent(tripTable);
+		//scrollPane.setFitToWidth(true);
+		//scrollPane.setFitToHeight(true);
+		//scrollPane.setContent(bottomContentBox);
 	}
 
 	public void formatHeader() {
