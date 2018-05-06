@@ -13,17 +13,12 @@ public class Seating implements Serializable {
 	}
 
 	public void addTo() {
-		if (currentSeats == capacity)
-			System.out.println("FULL LIST");
-		else {
+		if (!isFull()) 
 			currentSeats++;
-			System.out.println("User added to seat\nNumber of seats available: " + (capacity - currentSeats));
-		}
 	}
 
 	public void remove() {
 		currentSeats--;
-		System.out.println("User removed from seat\nNumber of seats available: " + (capacity - currentSeats));
 	}
 
 	public boolean isFull() {

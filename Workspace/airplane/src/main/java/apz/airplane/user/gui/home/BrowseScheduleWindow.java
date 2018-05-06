@@ -5,7 +5,6 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
-
 import apz.airplane.model.Flight;
 import apz.airplane.user.gui.APZLauncher;
 import apz.airplane.user.gui.booking.BookingResultWindow;

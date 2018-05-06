@@ -203,7 +203,6 @@ public class PaymentAddWindow implements GuiApplication {
 				int CCV = Integer.valueOf(CCVNumField.getText());
 				user.addPayment(new Payment(name, street, city, state, zip, cardNum, expirationDate, CCV));
 				APZState.saveInformation();
-				System.out.println(user.getPaymentInformation());
 				if (stage != null) {
 					new BookingPaymentWindow(flight);
 					stage.close();

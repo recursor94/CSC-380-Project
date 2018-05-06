@@ -2,7 +2,6 @@ package apz.airplane.user.gui.booking;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-
 import apz.airplane.model.Airport;
 import apz.airplane.model.Booking;
 import apz.airplane.model.User;
@@ -14,6 +13,7 @@ import javafx.collections.FXCollections;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Separator;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
@@ -26,6 +26,7 @@ import javafx.scene.text.Text;
 
 public class ViewUpcomingTripWindow implements GuiApplication {
 
+//	private ScrollPane scrollPane;
 	private ImageView img;
 	private Text windowHeader;
 	private TableView<BookingTableData> tripTable;
@@ -48,6 +49,7 @@ public class ViewUpcomingTripWindow implements GuiApplication {
 	}
 
 	public void initialize() {
+//		scrollPane = new ScrollPane();
 		img = new ImageView(new Image(FilePath.HOME_PLANE));
 		windowHeader = new Text("View Upcoming Trips");
 		tripTable = new TableView<>();
@@ -70,7 +72,7 @@ public class ViewUpcomingTripWindow implements GuiApplication {
 		resetTableData();
 		setupTableContents();
 		headerBox.getChildren().addAll(new Label(), windowHeader, img, headerHorizontalSeparator);
-		bottomContentBox.getChildren().add(tripTable);
+		bottomContentBox.getChildren().add(bottomContentBox);
 		mainPane.getChildren().addAll(headerBox, bottomContentBox);
 	}
 
@@ -90,6 +92,9 @@ public class ViewUpcomingTripWindow implements GuiApplication {
 	public void properties() {
 		APZLauncher.getBorderPane().setCenter(mainPane);
 		formatHeader();
+//		scrollPane.setFitToWidth(true);
+//		scrollPane.setFitToHeight(true);
+//		scrollPane.setContent(tripTable);
 	}
 
 	public void formatHeader() {
@@ -101,6 +106,8 @@ public class ViewUpcomingTripWindow implements GuiApplication {
 
 	@SuppressWarnings("unchecked")
 	private void setupTableContents() {
+		tripTable.getColumns().addAll(departureDateColumn, flightNumberColumn, airlineColumn, departureTimeColumn,
+				departureAirportColumn, destinationAirportColumn);
 		flightNumberColumn.setCellValueFactory(new PropertyValueFactory<>("flightNumber"));
 		airlineColumn.setCellValueFactory(new PropertyValueFactory<>("Airline"));
 		departureDateColumn.setCellValueFactory(new PropertyValueFactory<>("bookDate"));
@@ -109,8 +116,6 @@ public class ViewUpcomingTripWindow implements GuiApplication {
 		destinationAirportColumn.setCellValueFactory(new PropertyValueFactory<>("destinationAirport"));
 		bookDateColumn.setCellValueFactory(new PropertyValueFactory<>("bookDate"));
 		tripCostColumn.setCellValueFactory(new PropertyValueFactory<>("tripCost"));
-		tripTable.getColumns().addAll(departureDateColumn, flightNumberColumn, airlineColumn, departureTimeColumn,
-				departureAirportColumn, destinationAirportColumn);
 		tripTable.setPrefHeight(APZLauncher.getBorderPane().getHeight() - 10);
 		tripTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 	}
