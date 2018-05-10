@@ -58,6 +58,8 @@ public class APZState {
 		UserController uc = new UserController();
 		FileInputStream fileIn;
 		try {
+			if (!new File(ucFilePath).exists())
+				saveInformation(uc);
 			fileIn = new FileInputStream(ucFilePath);
 			ObjectInputStream objectIn = new ObjectInputStream(fileIn);
 
