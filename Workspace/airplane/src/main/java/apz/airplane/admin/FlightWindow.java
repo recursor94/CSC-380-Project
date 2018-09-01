@@ -355,8 +355,8 @@ public class FlightWindow {
 		ArrayList<Flight> flights = new ArrayList<>();
 
 		for (int i = 0; i < 22; i ++) {
-			LocalDate depart = LocalDate.of(2018, 5, i + 10);
-			LocalDate arrive = LocalDate.of(2018, 5, i + 10);
+			LocalDate depart = LocalDate.of(2018, 7, i + 10);
+			LocalDate arrive = LocalDate.of(2018, 7, i + 10);
 			
 			for (int j = 0; j < 2; j ++) {
 				Time departTime = new Time("11:30 AM");
